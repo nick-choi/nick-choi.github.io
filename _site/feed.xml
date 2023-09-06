@@ -1,14 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-06T18:23:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Your Site Title</title><subtitle>Your Site Description
-</subtitle><author><name>Your Name</name></author><entry><title type="html">Welcome</title><link href="http://localhost:4000/2018/07/01/welcome.html" rel="alternate" type="text/html" title="Welcome" /><published>2018-07-01T00:00:00+09:00</published><updated>2018-07-01T00:00:00+09:00</updated><id>http://localhost:4000/2018/07/01/welcome</id><content type="html" xml:base="http://localhost:4000/2018/07/01/welcome.html"><![CDATA[<p>If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-06T19:22:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+</subtitle><author><name>nickchoi</name></author><entry><title type="html">Unity HD-2D 참고자료</title><link href="http://localhost:4000/2023/09/06/unity-with-hd2d.html" rel="alternate" type="text/html" title="Unity HD-2D 참고자료" /><published>2023-09-06T00:00:00+09:00</published><updated>2023-09-06T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/06/unity-with-hd2d</id><content type="html" xml:base="http://localhost:4000/2023/09/06/unity-with-hd2d.html"><![CDATA[<p>Unity에서 HD-2D 구현하는 자료들 모음.</p>
 
-<p>You may want to <a href="https://kitian616.github.io/jekyll-TeXt-theme/docs/en/configuration">config the site</a> or <a href="https://kitian616.github.io/jekyll-TeXt-theme/docs/en/writing-posts">writing a post</a> next. Please feel free to <a href="https://github.com/kitian616/jekyll-TeXt-theme/issues">create an issue</a> or <a href="mailto:kitian616@outlook.com">send me email</a> if you have any questions.</p>
-
-<!--more-->
+<!-- more -->
 
 <hr />
 
-<p>If you like TeXt, don’t forget to give me a star. :star2:</p>
+<h1 id="튜토리얼">튜토리얼</h1>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=YGY6p-cnb08">HD-2D 그래픽의 구조와 만드는 방법</a> (일본어)</li>
+  <li><a href="https://sleepygamersmemo.blogspot.com/2017/07/unity-sprites-shadow.html">Unity 스프라이트에 그림자 붙이는 방법</a> (일본어)</li>
+  <li><a href="https://www.youtube.com/watch?v=FjJJ_I9zqJo">2D Sprites in 3D World</a></li>
+  <li><a href="https://www.youtube.com/watch?v=6obBCWLH1GI">Paper Mario Style 2.5D Movement in Unity</a></li>
+</ul>
 
-<p><a href="https://github.com/kitian616/jekyll-TeXt-theme/"><img src="https://img.shields.io/github/stars/kitian616/jekyll-TeXt-theme.svg?label=Stars&amp;style=social" alt="Star This Project" /></a></p>]]></content><author><name>Your Name</name></author><category term="TeXt" /><summary type="html"><![CDATA[If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost: You may want to config the site or writing a post next. Please feel free to create an issue or send me email if you have any questions.]]></summary></entry><entry><title type="html">Post with Header Image</title><link href="http://localhost:4000/2018/06/01/header-image.html" rel="alternate" type="text/html" title="Post with Header Image" /><published>2018-06-01T00:00:00+09:00</published><updated>2018-06-01T00:00:00+09:00</updated><id>http://localhost:4000/2018/06/01/header-image</id><content type="html" xml:base="http://localhost:4000/2018/06/01/header-image.html"><![CDATA[<p>A Post with Header Image, See <a href="https://kitian616.github.io/jekyll-TeXt-theme/samples.html#page-layout">Page layout</a> for more examples.</p>
+<h1 id="유니티-에셋">유니티 에셋</h1>
+<ul>
+  <li><a href="https://assetstore.unity.com/packages/vfx/shaders/lightrays-2d-effect-103506">LightRays 2D effect</a></li>
+  <li><a href="https://assetstore.unity.com/packages/2d/characters/warrior-free-asset-195707">Warrior Free Asset</a></li>
+  <li><a href="https://assetstore.unity.com/packages/2d/environments/pixel-art-platformer-village-props-166114">Pixel Art Platformer - Village Props</a></li>
+  <li><a href="https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-environment-level-set-18598">Fantasy Environment Level Set</a></li>
+</ul>
 
-<!--more-->]]></content><author><name>Your Name</name></author><category term="TeXt" /><summary type="html"><![CDATA[A Post with Header Image, See Page layout for more examples.]]></summary></entry></feed>
+<h1 id="그-외-자료">그 외 자료</h1>
+<ul>
+  <li><a href="https://seesaawiki.jp/mod_memo/d/HD-2D%C9%F7%B0%EC%BB%FE%A5%E1%A5%E2">Unity 개발 메모용 Wiki</a> (일본어)</li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="unity" /><summary type="html"><![CDATA[Unity에서 HD-2D 구현하는 자료들 모음. 튜토리얼 HD-2D 그래픽의 구조와 만드는 방법 (일본어) Unity 스프라이트에 그림자 붙이는 방법 (일본어) 2D Sprites in 3D World Paper Mario Style 2.5D Movement in Unity 유니티 에셋 LightRays 2D effect Warrior Free Asset Pixel Art Platformer - Village Props Fantasy Environment Level Set 그 외 자료 Unity 개발 메모용 Wiki (일본어)]]></summary></entry></feed>
