@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-06T19:22:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
-</subtitle><author><name>nickchoi</name></author><entry><title type="html">Unity HD-2D 참고자료</title><link href="http://localhost:4000/2023/09/06/unity-with-hd2d.html" rel="alternate" type="text/html" title="Unity HD-2D 참고자료" /><published>2023-09-06T00:00:00+09:00</published><updated>2023-09-06T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/06/unity-with-hd2d</id><content type="html" xml:base="http://localhost:4000/2023/09/06/unity-with-hd2d.html"><![CDATA[<p>Unity에서 HD-2D 구현하는 자료들 모음.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-06T22:29:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+</subtitle><author><name>nickchoi</name></author><entry><title type="html">Unity HD-2D 참고자료</title><link href="http://localhost:4000/2023/09/06/19-unity-with-hd2d.html" rel="alternate" type="text/html" title="Unity HD-2D 참고자료" /><published>2023-09-06T00:00:00+09:00</published><updated>2023-09-06T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/06/19-unity-with-hd2d</id><content type="html" xml:base="http://localhost:4000/2023/09/06/19-unity-with-hd2d.html"><![CDATA[<p>Unity에서 HD-2D 구현하는 자료들 모음.</p>
 
 <!-- more -->
 
@@ -24,4 +24,19 @@
 <h1 id="그-외-자료">그 외 자료</h1>
 <ul>
   <li><a href="https://seesaawiki.jp/mod_memo/d/HD-2D%C9%F7%B0%EC%BB%FE%A5%E1%A5%E2">Unity 개발 메모용 Wiki</a> (일본어)</li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="unity" /><summary type="html"><![CDATA[Unity에서 HD-2D 구현하는 자료들 모음. 튜토리얼 HD-2D 그래픽의 구조와 만드는 방법 (일본어) Unity 스프라이트에 그림자 붙이는 방법 (일본어) 2D Sprites in 3D World Paper Mario Style 2.5D Movement in Unity 유니티 에셋 LightRays 2D effect Warrior Free Asset Pixel Art Platformer - Village Props Fantasy Environment Level Set 그 외 자료 Unity 개발 메모용 Wiki (일본어)]]></summary></entry></feed>
+</ul>]]></content><author><name>nickchoi</name></author><category term="C#," /><category term="Unity" /><summary type="html"><![CDATA[Unity에서 HD-2D 구현하는 자료들 모음. 튜토리얼 HD-2D 그래픽의 구조와 만드는 방법 (일본어) Unity 스프라이트에 그림자 붙이는 방법 (일본어) 2D Sprites in 3D World Paper Mario Style 2.5D Movement in Unity 유니티 에셋 LightRays 2D effect Warrior Free Asset Pixel Art Platformer - Village Props Fantasy Environment Level Set 그 외 자료 Unity 개발 메모용 Wiki (일본어)]]></summary></entry><entry><title type="html">DotNetty를 이용한 실시간 네트워크 게임 개발</title><link href="http://localhost:4000/2023/09/06/22-dotnetty.html" rel="alternate" type="text/html" title="DotNetty를 이용한 실시간 네트워크 게임 개발" /><published>2023-09-06T00:00:00+09:00</published><updated>2023-09-06T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/06/22-dotnetty</id><content type="html" xml:base="http://localhost:4000/2023/09/06/22-dotnetty.html"><![CDATA[<p>C#의 DotNetty를 이용하여 실시간 네트워크 게임 개발할 자료 모음.</p>
+
+<ul>
+  <li><a href="https://github.com/Azure/DotNetty">DotNetty</a></li>
+</ul>
+
+<!-- more -->
+
+<hr />
+
+<h1 id="세균전">세균전</h1>
+<ol>
+  <li>게임 서버 접속, 로그인</li>
+  <li>로비 : 게임방 리스트, 게임방 만들기, 게임방 입장, 게임 시작</li>
+  <li>게임 플레이 : 이동 처리, 턴 종료, 게임 종료</li>
+</ol>]]></content><author><name>nickchoi</name></author><category term="C#," /><category term="Network" /><summary type="html"><![CDATA[C#의 DotNetty를 이용하여 실시간 네트워크 게임 개발할 자료 모음. DotNetty 세균전 게임 서버 접속, 로그인 로비 : 게임방 리스트, 게임방 만들기, 게임방 입장, 게임 시작 게임 플레이 : 이동 처리, 턴 종료, 게임 종료]]></summary></entry></feed>
