@@ -14,6 +14,7 @@ Unity에서 HD-2D 구현하는 자료들 모음.
 # 튜토리얼
 * [HD-2D 그래픽의 구조와 만드는 방법](https://www.youtube.com/watch?v=YGY6p-cnb08) (일본어)
 * [Unity 스프라이트에 그림자 붙이는 방법](https://sleepygamersmemo.blogspot.com/2017/07/unity-sprites-shadow.html) (일본어)
+* [옥토파스 트래블러 같은 HD-2D의 세계를 재현한다](https://note.com/game_shiori/n/n8e3870afb515) (일본어) - 부분유료
 * [2D Sprites in 3D World](https://www.youtube.com/watch?v=FjJJ_I9zqJo)
 * [Paper Mario Style 2.5D Movement in Unity](https://www.youtube.com/watch?v=6obBCWLH1GI)
 
