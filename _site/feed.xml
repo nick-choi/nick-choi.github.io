@@ -1,7 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-07T11:22:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-07T13:03:29+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
 </subtitle><author><name>nickchoi</name></author><entry><title type="html">트라이앵글 스트레티지</title><link href="http://localhost:4000/2023/09/07/11-triangle-strategy.html" rel="alternate" type="text/html" title="트라이앵글 스트레티지" /><published>2023-09-07T00:00:00+09:00</published><updated>2023-09-07T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/07/11-triangle-strategy</id><content type="html" xml:base="http://localhost:4000/2023/09/07/11-triangle-strategy.html"><![CDATA[<ul>
   <li><a href="https://youtube.com/playlist?list=PLvMEAuzf476OiwIaTTFCyuL9ERlAyDOJR&amp;si=alDjb7wc3Xb1jL86">Youtube 플레이영상 리스트</a></li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="게임" /><summary type="html"><![CDATA[Youtube 플레이영상 리스트]]></summary></entry><entry><title type="html">Unity HD-2D 참고자료</title><link href="http://localhost:4000/2023/09/06/19-unity-with-hd2d.html" rel="alternate" type="text/html" title="Unity HD-2D 참고자료" /><published>2023-09-06T00:00:00+09:00</published><updated>2023-09-06T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/06/19-unity-with-hd2d</id><content type="html" xml:base="http://localhost:4000/2023/09/06/19-unity-with-hd2d.html"><![CDATA[<p>Unity에서 HD-2D 구현하는 자료들 모음.</p>
+</ul>]]></content><author><name>nickchoi</name></author><category term="게임" /><summary type="html"><![CDATA[Youtube 플레이영상 리스트]]></summary></entry><entry><title type="html">RPG Rule Book</title><link href="http://localhost:4000/2023/09/07/12-labyrinth-lord.html" rel="alternate" type="text/html" title="RPG Rule Book" /><published>2023-09-07T00:00:00+09:00</published><updated>2023-09-07T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/07/12-labyrinth-lord</id><content type="html" xml:base="http://localhost:4000/2023/09/07/12-labyrinth-lord.html"><![CDATA[<h1 id="osr">OSR</h1>
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Old_School_Renaissance">OSR</a></li>
+  <li><a href="https://roongrpg.postype.com/post/6858312">OSR의 개요와 대표작품 소개</a></li>
+</ul>
+
+<h1 id="labyrinth-lord-영문">Labyrinth Lord (영문)</h1>
+<ul>
+  <li>OSR 기반의 Free 룰북</li>
+  <li><a href="https://i.4pcdn.org/tg/1423976449045.pdf">다운로드링크</a></li>
+  <li>Class와 Combat Section 참고 예정</li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="게임," /><category term="RPG" /><summary type="html"><![CDATA[OSR OSR OSR의 개요와 대표작품 소개 Labyrinth Lord (영문) OSR 기반의 Free 룰북 다운로드링크 Class와 Combat Section 참고 예정]]></summary></entry><entry><title type="html">Unity HD-2D 참고자료</title><link href="http://localhost:4000/2023/09/06/19-unity-with-hd2d.html" rel="alternate" type="text/html" title="Unity HD-2D 참고자료" /><published>2023-09-06T00:00:00+09:00</published><updated>2023-09-06T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/06/19-unity-with-hd2d</id><content type="html" xml:base="http://localhost:4000/2023/09/06/19-unity-with-hd2d.html"><![CDATA[<p>Unity에서 HD-2D 구현하는 자료들 모음.</p>
 
 <!-- more -->
 
