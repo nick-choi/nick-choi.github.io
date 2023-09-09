@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-07T21:35:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-10T02:16:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
 </subtitle><author><name>nickchoi</name></author><entry><title type="html">트라이앵글 스트레티지</title><link href="http://localhost:4000/2023/09/07/11-triangle-strategy.html" rel="alternate" type="text/html" title="트라이앵글 스트레티지" /><published>2023-09-07T00:00:00+09:00</published><updated>2023-09-07T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/07/11-triangle-strategy</id><content type="html" xml:base="http://localhost:4000/2023/09/07/11-triangle-strategy.html"><![CDATA[<ul>
   <li><a href="https://youtube.com/playlist?list=PLvMEAuzf476OiwIaTTFCyuL9ERlAyDOJR&amp;si=alDjb7wc3Xb1jL86">Youtube 플레이영상 리스트</a></li>
 </ul>]]></content><author><name>nickchoi</name></author><category term="게임" /><summary type="html"><![CDATA[Youtube 플레이영상 리스트]]></summary></entry><entry><title type="html">RPG Rule Book</title><link href="http://localhost:4000/2023/09/07/12-labyrinth-lord.html" rel="alternate" type="text/html" title="RPG Rule Book" /><published>2023-09-07T00:00:00+09:00</published><updated>2023-09-07T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/07/12-labyrinth-lord</id><content type="html" xml:base="http://localhost:4000/2023/09/07/12-labyrinth-lord.html"><![CDATA[<h1 id="osr">OSR</h1>
@@ -48,6 +48,14 @@
 
 <hr />
 
+<h1 id="dotnettyforunity">DotNettyForUnity</h1>
+<ul>
+  <li><a href="https://github.com/vovgou/DotNettyForUnity">github</a></li>
+  <li>서버 : NetCore + DotNetty</li>
+  <li>클라이언트 : Unity</li>
+  <li>위의 환경구성으로 이루어진 샘플 소스 코드들</li>
+</ul>
+
 <h1 id="dotnetty-samples">DotNetty Samples</h1>
 <ul>
   <li><a href="https://github.com/snowpipe-dev/DotNettyServerSamples.git">github</a></li>
@@ -76,4 +84,4 @@
   <li>게임 서버 접속, 로그인</li>
   <li>로비 : 게임방 리스트, 게임방 만들기, 게임방 입장, 게임 시작</li>
   <li>게임 플레이 : 이동 처리, 턴 종료, 게임 종료</li>
-</ol>]]></content><author><name>nickchoi</name></author><category term="C#," /><category term="Network" /><summary type="html"><![CDATA[C#의 DotNetty를 이용하여 실시간 네트워크 게임 개발할 자료 모음. DotNetty DotNetty Samples github private 저장소 아래 DotNetty Playground의 한글 주석 및 소스 정리한 버전 DotNetty Playground github netty 설명과 그 외 dotnetty 코드 예제 모음 채팅 서버/클라 구현 Building a chat client/server system with Netty in under 15 minutes (영문) Java netty 기반이라서 공부하고, DotNetty로 변경해야함. 오델로 게임 오델로 게임소개 게임 서버 접속, 로그인 로비 : 게임방 리스트, 게임방 만들기, 게임방 입장, 게임 시작 게임 플레이 : 이동 처리, 턴 종료, 게임 종료]]></summary></entry></feed>
+</ol>]]></content><author><name>nickchoi</name></author><category term="C#," /><category term="Network" /><summary type="html"><![CDATA[C#의 DotNetty를 이용하여 실시간 네트워크 게임 개발할 자료 모음. DotNetty DotNettyForUnity github 서버 : NetCore + DotNetty 클라이언트 : Unity 위의 환경구성으로 이루어진 샘플 소스 코드들 DotNetty Samples github private 저장소 아래 DotNetty Playground의 한글 주석 및 소스 정리한 버전 DotNetty Playground github netty 설명과 그 외 dotnetty 코드 예제 모음 채팅 서버/클라 구현 Building a chat client/server system with Netty in under 15 minutes (영문) Java netty 기반이라서 공부하고, DotNetty로 변경해야함. 오델로 게임 오델로 게임소개 게임 서버 접속, 로그인 로비 : 게임방 리스트, 게임방 만들기, 게임방 입장, 게임 시작 게임 플레이 : 이동 처리, 턴 종료, 게임 종료]]></summary></entry></feed>
