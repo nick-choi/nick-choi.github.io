@@ -1,7 +1,7 @@
 ---
 layout: article
-title: 베이식 판타지 - 소개
-tags: Basic Fantasy, 게임, RPG
+title: Basic Fantasy - 소개
+tags: BasicFantasy, 게임, RPG
 ---
 
 # 주사위 사용하기

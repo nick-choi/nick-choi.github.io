@@ -1,7 +1,7 @@
 ---
 layout: article
-title: 베이식 판타지 - 캐릭터
-tags: Basic Fantasy, 게임, RPG
+title: Basic Fantasy - 캐릭터
+tags: BasicFantasy, 게임, RPG
 ---
 
 # 캐릭터 능력

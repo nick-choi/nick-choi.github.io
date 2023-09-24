@@ -1,7 +1,7 @@
 ---
 layout: article
-title: 베이식 판타지 - 전투 레퍼런스
-tags: Basic Fantasy, 게임, RPG
+title: Basic Fantasy - 전투 레퍼런스
+tags: BasicFantasy, 게임, RPG
 ---
 
 # 전투 레퍼런스

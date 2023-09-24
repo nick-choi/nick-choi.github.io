@@ -1,7 +1,7 @@
 ---
 layout: article
-title: 베이식 판타지 - 조우
-tags: Basic Fantasy, 게임, RPG
+title: Basic Fantasy - 조우
+tags: BasicFantasy, 게임, RPG
 ---
 
 # 조우
