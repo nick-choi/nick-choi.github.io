@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Basic Fantasy - 캐릭터
-tags: BasicFantasy, 게임, RPG
+tags: BasicFantasy, Rule, 참고자료
 ---
 
 # 캐릭터 능력

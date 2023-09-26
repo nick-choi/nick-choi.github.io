@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Basic Fantasy - 전투 레퍼런스
-tags: BasicFantasy, 게임, RPG
+tags: BasicFantasy, Rule, 참고자료
 ---
 
 # 전투 레퍼런스

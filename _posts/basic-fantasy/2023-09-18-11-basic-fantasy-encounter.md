@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Basic Fantasy - 조우
-tags: BasicFantasy, 게임, RPG
+tags: BasicFantasy, Rule, 참고자료
 ---
 
 # 조우
