@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Basic Fantasy - 미리 생성된 캐릭터들
-tags: BasicFantasy, Rule, 참고자료
+tags: BasicFantasy Rule 참고자료
 latex : false
 ---
 

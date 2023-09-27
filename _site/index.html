@@ -314,6 +314,62 @@
 <div class="layout--articles">
 <div class="article-list items items--divided">
 <article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2023/09/27/15-unity-client-step1.html"><h2 itemprop="headline" class="item__header">Unity Prototype Step1</h2></a></header>
+          <div class="item__description">
+<div class="article__content" itemprop="description articleBody">1. 두 캐릭터를 그리드 안에서 이동하기
+
+  10x10 그리드에 두 캐릭터를 놓고 서로 한번씩 이동하기
+  단, 그리드를 넘어갈 수 없고, 두 캐릭터가 겹쳐도 안됨
+
+
+
+
+데이터
+
+  드워프/전사 : 가로,세로 2칸씩 이동(파란색)
+  인간/성직자 : 가로,세로 1칸씩 이동(핫핑크색)
+
+
+플로우
+
+  드워프 선택됨
+  해당 드워프의 이동 가능 거리가 표시
+  이동가능한 그리드를 선택하면 드워프 이동
+  성직자 선택됨
+  2,3 동일하게 반복
+  1부터 다시 시작
+
+
+데이터구조
+
+  2차원 배열로 캐릭터들 위치 저장하고, 충돌판정할 것.
+  즉 데이터로만 처리하고 GameObject로 처리하지 않는다 (차후 서버 ...</div>
+<p><a href="/2023/09/27/15-unity-client-step1.html">Read more</a></p>
+</div>
+<div class="article__info clearfix">
+<ul class="left-col menu">
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=C%23">C#</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Unity">Unity</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Client">Client</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Prototype">Prototype</a>
+            </li>
+</ul>
+<ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>Sep 27, 2023</span>
+            </li></ul>
+</div>
+<meta itemprop="author" content="nickchoi">
+<meta itemprop="datePublished" content="2023-09-27T00:00:00+09:00">
+    <meta itemprop="keywords" content="C#,Unity,Client,Prototype">
+</div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/09/25/10-basic-fantasy-pregenerated-characters.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 미리 생성된 캐릭터들</h2></a></header>
           <div class="item__description">
 <div class="article__content" itemprop="description articleBody">미리 생성된 캐릭터 데이터 시트
@@ -325,10 +381,10 @@
 <div class="article__info clearfix">
 <ul class="left-col menu">
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy%2C">BasicFantasy,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
             </li>
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule%2C">Rule,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
             </li>
 <li>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
@@ -340,7 +396,7 @@
 </div>
 <meta itemprop="author" content="nickchoi">
 <meta itemprop="datePublished" content="2023-09-25T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,,Rule,,참고자료">
+    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/09/24/22-basic-fantasy-combat-cheat-sheet.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 전투 치트 시트</h2></a></header>
@@ -378,10 +434,10 @@
 <div class="article__info clearfix">
 <ul class="left-col menu">
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy%2C">BasicFantasy,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
             </li>
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule%2C">Rule,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
             </li>
 <li>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
@@ -393,7 +449,7 @@
 </div>
 <meta itemprop="author" content="nickchoi">
 <meta itemprop="datePublished" content="2023-09-24T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,,Rule,,참고자료">
+    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/09/22/23-basic-fantasy-combat-with-floor.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 평면도를 이용한 전투</h2></a></header>
@@ -409,10 +465,10 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 <div class="article__info clearfix">
 <ul class="left-col menu">
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy%2C">BasicFantasy,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
             </li>
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule%2C">Rule,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
             </li>
 <li>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
@@ -424,7 +480,7 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 </div>
 <meta itemprop="author" content="nickchoi">
 <meta itemprop="datePublished" content="2023-09-22T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,,Rule,,참고자료">
+    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/09/18/23-basic-fantasy-combat-reference.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 전투 레퍼런스</h2></a></header>
@@ -450,10 +506,10 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 <div class="article__info clearfix">
 <ul class="left-col menu">
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy%2C">BasicFantasy,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
             </li>
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule%2C">Rule,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
             </li>
 <li>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
@@ -465,7 +521,7 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 </div>
 <meta itemprop="author" content="nickchoi">
 <meta itemprop="datePublished" content="2023-09-18T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,,Rule,,참고자료">
+    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/09/18/11-basic-fantasy-encounter.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 조우</h2></a></header>
@@ -484,10 +540,10 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 <div class="article__info clearfix">
 <ul class="left-col menu">
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy%2C">BasicFantasy,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
             </li>
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule%2C">Rule,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
             </li>
 <li>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
@@ -499,7 +555,7 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 </div>
 <meta itemprop="author" content="nickchoi">
 <meta itemprop="datePublished" content="2023-09-18T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,,Rule,,참고자료">
+    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/09/17/20-basic-fantasy-characters.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 캐릭터</h2></a></header>
@@ -541,10 +597,10 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 <div class="article__info clearfix">
 <ul class="left-col menu">
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy%2C">BasicFantasy,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
             </li>
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule%2C">Rule,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
             </li>
 <li>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
@@ -556,7 +612,7 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 </div>
 <meta itemprop="author" content="nickchoi">
 <meta itemprop="datePublished" content="2023-09-17T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,,Rule,,참고자료">
+    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/09/16/20-basic-fantasy-intro.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 소개</h2></a></header>
@@ -571,10 +627,10 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 <div class="article__info clearfix">
 <ul class="left-col menu">
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy%2C">BasicFantasy,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
             </li>
 <li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule%2C">Rule,</a>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
             </li>
 <li>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
@@ -586,45 +642,13 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 </div>
 <meta itemprop="author" content="nickchoi">
 <meta itemprop="datePublished" content="2023-09-16T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,,Rule,,참고자료">
-</div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2023/09/07/12-rpg-rule.html"><h2 itemprop="headline" class="item__header">RPG Rule Book</h2></a></header>
-          <div class="item__description">
-<div class="article__content" itemprop="description articleBody">OSR
-
-  OSR
-  OSR의 개요와 대표작품 소개
-
-
-Labyrinth Lord (영문)
-
-  원래 룰북으로 예정했으나 라이센스 문제
-
-
-Basic Fantasy (CC BY-SA)
-
-  https://basicfantasy.org/index.html
-  라이센스 : CC BY-SA</div>
-<p><a href="/2023/09/07/12-rpg-rule.html">Read more</a></p>
-</div>
-<div class="article__info clearfix">
-<ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=RPG">RPG</a>
-            </li></ul>
-<ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Sep 07, 2023</span>
-            </li></ul>
-</div>
-<meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2023-09-07T00:00:00+09:00">
-    <meta itemprop="keywords" content="RPG">
+    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
       </article>
 </div>
 </div>
 <div class="layout--home"><div class="pagination">
-<p>11 post articles, 2 pages.</p>
+<p>12 post articles, 2 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap">
 <li><div class="button button--secondary button--circle disabled">

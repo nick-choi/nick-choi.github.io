@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Unity HD-2D 참고자료
-tags: C#, Unity
+tags: C# Unity
 ---
 
 Unity에서 HD-2D 구현하는 자료들 모음.

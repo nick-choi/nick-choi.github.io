@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Basic Fantasy - 전투 치트 시트
-tags: BasicFantasy, Rule, 참고자료
+tags: BasicFantasy Rule 참고자료
 ---
 
 # 조우와 전투

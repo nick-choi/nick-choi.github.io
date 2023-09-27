@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Basic Fantasy - 평면도를 이용한 전투
-tags: BasicFantasy, Rule, 참고자료
+tags: BasicFantasy Rule 참고자료
 ---
 
 # 평면도를 이용한 전투

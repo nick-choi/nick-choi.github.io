@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Basic Fantasy - 소개
-tags: BasicFantasy, Rule, 참고자료
+tags: BasicFantasy Rule 참고자료
 ---
 
 # 주사위 사용하기
