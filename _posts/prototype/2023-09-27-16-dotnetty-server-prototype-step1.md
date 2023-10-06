@@ -2,6 +2,7 @@
 layout: article
 title: Dotnetty Prototype Step1
 tags: C# Dotnetty Server Prototype
+permalink: /dotnetty-server-prototype-step1
 ---
 
 # 세상에서 가장 간단한 채팅 서버/클라이언트 구현하기

@@ -314,7 +314,62 @@
 <div class="layout--articles">
 <div class="article-list items items--divided">
 <article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2023/09/27/16-dotnetty-server-prototype-step1.html"><h2 itemprop="headline" class="item__header">Dotnetty Prototype Step1</h2></a></header>
+          <header><a href="/2023/10/05/20-dotnetty-server-prototype-step2.html"><h2 itemprop="headline" class="item__header">Dotnetty Prototype Step2</h2></a></header>
+          <div class="item__description">
+<div class="article__content" itemprop="description articleBody">채팅 프로그램으로 오델로 게임 구현하기
+
+  채팅 구현의 Server/Client 소스를 그대로 가져고 와서 확장하여 1:1 오델로 게임 구현
+  채팅과 동일하게 서버 한대와 클라이언트 두대로 구성
+
+
+규칙
+
+  오델로#규칙 참조
+  첫번째와 두번째 규칙만 구현됨 (패스, 게임 종료, 승리 판단 여부는 아직 미구현)
+
+
+구현규칙
+패킷
+
+  채팅에서 사용한 StringEncoder/StringDecoder를 사용
+  포멧
+    
+      CommandKey::CommandValue
+      예) Put::5,4 // 5,4에 돌을 놓아둡니다.
+    
+  
+
+
+CommandKey
+
+  Client : 유저가 내...</div>
+<p><a href="/2023/10/05/20-dotnetty-server-prototype-step2.html">Read more</a></p>
+</div>
+<div class="article__info clearfix">
+<ul class="left-col menu">
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=C%23">C#</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Dotnetty">Dotnetty</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Server">Server</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Prototype">Prototype</a>
+            </li>
+</ul>
+<ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>Oct 05, 2023</span>
+            </li></ul>
+</div>
+<meta itemprop="author" content="nickchoi">
+<meta itemprop="datePublished" content="2023-10-05T00:00:00+09:00">
+    <meta itemprop="keywords" content="C#,Dotnetty,Server,Prototype">
+</div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/dotnetty-server-prototype-step1"><h2 itemprop="headline" class="item__header">Dotnetty Prototype Step1</h2></a></header>
           <div class="item__description">
 <div class="article__content" itemprop="description articleBody">세상에서 가장 간단한 채팅 서버/클라이언트 구현하기
 
@@ -334,7 +389,7 @@
 간단하고 높은 수준에서 Netty 서버 또는 클라이언트에는 이러한 기본 클래스가 필요합니다.
 
   Program – 이 클래스는 서버 또는 클라이언트를 부트스트랩합니다. 서버의 경우 지정된...</div>
-<p><a href="/2023/09/27/16-dotnetty-server-prototype-step1.html">Read more</a></p>
+<p><a href="/dotnetty-server-prototype-step1">Read more</a></p>
 </div>
 <div class="article__info clearfix">
 <ul class="left-col menu">
@@ -603,68 +658,11 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 <meta itemprop="datePublished" content="2023-09-18T00:00:00+09:00">
     <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2023/09/17/20-basic-fantasy-characters.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 캐릭터</h2></a></header>
-          <div class="item__description">
-<div class="article__content" itemprop="description articleBody">캐릭터 능력
-
-각 캐릭터는 다음 각 능력에서 3~18점 사이의 점수를 갖습니다. 아래 표에 표시된 것처럼 보너스 또는 페널티는 각 점수와 연관되어 있습니다. 각 클래스에는 주요 필수 능력 점수가 있으며, 캐릭터가 해당 클래스의 구성원이 되려면 최소 9 이상이어야 합니다.
-
-
-  능력치 보너스/페널티 테이블
-
-
-
-  
-    
-      Ability Score
-      Bonus/Penalty
-    
-  
-  
-    
-      3
-      -3
-    
-    
-      4-5
-      -2
-    
-    
-      6-8
-      -1
-    
-    
-      9-12
-      0
-    ...</div>
-<p><a href="/2023/09/17/20-basic-fantasy-characters.html">Read more</a></p>
-</div>
-<div class="article__info clearfix">
-<ul class="left-col menu">
-<li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
-            </li>
-<li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
-            </li>
-<li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
-            </li>
-</ul>
-<ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Sep 17, 2023</span>
-            </li></ul>
-</div>
-<meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2023-09-17T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
-</div>
       </article>
 </div>
 </div>
 <div class="layout--home"><div class="pagination">
-<p>13 post articles, 2 pages.</p>
+<p>14 post articles, 2 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap">
 <li><div class="button button--secondary button--circle disabled">
