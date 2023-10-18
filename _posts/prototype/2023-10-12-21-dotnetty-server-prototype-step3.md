@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Dotnetty Prototype Step3
-tags: C# Dotnetty Server Prototype InstantMe
+tags: C# Dotnetty Server Prototype InstantMessenger
 ---
 
 # 인스턴스 메신저 구현하기
