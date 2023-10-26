@@ -91,6 +91,7 @@ Character
 
 # 5. 프로토타입에 적용할 Chracter 예제 데이터
 * 드워프/전사
+
 ```
 Character
 {
@@ -110,6 +111,7 @@ Character
 ```
 
 * 인간/성직자
+
 ```
 Character
 {
