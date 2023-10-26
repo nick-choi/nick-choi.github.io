@@ -2,6 +2,7 @@
 layout: article
 title: Basic Fantasy - 조우
 tags: BasicFantasy Rule 참고자료
+permalink: /basic-fantasy/encounter
 ---
 
 # 조우

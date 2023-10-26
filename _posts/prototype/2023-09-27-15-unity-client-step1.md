@@ -2,6 +2,7 @@
 layout: article
 title: Unity Prototype Step1
 tags: C# Unity Client Prototype
+permalink: /unity-prototype-step1
 ---
 
 # 1. 두 캐릭터를 그리드 안에서 이동하기

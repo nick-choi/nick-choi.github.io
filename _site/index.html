@@ -314,6 +314,51 @@
 <div class="layout--articles">
 <div class="article-list items items--divided">
 <article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2023/10/26/18-unity-client-step2.html"><h2 itemprop="headline" class="item__header">Unity Prototype Step2</h2></a></header>
+          <div class="item__description">
+<div class="article__content" itemprop="description articleBody">2. 캐릭터 클래스 정의
+
+  프로토타입에 사용될 예제들은 페이지 마지막에 정리
+
+
+Character
+{
+  Race : type // 인간,드워프
+  Class : type // 전사, 성직자
+  Level : uint // 레벨
+  Movement : uint //이동 가능 칸수
+  CurrentHitPoint : uint //현재 HP
+  MaxHitPoint : uint //최대 HP
+  Strength : uint // 힘, 일단 1
+  AttackBonus : uint //직업과 레벨에 따로 부가 공격 보너스
+  AttackRange : uint //공격범위, 근거리일 경우는 1
+  ArmorClass ...</div>
+<p><a href="/2023/10/26/18-unity-client-step2.html">Read more</a></p>
+</div>
+<div class="article__info clearfix">
+<ul class="left-col menu">
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=C%23">C#</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Unity">Unity</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Client">Client</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Prototype">Prototype</a>
+            </li>
+</ul>
+<ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>Oct 26, 2023</span>
+            </li></ul>
+</div>
+<meta itemprop="author" content="nickchoi">
+<meta itemprop="datePublished" content="2023-10-26T00:00:00+09:00">
+    <meta itemprop="keywords" content="C#,Unity,Client,Prototype">
+</div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/10/12/21-dotnetty-server-prototype-step3.html"><h2 itemprop="headline" class="item__header">Dotnetty Prototype Step3</h2></a></header>
           <div class="item__description">
 <div class="article__content" itemprop="description articleBody">인스턴스 메신저 구현하기
@@ -468,7 +513,7 @@
     <meta itemprop="keywords" content="C#,Dotnetty,Server,Prototype">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2023/09/27/15-unity-client-step1.html"><h2 itemprop="headline" class="item__header">Unity Prototype Step1</h2></a></header>
+          <header><a href="/unity-prototype-step1"><h2 itemprop="headline" class="item__header">Unity Prototype Step1</h2></a></header>
           <div class="item__description">
 <div class="article__content" itemprop="description articleBody">1. 두 캐릭터를 그리드 안에서 이동하기
 
@@ -498,7 +543,7 @@
 
   2차원 배열로 캐릭터들 위치 저장하고, 충돌판정할 것.
   즉 데이터로만 처리하고 GameObject로 처리하지 않는다 (차후 서버 ...</div>
-<p><a href="/2023/09/27/15-unity-client-step1.html">Read more</a></p>
+<p><a href="/unity-prototype-step1">Read more</a></p>
 </div>
 <div class="article__info clearfix">
 <ul class="left-col menu">
@@ -636,52 +681,11 @@ Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별
 <meta itemprop="datePublished" content="2023-09-22T00:00:00+09:00">
     <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2023/09/18/23-basic-fantasy-combat-reference.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 전투 레퍼런스</h2></a></header>
-          <div class="item__description">
-<div class="article__content" itemprop="description articleBody">전투 레퍼런스
-라운드 전투 (1라운드 = 10초)
-주도권 굴림
-
-도달 범위가 긴 무기를 사용하는 캐릭터는 우선권을 가진 가까운 상대를 공격하도록 선택하여, 캐릭터가 우선권이 낮다고 할지라도 동시에 공격할 수 있습니다.
-
-주도권 행동
-
-
-  
-    지연: 캐릭터나 몬스터는 라운드 후반까지 행동을 지연하여 주도권이 낮은 캐릭터나 몬스터보다 먼저 행동할 수 있습니다.
-  
-  
-    달리기 : 캐릭터나 몬스터는 두 배의 조우 이동까지 이동할 수 있지만 그 외에는 아무것도 할 수 없습니다. 후퇴하면 방패의 혜택을 모두 잃고 이번 라운드에 자신을 공격하는 모든 적에게 +2 보너스를 부여하며 기습에 취약해집니다.
-  
- ...</div>
-<p><a href="/2023/09/18/23-basic-fantasy-combat-reference.html">Read more</a></p>
-</div>
-<div class="article__info clearfix">
-<ul class="left-col menu">
-<li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
-            </li>
-<li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
-            </li>
-<li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
-            </li>
-</ul>
-<ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Sep 18, 2023</span>
-            </li></ul>
-</div>
-<meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2023-09-18T00:00:00+09:00">
-    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
-</div>
       </article>
 </div>
 </div>
 <div class="layout--home"><div class="pagination">
-<p>15 post articles, 2 pages.</p>
+<p>16 post articles, 2 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap">
 <li><div class="button button--secondary button--circle disabled">
