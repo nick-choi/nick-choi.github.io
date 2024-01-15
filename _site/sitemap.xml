@@ -61,6 +61,14 @@
 <lastmod>2023-10-12T00:00:00+09:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/2024/01/15/00-modern-cmake.html</loc>
+<lastmod>2024-01-15T00:00:00+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/2024/01/16/00-modern-cmake-introduction.html</loc>
+<lastmod>2024-01-16T00:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/temp/2023-09-07-13-16-labyrinth-lord-intro.html</loc>
 </url>
 <url>
@@ -83,5 +91,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/page2/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page3/</loc>
 </url>
 </urlset>
