@@ -11,15 +11,14 @@ Modern CMake 공부하려고 대충 번역함.
 # Introduction
 
 ## Overview
+
 * 질문
- * 빌드 시스템(Build System)과 빌드 시스템 생성기(Build System Generator)의 차이점은 무엇인가?
+  * 빌드 시스템(Build System)과 빌드 시스템 생성기(Build System Generator)의 차이점은 무엇인가?
 
 * 목표
- * 빌드 시스템 및 빌드 시스템 생성기에 대해 알아본다
- * CMake가 사용되는 이유를 이해한다.
- * 최신 CMake가 더 좋다.
-
----
+  * 빌드 시스템 및 빌드 시스템 생성기에 대해 알아본다
+  * CMake가 사용되는 이유를 이해한다.
+  * 최신 CMake가 더 좋다.
 
 코드를 빌드하는 것은 어렵다. 코드의 각 부분을 빌드하려면 긴 명령어가 필요하다. 그리고 코드의 많은 부분에서 이 작업을 수행해야 한다.
 
@@ -82,6 +81,7 @@ The issues people open for “this is broken” far outnumber the issues people 
 * 최신: pip/conda-forge/homebew/chocolaty 등
 
 ## 선택할 최소 항목 - 기능:
+
 * 3.8: C++ 메타 기능, CUDA 등 다양한 기능
 * 3.11: 가져온 인터페이스 설정, 더 빨라짐, FetchContent, IDE의 COMPILE_LANGUAGE
 * 3.12: C++20, cmake --build build -j N, SHELL:, FindPython
@@ -92,3 +92,22 @@ The issues people open for “this is broken” far outnumber the issues people 
 * 3.21: 다양한 메시지 유형, MSVC 2022, C17 & C23, HIP, MSYS
 * 3.24: 다운로드와 패키지 찾기 통합, --fresh
 * 3.25: C++26 지원, CUDA용 LTO
+
+# 다른 소스들
+
+There are some other places to find good information on the web. Here are some of them:
+
+* Modern CMake: The book this tutorial derives from.
+* The official help: Really amazing documentation. Nicely organized, great search, and you can toggle versions at the top. It just doesn’t have a great “best practices tutorial”, which is what this book tries to fill in.
+* Effective Modern CMake: A great list of do’s and don’ts.
+* Embracing Modern CMake: A post with good description of the term
+* It’s time to do CMake Right: A nice set of best practices for Modern CMake projects.
+* The Ultimate Guide to Modern CMake: A slightly dated post with similar intent.
+* More Modern CMake: A great presentation from Meeting C++ 2018 that recommends CMake 3.12+. This talk makes calls CMake 3.0+ “Modern CMake” and CMake 3.12+ “More Modern CMake”.
+* toeb/moderncmake: A nice presentation and examples about CMake 3.5+, with intro to syntax through project organization
+
+# 핵심사항
+
+* 빌드 시스템은 타겟을 빌드하는 방법을 정확하게 설명한다.
+* 빌드 시스템 생성기는 일반적인 관계를 설명한다.
+* 모던 CMake는 더 간단하며 빌드 문제가 발생할 가능성을 줄인다.
