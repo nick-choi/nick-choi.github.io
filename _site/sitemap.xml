@@ -25,7 +25,7 @@
 <lastmod>2023-09-17T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/2023/09/18/11-basic-fantasy-encounter.html</loc>
+<loc>http://localhost:4000/basic-fantasy/encounter</loc>
 <lastmod>2023-09-18T00:00:00+09:00</lastmod>
 </url>
 <url>
@@ -45,7 +45,7 @@
 <lastmod>2023-09-25T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/2023/09/27/15-unity-client-step1.html</loc>
+<loc>http://localhost:4000/unity-prototype-step1</loc>
 <lastmod>2023-09-27T00:00:00+09:00</lastmod>
 </url>
 <url>
@@ -61,12 +61,8 @@
 <lastmod>2023-10-12T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/2024/01/15/00-modern-cmake.html</loc>
-<lastmod>2024-01-15T00:00:00+09:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/2024/01/16/00-modern-cmake-introduction.html</loc>
-<lastmod>2024-01-16T00:00:00+09:00</lastmod>
+<loc>http://localhost:4000/2023/10/26/18-unity-client-step2.html</loc>
+<lastmod>2023-10-26T00:00:00+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/temp/2023-09-07-13-16-labyrinth-lord-intro.html</loc>
@@ -91,8 +87,5 @@
 </url>
 <url>
 <loc>http://localhost:4000/page2/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/page3/</loc>
 </url>
 </urlset>

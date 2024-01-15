@@ -314,62 +314,49 @@
 <div class="layout--articles">
 <div class="article-list items items--divided">
 <article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2024/01/16/00-modern-cmake-introduction.html"><h2 itemprop="headline" class="item__header">Modern CMake - Introduction</h2></a></header>
+          <header><a href="/2023/10/26/18-unity-client-step2.html"><h2 itemprop="headline" class="item__header">Unity Prototype Step2</h2></a></header>
           <div class="item__description">
-<div class="article__content" itemprop="description articleBody">Modern CMake 공부하려고 대충 번역함.
+<div class="article__content" itemprop="description articleBody">2. 캐릭터 클래스 정의
+
+  프로토타입에 사용될 예제들은 페이지 마지막에 정리
 
 
-
-Introduction
-
-Overview
-
-  질문
-  
-    빌드 시스템(Build System)과 빌드 시스템 생성기(Build System Generator)의 차이점은 무엇인가?
-  
-  목표
-  빌드 시스템 및 빌드 시스템 생성기에 대해 알아본다
-  CMake가 사용되는 이유를 이해한다.
-  최신 CMake가 더 좋다.
-
-
-
-
-코드를 빌드하는 것은 어렵다. 코드의 각 부분을 빌드하려면 긴 명령어가 필요하다. 그리고 코드의 많은 부분에서 이 작업을 수행해야 한다.
-
-그래서 사람들은 빌드 시스템을 생각해냈다. 여기에는 종속성을 설정하는 방법(예: 파일 B...</div>
-<p><a href="/2024/01/16/00-modern-cmake-introduction.html">Read more</a></p>
+Character
+{
+  Race : type // 인간,드워프
+  Class : type // 전사, 성직자
+  Level : uint // 레벨
+  Movement : uint //이동 가능 칸수
+  CurrentHitPoint : uint //현재 HP
+  MaxHitPoint : uint //최대 HP
+  Strength : uint // 힘, 일단 1
+  AttackBonus : uint //직업과 레벨에 따로 부가 공격 보너스
+  AttackRange : uint //공격범위, 근거리일 경우는 1
+  ArmorClass ...</div>
+<p><a href="/2023/10/26/18-unity-client-step2.html">Read more</a></p>
 </div>
 <div class="article__info clearfix">
-<ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=CMake">CMake</a>
-            </li></ul>
+<ul class="left-col menu">
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=C%23">C#</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Unity">Unity</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Client">Client</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Prototype">Prototype</a>
+            </li>
+</ul>
 <ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Jan 16, 2024</span>
+<i class="far fa-calendar-alt"></i> <span>Oct 26, 2023</span>
             </li></ul>
 </div>
 <meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2024-01-16T00:00:00+09:00">
-    <meta itemprop="keywords" content="CMake">
-</div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2024/01/15/00-modern-cmake.html"><h2 itemprop="headline" class="item__header">Modern CMake</h2></a></header>
-          <div class="item__description">
-<div class="article__content" itemprop="description articleBody">Modern CMake 공부하려고 대충 번역함.</div>
-<p><a href="/2024/01/15/00-modern-cmake.html">Read more</a></p>
-</div>
-<div class="article__info clearfix">
-<ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=CMake">CMake</a>
-            </li></ul>
-<ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Jan 15, 2024</span>
-            </li></ul>
-</div>
-<meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2024-01-15T00:00:00+09:00">
-    <meta itemprop="keywords" content="CMake">
+<meta itemprop="datePublished" content="2023-10-26T00:00:00+09:00">
+    <meta itemprop="keywords" content="C#,Unity,Client,Prototype">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2023/10/12/21-dotnetty-server-prototype-step3.html"><h2 itemprop="headline" class="item__header">Dotnetty Prototype Step3</h2></a></header>
@@ -526,7 +513,7 @@ Overview
     <meta itemprop="keywords" content="C#,Dotnetty,Server,Prototype">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2023/09/27/15-unity-client-step1.html"><h2 itemprop="headline" class="item__header">Unity Prototype Step1</h2></a></header>
+          <header><a href="/unity-prototype-step1"><h2 itemprop="headline" class="item__header">Unity Prototype Step1</h2></a></header>
           <div class="item__description">
 <div class="article__content" itemprop="description articleBody">1. 두 캐릭터를 그리드 안에서 이동하기
 
@@ -556,7 +543,7 @@ Overview
 
   2차원 배열로 캐릭터들 위치 저장하고, 충돌판정할 것.
   즉 데이터로만 처리하고 GameObject로 처리하지 않는다 (차후 서버 ...</div>
-<p><a href="/2023/09/27/15-unity-client-step1.html">Read more</a></p>
+<p><a href="/unity-prototype-step1">Read more</a></p>
 </div>
 <div class="article__info clearfix">
 <ul class="left-col menu">
@@ -663,11 +650,42 @@ Overview
 <meta itemprop="datePublished" content="2023-09-24T00:00:00+09:00">
     <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
 </div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2023/09/22/23-basic-fantasy-combat-with-floor.html"><h2 itemprop="headline" class="item__header">Basic Fantasy - 평면도를 이용한 전투</h2></a></header>
+          <div class="item__description">
+<div class="article__content" itemprop="description articleBody">평면도를 이용한 전투
+소개
+
+Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별히 설계되지 않았지만 많은 플레이어가 게임에서 이러한 도구를 사용합니다. 특히 평면도는 전투를 시각화하는 데 유용한 도움이 될 수 있습니다. 그들은 또한 약간 더 전술적인 플레이 스타일을 장려하는 경향이 있습니다. 또한 Roll20 및 MapTool과 같은 가상 테이블탑 소프트웨어의 가용성이 증가함에 따라 평면도를 작업에 통합하는 것이 그 어느 때보다 쉬워졌습니다.
+
+이 보충 자료의 목적은 평면도와 미니어처를 사용하여 Basic Fantasy RPG에서 전투를 해결하기 위한 일관된 규칙 세트를 제공하는 것입니다....</div>
+<p><a href="/2023/09/22/23-basic-fantasy-combat-with-floor.html">Read more</a></p>
+</div>
+<div class="article__info clearfix">
+<ul class="left-col menu">
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=BasicFantasy">BasicFantasy</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Rule">Rule</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
+            </li>
+</ul>
+<ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>Sep 22, 2023</span>
+            </li></ul>
+</div>
+<meta itemprop="author" content="nickchoi">
+<meta itemprop="datePublished" content="2023-09-22T00:00:00+09:00">
+    <meta itemprop="keywords" content="BasicFantasy,Rule,참고자료">
+</div>
       </article>
 </div>
 </div>
 <div class="layout--home"><div class="pagination">
-<p>17 post articles, 3 pages.</p>
+<p>16 post articles, 2 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap">
 <li><div class="button button--secondary button--circle disabled">
@@ -678,9 +696,6 @@ Overview
             </li>
 <li>
                 <a class="button button--secondary button--circle" href="/page2"><span>2</span></a>
-              </li>
-<li>
-                <a class="button button--secondary button--circle" href="/page3"><span>3</span></a>
               </li>
 <li><a class="button button--secondary button--circle" href="/page2">
             <i class="fas fa-angle-right"></i>
