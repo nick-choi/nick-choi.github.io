@@ -67,3 +67,46 @@ The issues people open for “this is broken” far outnumber the issues people 
 로컬에서 실행해야 하는 최소 CMake와 코드를 사용하는 사람들을 위해 지원해야 하는 최소 버전은 무엇일까? 이 글을 읽고 있다면 CMake의 마지막 몇 가지 버전에서 릴리스를 얻을 수 있을 것이다. 그렇게 하면 개발이 더 쉬워질 것이다. 지원을 위해 최소 버전을 선택하는 두 가지 방법이 있다. 즉, 추가된 기능(개발자가 관심을 갖는 부분)을 기반으로 하거나 사전 설치된 일반적인 CMake(사용자가 관심을 갖는 부분)를 기반으로 한다.
 
 지원하는 가장 오래된 컴파일러 버전보다 오래된 최소 버전을 선택하지 말라. CMake는 항상 최소한 컴파일러만큼 새로운 것이어야 한다.
+
+## 선택할 최소 항목 - OS 지원:
+
+* 3.4: 최소한의 수준. 절대 이보다 낮게 설정하지 마라.
+* 3.7: Debian의 오래된 Stable.
+* 3.10: Ubuntu 18.04.
+* 3.11: CentOS 8(단, EPEL 또는 AppSteams 사용)
+* 3.13: Debian Stable.
+* 3.16: Ubuntu 20.04.
+* 3.19: 최초로 Apple Silicon을 지원.
+* 최신: pip/conda-forge/homebew/chocolaty 등
+
+## 선택할 최소 항목 - 기능:
+
+* 3.8: C++ 메타 기능, CUDA 등 다양한 기능
+* 3.11: 가져온 인터페이스 설정, 더 빨라짐, FetchContent, IDE의 COMPILE_LANGUAGE
+* 3.12: C++20, cmake --build build -j N, SHELL:, FindPython
+* 3.14/3.15: CLI, FindPython 업데이트
+* 3.16: Unity 빌드/프리컴파일된 헤더, CUDA 메타 기능
+* 3.17/3.18: 훨씬 더 많은 CUDA, 메타프로그래밍
+* 3.20: C++23, CUDARCHS, IntelLLVM, NVHPC
+* 3.21: 다양한 메시지 유형, MSVC 2022, C17 & C23, HIP, MSYS
+* 3.24: 다운로드와 패키지 찾기 통합, --fresh
+* 3.25: C++26 지원, CUDA용 LTO
+
+# 다른 소스들
+
+There are some other places to find good information on the web. Here are some of them:
+
+* Modern CMake: The book this tutorial derives from.
+* The official help: Really amazing documentation. Nicely organized, great search, and you can toggle versions at the top. It just doesn’t have a great “best practices tutorial”, which is what this book tries to fill in.
+* Effective Modern CMake: A great list of do’s and don’ts.
+* Embracing Modern CMake: A post with good description of the term
+* It’s time to do CMake Right: A nice set of best practices for Modern CMake projects.
+* The Ultimate Guide to Modern CMake: A slightly dated post with similar intent.
+* More Modern CMake: A great presentation from Meeting C++ 2018 that recommends CMake 3.12+. This talk makes calls CMake 3.0+ “Modern CMake” and CMake 3.12+ “More Modern CMake”.
+* toeb/moderncmake: A nice presentation and examples about CMake 3.5+, with intro to syntax through project organization
+
+# 핵심사항
+
+* 빌드 시스템은 타겟을 빌드하는 방법을 정확하게 설명한다.
+* 빌드 시스템 생성기는 일반적인 관계를 설명한다.
+* 모던 CMake는 더 간단하며 빌드 문제가 발생할 가능성을 줄인다.
