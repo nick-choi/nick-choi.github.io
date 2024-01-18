@@ -51,8 +51,6 @@ CMake는 2000년경에 도입된 이후 정말 극적으로 변화했다. 그리
 
 왠지 이해하기 어렵기 때문에 더 명확하게 외쳐보겠다. **모던 CMake를 작성하면 빌드 문제가 발생할 가능성이 줄어든다.** CMake가 제공하는 도구는 여러분이 직접 작성하려고 하는 도구보다 더 좋다. CMake는 여러분보다 더 많은 상황에서 더 많은 컴파일러와 함께 작동한다. 플래그를 추가하려고 하면 일부 컴파일러나 OS에서는 잘못된 결과를 얻을 가능성이 있지만 CMake가 제공하는 도구를 대신 사용할 수 있다면, 올바른 플래그를 추가하는 것은 CMake의 몫이지 당신의 몫이 아니다.
 
-최신 CMake를 설치하는 것은 큰 문제가 아니다. 사람들이 "이건 동작하지 않아"라고 만든 이슈들이, 그들이 실행하기 원하는 CMake의 최신을 요구하기 때문에 만든 이슈보다 훨씬 많다(나는 그 중 하나만 본 것 같은데, 그들은 포기해야 할 기능을 보고 돌아섰다).
-
 ## 모던 CMake의 예
 * 잘못된 2.8 스타일 CMake: C++11 플래그를 수동으로 추가한다. 이는 컴파일러에 따라 다르며 CUDA와 다르며 최소 버전이 아닌 설정된 버전으로 고정된다.
 
@@ -92,16 +90,16 @@ CMake는 2000년경에 도입된 이후 정말 극적으로 변화했다. 그리
 
 # 다른 소스들
 
-There are some other places to find good information on the web. Here are some of them:
+웹에서 좋은 정보를 찾을 수 있는 다른 곳도 있다. 그 중 일부는 다음과 같다.
 
-* Modern CMake: The book this tutorial derives from.
-* The official help: Really amazing documentation. Nicely organized, great search, and you can toggle versions at the top. It just doesn’t have a great “best practices tutorial”, which is what this book tries to fill in.
-* Effective Modern CMake: A great list of do’s and don’ts.
-* Embracing Modern CMake: A post with good description of the term
-* It’s time to do CMake Right: A nice set of best practices for Modern CMake projects.
-* The Ultimate Guide to Modern CMake: A slightly dated post with similar intent.
-* More Modern CMake: A great presentation from Meeting C++ 2018 that recommends CMake 3.12+. This talk makes calls CMake 3.0+ “Modern CMake” and CMake 3.12+ “More Modern CMake”.
-* toeb/moderncmake: A nice presentation and examples about CMake 3.5+, with intro to syntax through project organization
+* [Modern CMake](https://cliutils.gitlab.io/modern-cmake/): 이 튜토리얼의 출처가 되는 책.
+* [The official help](https://cmake.org/cmake/help/latest/): 정말 놀라운 문서이다. 잘 정리되어 있고 검색 기능이 뛰어나며 상단에서 버전을 전환할 수 있다. 이 책이 채우려고 하는 훌륭한 "모범 튜토리얼"이 없을 뿐.
+* [Effective Modern CMake](https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1): 해야 할 일과 하지 말아야 할 일의 훌륭한 목록.
+* [Embracing Modern CMake](https://steveire.wordpress.com/2017/11/05/embracing-modern-cmake/): 용어에 대한 좋은 설명이 포함된 게시물.
+* [It’s time to do CMake Right](https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/): 모던 CMake 프로젝트를 위한 훌륭한 모범 사례 모음.
+* [The Ultimate Guide to Modern CMake](https://rix0r.nl/blog/2015/08/13/cmake-guide/): 비슷한 의도를 지닌 약간 오래된 게시물.
+* [More Modern CMake](https://youtu.be/y7ndUhdQuU8): CMake 3.12+를 추천하는 Meeting C++ 2018의 훌륭한 프레젠테이션. 이 강연에서는 CMake 3.0+를 “Modern CMake” 및 CMake 3.12+ “More Modern CMake”라고 칭한다.
+* [toeb/moderncmake](https://github.com/toeb/moderncmake): 프로젝트 구성을 통한 구문 소개와 함께 CMake 3.5+에 대한 멋진 프레젠테이션 및 예제
 
 # 핵심사항
 
