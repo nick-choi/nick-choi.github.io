@@ -1,10 +1,9 @@
 ---
 layout: article
-title: Modern CMake - Introduction
+title: More Modern CMake - Introduction
 tags: CMake
+permalink: /more-modern-cmake-introduction
 ---
-
-Modern CMake 공부하려고 대충 번역 중.
 
 # Introduction
 
