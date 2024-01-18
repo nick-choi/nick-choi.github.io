@@ -1,5 +1,151 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-18T18:27:37+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
-</subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Introduction</title><link href="http://localhost:4000/more-modern-cmake-introduction" rel="alternate" type="text/html" title="More Modern CMake - Introduction" /><published>2024-01-16T00:00:00+09:00</published><updated>2024-01-16T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-introduction</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-introduction"><![CDATA[<h1 id="introduction">Introduction</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-19T00:14:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+</subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Building with CMake</title><link href="http://localhost:4000/more-modern-cmake-build-with-cmake" rel="alternate" type="text/html" title="More Modern CMake - Building with CMake" /><published>2024-01-18T00:00:00+09:00</published><updated>2024-01-18T00:00:00+09:00</updated><id>http://localhost:4000/18-more-modern-cmake-building-with-cmake</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-build-with-cmake"><![CDATA[<h1 id="building-with-cmake">Building With CMake</h1>
+
+<h2 id="overview">Overview</h2>
+
+<ul>
+  <li>질문
+    <ul>
+      <li>프로젝트를 어떻게 빌드하는가?</li>
+    </ul>
+  </li>
+  <li>목표
+    <ul>
+      <li>CMake 설치에 대한 참조가 있다.</li>
+      <li>기존 프로젝트를 빌드하는 방법을 알아보자.</li>
+      <li>빌드를 사용자 정의한다.</li>
+      <li>몇 가지 기본적인 디버깅을 수행하는 방법을 알아보자.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="cmake-설치">CMake 설치</h2>
+
+<p>거의 모든 곳에 최신 버전의 CMake를 설치하는 데 일반적으로 한 줄 또는 두 줄에 불과하다. <a href="https://cliutils.gitlab.io/modern-cmake/chapters/intro/installing.html">CMake 설명</a>을 참조.</p>
+
+<h2 id="cmake-로-빌드하기">CMake 로 빌드하기</h2>
+
+<p>CMake를 작성하기 전에 CMake를 실행하여 만드는 방법을 알고 있는지 확인하겠다. 이는 거의 모든 CMake 프로젝트에 해당된다.</p>
+
+<h3 id="try-it-out">Try it out</h3>
+
+<p>프로젝트를 하나 가져와서 빌드해 보자. 재미삼아 CLI11을 빌드해본다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/CLIUtils/CLI11.git
+cd CLI11
+</code></pre></div></div>
+
+<p>이제 새로 다운로드된 디렉토리에서 모던 CMake(3.14) 빌드 절차를 시도해보자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake -S . -B build
+cmake --build build
+cmake --build build -t test
+</code></pre></div></div>
+
+<p>빌드 디렉터리(<strong>-B</strong>)가 존재하지 않을 경우 빌드 디렉터리를 만들고, 소스 디렉터리는 <strong>-S</strong>로 정의한다. CMake는 기본적으로 makefile을 구성하고 생성할 뿐만 아니라 모든 옵션을 기본 설정으로 설정하고 이를 빌드 디렉터리에 있는 <strong>CMakeCache.txt</strong>라는 파일에 캐시한다. 관례적으로 대부분의 패키지의 <strong>.gitignore</strong> 파일에서 무시하려면 <strong>build</strong>라는 단어가 있어야 한다.</p>
+
+<p>그런 다음 빌드 시스템을 호출할 수 있다(2번째 줄). <strong>make</strong>(기본값), <strong>ninja</strong> 또는 IDE 기반 시스템을 사용했는지 여부에 관계없이 동일한 명령을 사용하여 빌드할 수 있다. <strong>-j 2</strong>를 추가하여 두 개의 코어에 빌드하거나 <strong>-v</strong>를 추가하여 빌드에 사용된 명령을 자세히 표시할 수 있다.</p>
+
+<p>마지막으로 “test” 대상을 기본 빌드 시스템에 전달하여 여기에서 테스트를 실행할 수도 있다. <strong>-t</strong>(CMake 3.15 이전에는 <strong>–target</strong>)를 사용하면 대상을 선택할 수 있다. CMake 3.15+에는 기본 빌드 시스템을 호출하지 않고 설치를 수행하는 <strong>cmake &lt;dir&gt; –install</strong> 명령도 있다!</p>
+
+<h3 id="소스-안에서-빌드하는-것의-경고">소스 안에서 빌드하는 것의 경고</h3>
+
+<p>소스 디렉토리에서 절대로 “소스 내” 빌드 - 즉, <strong>cmake .</strong> 를 실행하면 안된다. 소스 디렉토리를 빌드 결과물, CMake 구성 파일로 오염시키고 소스 외부 빌드를 비활성화한다. 몇 개의 패키지는 소스 디렉토리가 빌드 디렉토리 내부에 위치하는 것조차 허용하지 않는다. 그런 경우 상대 경로(<strong>..</strong>)를 적절히 변경해야 한다.</p>
+
+<p>간단히 설명하자면, CMake는 빌드 디렉토리의 소스 디렉토리 또는 어디에서나 기존 빌드 디렉토리를 가리킬 수 있다.</p>
+
+<h3 id="다른-구문-선택">다른 구문 선택</h3>
+
+<p>완전성을 위해 고전적인 방법이 보여주는 것이 좋겠다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir build
+cd build
+cmake ..
+make
+make test
+</code></pre></div></div>
+
+<p>여기에는 몇 가지 단점이 있다. 디렉터리가 이미 존재하는 경우 <strong>-p</strong>를 추가해야 하지만 Windows에서는 작동하지 않는다. 당신은 그 디렉토리 안에 있기 때문에 빌드 디렉토리 사이를 쉽게 변경할 수 없다. 라인이 더 많아지고, 빌드 디렉터리로 변경하는 것을 잊어버린 경우 <strong>cmake ..</strong> 대신 <strong>cmake .</strong> 를 사용한다. 그럴 경우 소스 디렉토리를 오염시킬 수 있다.</p>
+
+<h2 id="컴파일러-선택하기">컴파일러 선택하기</h2>
+
+<p>Selecting a compiler must be done on the first run in an empty directory. It’s not CMake syntax per se, but you might not be familiar with it. To pick Clang:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CC=clang CXX=clang++ cmake -S . -B build
+</code></pre></div></div>
+
+<p>That sets the environment variables in bash for <strong>CC</strong> and <strong>CXX</strong>, and CMake will respect those variables. This sets it just for that one line, but that’s the only time you’ll need those; afterwards CMake continues to use the paths it deduces from those values.</p>
+
+<h2 id="생성기-선택하기">생성기 선택하기</h2>
+
+<p>You can build with a variety of tools; <strong>make</strong> is usually the default. To see all the tools CMake knows about on your system, run</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake --help
+</code></pre></div></div>
+
+<p>And you can pick a tool with <strong>-G”My Tool”</strong> (quotes only needed if spaces are in the tool name). You should pick a tool on your first CMake call in a directory, just like the compiler. Feel free to have several build directories, like <strong>build</strong> and <strong>build-xcode</strong>. You can set the environment variable <strong>CMAKE_GENERATOR</strong> to control the default generator (CMake 3.15+). Note that makefiles will only run in parallel if you explicitly pass a number of threads, such as <strong>make -j2</strong>, while Ninja will automatically run in parallel. You can directly pass a parallelization option such as <strong>-j 2</strong> to the <strong>cmake –build .</strong> command in recent versions of CMake as well.</p>
+
+<h2 id="옵션-설정하기">옵션 설정하기</h2>
+
+<p>You set options in CMake with <strong>-D</strong>. You can see a list of options with <strong>-L</strong>, or a list with human-readable help with <strong>-LH</strong>.</p>
+
+<h2 id="verbose-and-partial-builds">Verbose and partial builds</h2>
+
+<p>Again, not really CMake, but if you are using a command line build tool like <strong>make</strong>, you can get verbose builds:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake --build build -v
+</code></pre></div></div>
+<p>If you are using make directly, you can write <strong>VERBOSE=1 make</strong> or even <strong>make VERBOSE=1</strong>, and make will also do the right thing, though writing a variable after a command is a feature of <strong>make</strong> and not the command line in general.</p>
+
+<p>You can also build just a part of a build by specifying a target, such as the name of a library or executable you’ve defined in CMake, and make will just build that target. That’s the <strong>–target</strong> (<strong>-t</strong> in CMake 3.15+) option.</p>
+
+<h2 id="옵션들">옵션들</h2>
+
+<p>CMake has support for cached options. A Variable in CMake can be marked as “cached”, which means it will be written to the cache (a file called <strong>CMakeCache.txt</strong> in the build directory) when it is encountered. You can preset (or change) the value of a cached option on the command line with <strong>-D</strong>. When CMake looks for a cached variable, it will use the existing value and will not overwrite it.</p>
+
+<h3 id="표준-옵션들">표준 옵션들</h3>
+
+<p>These are common CMake options to most packages:</p>
+<ul>
+  <li><strong>CMAKE_BUILD_TYPE</strong>: Pick from <strong>Release</strong>, <strong>RelWithDebInfo</strong>, <strong>Debug</strong>, or sometimes more.</li>
+  <li><strong>CMAKE_INSTALL_PREFIX</strong>: The location to install to. System install on UNIX would often be <strong>/usr/local</strong> (the default), user directories are often <strong>~/.local</strong>, or you can pick a folder.</li>
+  <li><strong>BUILD_SHARED_LIBS</strong>: You can set this <strong>ON</strong> or <strong>OFF</strong> to control the default for shared libraries (the author can pick one vs. the other explicitly instead of using the default, though)</li>
+  <li><strong>BUILD_TESTING</strong>: This is a common name for enabling tests, not all packages use it, though, sometimes with good reason.</li>
+</ul>
+
+<h3 id="try-it-out-1">Try it out</h3>
+
+<p>In the CLI11 repository you cloned:</p>
+
+<ul>
+  <li>Check to see what options are available</li>
+  <li>Change a value; maybe set <strong>CMAKE_CXX_STANDARD</strong> to 14 or turn off testing.</li>
+  <li>Configure with <strong>CMAKE_INSTALL_PREFIX=install</strong>, then install it into that local directory. Make sure it shows up there!</li>
+</ul>
+
+<h2 id="debugging-your-cmake-files">Debugging your CMake files</h2>
+
+<p>We’ve already mentioned verbose output for the build, but you can also see verbose CMake configure output too. The <strong>–trace</strong> option will print every line of CMake that is run. Since this is very verbose, CMake 3.7 added <strong>–trace-source=”filename”</strong>, which will print out every executed line of just the file you are interested in when it runs. If you select the name of the file you are interested in debugging (usually with a parent directory if you are debugging a CMakeLists.txt, since all of those have the same name), you can just see the lines that run in that file. Very useful!</p>
+
+<h3 id="try-it-out-2">Try it out</h3>
+
+<p>Run the following from the source directory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake build --trace-source="CMakeLists.txt"
+</code></pre></div></div>
+
+<h3 id="answer-this">Answer this</h3>
+
+<p>Question: Does <strong>cmake build</strong> build anything?
+No, the “build” here is the directory. This will configure (create build system files). To build, you would add <strong>–build</strong> before the directory, or use your build tool, such as <strong>make</strong>.</p>
+
+<h3 id="more-reading">More reading</h3>
+
+<p>Based on Modern <a href="https://cliutils.gitlab.io/modern-cmake/chapters/intro/running.html">CMake intro/running</a></p>
+
+<h2 id="key-points">Key Points</h2>
+
+<ul>
+  <li>Build a project.</li>
+  <li>Use out-of-source builds.</li>
+  <li>Build options and customization.</li>
+  <li>Debug a CMakeLists easily.</li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Building With CMake Overview 질문 프로젝트를 어떻게 빌드하는가? 목표 CMake 설치에 대한 참조가 있다. 기존 프로젝트를 빌드하는 방법을 알아보자. 빌드를 사용자 정의한다. 몇 가지 기본적인 디버깅을 수행하는 방법을 알아보자. CMake 설치 거의 모든 곳에 최신 버전의 CMake를 설치하는 데 일반적으로 한 줄 또는 두 줄에 불과하다. CMake 설명을 참조. CMake 로 빌드하기 CMake를 작성하기 전에 CMake를 실행하여 만드는 방법을 알고 있는지 확인하겠다. 이는 거의 모든 CMake 프로젝트에 해당된다. Try it out 프로젝트를 하나 가져와서 빌드해 보자. 재미삼아 CLI11을 빌드해본다. git clone https://github.com/CLIUtils/CLI11.git cd CLI11 이제 새로 다운로드된 디렉토리에서 모던 CMake(3.14) 빌드 절차를 시도해보자. cmake -S . -B build cmake --build build cmake --build build -t test 빌드 디렉터리(-B)가 존재하지 않을 경우 빌드 디렉터리를 만들고, 소스 디렉터리는 -S로 정의한다. CMake는 기본적으로 makefile을 구성하고 생성할 뿐만 아니라 모든 옵션을 기본 설정으로 설정하고 이를 빌드 디렉터리에 있는 CMakeCache.txt라는 파일에 캐시한다. 관례적으로 대부분의 패키지의 .gitignore 파일에서 무시하려면 build라는 단어가 있어야 한다. 그런 다음 빌드 시스템을 호출할 수 있다(2번째 줄). make(기본값), ninja 또는 IDE 기반 시스템을 사용했는지 여부에 관계없이 동일한 명령을 사용하여 빌드할 수 있다. -j 2를 추가하여 두 개의 코어에 빌드하거나 -v를 추가하여 빌드에 사용된 명령을 자세히 표시할 수 있다. 마지막으로 “test” 대상을 기본 빌드 시스템에 전달하여 여기에서 테스트를 실행할 수도 있다. -t(CMake 3.15 이전에는 –target)를 사용하면 대상을 선택할 수 있다. CMake 3.15+에는 기본 빌드 시스템을 호출하지 않고 설치를 수행하는 cmake &lt;dir&gt; –install 명령도 있다! 소스 안에서 빌드하는 것의 경고 소스 디렉토리에서 절대로 “소스 내” 빌드 - 즉, cmake . 를 실행하면 안된다. 소스 디렉토리를 빌드 결과물, CMake 구성 파일로 오염시키고 소스 외부 빌드를 비활성화한다. 몇 개의 패키지는 소스 디렉토리가 빌드 디렉토리 내부에 위치하는 것조차 허용하지 않는다. 그런 경우 상대 경로(..)를 적절히 변경해야 한다. 간단히 설명하자면, CMake는 빌드 디렉토리의 소스 디렉토리 또는 어디에서나 기존 빌드 디렉토리를 가리킬 수 있다. 다른 구문 선택 완전성을 위해 고전적인 방법이 보여주는 것이 좋겠다. mkdir build cd build cmake .. make make test 여기에는 몇 가지 단점이 있다. 디렉터리가 이미 존재하는 경우 -p를 추가해야 하지만 Windows에서는 작동하지 않는다. 당신은 그 디렉토리 안에 있기 때문에 빌드 디렉토리 사이를 쉽게 변경할 수 없다. 라인이 더 많아지고, 빌드 디렉터리로 변경하는 것을 잊어버린 경우 cmake .. 대신 cmake . 를 사용한다. 그럴 경우 소스 디렉토리를 오염시킬 수 있다. 컴파일러 선택하기 Selecting a compiler must be done on the first run in an empty directory. It’s not CMake syntax per se, but you might not be familiar with it. To pick Clang: CC=clang CXX=clang++ cmake -S . -B build That sets the environment variables in bash for CC and CXX, and CMake will respect those variables. This sets it just for that one line, but that’s the only time you’ll need those; afterwards CMake continues to use the paths it deduces from those values. 생성기 선택하기 You can build with a variety of tools; make is usually the default. To see all the tools CMake knows about on your system, run cmake --help And you can pick a tool with -G”My Tool” (quotes only needed if spaces are in the tool name). You should pick a tool on your first CMake call in a directory, just like the compiler. Feel free to have several build directories, like build and build-xcode. You can set the environment variable CMAKE_GENERATOR to control the default generator (CMake 3.15+). Note that makefiles will only run in parallel if you explicitly pass a number of threads, such as make -j2, while Ninja will automatically run in parallel. You can directly pass a parallelization option such as -j 2 to the cmake –build . command in recent versions of CMake as well. 옵션 설정하기 You set options in CMake with -D. You can see a list of options with -L, or a list with human-readable help with -LH. Verbose and partial builds Again, not really CMake, but if you are using a command line build tool like make, you can get verbose builds: cmake --build build -v If you are using make directly, you can write VERBOSE=1 make or even make VERBOSE=1, and make will also do the right thing, though writing a variable after a command is a feature of make and not the command line in general. You can also build just a part of a build by specifying a target, such as the name of a library or executable you’ve defined in CMake, and make will just build that target. That’s the –target (-t in CMake 3.15+) option. 옵션들 CMake has support for cached options. A Variable in CMake can be marked as “cached”, which means it will be written to the cache (a file called CMakeCache.txt in the build directory) when it is encountered. You can preset (or change) the value of a cached option on the command line with -D. When CMake looks for a cached variable, it will use the existing value and will not overwrite it. 표준 옵션들 These are common CMake options to most packages: CMAKE_BUILD_TYPE: Pick from Release, RelWithDebInfo, Debug, or sometimes more. CMAKE_INSTALL_PREFIX: The location to install to. System install on UNIX would often be /usr/local (the default), user directories are often ~/.local, or you can pick a folder. BUILD_SHARED_LIBS: You can set this ON or OFF to control the default for shared libraries (the author can pick one vs. the other explicitly instead of using the default, though) BUILD_TESTING: This is a common name for enabling tests, not all packages use it, though, sometimes with good reason. Try it out In the CLI11 repository you cloned: Check to see what options are available Change a value; maybe set CMAKE_CXX_STANDARD to 14 or turn off testing. Configure with CMAKE_INSTALL_PREFIX=install, then install it into that local directory. Make sure it shows up there! Debugging your CMake files We’ve already mentioned verbose output for the build, but you can also see verbose CMake configure output too. The –trace option will print every line of CMake that is run. Since this is very verbose, CMake 3.7 added –trace-source=”filename”, which will print out every executed line of just the file you are interested in when it runs. If you select the name of the file you are interested in debugging (usually with a parent directory if you are debugging a CMakeLists.txt, since all of those have the same name), you can just see the lines that run in that file. Very useful! Try it out Run the following from the source directory: cmake build --trace-source="CMakeLists.txt" Answer this Question: Does cmake build build anything? No, the “build” here is the directory. This will configure (create build system files). To build, you would add –build before the directory, or use your build tool, such as make. More reading Based on Modern CMake intro/running Key Points Build a project. Use out-of-source builds. Build options and customization. Debug a CMakeLists easily.]]></summary></entry><entry><title type="html">More Modern CMake - Introduction</title><link href="http://localhost:4000/more-modern-cmake-introduction" rel="alternate" type="text/html" title="More Modern CMake - Introduction" /><published>2024-01-16T00:00:00+09:00</published><updated>2024-01-16T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-introduction</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-introduction"><![CDATA[<h1 id="introduction">Introduction</h1>
 
 <h2 id="overview">Overview</h2>
 
@@ -128,9 +274,12 @@
 
 <p>HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적은 CMake 사용의 기본 사항을 다루는 것이다. 이 튜토리얼은 CMake 3.15+에 초점을 맞춘 온라인 서적 Modern CMake를 기반으로 한다. 이것은 CMake의 “More Modern” 시대(대략 3.12+로 정의됨)에 해당하며 CMake π(3.14) 및 3.15의 환상적인 명령 개선이 포함된다. 이 글을 쓰는 시점의 현재 버전은 CMake 3.21이다.</p>
 
+<h2 id="목차">목차</h2>
+
 <ul>
   <li><a href="/more-modern-cmake-introduction">Introduction</a></li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리 출처 : https://hsf-training.github.io/hsf-training-cmake-webpage/ HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적은 CMake 사용의 기본 사항을 다루는 것이다. 이 튜토리얼은 CMake 3.15+에 초점을 맞춘 온라인 서적 Modern CMake를 기반으로 한다. 이것은 CMake의 “More Modern” 시대(대략 3.12+로 정의됨)에 해당하며 CMake π(3.14) 및 3.15의 환상적인 명령 개선이 포함된다. 이 글을 쓰는 시점의 현재 버전은 CMake 3.21이다. Introduction]]></summary></entry><entry><title type="html">Unity Prototype Step2</title><link href="http://localhost:4000/2023/10/26/18-unity-client-step2.html" rel="alternate" type="text/html" title="Unity Prototype Step2" /><published>2023-10-26T00:00:00+09:00</published><updated>2023-10-26T00:00:00+09:00</updated><id>http://localhost:4000/2023/10/26/18-unity-client-step2</id><content type="html" xml:base="http://localhost:4000/2023/10/26/18-unity-client-step2.html"><![CDATA[<h1 id="2-캐릭터-클래스-정의">2. 캐릭터 클래스 정의</h1>
+  <li><a href="/more-modern-cmake-build-with-cmake">Building With CMake</a></li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리 출처 : https://hsf-training.github.io/hsf-training-cmake-webpage/ HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적은 CMake 사용의 기본 사항을 다루는 것이다. 이 튜토리얼은 CMake 3.15+에 초점을 맞춘 온라인 서적 Modern CMake를 기반으로 한다. 이것은 CMake의 “More Modern” 시대(대략 3.12+로 정의됨)에 해당하며 CMake π(3.14) 및 3.15의 환상적인 명령 개선이 포함된다. 이 글을 쓰는 시점의 현재 버전은 CMake 3.21이다. 목차 Introduction Building With CMake]]></summary></entry><entry><title type="html">Unity Prototype Step2</title><link href="http://localhost:4000/2023/10/26/18-unity-client-step2.html" rel="alternate" type="text/html" title="Unity Prototype Step2" /><published>2023-10-26T00:00:00+09:00</published><updated>2023-10-26T00:00:00+09:00</updated><id>http://localhost:4000/2023/10/26/18-unity-client-step2</id><content type="html" xml:base="http://localhost:4000/2023/10/26/18-unity-client-step2.html"><![CDATA[<h1 id="2-캐릭터-클래스-정의">2. 캐릭터 클래스 정의</h1>
 <ul>
   <li>프로토타입에 사용될 예제들은 페이지 마지막에 정리</li>
 </ul>
@@ -732,233 +881,4 @@ length:5
       <li>1d6에서 1-4에 놀라고, 공격 굴림과 AC에 -4, 우선권 굴림에 -2</li>
     </ul>
   </li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="BasicFantasy" /><category term="Rule" /><category term="참고자료" /><summary type="html"><![CDATA[조우와 전투 조우 10초 라운드 진행 놀람 굴림 d6 - 1,2에 놀람(엘프는 1일 때) NPC 반응 굴림 전투 주도권 굴림(각 라운드 시작시) d6 +/- DEX 수정치 주도권 순서에 따라 행동. 가장 높은 값이 먼저 캐릭터/NPC는 때리거나, 쏘거나, 이동하고 마법 캐스트할 수 있습니다. 이동 : 라운드당 40피트 이동할 수 있습니다(수정치가 있을 수 있습니다.) 때리거나 쏠 경우, 명중 굴림 d20 + 공격 보너스 + STR/DEX 보너스 (근거리, 원거리) (1)(2) 상대편 AC와 비교하여 같거나 크면 명중 성공 피해굴림 : 무기 피해 + STR 보너스 (1) 사기 조우시 NPC 그룹이 HP가 50%까지 줄었거나, 단일 상대편의 HP가 50%까지 줄었을 때 사기 굴림 2d6 VS 사기 점수 경험치 경험치 포인트(EP)는 패배한 적들로부터 얻는데, 상대편의 HD 혹은 레벨에 따라 양이 결정 (1) 다른 보너스를 더함; 예를 들어 공격자가 마법 무기를 가져을 경우 (2) 순수 20은 항상 명중이며, 순수 1은 항상 실패 액션에 대한 보너스 돌격 10피트의 명확한 시야와 창 또는 창 필요: 명중 +2, AC -2 방어 이동 사용하면 1/2 비율로 이동할 수 있습니다. 전속력 이동 &amp; 분리 공격 +2 뒤에서 공격 적중 +2, 대상은 방패 보너스를 얻지 못합니다 접근전 명중 굴림 및 피해에 STR 수정치를 추가 미사일 공격 명중 굴림에 DEX 수정치를 추가하고, 데미지에 STR 수정치 추가 미사일 대 인접 적 명중굴림 -5 빗나간 미사일 대상에 인접한 아군 캐릭터를 공격할 수 있음 피해 억제 명중 시 -4; 대상이 0으로 감소하고 의식을 잃었지만 죽지 않으면 HP가 1 남습니다. 난투 펀치로 1d3의 피해를 억제합니다. 발차기에 1d4 -2 명중굴림 에너지 고갈 음수 레벨, hp 상당의 HD 1 손실, 공격 및 내성 굴림에 -1 건강 손실 정상적인 휴식으로 하루에 1포인트 회복, 최종 포인트에 대한 죽음의 광선 내성 굴림 건강 수정치가 변경되면 적절하게 HP를 잃거나 얻습니다. 실청 1d6에서 1-3에 놀라고, 우선권 굴림에 -1 실명 1d6에서 1-4에 놀라고, 공격 굴림과 AC에 -4, 우선권 굴림에 -2]]></summary></entry><entry><title type="html">Basic Fantasy - 평면도를 이용한 전투</title><link href="http://localhost:4000/2023/09/22/23-basic-fantasy-combat-with-floor.html" rel="alternate" type="text/html" title="Basic Fantasy - 평면도를 이용한 전투" /><published>2023-09-22T00:00:00+09:00</published><updated>2023-09-22T00:00:00+09:00</updated><id>http://localhost:4000/2023/09/22/23-basic-fantasy-combat-with-floor</id><content type="html" xml:base="http://localhost:4000/2023/09/22/23-basic-fantasy-combat-with-floor.html"><![CDATA[<h1 id="평면도를-이용한-전투">평면도를 이용한 전투</h1>
-<h2 id="소개">소개</h2>
-
-<p><strong>Basic Fantasy RPG</strong>는 평면도 및 미니어처와 함께 사용하도록 특별히 설계되지 않았지만 많은 플레이어가 게임에서 이러한 도구를 사용합니다. 특히 평면도는 전투를 시각화하는 데 유용한 도움이 될 수 있습니다. 그들은 또한 약간 더 전술적인 플레이 스타일을 장려하는 경향이 있습니다. 또한 Roll20 및 MapTool과 같은 가상 테이블탑 소프트웨어의 가용성이 증가함에 따라 평면도를 작업에 통합하는 것이 그 어느 때보다 쉬워졌습니다.</p>
-
-<p>이 보충 자료의 목적은 평면도와 미니어처를 사용하여 Basic Fantasy RPG에서 전투를 해결하기 위한 일관된 규칙 세트를 제공하는 것입니다. 이러한 지침은 일반적으로 Basic Fantasy RPG 핵심 규칙에 설명된 규칙을 따릅니다. 그러나 일관된 플레이를 달성하기 위해 핵심 규칙에 약간의 수정과 확장이 불가피하게 있습니다.</p>
-
-<p>다른 보충 자료와 마찬가지로 이 문서도 자신이 선호하는 플레이 스타일에 따라 맞춤 설정할 수 있는 하우스 룰 세트로 취급하세요.</p>
-
-<h2 id="평면도">평면도</h2>
-
-<ul>
-  <li>정사각형 격자를 사용하십시오.</li>
-  <li>각 정사각형은 5피트 x 5피트 면적을 나타냅니다.</li>
-  <li>중소형 전투원(예: 인간 크기까지)은 각각 한 칸씩 차지합니다. 대규모 전투원은 일반적으로 한 칸 이상을 차지합니다. 이에 대해서는 <strong>특수 상황 섹션</strong>에서 설명합니다.</li>
-</ul>
-
-<p><img src="/assets/images/basic-fantasy/the-floor-plan-size.png" alt="평면도 사이즈" /></p>
-
-<ul>
-  <li>
-    <p>일반적으로 한 칸에 한 명 이상의 전투원이 점유할 수 없습니다. 여기에는 몇 가지 예외가 있습니다.  전투원은 사망하거나 의식이 없거나 기타 무능력하고 엎드린 전투원과 같은 칸에 들어갈 수도 있습니다. 또한 이동 섹션에 설명된 대로 전투원은 아군이 점령한 사각형을 통해 이동할 수 있습니다.</p>
-  </li>
-  <li>
-    <p>각 전투원은 또한 연관된 방향, 즉 그들이 바라보는 방향을 가지고 있습니다. 이것은 바로 인접한 4개의 사각형 중 하나를 향할 수 있습니다. 뒤에서 공격 등의 측면을 해결하려면 페이싱이 중요합니다.</p>
-  </li>
-</ul>
-
-<h2 id="이동">이동</h2>
-
-<ul>
-  <li>
-    <p>주어진 라운드에서 각 전투원은 이동 속도까지 거리를 걸은 다음 공격할 수 있습니다.</p>
-  </li>
-  <li>
-    <p>대신 전투원은 이동 속도의 최대 두 배까지 거리를 달릴 수 있습니다. 이 경우 해당 라운드 동안 공격을 받을 수 없습니다.</p>
-  </li>
-  <li>
-    <p>수평 또는 수직 방향의 각 이동 사각형은 전투원의 총 이동 허용량의 5 피트를 소비합니다. 대각선 이동 비용은 5 피트와 10 피트 사이에서 번갈아 나타납니다. 즉, 대각선으로 1개의 정사각형은 5 피트, 2개의 정사각형은 15 피트, 3개의 정사각형은 20 피트, 4개의 정사각형은 30 피트 등입니다.</p>
-  </li>
-  <li>
-    <p>GM은 장애물이나 어려운 지형을 고려하여 추가 이동 비용을 적용할 수 있습니다. 예를 들어, GM은 테이블, 벤치 또는 상대적으로 낮은 벽과 같은 작은 장벽을 건너는 데 5 피트의 추가 이동 비용이 든다고 결정할 수 있습니다. 또는 GM은 가파른 계단을 오르거나 물을 헤쳐나갈 때 전투원이 정상 속도의 절반으로만 움직일 수 있다고 규정할 수도 있습니다. 이는 전적으로 선택 사항이며 GM의 재량에 따릅니다.</p>
-  </li>
-  <li>
-    <p>전투원은 아군이 점령한 사각형을 방해받지 않고 이동합니다. 그러나 여전히 적용될 수 있는 다른 이동 제한이 적용됩니다.</p>
-  </li>
-  <li>
-    <p>전투원이 상대방과 인접한 사각형(수평, 수직 또는 대각선)에 들어가자마자 근접전을 벌이는 것으로 간주됩니다. 이는 즉시 이동 제한을 적용됩니다(<strong>근접 전투</strong> 섹션 참조).</p>
-  </li>
-  <li>
-    <p>해결해야 할 더 문제가 되는 이동 유형 중 하나는 두 전투원이 동일한 주도권으로 행동할 때의 동시 이동입니다. 이에 대해서는 <strong>특수 상황</strong> 섹션에서 설명합니다.</p>
-  </li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">갑옷 / 침구류</th>
-      <th style="text-align: center">라운드당  이동비율</th>
-      <th style="text-align: center">평면도 이동 예제</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">갑옷없음 / 마법가죽</td>
-      <td style="text-align: center">40 피트</td>
-      <td style="text-align: center">가로/세로 8칸, 대각선으로 5칸까지 걸어간 후 공격가능하고, 가로/세로 최대 16개의 사각형 또는 대각선으로 11개의 사각형까지 달릴 수 있습니다 \</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">가벼운 무게 ||</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: center">갑옷없음 / 마법가죽</td>
-      <td style="text-align: center">30 피트</td>
-      <td style="text-align: center">가로/세로 6칸, 대각선으로 4칸까지 걸어간 후 공격가능하고, 가로/세로 최대 16개의 사각형 또는 대각선으로 8개의 사각형까지 달릴 수 있습니다 \</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">무거운 무게 ||</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: center">가죽갑옷 / 마법금속</td>
-      <td style="text-align: center">^^</td>
-      <td style="text-align: center">^^ \</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">가벼운 무게 ||</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: center">가죽갑옷 / 마법금속</td>
-      <td style="text-align: center">20 피트</td>
-      <td style="text-align: center">가로/세로 4칸, 대각선으로 3칸까지 걸어간 후 공격가능하고, 가로/세로 최대 8개의 사각형 또는 대각선으로 5개의 사각형까지 달릴 수 있습니다 \</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">무거운 무게 ||</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: center">금속갑옷</td>
-      <td style="text-align: center">^^</td>
-      <td style="text-align: center">^^ \</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">가벼운 무게 ||</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: center">금속갑옷</td>
-      <td style="text-align: center">10 피트</td>
-      <td style="text-align: center">가로/세로 2칸, 대각선으로 1칸까지 걸어간 후 공격가능하고, 가로/세로 최대 4개의 사각형 또는 대각선으로 3개의 사각형까지 달릴 수 있습니다 \</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">무거운 무게 ||</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="이동-예제">이동 예제</h3>
-<p><img src="/assets/images/basic-fantasy/the-floor-plan-movement-example.png" alt="이동 예제" /></p>
-
-<p>Tannen(이동 속도 20 피트)은 근접전에서 오우거와 교전하기 위해 앞으로 걸어갑니다. 그는 이번 라운드를 그의 검으로 공격할 수 있습니다. Doughbert(이동 속도 30 피트)는 대각선으로 걸어갑시다. 그는 숏보우로 이번 라운드를 공격할 수 있습니다. Mandross(이동 속도 40 피트)는 수평/수직 및 대각선 섞어서 이동합니다. 그는 이번 라운드에도 공격할 수 있습니다. Paladin(이동 속도 30 피트)가 도망갑니다. 그는 평소 이동 속도의 두 배까지 거리(예: 60피트)를 이동할 수 있지만 이번 라운드에는 공격할 수 없습니다.</p>
-
-<h2 id="미사일-발사">미사일 발사</h2>
-
-<ul>
-  <li>전투원이 미사일 공격을 수행하려면 두 가지 조건이 충족되어야 합니다.
-    <ul>
-      <li>상대는 사용 중인 미사일 무기의 범위 내에 있어야 합니다.</li>
-      <li>전투원은 상대방을 볼 수 있는 시야가 있어야 합니다. 전투원이 장애물을 통과하지 않고 자신의 사각형에 있는 한 지점에서 상대방의 사각형까지 직선을 그릴 수 있으면 시야가 확보됩니다.</li>
-    </ul>
-  </li>
-  <li>
-    <p>그러나 전투원이 완전히 명확한 시야를 확보하지 못하더라도 GM은 장애물의 성격과 그것이 제공하는 엄폐 정도에 따라 미사일 공격을 허용할 수 있습니다. <strong>Basic Fantasy RPG 핵심 규칙의 조우 섹션</strong>에 있는 <strong>은폐 및 은폐</strong> 규칙을 따르세요.</p>
-  </li>
-  <li>아군이 점령한 사각형을 통한 미사일 발사는 GM의 재량에 따라 허용됩니다. 이러한 상황에서 GM은 아군의 존재로 인해 사격이 더 어려워진다고 판단되면(엄폐 및 은폐 규칙과 유사한 방식으로) “명중” 굴림에 페널티를 적용하기로 결정할 수 있습니다.</li>
-</ul>
-
-<h3 id="미사일-발사-예제">미사일 발사 예제</h3>
-<h4 id="예제-1">예제 1</h4>
-<p><img src="/assets/images/basic-fantasy/the-floor-plan-missile-fire-example1.png" alt="미사일 발사 예제1" /></p>
-
-<p>Paladin은 Goblin 1에게 발사할 수 없습니다. 그는 시야가 없습니다. Paladin은 Goblin 2에 대한 명확한 시야를 갖고 있으며 정상적으로 발사할 수 있습니다. Goblin 3에는 부분 엄폐 기능이 있습니다. GM의 재량에 따라 Paladin은 적절한 페널티를 주어 발사할 수 있습니다.</p>
-
-<h4 id="예제-2">예제 2</h4>
-<p><img src="/assets/images/basic-fantasy/the-floor-plan-missile-fire-example2.png" alt="미사일 발사 예제2" /></p>
-
-<p>예제 1과 상황은 동일하지만 MapTool의 “전장 안개” 기능이 활성화되었습니다. 검은색으로 표시된 부분은 덮개로 인해 Paladin이 볼 수 없는 부분입니다. 이는 시선을 결정하는 데 유용한 기능이 될 수 있습니다.</p>
-
-<h2 id="근접전투">근접전투</h2>
-
-<ul>
-  <li>
-    <p>두 명의 상대 전투원이 서로 인접하게 되면(수평, 수직 또는 대각선으로) 근접전을 벌이는 것으로 간주됩니다. 이는 즉시 이동 제한을 적용됩니다.</p>
-  </li>
-  <li>공격할 차례가 되면 근접 전투원은 다음을 수행할 수 있습니다(이 순서대로).
-    <ol>
-      <li><em>상대방과의 근접전에서 벗어나지 않는 한 정상 이동 속도의 절반까지 이동합니다.</em> 상대방은 전투원을 알고 있는 경우 이 움직임을 추적하기 위해 방향을 자유롭게 변경할 수 있습니다. 전투원이 상대방과의 근접전에서 벗어나고 싶다면 아래의 <strong>전투 철수 및 도주에 대한 규칙</strong>을 참조하세요.</li>
-      <li>방향을 한 번 변경합니다(즉, 특정 방향을 향하도록 회전).</li>
-      <li>앞이나 옆에 있는 5개의 사각형 중 하나에 있는 상대를 공격합니다. 전투원은 자신 뒤에 있는 세 칸 중 하나에 있는 상대를 공격할 수 없습니다.</li>
-    </ol>
-  </li>
-  <li>
-    <p>전투원이 근접전에서 벗어나기를 원하는 경우 전투 철수 또는 도주라는 두 가지 옵션이 있습니다. 후자만이 전투원을 <strong>분리 사격</strong>의 위험에 빠뜨립니다(아래 참조).</p>
-  </li>
-  <li>
-    <p>전투 철수시 전투원이 정상 이동 속도의 최대 절반까지 근접 공격에서 물러날 수 있습니다. 전투원은 전투 철수를 수행한 후에도 범위 내에 상대가 있는 경우 정상적으로 공격할 수 있습니다.</p>
-  </li>
-  <li>전투원이 전투 철수(예: 일반적인 걷기 또는 달리기 속도)를 수행하지 않고 상대와 인접한 사각형에서 단순히 이동하는 경우 이는 도주로 분류되며 전투원은 분리 사격에 노출됩니다. 이를 통해 상대는 Basic Fantasy RPG 핵심 규칙의 조우 섹션에 있는 <strong>방어 이동 규칙</strong>에 따라 +2 명중굴림으로 즉시 공격을 할 수 있습니다. 이 분리 사격은 전투원이 특정 라운드에서 이미 수행했거나 아직 수행하지 않은 모든 행동에 추가됩니다. 전투원은 주어진 라운드에서 주어진 상대에 대해 단 한 번의 분리 사격을 할 수 있습니다.</li>
-</ul>
-
-<h3 id="근접-예제">근접 예제</h3>
-<h4 id="예제-1-1">예제 1</h4>
-<p><img src="/assets/images/basic-fantasy/the-floor-plan-melee-example1.png" alt="근접 예제1" /></p>
-
-<p>Tannen(이동 속도 20피트)이 Goblin과 근접전을 벌이고 있습니다. 그는 녹색 사각형(10 피트, 이동 속도의 절반) 중 하나로 이동할 수 있으며 방향을 한 번 변경한 다음 공격할 수 있습니다. 이 경우 Goblin은 Tannen의 움직임을 추적하기 위해 방향을 조정할 수도 있습니다. 또는 Tannen은 전투에서 철수하고(이동 속도의 절반인 10 피트) 주황색 사각형 중 하나로 이동할 수 있습니다. 그가 빨간색 사각형 중 하나로 이동하면(20 피트, 그의 최대 이동 속도 또는 그가 달리고 있는 경우 더 빠른 속도) 그는 도망가게 되며 Goblin의 <strong>분리 사격</strong>을 받게 됩니다.</p>
-
-<h4 id="예제-2-1">예제 2</h4>
-<p><img src="/assets/images/basic-fantasy/the-floor-plan-melee-example2.png" alt="근접 예제2" /></p>
-
-<p>Doughbert(이동 30 피트)는 Goblin을 지나 서쪽으로 이동하려고 합니다. 그는 5 피트 또는 10 피트를 사각형 1과 2로 이동한 다음 원할 경우 미사일 공격을 가할 수 있습니다. 또는 그는 15 피트 또는 25 피트를 사각형 3 또는 4로 이동하여 고블린에게 근접 공격을 할 수 있습니다. (3번 사각형에서 4번 사각형으로의 근접전 이동이 4번 사각형으로 이동하는 데 25피트가 필요합니다.) 일반 속도의 절반, 즉 한 칸을 이동하는 데 10 피트의 비용이 듭니다). 5번 칸에 도달하려면 35피트의 이동 비용이 필요합니다. 이는 그가 달려야 한다는 것을 의미하므로 이번 라운드에는 근접 공격을 할 수 없습니다. 만약 그가 6칸 이상으로 달려간다면, 그는 근접전에서 나가게 되고 분리 사격을 받게 될 것입니다.</p>
-
-<h2 id="특별한-상황">특별한 상황</h2>
-<h3 id="뒤에서-공격하기">뒤에서 공격하기</h3>
-
-<ul>
-  <li>
-    <p><strong>뒤에서 공격하기</strong>는 사각형 중 하나에서 전투원의 후방으로 수행되는 공격입니다. 소형 또는 중형 전투원은 근접 목적을 위한 세 개의 사각형을 가지고 있습니다(분명히 미사일 공격용으로 더 그렇습니다). 더 큰 전투원은 더 많은 수의 후방 사각형을 갖게 됩니다.</p>
-  </li>
-  <li>
-    <p>후방 공격에는 두 가지 유형이 있습니다. 일반 전투에서 발생하는 공격과 도둑의 특수 <strong>기습 공격</strong>입니다.</p>
-  </li>
-  <li>
-    <p>일반적인 전투의 경우 상대 뒤에서 공격하는 경우 일반적으로 Basic Fantasy RPG 핵심 규칙의 조우 섹션에 설명된 대로 +2 공격 보너스를 받습니다.</p>
-  </li>
-  <li>
-    <p>일반적으로 방어자가 자신의 상대를 모두 알고 있는 경우 공격자 중 한 명이 뒤에서 공격을 수행할 수 있는 상황을 활용하려면 최소한 세 명의 공격자가 필요합니다. 공격자의 수가 적다면 방어자는 항상 후방에 상대가 없도록 방향을 조정할 수 있습니다.</p>
-  </li>
-  <li>
-    <p>어떤 이유로든 방어자가 자신의 상대 중 한 명을 인식하지 못하는 경우(예: 투명화 또는 일종의 산만함을 통해) GM은 3명 미만의 공격자로 뒤에서 공격이 가능하다고 판단할 수 있습니다. 도둑의 몰래 공격(Basic Fantasy RPG 핵심 규칙의 <strong>캐릭터 섹션</strong>)에도 동일한 원칙이 적용됩니다. 일반적으로 말하자면, 주어진 전투에서 동일한 상대에게 그러한 공격은 단 한 번만 수행될 수 있습니다.</p>
-  </li>
-</ul>
-
-<h4 id="뒤에서-공격하기-예제">뒤에서 공격하기 예제</h4>
-<p><img src="/assets/images/basic-fantasy/the-floor-plan-attack-from-behind-example1.png" alt="뒤에서 공격 예제1" />
-<img src="/assets/images/basic-fantasy/the-floor-plan-attack-from-behind-example2.png" alt="뒤에서 공격 예제2" /></p>
-
-<p>현재 방향을 기준으로 Goblin의 후면 사각형은 빨간색으로 표시됩니다. 두 명의 공격자(왼쪽)만 있으면 Goblin이 공격자 중 누구도 뒤에 있지 않도록 방향을 조정할 수 있습니다(고블린이 이러한 공격자를 알고 있다고 가정). 그러나 3명의 공격자(오른쪽)가 있는 경우 고블린은 뒤에서 적어도 한 번의 공격을 받을 수 있습니다(이 경우 Doughbert가 운이 좋은 친구입니다).</p>
-
-<h2 id="동시-이동">동시 이동</h2>
-
-<ul>
-  <li>
-    <p>동시 이동, 즉 두 명 이상의 전투원이 동일한 주도권 점수로 행동하는 경우 평면도를 사용하여 해결하는 것이 다소 문제가 될 수 있습니다.</p>
-  </li>
-  <li>
-    <p>최신판에서 채택한 한 가지 접근 방식은 두 전투원이 동시에 행동할 가능성을 완전히 제거하는 것입니다. 더 큰 주도권 주사위(예: d20)는 동시 행동이 발생할 확률을 줄입니다. 각 전투원이 전투 순서에서 고유한 위치를 갖도록 추가 타이 브레이커(예: 가장 높은 민첩성 또는 추가 타이 브레이크 롤)를 사용할 수 있습니다. 그러한 접근 방식은 규칙 세트에 더 큰 영향을 미친다는 점을 명심하십시오. 예를 들어 주문 중단(Basic Fantasy RPG 핵심 규칙의 주문 섹션)은 동시 작업에 의존하는 한 측면입니다.</p>
-  </li>
-  <li>
-    <p>대안적인 접근 방식은 동일한 선제 점수로 행동하는 모든 전투원이 이동 점수가 가장 높은 전투원부터 시작하여 한 번에 5피트씩 교대로 이동할 수 있도록 하는 것입니다. 주어진 전투원의 움직임이 떨어지면 그들은 멈춥니다. 다른 사람들도 움직임이 없어질 때까지 계속 움직입니다.</p>
-  </li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="BasicFantasy" /><category term="Rule" /><category term="참고자료" /><summary type="html"><![CDATA[평면도를 이용한 전투 소개 Basic Fantasy RPG는 평면도 및 미니어처와 함께 사용하도록 특별히 설계되지 않았지만 많은 플레이어가 게임에서 이러한 도구를 사용합니다. 특히 평면도는 전투를 시각화하는 데 유용한 도움이 될 수 있습니다. 그들은 또한 약간 더 전술적인 플레이 스타일을 장려하는 경향이 있습니다. 또한 Roll20 및 MapTool과 같은 가상 테이블탑 소프트웨어의 가용성이 증가함에 따라 평면도를 작업에 통합하는 것이 그 어느 때보다 쉬워졌습니다. 이 보충 자료의 목적은 평면도와 미니어처를 사용하여 Basic Fantasy RPG에서 전투를 해결하기 위한 일관된 규칙 세트를 제공하는 것입니다. 이러한 지침은 일반적으로 Basic Fantasy RPG 핵심 규칙에 설명된 규칙을 따릅니다. 그러나 일관된 플레이를 달성하기 위해 핵심 규칙에 약간의 수정과 확장이 불가피하게 있습니다. 다른 보충 자료와 마찬가지로 이 문서도 자신이 선호하는 플레이 스타일에 따라 맞춤 설정할 수 있는 하우스 룰 세트로 취급하세요. 평면도 정사각형 격자를 사용하십시오. 각 정사각형은 5피트 x 5피트 면적을 나타냅니다. 중소형 전투원(예: 인간 크기까지)은 각각 한 칸씩 차지합니다. 대규모 전투원은 일반적으로 한 칸 이상을 차지합니다. 이에 대해서는 특수 상황 섹션에서 설명합니다. 일반적으로 한 칸에 한 명 이상의 전투원이 점유할 수 없습니다. 여기에는 몇 가지 예외가 있습니다. 전투원은 사망하거나 의식이 없거나 기타 무능력하고 엎드린 전투원과 같은 칸에 들어갈 수도 있습니다. 또한 이동 섹션에 설명된 대로 전투원은 아군이 점령한 사각형을 통해 이동할 수 있습니다. 각 전투원은 또한 연관된 방향, 즉 그들이 바라보는 방향을 가지고 있습니다. 이것은 바로 인접한 4개의 사각형 중 하나를 향할 수 있습니다. 뒤에서 공격 등의 측면을 해결하려면 페이싱이 중요합니다. 이동 주어진 라운드에서 각 전투원은 이동 속도까지 거리를 걸은 다음 공격할 수 있습니다. 대신 전투원은 이동 속도의 최대 두 배까지 거리를 달릴 수 있습니다. 이 경우 해당 라운드 동안 공격을 받을 수 없습니다. 수평 또는 수직 방향의 각 이동 사각형은 전투원의 총 이동 허용량의 5 피트를 소비합니다. 대각선 이동 비용은 5 피트와 10 피트 사이에서 번갈아 나타납니다. 즉, 대각선으로 1개의 정사각형은 5 피트, 2개의 정사각형은 15 피트, 3개의 정사각형은 20 피트, 4개의 정사각형은 30 피트 등입니다. GM은 장애물이나 어려운 지형을 고려하여 추가 이동 비용을 적용할 수 있습니다. 예를 들어, GM은 테이블, 벤치 또는 상대적으로 낮은 벽과 같은 작은 장벽을 건너는 데 5 피트의 추가 이동 비용이 든다고 결정할 수 있습니다. 또는 GM은 가파른 계단을 오르거나 물을 헤쳐나갈 때 전투원이 정상 속도의 절반으로만 움직일 수 있다고 규정할 수도 있습니다. 이는 전적으로 선택 사항이며 GM의 재량에 따릅니다. 전투원은 아군이 점령한 사각형을 방해받지 않고 이동합니다. 그러나 여전히 적용될 수 있는 다른 이동 제한이 적용됩니다. 전투원이 상대방과 인접한 사각형(수평, 수직 또는 대각선)에 들어가자마자 근접전을 벌이는 것으로 간주됩니다. 이는 즉시 이동 제한을 적용됩니다(근접 전투 섹션 참조). 해결해야 할 더 문제가 되는 이동 유형 중 하나는 두 전투원이 동일한 주도권으로 행동할 때의 동시 이동입니다. 이에 대해서는 특수 상황 섹션에서 설명합니다. 갑옷 / 침구류 라운드당 이동비율 평면도 이동 예제 갑옷없음 / 마법가죽 40 피트 가로/세로 8칸, 대각선으로 5칸까지 걸어간 후 공격가능하고, 가로/세로 최대 16개의 사각형 또는 대각선으로 11개의 사각형까지 달릴 수 있습니다 \ 가벼운 무게     갑옷없음 / 마법가죽 30 피트 가로/세로 6칸, 대각선으로 4칸까지 걸어간 후 공격가능하고, 가로/세로 최대 16개의 사각형 또는 대각선으로 8개의 사각형까지 달릴 수 있습니다 \ 무거운 무게     가죽갑옷 / 마법금속 ^^ ^^ \ 가벼운 무게     가죽갑옷 / 마법금속 20 피트 가로/세로 4칸, 대각선으로 3칸까지 걸어간 후 공격가능하고, 가로/세로 최대 8개의 사각형 또는 대각선으로 5개의 사각형까지 달릴 수 있습니다 \ 무거운 무게     금속갑옷 ^^ ^^ \ 가벼운 무게     금속갑옷 10 피트 가로/세로 2칸, 대각선으로 1칸까지 걸어간 후 공격가능하고, 가로/세로 최대 4개의 사각형 또는 대각선으로 3개의 사각형까지 달릴 수 있습니다 \ 무거운 무게     이동 예제 Tannen(이동 속도 20 피트)은 근접전에서 오우거와 교전하기 위해 앞으로 걸어갑니다. 그는 이번 라운드를 그의 검으로 공격할 수 있습니다. Doughbert(이동 속도 30 피트)는 대각선으로 걸어갑시다. 그는 숏보우로 이번 라운드를 공격할 수 있습니다. Mandross(이동 속도 40 피트)는 수평/수직 및 대각선 섞어서 이동합니다. 그는 이번 라운드에도 공격할 수 있습니다. Paladin(이동 속도 30 피트)가 도망갑니다. 그는 평소 이동 속도의 두 배까지 거리(예: 60피트)를 이동할 수 있지만 이번 라운드에는 공격할 수 없습니다. 미사일 발사 전투원이 미사일 공격을 수행하려면 두 가지 조건이 충족되어야 합니다. 상대는 사용 중인 미사일 무기의 범위 내에 있어야 합니다. 전투원은 상대방을 볼 수 있는 시야가 있어야 합니다. 전투원이 장애물을 통과하지 않고 자신의 사각형에 있는 한 지점에서 상대방의 사각형까지 직선을 그릴 수 있으면 시야가 확보됩니다. 그러나 전투원이 완전히 명확한 시야를 확보하지 못하더라도 GM은 장애물의 성격과 그것이 제공하는 엄폐 정도에 따라 미사일 공격을 허용할 수 있습니다. Basic Fantasy RPG 핵심 규칙의 조우 섹션에 있는 은폐 및 은폐 규칙을 따르세요. 아군이 점령한 사각형을 통한 미사일 발사는 GM의 재량에 따라 허용됩니다. 이러한 상황에서 GM은 아군의 존재로 인해 사격이 더 어려워진다고 판단되면(엄폐 및 은폐 규칙과 유사한 방식으로) “명중” 굴림에 페널티를 적용하기로 결정할 수 있습니다. 미사일 발사 예제 예제 1 Paladin은 Goblin 1에게 발사할 수 없습니다. 그는 시야가 없습니다. Paladin은 Goblin 2에 대한 명확한 시야를 갖고 있으며 정상적으로 발사할 수 있습니다. Goblin 3에는 부분 엄폐 기능이 있습니다. GM의 재량에 따라 Paladin은 적절한 페널티를 주어 발사할 수 있습니다. 예제 2 예제 1과 상황은 동일하지만 MapTool의 “전장 안개” 기능이 활성화되었습니다. 검은색으로 표시된 부분은 덮개로 인해 Paladin이 볼 수 없는 부분입니다. 이는 시선을 결정하는 데 유용한 기능이 될 수 있습니다. 근접전투 두 명의 상대 전투원이 서로 인접하게 되면(수평, 수직 또는 대각선으로) 근접전을 벌이는 것으로 간주됩니다. 이는 즉시 이동 제한을 적용됩니다. 공격할 차례가 되면 근접 전투원은 다음을 수행할 수 있습니다(이 순서대로). 상대방과의 근접전에서 벗어나지 않는 한 정상 이동 속도의 절반까지 이동합니다. 상대방은 전투원을 알고 있는 경우 이 움직임을 추적하기 위해 방향을 자유롭게 변경할 수 있습니다. 전투원이 상대방과의 근접전에서 벗어나고 싶다면 아래의 전투 철수 및 도주에 대한 규칙을 참조하세요. 방향을 한 번 변경합니다(즉, 특정 방향을 향하도록 회전). 앞이나 옆에 있는 5개의 사각형 중 하나에 있는 상대를 공격합니다. 전투원은 자신 뒤에 있는 세 칸 중 하나에 있는 상대를 공격할 수 없습니다. 전투원이 근접전에서 벗어나기를 원하는 경우 전투 철수 또는 도주라는 두 가지 옵션이 있습니다. 후자만이 전투원을 분리 사격의 위험에 빠뜨립니다(아래 참조). 전투 철수시 전투원이 정상 이동 속도의 최대 절반까지 근접 공격에서 물러날 수 있습니다. 전투원은 전투 철수를 수행한 후에도 범위 내에 상대가 있는 경우 정상적으로 공격할 수 있습니다. 전투원이 전투 철수(예: 일반적인 걷기 또는 달리기 속도)를 수행하지 않고 상대와 인접한 사각형에서 단순히 이동하는 경우 이는 도주로 분류되며 전투원은 분리 사격에 노출됩니다. 이를 통해 상대는 Basic Fantasy RPG 핵심 규칙의 조우 섹션에 있는 방어 이동 규칙에 따라 +2 명중굴림으로 즉시 공격을 할 수 있습니다. 이 분리 사격은 전투원이 특정 라운드에서 이미 수행했거나 아직 수행하지 않은 모든 행동에 추가됩니다. 전투원은 주어진 라운드에서 주어진 상대에 대해 단 한 번의 분리 사격을 할 수 있습니다. 근접 예제 예제 1 Tannen(이동 속도 20피트)이 Goblin과 근접전을 벌이고 있습니다. 그는 녹색 사각형(10 피트, 이동 속도의 절반) 중 하나로 이동할 수 있으며 방향을 한 번 변경한 다음 공격할 수 있습니다. 이 경우 Goblin은 Tannen의 움직임을 추적하기 위해 방향을 조정할 수도 있습니다. 또는 Tannen은 전투에서 철수하고(이동 속도의 절반인 10 피트) 주황색 사각형 중 하나로 이동할 수 있습니다. 그가 빨간색 사각형 중 하나로 이동하면(20 피트, 그의 최대 이동 속도 또는 그가 달리고 있는 경우 더 빠른 속도) 그는 도망가게 되며 Goblin의 분리 사격을 받게 됩니다. 예제 2 Doughbert(이동 30 피트)는 Goblin을 지나 서쪽으로 이동하려고 합니다. 그는 5 피트 또는 10 피트를 사각형 1과 2로 이동한 다음 원할 경우 미사일 공격을 가할 수 있습니다. 또는 그는 15 피트 또는 25 피트를 사각형 3 또는 4로 이동하여 고블린에게 근접 공격을 할 수 있습니다. (3번 사각형에서 4번 사각형으로의 근접전 이동이 4번 사각형으로 이동하는 데 25피트가 필요합니다.) 일반 속도의 절반, 즉 한 칸을 이동하는 데 10 피트의 비용이 듭니다). 5번 칸에 도달하려면 35피트의 이동 비용이 필요합니다. 이는 그가 달려야 한다는 것을 의미하므로 이번 라운드에는 근접 공격을 할 수 없습니다. 만약 그가 6칸 이상으로 달려간다면, 그는 근접전에서 나가게 되고 분리 사격을 받게 될 것입니다. 특별한 상황 뒤에서 공격하기 뒤에서 공격하기는 사각형 중 하나에서 전투원의 후방으로 수행되는 공격입니다. 소형 또는 중형 전투원은 근접 목적을 위한 세 개의 사각형을 가지고 있습니다(분명히 미사일 공격용으로 더 그렇습니다). 더 큰 전투원은 더 많은 수의 후방 사각형을 갖게 됩니다. 후방 공격에는 두 가지 유형이 있습니다. 일반 전투에서 발생하는 공격과 도둑의 특수 기습 공격입니다. 일반적인 전투의 경우 상대 뒤에서 공격하는 경우 일반적으로 Basic Fantasy RPG 핵심 규칙의 조우 섹션에 설명된 대로 +2 공격 보너스를 받습니다. 일반적으로 방어자가 자신의 상대를 모두 알고 있는 경우 공격자 중 한 명이 뒤에서 공격을 수행할 수 있는 상황을 활용하려면 최소한 세 명의 공격자가 필요합니다. 공격자의 수가 적다면 방어자는 항상 후방에 상대가 없도록 방향을 조정할 수 있습니다. 어떤 이유로든 방어자가 자신의 상대 중 한 명을 인식하지 못하는 경우(예: 투명화 또는 일종의 산만함을 통해) GM은 3명 미만의 공격자로 뒤에서 공격이 가능하다고 판단할 수 있습니다. 도둑의 몰래 공격(Basic Fantasy RPG 핵심 규칙의 캐릭터 섹션)에도 동일한 원칙이 적용됩니다. 일반적으로 말하자면, 주어진 전투에서 동일한 상대에게 그러한 공격은 단 한 번만 수행될 수 있습니다. 뒤에서 공격하기 예제 현재 방향을 기준으로 Goblin의 후면 사각형은 빨간색으로 표시됩니다. 두 명의 공격자(왼쪽)만 있으면 Goblin이 공격자 중 누구도 뒤에 있지 않도록 방향을 조정할 수 있습니다(고블린이 이러한 공격자를 알고 있다고 가정). 그러나 3명의 공격자(오른쪽)가 있는 경우 고블린은 뒤에서 적어도 한 번의 공격을 받을 수 있습니다(이 경우 Doughbert가 운이 좋은 친구입니다). 동시 이동 동시 이동, 즉 두 명 이상의 전투원이 동일한 주도권 점수로 행동하는 경우 평면도를 사용하여 해결하는 것이 다소 문제가 될 수 있습니다. 최신판에서 채택한 한 가지 접근 방식은 두 전투원이 동시에 행동할 가능성을 완전히 제거하는 것입니다. 더 큰 주도권 주사위(예: d20)는 동시 행동이 발생할 확률을 줄입니다. 각 전투원이 전투 순서에서 고유한 위치를 갖도록 추가 타이 브레이커(예: 가장 높은 민첩성 또는 추가 타이 브레이크 롤)를 사용할 수 있습니다. 그러한 접근 방식은 규칙 세트에 더 큰 영향을 미친다는 점을 명심하십시오. 예를 들어 주문 중단(Basic Fantasy RPG 핵심 규칙의 주문 섹션)은 동시 작업에 의존하는 한 측면입니다. 대안적인 접근 방식은 동일한 선제 점수로 행동하는 모든 전투원이 이동 점수가 가장 높은 전투원부터 시작하여 한 번에 5피트씩 교대로 이동할 수 있도록 하는 것입니다. 주어진 전투원의 움직임이 떨어지면 그들은 멈춥니다. 다른 사람들도 움직임이 없어질 때까지 계속 움직입니다.]]></summary></entry></feed>
+</ul>]]></content><author><name>nickchoi</name></author><category term="BasicFantasy" /><category term="Rule" /><category term="참고자료" /><summary type="html"><![CDATA[조우와 전투 조우 10초 라운드 진행 놀람 굴림 d6 - 1,2에 놀람(엘프는 1일 때) NPC 반응 굴림 전투 주도권 굴림(각 라운드 시작시) d6 +/- DEX 수정치 주도권 순서에 따라 행동. 가장 높은 값이 먼저 캐릭터/NPC는 때리거나, 쏘거나, 이동하고 마법 캐스트할 수 있습니다. 이동 : 라운드당 40피트 이동할 수 있습니다(수정치가 있을 수 있습니다.) 때리거나 쏠 경우, 명중 굴림 d20 + 공격 보너스 + STR/DEX 보너스 (근거리, 원거리) (1)(2) 상대편 AC와 비교하여 같거나 크면 명중 성공 피해굴림 : 무기 피해 + STR 보너스 (1) 사기 조우시 NPC 그룹이 HP가 50%까지 줄었거나, 단일 상대편의 HP가 50%까지 줄었을 때 사기 굴림 2d6 VS 사기 점수 경험치 경험치 포인트(EP)는 패배한 적들로부터 얻는데, 상대편의 HD 혹은 레벨에 따라 양이 결정 (1) 다른 보너스를 더함; 예를 들어 공격자가 마법 무기를 가져을 경우 (2) 순수 20은 항상 명중이며, 순수 1은 항상 실패 액션에 대한 보너스 돌격 10피트의 명확한 시야와 창 또는 창 필요: 명중 +2, AC -2 방어 이동 사용하면 1/2 비율로 이동할 수 있습니다. 전속력 이동 &amp; 분리 공격 +2 뒤에서 공격 적중 +2, 대상은 방패 보너스를 얻지 못합니다 접근전 명중 굴림 및 피해에 STR 수정치를 추가 미사일 공격 명중 굴림에 DEX 수정치를 추가하고, 데미지에 STR 수정치 추가 미사일 대 인접 적 명중굴림 -5 빗나간 미사일 대상에 인접한 아군 캐릭터를 공격할 수 있음 피해 억제 명중 시 -4; 대상이 0으로 감소하고 의식을 잃었지만 죽지 않으면 HP가 1 남습니다. 난투 펀치로 1d3의 피해를 억제합니다. 발차기에 1d4 -2 명중굴림 에너지 고갈 음수 레벨, hp 상당의 HD 1 손실, 공격 및 내성 굴림에 -1 건강 손실 정상적인 휴식으로 하루에 1포인트 회복, 최종 포인트에 대한 죽음의 광선 내성 굴림 건강 수정치가 변경되면 적절하게 HP를 잃거나 얻습니다. 실청 1d6에서 1-3에 놀라고, 우선권 굴림에 -1 실명 1d6에서 1-4에 놀라고, 공격 굴림과 AC에 -4, 우선권 굴림에 -2]]></summary></entry></feed>
