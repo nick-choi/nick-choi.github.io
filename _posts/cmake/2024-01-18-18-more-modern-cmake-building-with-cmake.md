@@ -139,7 +139,7 @@ cmake build --trace-source="CMakeLists.txt"
 
 ### 더 읽어보기
 
-Modern [CMake intro/running](https://cliutils.gitlab.io/modern-cmake/chapters/intro/running.html)을 기반으로 함.
+[Modern CMake intro/running](https://cliutils.gitlab.io/modern-cmake/chapters/intro/running.html)을 기반으로 함.
 
 ## 핵심사항
 
