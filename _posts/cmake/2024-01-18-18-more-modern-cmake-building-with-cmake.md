@@ -70,79 +70,80 @@ make test
 
 ## 컴파일러 선택하기
 
-Selecting a compiler must be done on the first run in an empty directory. It’s not CMake syntax per se, but you might not be familiar with it. To pick Clang:
+컴파일러 선택은 빈 디렉터리에서 처음 실행할 때 수행되어야 한다. CMake 구문 자체는 아니지만 익숙하지 않을 수도 있다. Clang을 선택하려면:
 ```
 CC=clang CXX=clang++ cmake -S . -B build
 ```
 
-That sets the environment variables in bash for **CC** and **CXX**, and CMake will respect those variables. This sets it just for that one line, but that’s the only time you’ll need those; afterwards CMake continues to use the paths it deduces from those values.
+그러면 **CC** 및 **CXX**에 대해 bash에서 환경 변수로 설정되고 CMake는 해당 변수를 고려할 것이다. 이렇게 하면 해당 한 라인에 대해서만 설정되지만, 필요한 경우는 딱 저 시간 뿐이다. 이후 CMake는 해당 값에서 추론한 경로를 계속 사용한다.
+
 
 ## 생성기 선택하기
 
-You can build with a variety of tools; **make** is usually the default. To see all the tools CMake knows about on your system, run
+다양한 툴을 사용하여 빌드할 수 있다. **make**는 일반적으로 기본값이다. CMake가 시스템에서 알고 있는 모든 툴을 보려면 다음을 실행하자.
 ```
 cmake --help
 ```
 
-And you can pick a tool with **-G"My Tool"** (quotes only needed if spaces are in the tool name). You should pick a tool on your first CMake call in a directory, just like the compiler. Feel free to have several build directories, like **build** and **build-xcode**. You can set the environment variable **CMAKE_GENERATOR** to control the default generator (CMake 3.15+). Note that makefiles will only run in parallel if you explicitly pass a number of threads, such as **make -j2**, while Ninja will automatically run in parallel. You can directly pass a parallelization option such as **-j 2** to the **cmake --build .** command in recent versions of CMake as well.
+그리고 **-G"My Tool"**을 사용하여 툴을 선택할 수 있다(툴 이름에 공백이 있는 경우에만 큰따옴표가 필요). 컴파일러와 마찬가지로 디렉터리에서 처음 CMake 호출 시 툴을 선택해야 한다. **build** 및 **build-xcode**와 같이 여러 빌드 디렉터리를 자유롭게 사용할 수 있다. 환경 변수 **CMAKE_GENERATOR**를 설정하여 기본 생성기(CMake 3.15+)를 조작할 수 있다. makefile은 **make -j2**와 같이 명시적으로 여러 스레드를 전달하는 경우에만 병렬로 실행되는 반면, Ninja는 자동으로 병렬로 실행된다. 최근 버전의 CMake에서도 **-j 2**와 같은 병렬화 옵션을 **cmake --build .** 명령에 직접 전달할 수 있다.
 
 ## 옵션 설정하기
 
-You set options in CMake with **-D**. You can see a list of options with **-L**, or a list with human-readable help with **-LH**.
+**-D**를 사용하여 CMake에서 옵션을 설정한다. **-L**을 사용하면 옵션 목록을 볼 수 있고, **-LH**를 사용하면 사람이 읽을 수 있는 도움말 목록을 볼 수 있다.
 
-## Verbose and partial builds
+## 상세 및 부분 빌드
 
-Again, not really CMake, but if you are using a command line build tool like **make**, you can get verbose builds:
+다시 말하지만, CMake는 아니지만 **make**와 같은 커맨드 라인 빌드 툴을 사용하는 경우, 자세한 빌드를 얻을 수 있다:
 ```
 cmake --build build -v
 ```
-If you are using make directly, you can write **VERBOSE=1 make** or even **make VERBOSE=1**, and make will also do the right thing, though writing a variable after a command is a feature of **make** and not the command line in general.
+make를 직접 사용하는 경우, **VERBOSE=1 make** 또는 **make VERBOSE=1**이라고 쓸 수 있으며, 비록 명령 뒤에 변수를 쓰는 것은 **make**의 기능이고 일반적인 커맨드 라인 방식이 아니지만, make 역시 올바른 작업을 수행할 것이다.
 
-You can also build just a part of a build by specifying a target, such as the name of a library or executable you’ve defined in CMake, and make will just build that target. That’s the **--target** (**-t** in CMake 3.15+) option.
+CMake에서 정의한 라이브러리 또는 실행 파일의 이름과 같은 대상을 지정하여 빌드의 일부만 빌드할 수도 있으며 make는 해당 대상만 빌드한다. 이것이 **--target**(CMake 3.15+에서는 **-t**) 옵션이다.
 
 ## 옵션들
 
-CMake has support for cached options. A Variable in CMake can be marked as “cached”, which means it will be written to the cache (a file called **CMakeCache.txt** in the build directory) when it is encountered. You can preset (or change) the value of a cached option on the command line with **-D**. When CMake looks for a cached variable, it will use the existing value and will not overwrite it.
+CMake는 캐시된 옵션을 지원한다. CMake의 변수는 "캐시됨"으로 표시될 수 있는데, 이 의미는 변수가 발견되면 캐시(빌드 디렉터리에 있는 **CMakeCache.txt**라는 파일)에 기록된다는 의미이다. **-D**를 사용하여 커맨드라인에서 캐시된 옵션 값을 미리 설정(또는 변경)할 수 있다. CMake가 캐시된 변수를 찾을 때는 기존 값을 사용하고 덮어쓰지 않는다.
 
 ### 표준 옵션들
 
-These are common CMake options to most packages:
-* **CMAKE_BUILD_TYPE**: Pick from **Release**, **RelWithDebInfo**, **Debug**, or sometimes more.
-* **CMAKE_INSTALL_PREFIX**: The location to install to. System install on UNIX would often be **/usr/local** (the default), user directories are often **~/.local**, or you can pick a folder.
-* **BUILD_SHARED_LIBS**: You can set this **ON** or **OFF** to control the default for shared libraries (the author can pick one vs. the other explicitly instead of using the default, though)
-* **BUILD_TESTING**: This is a common name for enabling tests, not all packages use it, though, sometimes with good reason.
+이는 대부분의 패키지에 대한 일반적인 CMake 옵션들이다:
+* **CMAKE_BUILD_TYPE**: **Release**, **RelWithDebInfo**, **Debug** 등에서 선택
+* **CMAKE_INSTALL_PREFIX**: 설치할 위치. UNIX의 시스템 설치는 종종 **/usr/local**(기본값)이고, 사용자 디렉터리는 대개 **~/.local**이거나 폴더를 선택할 수 있다.
+* **BUILD_SHARED_LIBS**: **ON** 또는 **OFF**로 설정하여 공유 라이브러리의 기본값을 제어할 수 있다. (단, 작성자는 기본값을 사용하는 대신 명시적으로 둘 중 하나를 선택할 수 있다)
+* **BUILD_TESTING**: 이는 테스트를 활성화하기 위한 일반적인 이름이다. 다만 때때로 적절한 이유로 인해 모든 패키지에서 이를 사용하는 것은 아니다.
 
-### Try it out
+### 시도해보기
 
-In the CLI11 repository you cloned:
+복제한 CLI11 저장소에서:
 
-* Check to see what options are available
-* Change a value; maybe set **CMAKE_CXX_STANDARD** to 14 or turn off testing.
-* Configure with **CMAKE_INSTALL_PREFIX=install**, then install it into that local directory. Make sure it shows up there!
+* 어떤 옵션을 사용할 수 있는지 확인
+* 값을 변경한다; **CMAKE_CXX_STANDARD**를 14로 설정하거나 테스트를 끌 수도 있다.
+* **CMAKE_INSTALL_PREFIX=install**로 구성한 다음 해당 로컬 디렉터리에 설치한다. 거기에서 보여지는 지 확인하라!
 
-## Debugging your CMake files
+## CMake 파일들 디버깅
 
-We’ve already mentioned verbose output for the build, but you can also see verbose CMake configure output too. The **--trace** option will print every line of CMake that is run. Since this is very verbose, CMake 3.7 added **--trace-source="filename"**, which will print out every executed line of just the file you are interested in when it runs. If you select the name of the file you are interested in debugging (usually with a parent directory if you are debugging a CMakeLists.txt, since all of those have the same name), you can just see the lines that run in that file. Very useful!
+이미 빌드에 대한 자세한 출력을 언급했지만 자세한 CMake 구성 출력도 볼 수 있다. **--trace** 옵션은 실행되는 CMake의 모든 라인을 인쇄한다. 이것은 매우 장황하기 때문에, CMake 3.7에는 **--trace-source="filename"**을 추가하여 실행 시 관심있는 파일의 모든 실행 라인을 출력한다. 디버깅에 관심이 있는 파일 이름을 선택하면(CMakeLists.txt를 디버깅하는 경우 모든 이름이 동일하므로 일반적으로 상위 디렉터리 사용) 해당 파일에서 실행되는 라인만 볼 수 있다. 굉장히 유용하다!
 
-### Try it out
+### 시도해보기
 
-Run the following from the source directory:
+소스 디렉터리에서 다음을 실행한다:
 ```
 cmake build --trace-source="CMakeLists.txt"
 ```
 
-### Answer this
+### 답해보자.
 
-Question: Does **cmake build** build anything?
-No, the “build” here is the directory. This will configure (create build system files). To build, you would add **--build** before the directory, or use your build tool, such as **make**.
+질문: **cmake build**는 무엇이든 빌드하는가?
+답 : 아니, 여기서 "빌드"는 디렉터리이다. 이것은 (빌드 시스템 파일을) 구성한다. 빌드하려면 디렉터리 앞에 **--build**를 추가하거나 **make**와 같은 빌드 툴을 사용한다.
 
-### More reading
+### 더 읽어보기
 
-Based on Modern [CMake intro/running](https://cliutils.gitlab.io/modern-cmake/chapters/intro/running.html)
+Modern [CMake intro/running](https://cliutils.gitlab.io/modern-cmake/chapters/intro/running.html)을 기반으로 함.
 
-## Key Points
+## 핵심사항
 
-* Build a project.
-* Use out-of-source builds.
-* Build options and customization.
-* Debug a CMakeLists easily.
+* 프로젝트를 빌드.
+* 소스 외부 빌드를 사용하자.
+* 빌드 옵션 및 사용자 정의.
+* CMakeList를 쉽게 디버그.
