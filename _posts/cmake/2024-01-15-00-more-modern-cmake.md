@@ -15,3 +15,4 @@ HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적
 * [Introduction](/more-modern-cmake-introduction)
 * [Building With CMake](/more-modern-cmake-build-with-cmake)
 * [Your first file CMakeLists.txt file](/more-modern-cmake-your-first-file)
+* [Working with Targets](/more-modern-cmake-working-with-targets)

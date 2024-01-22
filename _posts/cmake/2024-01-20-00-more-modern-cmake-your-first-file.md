@@ -101,4 +101,4 @@ add_executable(simple_example simple.c)
 
 * cmake_minimum_version 설정은 깊은 의미를 갖는다.
 * project 설정 라인이 필요하다.
-* 흥미로운 일을 하려면 하나 이상의 타겟(target)를 준비해야 합니다.
+* 흥미로운 일을 하려면 하나 이상의 타겟(target)를 준비해야 한다.
