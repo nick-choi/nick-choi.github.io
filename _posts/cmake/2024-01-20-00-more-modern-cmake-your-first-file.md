@@ -65,3 +65,26 @@ add_executable(myexample simple.cpp)
 1. You can specify a range of versions - this will cause the policies to be set to the highest supported value in that range. As a general rule, set the highest version you’ve tested with here.
 2. Projects can have versions, descriptions, and languages.
 3. Whitespace doesn’t matter. Be clear/pretty, or use cmake-format.
+
+### Try it out
+
+Build and run the example code with a CMakeLists.txt similar to the one above.
+
+```
+git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git
+cd hsf-training-cmake-webpage/code/00-intro
+```
+
+#### Solution
+
+```
+# This is required in all CMakeLists Selecting a nice minimum version and range
+cmake_minimum_required(VERSION 3.15...3.25)
+
+# We can call the project anything we want Listing the language(s) avoids the C
+# + CXX default
+project(MyExample00 LANGUAGES C)
+
+# We need an executable target
+add_executable(simple_example simple.c)
+```
