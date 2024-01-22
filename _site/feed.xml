@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-22T21:27:51+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-22T22:23:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
 </subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Your first CMakeLists.txt file</title><link href="http://localhost:4000/more-modern-cmake-your-first-file" rel="alternate" type="text/html" title="More Modern CMake - Your first CMakeLists.txt file" /><published>2024-01-20T00:00:00+09:00</published><updated>2024-01-20T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-your-first-file</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-your-first-file"><![CDATA[<h1 id="your-first-cmakeliststxt-file">Your first CMakeLists.txt file</h1>
 
 <h2 id="overview">Overview</h2>
@@ -6,21 +6,21 @@
 <ul>
   <li>질문
     <ul>
-      <li>How little can I get away with in my CMakeLists?</li>
+      <li>내 CMakeLists에서 얼마나 최소화할 수 있는가?</li>
     </ul>
   </li>
   <li>목표
     <ul>
-      <li>Understand the deep implications of <strong>cmake_minimum_version</strong></li>
-      <li>Know how to set up a project</li>
-      <li>Know how to make at least one target</li>
+      <li><strong>cmake_minimum_version</strong>의 깊은 의미를 이해하자.</li>
+      <li>project 설정 방법을 알아두자.</li>
+      <li>적어도 하나의 타겟을 만드는 방법을 알아두자.</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="writing-a-cmakelists">Writing a CMakeLists</h2>
+<h2 id="cmakelists-파일-작성">CMakeLists 파일 작성</h2>
 
-<p>The following file is fine for the following examples:</p>
+<p>다음 파일은 그 다음 예에 적합하다 :</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* simple.c or simple.cpp */
 #include &lt;stdio.h&gt;
 
@@ -30,9 +30,10 @@ int main() {
 }
 </code></pre></div></div>
 
-<h3 id="starting-off">Starting off</h3>
+<h3 id="시작하기">시작하기</h3>
 
-<p>This is the simplest possible <strong>CMakeLists.txt</strong>:</p>
+<p>이것은 가장 간단한 <strong>CMakeLists.txt</strong> 이다.</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake_minimum_required(VERSION 3.15)
 
 project(MyProject)
@@ -40,15 +41,16 @@ project(MyProject)
 add_executable(myexample simple.cpp)
 </code></pre></div></div>
 
-<p>Let’s look at the three lines:</p>
+<p>세 줄을 살펴보자 :</p>
 
 <ol>
-  <li>The cmake_minimum_required command sets the policies so that the build is exactly like it would be on the listed version of CMake - in other words, CMake “dumbs itself down” to the version you request for any features that could produce a different build. This makes CMake almost perfectly backwards compatible.</li>
-  <li>You need to be working on a project, and it needs at least a name. CMake assumes a CXX (that’s C++) and C mixed project if you don’t give any LANGUAGES.</li>
-  <li>You need at least one library or executable to do anything interesting. The “thing” you make here is called a “target”, and the executable/library has the same name, by default, and it has to be unique in the project. You use add_executable for programs, and add_library for libraries.</li>
+  <li>cmake_minimum_required 명령어는 빌드가 CMake의 나열된 버전에 있는 것과 정확히 똑같은 정책을 설정한다. 즉, CMake는 다른 빌드으로 생성할 수 있는 모든 기능에 대해 사용자가 요청한 버전으로 “자체적으로 낮춘다”. 이로 인해 CMake는 거의 완벽하게 이전 버전과 호환된다.</li>
+  <li>프로젝트를 진행 중이어야 하며 최소한 이름이 필요하다. CMake는 LANGUAGE를 제공하지 않으면 CXX(C++) 및 C 혼합 프로젝트를 가정한다.</li>
+  <li>흥미로운 작업을 수행하려면 최소한 하나의 라이브러리나 실행 파일이 필요하다. 여기서 만드는 “무엇”을 “타겟(target)”이라고 하며, 실행 파일/라이브러리는 기본적으로 이름이 동일하고 프로젝트에서 고유해야 한다. 프로그램에는 add_executable을 사용하고, 라이브러리에서는 add_library를 사용한다.</li>
 </ol>
 
-<p>Those commands have a few extra arguments that you can give:</p>
+<p>이러한 명령에 제공할 수 있는 몇 가지 추가 인수가 있다:</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake_minimum_required(VERSION 3.15...3.25)
 
 project(MyProject
@@ -62,30 +64,31 @@ project(MyProject
 
 add_executable(myexample simple.cpp)
 </code></pre></div></div>
+
 <ol>
-  <li>You can specify a range of versions - this will cause the policies to be set to the highest supported value in that range. As a general rule, set the highest version you’ve tested with here.</li>
-  <li>Projects can have versions, descriptions, and languages.</li>
-  <li>Whitespace doesn’t matter. Be clear/pretty, or use cmake-format.</li>
+  <li>버전 범위를 지정할 수 있다 - 이렇게 하면 정책이 해당 범위에서 지원되는 가장 높은 값으로 설정된다. 일반적으로, 여기에서 테스트해 본 가장 높은 버전을 설정해라.</li>
+  <li>프로젝트에는 버전, 설명 및 언어를 가질 수 있다.</li>
+  <li>공백은 중요하지 않다. 명확하고 예쁘거나 <a href="https://cmake-format.readthedocs.io/en/latest/">cmake-format</a>을 사용하라.</li>
 </ol>
 
-<h3 id="try-it-out">Try it out</h3>
+<h3 id="시도해보기">시도해보기</h3>
 
-<p>Build and run the example code with a CMakeLists.txt similar to the one above.</p>
+<p>위와 유사한 CMakeLists.txt를 사용하여 예제 코드를 빌드하고 실행해본다.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git
 cd hsf-training-cmake-webpage/code/00-intro
 </code></pre></div></div>
 
-<h4 id="solution">Solution</h4>
+<h4 id="정답">정답</h4>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This is required in all CMakeLists Selecting a nice minimum version and range
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 이것은 모든 CMakeLists에 필요합니다. 적절한 최소 버전과 범위를 선택하자.
 cmake_minimum_required(VERSION 3.15...3.25)
 
-# We can call the project anything we want Listing the language(s) avoids the C
-# + CXX default
+# 우리는 우리가 원하는 것으로 프로젝트를 지정할 수 있고 
+# 언어(들)을 적으면 기본 C + CXX 을 피할 수 있다.
 project(MyExample00 LANGUAGES C)
 
-# We need an executable target
+# 실행가능한 타겟이 필요하다.
 add_executable(simple_example simple.c)
 </code></pre></div></div>
 
@@ -96,10 +99,10 @@ add_executable(simple_example simple.c)
 <h2 id="핵심사항">핵심사항</h2>
 
 <ul>
-  <li>The cmake_minimum_version setting has deep implications</li>
-  <li>You need a project line.</li>
-  <li>You should prepare one or more targets to do anything interesting.</li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Your first CMakeLists.txt file Overview 질문 How little can I get away with in my CMakeLists? 목표 Understand the deep implications of cmake_minimum_version Know how to set up a project Know how to make at least one target Writing a CMakeLists The following file is fine for the following examples: /* simple.c or simple.cpp */ #include &lt;stdio.h&gt; int main() { printf("Hello, World!\n"); return 0; } Starting off This is the simplest possible CMakeLists.txt: cmake_minimum_required(VERSION 3.15) project(MyProject) add_executable(myexample simple.cpp) Let’s look at the three lines: The cmake_minimum_required command sets the policies so that the build is exactly like it would be on the listed version of CMake - in other words, CMake “dumbs itself down” to the version you request for any features that could produce a different build. This makes CMake almost perfectly backwards compatible. You need to be working on a project, and it needs at least a name. CMake assumes a CXX (that’s C++) and C mixed project if you don’t give any LANGUAGES. You need at least one library or executable to do anything interesting. The “thing” you make here is called a “target”, and the executable/library has the same name, by default, and it has to be unique in the project. You use add_executable for programs, and add_library for libraries. Those commands have a few extra arguments that you can give: cmake_minimum_required(VERSION 3.15...3.25) project(MyProject VERSION 1.0 DESCRIPTION "Very nice project" LANGUAGES CXX ) add_executable(myexample simple.cpp) You can specify a range of versions - this will cause the policies to be set to the highest supported value in that range. As a general rule, set the highest version you’ve tested with here. Projects can have versions, descriptions, and languages. Whitespace doesn’t matter. Be clear/pretty, or use cmake-format. Try it out Build and run the example code with a CMakeLists.txt similar to the one above. git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git cd hsf-training-cmake-webpage/code/00-intro Solution # This is required in all CMakeLists Selecting a nice minimum version and range cmake_minimum_required(VERSION 3.15...3.25) # We can call the project anything we want Listing the language(s) avoids the C # + CXX default project(MyExample00 LANGUAGES C) # We need an executable target add_executable(simple_example simple.c) 더 읽어보기 Modern CMake basics을 기반으로 함. 핵심사항 The cmake_minimum_version setting has deep implications You need a project line. You should prepare one or more targets to do anything interesting.]]></summary></entry><entry><title type="html">More Modern CMake - Building with CMake</title><link href="http://localhost:4000/more-modern-cmake-build-with-cmake" rel="alternate" type="text/html" title="More Modern CMake - Building with CMake" /><published>2024-01-18T00:00:00+09:00</published><updated>2024-01-18T00:00:00+09:00</updated><id>http://localhost:4000/18-more-modern-cmake-building-with-cmake</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-build-with-cmake"><![CDATA[<h1 id="building-with-cmake">Building With CMake</h1>
+  <li>cmake_minimum_version 설정은 깊은 의미를 갖는다.</li>
+  <li>project 설정 라인이 필요하다.</li>
+  <li>흥미로운 일을 하려면 하나 이상의 타겟(target)를 준비해야 합니다.</li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Your first CMakeLists.txt file Overview 질문 내 CMakeLists에서 얼마나 최소화할 수 있는가? 목표 cmake_minimum_version의 깊은 의미를 이해하자. project 설정 방법을 알아두자. 적어도 하나의 타겟을 만드는 방법을 알아두자. CMakeLists 파일 작성 다음 파일은 그 다음 예에 적합하다 : /* simple.c or simple.cpp */ #include &lt;stdio.h&gt; int main() { printf("Hello, World!\n"); return 0; } 시작하기 이것은 가장 간단한 CMakeLists.txt 이다. cmake_minimum_required(VERSION 3.15) project(MyProject) add_executable(myexample simple.cpp) 세 줄을 살펴보자 : cmake_minimum_required 명령어는 빌드가 CMake의 나열된 버전에 있는 것과 정확히 똑같은 정책을 설정한다. 즉, CMake는 다른 빌드으로 생성할 수 있는 모든 기능에 대해 사용자가 요청한 버전으로 “자체적으로 낮춘다”. 이로 인해 CMake는 거의 완벽하게 이전 버전과 호환된다. 프로젝트를 진행 중이어야 하며 최소한 이름이 필요하다. CMake는 LANGUAGE를 제공하지 않으면 CXX(C++) 및 C 혼합 프로젝트를 가정한다. 흥미로운 작업을 수행하려면 최소한 하나의 라이브러리나 실행 파일이 필요하다. 여기서 만드는 “무엇”을 “타겟(target)”이라고 하며, 실행 파일/라이브러리는 기본적으로 이름이 동일하고 프로젝트에서 고유해야 한다. 프로그램에는 add_executable을 사용하고, 라이브러리에서는 add_library를 사용한다. 이러한 명령에 제공할 수 있는 몇 가지 추가 인수가 있다: cmake_minimum_required(VERSION 3.15...3.25) project(MyProject VERSION 1.0 DESCRIPTION "Very nice project" LANGUAGES CXX ) add_executable(myexample simple.cpp) 버전 범위를 지정할 수 있다 - 이렇게 하면 정책이 해당 범위에서 지원되는 가장 높은 값으로 설정된다. 일반적으로, 여기에서 테스트해 본 가장 높은 버전을 설정해라. 프로젝트에는 버전, 설명 및 언어를 가질 수 있다. 공백은 중요하지 않다. 명확하고 예쁘거나 cmake-format을 사용하라. 시도해보기 위와 유사한 CMakeLists.txt를 사용하여 예제 코드를 빌드하고 실행해본다. git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git cd hsf-training-cmake-webpage/code/00-intro 정답 # 이것은 모든 CMakeLists에 필요합니다. 적절한 최소 버전과 범위를 선택하자. cmake_minimum_required(VERSION 3.15...3.25) # 우리는 우리가 원하는 것으로 프로젝트를 지정할 수 있고 # 언어(들)을 적으면 기본 C + CXX 을 피할 수 있다. project(MyExample00 LANGUAGES C) # 실행가능한 타겟이 필요하다. add_executable(simple_example simple.c) 더 읽어보기 Modern CMake basics을 기반으로 함. 핵심사항 cmake_minimum_version 설정은 깊은 의미를 갖는다. project 설정 라인이 필요하다. 흥미로운 일을 하려면 하나 이상의 타겟(target)를 준비해야 합니다.]]></summary></entry><entry><title type="html">More Modern CMake - Building with CMake</title><link href="http://localhost:4000/more-modern-cmake-build-with-cmake" rel="alternate" type="text/html" title="More Modern CMake - Building with CMake" /><published>2024-01-18T00:00:00+09:00</published><updated>2024-01-18T00:00:00+09:00</updated><id>http://localhost:4000/18-more-modern-cmake-building-with-cmake</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-build-with-cmake"><![CDATA[<h1 id="building-with-cmake">Building With CMake</h1>
 
 <h2 id="overview">Overview</h2>
 

@@ -10,16 +10,16 @@ permalink: /more-modern-cmake-your-first-file
 ## Overview
 
 * 질문
-  * How little can I get away with in my CMakeLists?
+  * 내 CMakeLists에서 얼마나 최소화할 수 있는가?
 
 * 목표
-  * Understand the deep implications of **cmake_minimum_version**
-  * Know how to set up a project
-  * Know how to make at least one target
+  * **cmake_minimum_version**의 깊은 의미를 이해하자.
+  * project 설정 방법을 알아두자.
+  * 적어도 하나의 타겟을 만드는 방법을 알아두자.
 
-## Writing a CMakeLists
+## CMakeLists 파일 작성
 
-The following file is fine for the following examples:
+다음 파일은 그 다음 예에 적합하다 :
 ```
 /* simple.c or simple.cpp */
 #include <stdio.h>
@@ -30,9 +30,10 @@ int main() {
 }
 ```
 
-### Starting off
+### 시작하기
 
-This is the simplest possible **CMakeLists.txt**:
+이것은 가장 간단한 **CMakeLists.txt** 이다.
+
 ```
 cmake_minimum_required(VERSION 3.15)
 
@@ -41,13 +42,14 @@ project(MyProject)
 add_executable(myexample simple.cpp)
 ```
 
-Let’s look at the three lines:
+세 줄을 살펴보자 :
 
-1. The cmake_minimum_required command sets the policies so that the build is exactly like it would be on the listed version of CMake - in other words, CMake “dumbs itself down” to the version you request for any features that could produce a different build. This makes CMake almost perfectly backwards compatible.
-2. You need to be working on a project, and it needs at least a name. CMake assumes a CXX (that’s C++) and C mixed project if you don’t give any LANGUAGES.
-3. You need at least one library or executable to do anything interesting. The “thing” you make here is called a “target”, and the executable/library has the same name, by default, and it has to be unique in the project. You use add_executable for programs, and add_library for libraries.
+1. cmake_minimum_required 명령어는 빌드가 CMake의 나열된 버전에 있는 것과 정확히 똑같은 정책을 설정한다. 즉, CMake는 다른 빌드으로 생성할 수 있는 모든 기능에 대해 사용자가 요청한 버전으로 "자체적으로 낮춘다". 이로 인해 CMake는 거의 완벽하게 이전 버전과 호환된다.
+2. 프로젝트를 진행 중이어야 하며 최소한 이름이 필요하다. CMake는 LANGUAGE를 제공하지 않으면 CXX(C++) 및 C 혼합 프로젝트를 가정한다.
+3. 흥미로운 작업을 수행하려면 최소한 하나의 라이브러리나 실행 파일이 필요하다. 여기서 만드는 "무엇"을 "타겟(target)"이라고 하며, 실행 파일/라이브러리는 기본적으로 이름이 동일하고 프로젝트에서 고유해야 한다. 프로그램에는 add_executable을 사용하고, 라이브러리에서는 add_library를 사용한다.
 
-Those commands have a few extra arguments that you can give:
+이러한 명령에 제공할 수 있는 몇 가지 추가 인수가 있다:
+
 ```
 cmake_minimum_required(VERSION 3.15...3.25)
 
@@ -62,30 +64,32 @@ project(MyProject
 
 add_executable(myexample simple.cpp)
 ```
-1. You can specify a range of versions - this will cause the policies to be set to the highest supported value in that range. As a general rule, set the highest version you’ve tested with here.
-2. Projects can have versions, descriptions, and languages.
-3. Whitespace doesn’t matter. Be clear/pretty, or use cmake-format.
 
-### Try it out
+1. 버전 범위를 지정할 수 있다 - 이렇게 하면 정책이 해당 범위에서 지원되는 가장 높은 값으로 설정된다. 일반적으로, 여기에서 테스트해 본 가장 높은 버전을 설정해라.
+2. 프로젝트에는 버전, 설명 및 언어를 가질 수 있다.
+3. 공백은 중요하지 않다. 명확하고 예쁘거나 [cmake-format](https://cmake-format.readthedocs.io/en/latest/)을 사용하라.
 
-Build and run the example code with a CMakeLists.txt similar to the one above.
+
+### 시도해보기
+
+위와 유사한 CMakeLists.txt를 사용하여 예제 코드를 빌드하고 실행해본다.
 
 ```
 git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git
 cd hsf-training-cmake-webpage/code/00-intro
 ```
 
-#### Solution
+#### 정답
 
 ```
-# This is required in all CMakeLists Selecting a nice minimum version and range
+# 이것은 모든 CMakeLists에 필요합니다. 적절한 최소 버전과 범위를 선택하자.
 cmake_minimum_required(VERSION 3.15...3.25)
 
-# We can call the project anything we want Listing the language(s) avoids the C
-# + CXX default
+# 우리는 우리가 원하는 것으로 프로젝트를 지정할 수 있고 
+# 언어(들)을 적으면 기본 C + CXX 을 피할 수 있다.
 project(MyExample00 LANGUAGES C)
 
-# We need an executable target
+# 실행가능한 타겟이 필요하다.
 add_executable(simple_example simple.c)
 ```
 
@@ -95,6 +99,6 @@ add_executable(simple_example simple.c)
 
 ## 핵심사항
 
-* The cmake_minimum_version setting has deep implications
-* You need a project line.
-* You should prepare one or more targets to do anything interesting.
+* cmake_minimum_version 설정은 깊은 의미를 갖는다.
+* project 설정 라인이 필요하다.
+* 흥미로운 일을 하려면 하나 이상의 타겟(target)를 준비해야 합니다.
