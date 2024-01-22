@@ -88,3 +88,13 @@ project(MyExample00 LANGUAGES C)
 # We need an executable target
 add_executable(simple_example simple.c)
 ```
+
+### 더 읽어보기
+
+[Modern CMake basics](https://cliutils.gitlab.io/modern-cmake/chapters/basics.html)을 기반으로 함.
+
+## 핵심사항
+
+* The cmake_minimum_version setting has deep implications
+* You need a project line.
+* You should prepare one or more targets to do anything interesting.
