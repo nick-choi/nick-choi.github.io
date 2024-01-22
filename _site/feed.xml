@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-20T00:35:28+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-22T21:19:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
 </subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Your first CMakeLists.txt file</title><link href="http://localhost:4000/more-modern-cmake-your-first-file" rel="alternate" type="text/html" title="More Modern CMake - Your first CMakeLists.txt file" /><published>2024-01-20T00:00:00+09:00</published><updated>2024-01-20T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-your-first-file</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-your-first-file"><![CDATA[<h1 id="your-first-cmakeliststxt-file">Your first CMakeLists.txt file</h1>
 
 <h2 id="overview">Overview</h2>
@@ -46,59 +46,7 @@ add_executable(myexample simple.cpp)
   <li>The cmake_minimum_required command sets the policies so that the build is exactly like it would be on the listed version of CMake - in other words, CMake “dumbs itself down” to the version you request for any features that could produce a different build. This makes CMake almost perfectly backwards compatible.</li>
   <li>You need to be working on a project, and it needs at least a name. CMake assumes a CXX (that’s C++) and C mixed project if you don’t give any LANGUAGES.</li>
   <li>You need at least one library or executable to do anything interesting. The “thing” you make here is called a “target”, and the executable/library has the same name, by default, and it has to be unique in the project. You use add_executable for programs, and add_library for libraries.</li>
-</ol>
-
-<p>Those commands have a few extra arguments that you can give:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake_minimum_required(VERSION 3.15...3.25)
-
-project(MyProject
-  VERSION
-    1.0
-  DESCRIPTION
-    "Very nice project"
-  LANGUAGES
-    CXX
-)
-
-add_executable(myexample simple.cpp)
-</code></pre></div></div>
-<ol>
-  <li>You can specify a range of versions - this will cause the policies to be set to the highest supported value in that range. As a general rule, set the highest version you’ve tested with here.</li>
-  <li>Projects can have versions, descriptions, and languages.</li>
-  <li>Whitespace doesn’t matter. Be clear/pretty, or use cmake-format.</li>
-</ol>
-
-<h3 id="try-it-out">Try it out</h3>
-
-<p>Build and run the example code with a CMakeLists.txt similar to the one above.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git
-cd hsf-training-cmake-webpage/code/00-intro
-</code></pre></div></div>
-
-<h4 id="solution">Solution</h4>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This is required in all CMakeLists Selecting a nice minimum version and range
-cmake_minimum_required(VERSION 3.15...3.25)
-
-# We can call the project anything we want Listing the language(s) avoids the C
-# + CXX default
-project(MyExample00 LANGUAGES C)
-
-# We need an executable target
-add_executable(simple_example simple.c)
-</code></pre></div></div>
-
-<h3 id="더-읽어보기">더 읽어보기</h3>
-
-<p><a href="https://cliutils.gitlab.io/modern-cmake/chapters/basics.html">Modern CMake basics</a>을 기반으로 함.</p>
-
-<h2 id="핵심사항">핵심사항</h2>
-
-<ul>
-  <li>The cmake_minimum_version setting has deep implications</li>
-  <li>You need a project line.</li>
-  <li>You should prepare one or more targets to do anything interesting.</li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Your first CMakeLists.txt file Overview 질문 How little can I get away with in my CMakeLists? 목표 Understand the deep implications of cmake_minimum_version Know how to set up a project Know how to make at least one target Writing a CMakeLists The following file is fine for the following examples: /* simple.c or simple.cpp */ #include &lt;stdio.h&gt; int main() { printf("Hello, World!\n"); return 0; } Starting off This is the simplest possible CMakeLists.txt: cmake_minimum_required(VERSION 3.15) project(MyProject) add_executable(myexample simple.cpp) Let’s look at the three lines: The cmake_minimum_required command sets the policies so that the build is exactly like it would be on the listed version of CMake - in other words, CMake “dumbs itself down” to the version you request for any features that could produce a different build. This makes CMake almost perfectly backwards compatible. You need to be working on a project, and it needs at least a name. CMake assumes a CXX (that’s C++) and C mixed project if you don’t give any LANGUAGES. You need at least one library or executable to do anything interesting. The “thing” you make here is called a “target”, and the executable/library has the same name, by default, and it has to be unique in the project. You use add_executable for programs, and add_library for libraries. Those commands have a few extra arguments that you can give: cmake_minimum_required(VERSION 3.15...3.25) project(MyProject VERSION 1.0 DESCRIPTION "Very nice project" LANGUAGES CXX ) add_executable(myexample simple.cpp) You can specify a range of versions - this will cause the policies to be set to the highest supported value in that range. As a general rule, set the highest version you’ve tested with here. Projects can have versions, descriptions, and languages. Whitespace doesn’t matter. Be clear/pretty, or use cmake-format. Try it out Build and run the example code with a CMakeLists.txt similar to the one above. git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git cd hsf-training-cmake-webpage/code/00-intro Solution # This is required in all CMakeLists Selecting a nice minimum version and range cmake_minimum_required(VERSION 3.15...3.25) # We can call the project anything we want Listing the language(s) avoids the C # + CXX default project(MyExample00 LANGUAGES C) # We need an executable target add_executable(simple_example simple.c) 더 읽어보기 Modern CMake basics을 기반으로 함. 핵심사항 The cmake_minimum_version setting has deep implications You need a project line. You should prepare one or more targets to do anything interesting.]]></summary></entry><entry><title type="html">More Modern CMake - Building with CMake</title><link href="http://localhost:4000/more-modern-cmake-build-with-cmake" rel="alternate" type="text/html" title="More Modern CMake - Building with CMake" /><published>2024-01-18T00:00:00+09:00</published><updated>2024-01-18T00:00:00+09:00</updated><id>http://localhost:4000/18-more-modern-cmake-building-with-cmake</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-build-with-cmake"><![CDATA[<h1 id="building-with-cmake">Building With CMake</h1>
+</ol>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Your first CMakeLists.txt file Overview 질문 How little can I get away with in my CMakeLists? 목표 Understand the deep implications of cmake_minimum_version Know how to set up a project Know how to make at least one target Writing a CMakeLists The following file is fine for the following examples: /* simple.c or simple.cpp */ #include &lt;stdio.h&gt; int main() { printf("Hello, World!\n"); return 0; } Starting off This is the simplest possible CMakeLists.txt: cmake_minimum_required(VERSION 3.15) project(MyProject) add_executable(myexample simple.cpp) Let’s look at the three lines: The cmake_minimum_required command sets the policies so that the build is exactly like it would be on the listed version of CMake - in other words, CMake “dumbs itself down” to the version you request for any features that could produce a different build. This makes CMake almost perfectly backwards compatible. You need to be working on a project, and it needs at least a name. CMake assumes a CXX (that’s C++) and C mixed project if you don’t give any LANGUAGES. You need at least one library or executable to do anything interesting. The “thing” you make here is called a “target”, and the executable/library has the same name, by default, and it has to be unique in the project. You use add_executable for programs, and add_library for libraries.]]></summary></entry><entry><title type="html">More Modern CMake - Building with CMake</title><link href="http://localhost:4000/more-modern-cmake-build-with-cmake" rel="alternate" type="text/html" title="More Modern CMake - Building with CMake" /><published>2024-01-18T00:00:00+09:00</published><updated>2024-01-18T00:00:00+09:00</updated><id>http://localhost:4000/18-more-modern-cmake-building-with-cmake</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-build-with-cmake"><![CDATA[<h1 id="building-with-cmake">Building With CMake</h1>
 
 <h2 id="overview">Overview</h2>
 
