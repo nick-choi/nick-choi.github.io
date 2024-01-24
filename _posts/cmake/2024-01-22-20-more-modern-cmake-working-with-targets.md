@@ -69,25 +69,25 @@ add_library(mylibrary simplelib.cpp)
 
 ## Example 2: C++ standard
 
-There is a C++ standard property - CXX_STANDARD. You can set this property, and like many properties in CMake, it gets it’s default value from a CMAKE_CXX_STANDARD variable if it is set, but there is no INTERFACE version - you cannot force a CXX_STANDARD via a target. What would you do if you had a C++11 interface target and a C++14 interface target and linked to both?
+C++ 표준 속성인 **CXX_STANDARD**가 있다. 이 속성을 설정할 수 있으며 CMake의 많은 속성과 마찬가지로 설정된 경우 **CMAKE_CXX_STANDARD** 변수에서 기본값을 가져오지만 INTERFACE 버전이 없다. 타겟을 통해 **CXX_STANDARD**를 강제할 수 없다. C++11 인터페이스 타겟과 C++14 인터페이스 타겟이 있고 둘 다에 연결되어 있다면 어떻게 해야할까?
 
-By the way, there is a way to handle this - you can specify the minimum compile features you need to compile a target; the cxx_std_11 and similar meta-features are perfect for this - your target will compile with at least the highest level specified, unless CXX_STANDARD is set (and that’s a nice, clear error if you set CXX_STANDARD too low). target_compile_features can fill COMPILE_FEATURES and INTERFACE_COMPILE_FEATURES, just like directories in example 1.
+그런데 이를 처리하는 방법이 있다. 타겟을 컴파일하는 데 필요한 최소 컴파일 기능을 지정할 수 있다. **cxx_std_11** 및 유사한 메타 기능은 이에 적합하다. **CXX_STANDARD**가 설정되지 않는 한 타겟은 최소한 지정된 최고 레벨로 컴파일됩니다(그리고 **CXX_STANDARD**를 너무 낮게 설정하면 이는 훌륭하고 명확한 오류이다). **target_compile_features**는 예제 1의 디렉터리와 마찬가지로 **COMPILE_FEATURES** 및 **INTERFACE_COMPILE_FEATURES**를 채울 수 있습니다.
 
 ### 시도해보기
 
-Get this repository and go to the example. Try to write a CMakeLists that will correctly build.
+이 저장소를 가져와 예제로 이동해보라. 올바르게 빌드되는 CMakeList를 작성해 보자.
 
 ```
 git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git
 cd hsf-training-cmake-webpage/code/01-simple
 ```
 
-The files here are:
+여기에 있는 파일은 다음과 같다.
 
-* simple_lib.cpp: Must be compiled with MYLIB_PRIVATE and MYLIB_PUBLIC defined.
-* simple_example.cpp: Must be compiled with MYLIB_PUBLIC defined, but not MYLIB_PRIVATE
+* simple_lib.cpp: **MYLIB_PRIVATE** 및 **MYLIB_PUBLIC**을 정의하여 컴파일해야 한다.
+* simple_example.cpp: **MYLIB_PUBLIC**을 정의하여 컴파일해야 하지만 MYLIB_PRIVATE는 정의하지 않는다.
 
-Use [target_compile_definitions(<target> <private or public> <definition(s)>)][target_compile_definitions] to set the definitions on simple_lib
+[**target_compile_definitions(<target> <private or public> <definition(s)>)**][**target_compile_definitions**]를 사용하여 **simple_lib**에 대한 정의를 설정합니다.
 
 #### 정답
 
@@ -119,9 +119,36 @@ add_executable(simple_example simple_example.cpp)
 target_link_libraries(simple_example PUBLIC simple_lib)
 ```
 
+### 타겟에 설정할 수 있는 것
+
+* **target_link_libraries**: 기타 대상; 라이브러리 이름을 직접 전달할 수도 있다.
+* **target_include_directories**: 디렉터리 포함
+* **target_compile_features**: **cxx_std_11**과 같이 활성화해야 하는 컴파일러 기능
+* **target_compile_definitions**: 정의
+* **target_compile_options**: 보다 일반적인 컴파일 플래그
+* **target_link_directories**: 사용하지 말고 대신 전체 경로를 제공(CMake 3.13+)
+* **target_link_options**: 일반 링크 플래그(CMake 3.13+)
+* **target_sources**: 소스 파일 추가
+
+[여기에서 더 많은 명령](https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html)을 확인하자.
+
+## Other types of targets
+
+You might be really excited by targets and are already planning out how you can describe your programs in terms of targets. That’s great! However, you’ll quickly run into two more situations where the target language is useful, but you need some extra flexibility over what we’ve covered.
+
+First, you might have a library that conceptually should be a target, but doesn’t actually have any built components - a “header-only” library. These are called interface libraries in CMake and you would write:
+
+```
+add_library(some_header_only_lib INTERFACE)
+```
+
+Notice you didn’t need to add any source files. Now you can set **INTERFACE** properties on this only (since there is no built component).
+
+The second situation is if you have a pre-built library that you want to use. This is called an imported library in CMake, and uses the keyword **IMPORTED**. Imported libraries can also be **INTERFACE** libraries, they can be built and modified using the same syntax as other libraries (starting in CMake 3.11), and they can have **::** in their name. (**ALIAS** libraries, which simply rename some other library, are also allowed to have **::**). Most of the time you will get imported libraries from other places, and will not be making your own.
+
 ### INTERFACE IMPORTED
 
-What about INTERFACE IMPORTED? The difference comes down to two things:
+What about **INTERFACE IMPORTED**? The difference comes down to two things:
 1. IMPORTED targets are not exportable. If you save your targets, you can’t save IMPORTED ones - they need to be recreated (or found again).
 2. IMPORTED header include directories will always be marked as SYSTEM.
 
