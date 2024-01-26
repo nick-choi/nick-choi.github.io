@@ -65,13 +65,13 @@ add_library(mylibrary simplelib.cpp)
 
 ## Example 1: 디렉토리 포함하기
 
-**target_include_directories(TargetA PRIVATE mydir)**를 실행하면 **TargetA**의 **INCLUDE_DIRECTORIES** 속성에 mydir이 추가됩니다. 대신 **INTERFACE** 키워드를 사용하면 **INTERFACE_INCLUDE_DIRECTORIES**가 대신 추가됩니다. **PUBLIC**을 사용하는 경우 두 속성이 동시에 추가됩니다.
+**target_include_directories(TargetA PRIVATE mydir)**를 실행하면 **TargetA**의 **INCLUDE_DIRECTORIES** 속성에 mydir이 추가된다. 대신 **INTERFACE** 키워드를 사용하면 **INTERFACE_INCLUDE_DIRECTORIES**가 대신 추가되며  **PUBLIC**을 사용하는 경우 두 속성이 동시에 추가된다.
 
 ## Example 2: C++ standard
 
 C++ 표준 속성인 **CXX_STANDARD**가 있다. 이 속성을 설정할 수 있으며 CMake의 많은 속성과 마찬가지로 설정된 경우 **CMAKE_CXX_STANDARD** 변수에서 기본값을 가져오지만 INTERFACE 버전이 없다. 타겟을 통해 **CXX_STANDARD**를 강제할 수 없다. C++11 인터페이스 타겟과 C++14 인터페이스 타겟이 있고 둘 다에 연결되어 있다면 어떻게 해야할까?
 
-그런데 이를 처리하는 방법이 있다. 타겟을 컴파일하는 데 필요한 최소 컴파일 기능을 지정할 수 있다. **cxx_std_11** 및 유사한 메타 기능은 이에 적합하다. **CXX_STANDARD**가 설정되지 않는 한 타겟은 최소한 지정된 최고 레벨로 컴파일됩니다(그리고 **CXX_STANDARD**를 너무 낮게 설정하면 이는 훌륭하고 명확한 오류이다). **target_compile_features**는 예제 1의 디렉터리와 마찬가지로 **COMPILE_FEATURES** 및 **INTERFACE_COMPILE_FEATURES**를 채울 수 있습니다.
+그런데 이를 처리하는 방법이 있다. 타겟을 컴파일하는 데 필요한 최소 컴파일 기능을 지정할 수 있다. **cxx_std_11** 및 유사한 메타 기능은 이에 적합하다. **CXX_STANDARD**가 설정되지 않는 한 타겟은 최소한 지정된 최고 레벨로 컴파일됩니다(그리고 **CXX_STANDARD**를 너무 낮게 설정하면 이는 훌륭하고 명확한 오류이다). **target_compile_features**는 예제 1의 디렉터리와 마찬가지로 **COMPILE_FEATURES** 및 **INTERFACE_COMPILE_FEATURES**를 채울 수 있다.
 
 ### 시도해보기
 
@@ -87,7 +87,7 @@ cd hsf-training-cmake-webpage/code/01-simple
 * simple_lib.cpp: **MYLIB_PRIVATE** 및 **MYLIB_PUBLIC**을 정의하여 컴파일해야 한다.
 * simple_example.cpp: **MYLIB_PUBLIC**을 정의하여 컴파일해야 하지만 MYLIB_PRIVATE는 정의하지 않는다.
 
-[**target_compile_definitions(<target> <private or public> <definition(s)>)**][**target_compile_definitions**]를 사용하여 **simple_lib**에 대한 정의를 설정합니다.
+[ **target_compile_definitions(<target> <private or public> <definition(s)>)** ][ **target_compile_definitions** ]를 사용하여 **simple_lib**에 대한 정의를 설정한다.
 
 #### 정답
 
@@ -96,26 +96,26 @@ cmake_minimum_required(VERSION 3.15...3.25)
 
 project(MyExample01 LANGUAGES CXX)
 
-# This is the library Including the headers is not required, but is nice for
-# users
+# 헤더를 포함하는 라이브러리는 필수는 아니지만 유저들에게 좋다.
 add_library(simple_lib simple_lib.cpp simple_lib.hpp)
 
 # The above line *did not* set the includes - we need to We can also set ., and
 # it should be expanded to the current source dir
 
+# 위 라인은 includes를 설정하지 **않았다** - . 으로 설정할 수 있는데 현재 소스 디렉토리로 확장하는 게 좋다.
 target_include_directories(simple_lib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 
-# Adding definitions
+# 정의 추가
 target_compile_definitions(simple_lib PUBLIC MYLIB_PUBLIC)
 target_compile_definitions(simple_lib PRIVATE MYLIB_PRIVATE)
 
-# Require a C++ feature (here: at least C++11)
+# C++ 특징 필요(여기서는 적어도 C++11 이상)
 target_compile_features(simple_lib PUBLIC cxx_std_11)
 
-# Now add the executable
+# 이제 executable 추가
 add_executable(simple_example simple_example.cpp)
 
-# Adding the all-important link to simple-lib
+# simple-lib에 가장 중요한 링크 추가
 target_link_libraries(simple_example PUBLIC simple_lib)
 ```
 
@@ -132,27 +132,27 @@ target_link_libraries(simple_example PUBLIC simple_lib)
 
 [여기에서 더 많은 명령](https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html)을 확인하자.
 
-## Other types of targets
+## 타겟의 다른 형태
 
-You might be really excited by targets and are already planning out how you can describe your programs in terms of targets. That’s great! However, you’ll quickly run into two more situations where the target language is useful, but you need some extra flexibility over what we’ve covered.
+당신은 타겟에 대해 매우 흥미를 느끼고, 타겟 측면에서 프로그램을 설명할 수 있는 방법을 이미 계획하고 있을 것이다. 훌륭하다! 그러나 타겟 언어가 유용한 두 가지 상황에 빠르게 직면하겠지만, 우리가 다룬 내용에 대해 약간의 유연성이 필요하다.
 
-First, you might have a library that conceptually should be a target, but doesn’t actually have any built components - a “header-only” library. These are called interface libraries in CMake and you would write:
+첫째, 개념적으로는 타겟이어야 하지만 실제로는 빌드된 구성 요소가 없는 라이브러리, 즉 "헤더-전용" 라이브러리가 있을 수 있다. CMake에서는 이를 인터페이스(interface) 라이브러리라고 부르며 작성하게 된다:
 
 ```
 add_library(some_header_only_lib INTERFACE)
 ```
 
-Notice you didn’t need to add any source files. Now you can set **INTERFACE** properties on this only (since there is no built component).
+소스 파일을 추가할 필요가 없다는 점에 유의하라. 이제 여기에만 **INTERFACE** 속성을 설정할 수 있다(빌드된 구성 요소가 없기 때문에).
 
-The second situation is if you have a pre-built library that you want to use. This is called an imported library in CMake, and uses the keyword **IMPORTED**. Imported libraries can also be **INTERFACE** libraries, they can be built and modified using the same syntax as other libraries (starting in CMake 3.11), and they can have **::** in their name. (**ALIAS** libraries, which simply rename some other library, are also allowed to have **::**). Most of the time you will get imported libraries from other places, and will not be making your own.
+두 번째 상황은 사용하려는 미리 빌드된 라이브러리가 있는 경우이다. CMake에서는 이를 가져온 라이브러리라고 하며 **IMPORTED** 키워드를 사용한다. 가져온 라이브러리는 **INTERFACE** 라이브러리일 수도 있으며, 다른 라이브러리와 동일한 구문(CMake 3.11부터 시작)을 사용하여 빌드하고 수정할 수 있으며 이름에 **::**를 사용할 수 있다(간단히 다른 라이브러리의 이름을 바꾸는 **ALIAS** 라이브러리도 **::**을 가질 수 있다). 대부분의 경우 다른 곳에서 라이브러리를 가져와서 직접 만들지는 않을 것이다.
 
 ### INTERFACE IMPORTED
 
-What about **INTERFACE IMPORTED**? The difference comes down to two things:
-1. IMPORTED targets are not exportable. If you save your targets, you can’t save IMPORTED ones - they need to be recreated (or found again).
-2. IMPORTED header include directories will always be marked as SYSTEM.
+**가져온 인터페이스**는 어떨까? 차이점은 두 가지로 요약된다:
+1. IMPORTED 타겟은 내보낼 수 없다. 타겟을 저장하면, IMPORTED 타겟을 저장할 수 없다. 타겟을 다시 생성해야 한다 (또는 다시 찾아야 한다).
+2. IMPORTED 헤더 포함 디렉토리는 항상 SYSTEM으로 표시된다.
 
-Therefore, an IMPORTED target should represent something that is not directly part of your package.
+따라서 IMPORTED 타겟은 패키지의 직접적인 부분이 아닌 것을 나타내야 한다.
 
 ### 더 읽어보기
 
@@ -161,8 +161,8 @@ Therefore, an IMPORTED target should represent something that is not directly pa
 
 ## 핵심사항
 
-* Libraries and executables are targets.
-* Targets have lots of useful properties.
-* Targets can be linked to other target.
-* You can control what parts of a target get inherited when linking.
-* You can make INTERFACE targets instead of making variables.
+* 라이브러리 및 실행 파일은 타겟이다.
+* 타겟에는 유용한 속성이 많이 있다.
+* 타겟은 다른 타겟에 연결(링크)될 수 있다.
+* 링크 시 타겟의 어떤 부분이 상속되는지 제어할 수 있다.
+* 변수를 만드는 대신 INTERFACE 타겟을 만들 수 있다.
