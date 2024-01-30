@@ -316,28 +316,33 @@
 <article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/more-modern-cmake-variables-explained"><h2 itemprop="headline" class="item__header">More Modern CMake - Variables explained</h2></a></header>
           <div class="item__description">
-<div class="article__content" itemprop="description articleBody">Variables explained
+<div class="article__content" itemprop="description articleBody">변수 설명
 
 Overview
 
 
   질문
     
-      How do variables work?
+      변수는 어떻게 작동하는가?
     
   
   목표
     
-      Learn about local variables.
-      Understand that cached variables persist across runs.
-      Know how to glob, and why you might not do it.
+      지역 변수에 대해 알아보자.
+      캐시된 변수가 실행 전반에 걸쳐 지속된다는 점을 이해하라.
+      글로브(glob)할 줄 알아야 하고, 왜 하면안되는지 알아야 한다.
     
   
 
 
-Variables
+변수
 
-For this exercise, we will just directly run a CMake Script, instead of running CMakeList...</div>
+이 연습에서는 CMakeLists.txt를 실행하는 대신 CMake 스크립트를 직접 실행한다. 이를 수행하는 명령은 다음과 같다:
+
+# example.cmake라는 파일이 있다고 가정한다:
+cmake -P example.cmake
+
+이렇게 하면, 주변에 작은 빌드들이 많이 생기지 않는다....</div>
 <p><a href="/more-modern-cmake-variables-explained">Read more</a></p>
 </div>
 <div class="article__info clearfix">
