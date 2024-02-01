@@ -72,31 +72,31 @@ bool 캐시 변수는 빌드에 매우 일반적이므로 **option**을 사용�
 option(MY_OPTION "On or off" OFF)
 ```
 
-### Other variables
+### 그 외 변수
 
-You can get environment variables with $ENV{name}. You can check to see if an environment variable is defined with if(DEFINED ENV{name}) (notice the missing $).
+**\$ENV\{name\}**을 사용하여 환경 변수를 가져올 수 있다. **if\(DEFINED ENV\{name\}\)**을 사용하여 환경 변수가 정의되었는지 확인할 수 있다\(**\$** 누락에 주의\).
 
-Properties are a form of variable that is attached to a target; you can use **get_property** and **set_property**, or [**get_target_properties**][] and set_target_properties (stylistic preference) to access and set these. You can see a list of all properties by CMake version; there is no way to get this programmatically.
+속성은 대상에 연결된 변수의 한 형태이다. **get_property** 및 **set_property** 또는 [**get_target_properties**][] 및 set_target_properties를 사용하여 이에 액세스하고 설정할 수 있다. CMake 버전별로 모든 속성 목록을 볼 수 있다. 프로그래밍 방식으로 이를 얻을 수 있는 방법은 없다.
 
-#### Handy tip
+#### 유용한 팁
 
-Use **include(CMakePrintHelpers)** to add the useful commands **cmake_print_properties** and **cmake_print_variables** to save yourself some typing when debugging variables and properties.
+변수나 속성을 디버깅할 때 타이핑을 줄일 수 있는 유용한 명령인 **cmake_print_properties** 및 **cmake_print_variables**을 추가하려면 **include(CMakePrintHelpers)** 사용하라.
 
-### Target properties and variables
+### 타겟 속성과 변수
 
-You have seen targets; they have properties attached that control their behavior. Many of these properties, such as **CXX_EXTENSIONS**, have a matching variable that starts with **CMAKE_**, such as **CMAKE_CXX_EXTENSIONS**, that will be used to initialize them. So you can using set property on each target by setting a variable before making the targets.
+타겟을 배웠다; 동작을 제어하는 속성이 붙어 있다. **CXX_EXTENSIONS**와 같은 이러한 속성 중 다수는 **CMAKE_CXX_EXTENSIONS**와 같이 **CMAKE_**로 시작하는 매칭 변수를 가지고 있는데, 이 변수들을 초기화하는 데 사용된다.  따라서 타겟을 만들기 전에 변수를 설정하여 각 타겟에 설정된 속성을 사용할 수 있다.
 
 ### Globbing
 
-There are several commands that help with **string**s, **file**s, [**lists**][], and the like. Let’s take a quick look at one of the most interesting: glob.
+**string**, **file**, [**lists**][] 등에 도움이 되는 여러 명령이 있다. 가장 흥미로운 것 중 하나를 간단히 살펴보겠다 : glob
 
 ```
 file(GLOB OUTPUT_VAR *.cxx)
 ```
 
-This will make a list of all files that match the pattern and put it into **OUTPUT_VAR**. You can also use **GLOB_RECURSE**, which will recurse subdirectories. There are several useful options, which you can look at in the documentation, but one is particularly important: **CONFIGURE_DEPENDS** (CMake 3.12+).
+이 명령은 패턴과 일치하는 모든 파일의 목록을 만들어서 **OUTPUT_VAR**에 저장한다. 하위 디렉터리를 반복하는 **GLOB_RECURSE**를 사용할 수도 있다. [문서](https://cmake.org/cmake/help/latest/command/file.html?highlight=glob#filesystem)에서 볼 수 있는 몇 가지 유용한 옵션이 있지만 특히 중요한 옵션은 **CONFIGURE_DEPENDS** (CMake 3.12+)이다.
 
-When you rerun the build step (not the configure step), then unless you set **CONFIGURE_DEPENDS**, your build tool will not check to see if you have added any new files that now pass the glob. This is the reason poorly written CMake projects often have issues when you are trying to add files; some people are in the habit of rerunning **cmake** before every build because of this. You shouldn’t ever have to manually reconfigure; the build tool will rerun CMake as needed with this one exception. If you add **CONFIGURE_DEPENDS**, then most build tools will actually start checking glob too. The classic rule of CMake was "never glob"; the new rule is "never glob, but if you have to, add **CONFIGURE_DEPENDS**".
+(구성 단계가 아닌)빌드 단계를 다시 실행할 때 **CONFIGURE_DEPENDS**를 설정하지 않으면, 빌드 툴은 이제 glob을 통과하는 새 파일을 추가했는지 확인하지 않는다. 이것이 잘못 작성된 CMake 프로젝트에 파일을 추가하려고 할 때 종종 문제가 발생하는 원인이다. 어떤 사람들은 이 때문에 모든 빌드 전에 **cmake**를 다시 실행하는 습관을 갖고 있다. 수동으로 재구성할 필요가 없다. 빌드 툴은 이 한 가지 예외를 제외하고 필요에 따라 CMake를 다시 실행한다. **CONFIGURE_DEPENDS**를 추가하면 대부분의 빌드 툴이 실제로 glob 검사도 시작한다. CMake의 고전적인 규칙은 "절대 glob하지 않음"이었다. 새로운 규칙은 "절대 glob하지 않지만, 필요한 경우 **CONFIGURE_DEPENDS**를 추가"하는 것이다.
 
 ### 더 읽어보기
 
@@ -105,7 +105,7 @@ When you rerun the build step (not the configure step), then unless you set **CO
 
 ## 핵심사항
 
-* Local variables work in this directory or below.
-* Cached variables are stored between runs.
-* You can access environment variables, properties, and more.
-* You can glob to collect files from disk, but it might not always be a good idea.
+* 지역 변수는 이 디렉터리 이하에서 작동한다.
+* 캐시된 변수는 실행 간에 저장된다.
+* 환경 변수, 속성 등에 액세스할 수 있다.
+* 디스크에서 파일을 수집하기 위해 glob를 사용할 수 있지만 항상 좋은 생각은 아니다.
