@@ -1,5 +1,259 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-01T23:46:12+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
-</subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Variables explained</title><link href="http://localhost:4000/more-modern-cmake-variables-explained" rel="alternate" type="text/html" title="More Modern CMake - Variables explained" /><published>2024-01-27T00:00:00+09:00</published><updated>2024-01-27T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-variables-explained</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-variables-explained"><![CDATA[<h1 id="변수-설명">변수 설명</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-02T00:49:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+</subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Project Structure</title><link href="http://localhost:4000/more-modern-cmake-project-structure" rel="alternate" type="text/html" title="More Modern CMake - Project Structure" /><published>2024-02-02T00:00:00+09:00</published><updated>2024-02-02T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-project-structure</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-project-structure"><![CDATA[<h1 id="프로젝트-구조">프로젝트 구조</h1>
+
+<h2 id="overview">Overview</h2>
+
+<ul>
+  <li>질문
+    <ul>
+      <li>What should my project look like?</li>
+    </ul>
+  </li>
+  <li>목표
+    <ul>
+      <li>Know some best practices for project structure</li>
+    </ul>
+  </li>
+</ul>
+
+<p>For this section, we will be looking at the project in code/03-structure.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>code/03-structure/
+├── CMakeLists.txt
+├── README.md
+├── apps
+│   ├── CMakeLists.txt
+│   └── app.cpp
+├── cmake
+│   └── FindSomeLib.cmake
+├── docs
+│   ├── CMakeLists.txt
+│   └── mainpage.md
+├── include
+│   └── modern
+│       └── lib.hpp
+├── src
+│   ├── CMakeLists.txt
+│   └── lib.cpp
+└── tests
+    ├── CMakeLists.txt
+    └── testlib.cpp
+</code></pre></div></div>
+
+<p>First, take a look at the main CMakeLists.txt file. This is an example of a nice project file in CMake 3.14, so enjoy it for a minute. Now let’s look at specifics!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Works with 3.15 and tested through 3.21
+cmake_minimum_required(VERSION 3.15...3.25)
+
+# Project name and a few useful settings. Other commands can pick up the results
+project(
+  ModernCMakeExample
+  VERSION 0.1
+  DESCRIPTION "An example project with CMake"
+  LANGUAGES CXX)
+
+# Only do these if this is the main project, and not if it is included through
+# add_subdirectory
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+  # Optionally set things like CMAKE_CXX_STANDARD,
+  # CMAKE_POSITION_INDEPENDENT_CODE here
+
+  # Let's ensure -std=c++xx instead of -std=g++xx
+  set(CMAKE_CXX_EXTENSIONS OFF)
+
+  # Let's nicely support folders in IDE's
+  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+  # Testing only available if this is the main app. Note this needs to be done
+  # in the main CMakeLists since it calls enable_testing, which must be in the
+  # main CMakeLists.
+  include(CTest)
+
+  # Docs only available if this is the main app
+  find_package(Doxygen)
+  if(Doxygen_FOUND)
+    add_subdirectory(docs)
+  else()
+    message(STATUS "Doxygen not found, not building docs")
+  endif()
+endif()
+
+# FetchContent added in CMake 3.11, downloads during the configure step
+# FetchContent_MakeAvailable was not added until CMake 3.14
+include(FetchContent)
+
+# Accumulator library This is header only, so could be replaced with git
+# submodules or FetchContent
+find_package(Boost REQUIRED)
+# Adds Boost::boost / Boost::headers (newer FindBoost / BoostConfig 3.15 name)
+
+# Formatting library, adds fmt::fmt Always use the full git hash, not the tag,
+# safer and faster to recompile
+FetchContent_Declare(
+  fmtlib
+  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+  GIT_TAG 8.0.1)
+FetchContent_MakeAvailable(fmtlib)
+
+# The compiled library code is here
+add_subdirectory(src)
+
+# The executable code is here
+add_subdirectory(apps)
+
+# Testing only available if this is the main app
+if(BUILD_TESTING)
+  add_subdirectory(tests)
+endif()
+</code></pre></div></div>
+
+<h3 id="protect-project-code">Protect project code</h3>
+
+<p>The parts of the project that only make sense if we are building this as the main project are protected; this allows the project to be included in a larger master project with <strong>add_subdirectory</strong>.</p>
+
+<h3 id="testing-handled-in-the-main-cmakelists">Testing handled in the main CMakeLists</h3>
+
+<p>We have to do a little setup for testing in the main CMakeLists, because you can’t run <strong>enable_testing</strong> from a subdirectory (and thereby <strong>include(CTest)</strong>). Also, notice that <strong>BUILD_TESTING</strong> does not turn on testing unless this is the main project.</p>
+
+<h3 id="finding-packages">Finding packages</h3>
+
+<p>We find packages in our main CMakeLists, then use them in subdirectories. We could have also put them in a file that was included, such as <strong>cmake/find_pakages.cmake</strong>. If your CMake is new enough, you can even add a subdirectory with the find packages commands, but you have to set <strong>IMPORTED_GLOBAL</strong> on the targets you want to make available if you do that. For small to mid-size projects, the first option is most common, and large projects use the second option (currently).</p>
+
+<p>All the find packages here provide imported targets. If you do not have an imported target, make one! Never use the raw variables past the lines immediately following the <strong>find_package</strong> command. There are several easy mistakes to make if you do not make imported targets, including forgetting to add <strong>SYSTEM</strong>, and the search order is better (especially before CMake 3.12).</p>
+
+<p>In this project, I use the new <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html">FetchContent</a> (3.11/3.14) to download several dependencies; although normally I prefer git submodules in <strong>/extern</strong>.</p>
+
+<h3 id="source">Source</h3>
+
+<p>Now follow the <strong>add_subdirectory</strong> command to see the src folder, where a library is created.</p>
+
+<p>Click to see src/CMakeLists.txt
+The headers are listed along with the sources in the <strong>add_library</strong> command. This would have been another way to do it in CMake 3.11+:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add_library(modern_library)
+target_sources(modern_library
+  PRIVATE
+    lib.cpp
+  PUBLIC
+    ${HEADER_LIST}
+)
+</code></pre></div></div>
+<p>Notice that we have to use <strong>target_include_directories</strong>; just adding a header to the sources does not tell CMake what the correct include directory for it should be.</p>
+
+<p>We also set up the <strong>target_link_libraries</strong> with the appropriate targets.</p>
+
+<h3 id="app">App</h3>
+
+<p>Now take a look at <strong>apps/CMakeLists.txt</strong>. This one is pretty simple, since all the leg work for using our library was done on the library target, as it should be.</p>
+
+<p>Click to see apps/CMakeLists.txt</p>
+
+<h3 id="docs-and-tests">Docs and Tests</h3>
+<p>Feel free to look at docs and tests for their CMakeLists.txt.</p>
+
+<p>docs/CMakeLists.txt</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Works with 3.15 and tested through 3.21
+cmake_minimum_required(VERSION 3.15...3.25)
+
+# Project name and a few useful settings. Other commands can pick up the results
+project(
+  ModernCMakeExample
+  VERSION 0.1
+  DESCRIPTION "An example project with CMake"
+  LANGUAGES CXX)
+
+# Only do these if this is the main project, and not if it is included through
+# add_subdirectory
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+  # Optionally set things like CMAKE_CXX_STANDARD,
+  # CMAKE_POSITION_INDEPENDENT_CODE here
+
+  # Let's ensure -std=c++xx instead of -std=g++xx
+  set(CMAKE_CXX_EXTENSIONS OFF)
+
+  # Let's nicely support folders in IDE's
+  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+  # Testing only available if this is the main app. Note this needs to be done
+  # in the main CMakeLists since it calls enable_testing, which must be in the
+  # main CMakeLists.
+  include(CTest)
+
+  # Docs only available if this is the main app
+  find_package(Doxygen)
+  if(Doxygen_FOUND)
+    add_subdirectory(docs)
+  else()
+    message(STATUS "Doxygen not found, not building docs")
+  endif()
+endif()
+
+# FetchContent added in CMake 3.11, downloads during the configure step
+# FetchContent_MakeAvailable was not added until CMake 3.14
+include(FetchContent)
+
+# Accumulator library This is header only, so could be replaced with git
+# submodules or FetchContent
+find_package(Boost REQUIRED)
+# Adds Boost::boost / Boost::headers (newer FindBoost / BoostConfig 3.15 name)
+
+# Formatting library, adds fmt::fmt Always use the full git hash, not the tag,
+# safer and faster to recompile
+FetchContent_Declare(
+  fmtlib
+  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+  GIT_TAG 8.0.1)
+FetchContent_MakeAvailable(fmtlib)
+
+# The compiled library code is here
+add_subdirectory(src)
+
+# The executable code is here
+add_subdirectory(apps)
+
+# Testing only available if this is the main app
+if(BUILD_TESTING)
+  add_subdirectory(tests)
+endif()
+</code></pre></div></div>
+
+<p>tests/CMakeLists.txt</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Testing library
+FetchContent_Declare(
+  catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG v2.13.10)
+FetchContent_MakeAvailable(catch2)
+# Adds Catch2::Catch2
+
+# Tests need to be added as executables first
+add_executable(testlib testlib.cpp)
+
+# I'm using C++17 in the test
+target_compile_features(testlib PRIVATE cxx_std_17)
+
+# Should be linked to the main library, as well as the Catch2 testing library
+target_link_libraries(testlib PRIVATE modern_library Catch2::Catch2)
+
+# If you register a test, then ctest and make test will run it. You can also run
+# examples and check the output, as well.
+add_test(NAME testlibtest COMMAND testlib) # Command can be a target
+</code></pre></div></div>
+
+<h3 id="더-읽어보기">더 읽어보기</h3>
+
+<ul>
+  <li><a href="https://cliutils.gitlab.io/modern-cmake/chapters/basics.html">Modern CMake basics</a>을 기반으로 함</li>
+</ul>
+
+<h2 id="핵심사항">핵심사항</h2>
+
+<ul>
+  <li>Projects should be well organised.</li>
+  <li>Subproject CMakeLists are used for tests and more.</li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[프로젝트 구조 Overview 질문 What should my project look like? 목표 Know some best practices for project structure For this section, we will be looking at the project in code/03-structure. code/03-structure/ ├── CMakeLists.txt ├── README.md ├── apps │ ├── CMakeLists.txt │ └── app.cpp ├── cmake │ └── FindSomeLib.cmake ├── docs │ ├── CMakeLists.txt │ └── mainpage.md ├── include │ └── modern │ └── lib.hpp ├── src │ ├── CMakeLists.txt │ └── lib.cpp └── tests ├── CMakeLists.txt └── testlib.cpp First, take a look at the main CMakeLists.txt file. This is an example of a nice project file in CMake 3.14, so enjoy it for a minute. Now let’s look at specifics! # Works with 3.15 and tested through 3.21 cmake_minimum_required(VERSION 3.15...3.25) # Project name and a few useful settings. Other commands can pick up the results project( ModernCMakeExample VERSION 0.1 DESCRIPTION "An example project with CMake" LANGUAGES CXX) # Only do these if this is the main project, and not if it is included through # add_subdirectory if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) # Optionally set things like CMAKE_CXX_STANDARD, # CMAKE_POSITION_INDEPENDENT_CODE here # Let's ensure -std=c++xx instead of -std=g++xx set(CMAKE_CXX_EXTENSIONS OFF) # Let's nicely support folders in IDE's set_property(GLOBAL PROPERTY USE_FOLDERS ON) # Testing only available if this is the main app. Note this needs to be done # in the main CMakeLists since it calls enable_testing, which must be in the # main CMakeLists. include(CTest) # Docs only available if this is the main app find_package(Doxygen) if(Doxygen_FOUND) add_subdirectory(docs) else() message(STATUS "Doxygen not found, not building docs") endif() endif() # FetchContent added in CMake 3.11, downloads during the configure step # FetchContent_MakeAvailable was not added until CMake 3.14 include(FetchContent) # Accumulator library This is header only, so could be replaced with git # submodules or FetchContent find_package(Boost REQUIRED) # Adds Boost::boost / Boost::headers (newer FindBoost / BoostConfig 3.15 name) # Formatting library, adds fmt::fmt Always use the full git hash, not the tag, # safer and faster to recompile FetchContent_Declare( fmtlib GIT_REPOSITORY https://github.com/fmtlib/fmt.git GIT_TAG 8.0.1) FetchContent_MakeAvailable(fmtlib) # The compiled library code is here add_subdirectory(src) # The executable code is here add_subdirectory(apps) # Testing only available if this is the main app if(BUILD_TESTING) add_subdirectory(tests) endif() Protect project code The parts of the project that only make sense if we are building this as the main project are protected; this allows the project to be included in a larger master project with add_subdirectory. Testing handled in the main CMakeLists We have to do a little setup for testing in the main CMakeLists, because you can’t run enable_testing from a subdirectory (and thereby include(CTest)). Also, notice that BUILD_TESTING does not turn on testing unless this is the main project. Finding packages We find packages in our main CMakeLists, then use them in subdirectories. We could have also put them in a file that was included, such as cmake/find_pakages.cmake. If your CMake is new enough, you can even add a subdirectory with the find packages commands, but you have to set IMPORTED_GLOBAL on the targets you want to make available if you do that. For small to mid-size projects, the first option is most common, and large projects use the second option (currently). All the find packages here provide imported targets. If you do not have an imported target, make one! Never use the raw variables past the lines immediately following the find_package command. There are several easy mistakes to make if you do not make imported targets, including forgetting to add SYSTEM, and the search order is better (especially before CMake 3.12). In this project, I use the new FetchContent (3.11/3.14) to download several dependencies; although normally I prefer git submodules in /extern. Source Now follow the add_subdirectory command to see the src folder, where a library is created. Click to see src/CMakeLists.txt The headers are listed along with the sources in the add_library command. This would have been another way to do it in CMake 3.11+: add_library(modern_library) target_sources(modern_library PRIVATE lib.cpp PUBLIC ${HEADER_LIST} ) Notice that we have to use target_include_directories; just adding a header to the sources does not tell CMake what the correct include directory for it should be. We also set up the target_link_libraries with the appropriate targets. App Now take a look at apps/CMakeLists.txt. This one is pretty simple, since all the leg work for using our library was done on the library target, as it should be. Click to see apps/CMakeLists.txt Docs and Tests Feel free to look at docs and tests for their CMakeLists.txt. docs/CMakeLists.txt # Works with 3.15 and tested through 3.21 cmake_minimum_required(VERSION 3.15...3.25) # Project name and a few useful settings. Other commands can pick up the results project( ModernCMakeExample VERSION 0.1 DESCRIPTION "An example project with CMake" LANGUAGES CXX) # Only do these if this is the main project, and not if it is included through # add_subdirectory if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) # Optionally set things like CMAKE_CXX_STANDARD, # CMAKE_POSITION_INDEPENDENT_CODE here # Let's ensure -std=c++xx instead of -std=g++xx set(CMAKE_CXX_EXTENSIONS OFF) # Let's nicely support folders in IDE's set_property(GLOBAL PROPERTY USE_FOLDERS ON) # Testing only available if this is the main app. Note this needs to be done # in the main CMakeLists since it calls enable_testing, which must be in the # main CMakeLists. include(CTest) # Docs only available if this is the main app find_package(Doxygen) if(Doxygen_FOUND) add_subdirectory(docs) else() message(STATUS "Doxygen not found, not building docs") endif() endif() # FetchContent added in CMake 3.11, downloads during the configure step # FetchContent_MakeAvailable was not added until CMake 3.14 include(FetchContent) # Accumulator library This is header only, so could be replaced with git # submodules or FetchContent find_package(Boost REQUIRED) # Adds Boost::boost / Boost::headers (newer FindBoost / BoostConfig 3.15 name) # Formatting library, adds fmt::fmt Always use the full git hash, not the tag, # safer and faster to recompile FetchContent_Declare( fmtlib GIT_REPOSITORY https://github.com/fmtlib/fmt.git GIT_TAG 8.0.1) FetchContent_MakeAvailable(fmtlib) # The compiled library code is here add_subdirectory(src) # The executable code is here add_subdirectory(apps) # Testing only available if this is the main app if(BUILD_TESTING) add_subdirectory(tests) endif() tests/CMakeLists.txt # Testing library FetchContent_Declare( catch2 GIT_REPOSITORY https://github.com/catchorg/Catch2.git GIT_TAG v2.13.10) FetchContent_MakeAvailable(catch2) # Adds Catch2::Catch2 # Tests need to be added as executables first add_executable(testlib testlib.cpp) # I'm using C++17 in the test target_compile_features(testlib PRIVATE cxx_std_17) # Should be linked to the main library, as well as the Catch2 testing library target_link_libraries(testlib PRIVATE modern_library Catch2::Catch2) # If you register a test, then ctest and make test will run it. You can also run # examples and check the output, as well. add_test(NAME testlibtest COMMAND testlib) # Command can be a target 더 읽어보기 Modern CMake basics을 기반으로 함 핵심사항 Projects should be well organised. Subproject CMakeLists are used for tests and more.]]></summary></entry><entry><title type="html">More Modern CMake - Variables explained</title><link href="http://localhost:4000/more-modern-cmake-variables-explained" rel="alternate" type="text/html" title="More Modern CMake - Variables explained" /><published>2024-01-27T00:00:00+09:00</published><updated>2024-01-27T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-variables-explained</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-variables-explained"><![CDATA[<h1 id="변수-설명">변수 설명</h1>
 
 <h2 id="overview">Overview</h2>
 
@@ -669,7 +923,8 @@ make test
   <li><a href="/more-modern-cmake-your-first-file">Your first file CMakeLists.txt file</a></li>
   <li><a href="/more-modern-cmake-working-with-targets">Working with Targets</a></li>
   <li><a href="/more-modern-cmake-variables-explained">Variables explained</a></li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리 출처 : More Modern CMake HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적은 CMake 사용의 기본 사항을 다루는 것이다. 이 튜토리얼은 CMake 3.15+에 초점을 맞춘 온라인 서적 Modern CMake를 기반으로 한다. 이것은 CMake의 “More Modern” 시대(대략 3.12+로 정의됨)에 해당하며 CMake π(3.14) 및 3.15의 환상적인 명령 개선이 포함된다. 이 글을 쓰는 시점의 현재 버전은 CMake 3.21이다. 목차 Introduction Building With CMake Your first file CMakeLists.txt file Working with Targets Variables explained]]></summary></entry><entry><title type="html">Unity Prototype Step2</title><link href="http://localhost:4000/2023/10/26/18-unity-client-step2.html" rel="alternate" type="text/html" title="Unity Prototype Step2" /><published>2023-10-26T00:00:00+09:00</published><updated>2023-10-26T00:00:00+09:00</updated><id>http://localhost:4000/2023/10/26/18-unity-client-step2</id><content type="html" xml:base="http://localhost:4000/2023/10/26/18-unity-client-step2.html"><![CDATA[<h1 id="2-캐릭터-클래스-정의">2. 캐릭터 클래스 정의</h1>
+  <li><a href="/more-modern-cmake-project-structure">Project Structure</a></li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리 출처 : More Modern CMake HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적은 CMake 사용의 기본 사항을 다루는 것이다. 이 튜토리얼은 CMake 3.15+에 초점을 맞춘 온라인 서적 Modern CMake를 기반으로 한다. 이것은 CMake의 “More Modern” 시대(대략 3.12+로 정의됨)에 해당하며 CMake π(3.14) 및 3.15의 환상적인 명령 개선이 포함된다. 이 글을 쓰는 시점의 현재 버전은 CMake 3.21이다. 목차 Introduction Building With CMake Your first file CMakeLists.txt file Working with Targets Variables explained Project Structure]]></summary></entry><entry><title type="html">Unity Prototype Step2</title><link href="http://localhost:4000/2023/10/26/18-unity-client-step2.html" rel="alternate" type="text/html" title="Unity Prototype Step2" /><published>2023-10-26T00:00:00+09:00</published><updated>2023-10-26T00:00:00+09:00</updated><id>http://localhost:4000/2023/10/26/18-unity-client-step2</id><content type="html" xml:base="http://localhost:4000/2023/10/26/18-unity-client-step2.html"><![CDATA[<h1 id="2-캐릭터-클래스-정의">2. 캐릭터 클래스 정의</h1>
 <ul>
   <li>프로토타입에 사용될 예제들은 페이지 마지막에 정리</li>
 </ul>
@@ -1042,37 +1297,4 @@ length:5
 <h2 id="오델로-서버클라이언트-콘솔화면">오델로 서버/클라이언트 콘솔화면</h2>
 <ul>
   <li><img src="/assets/images/prototype/prototype-dotnetty-step2-othello.png" alt="서버-클라이언트 오델로 콘솔" /></li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="C#" /><category term="Dotnetty" /><category term="Server" /><category term="Prototype" /><summary type="html"><![CDATA[채팅 프로그램으로 오델로 게임 구현하기 채팅 구현의 Server/Client 소스를 그대로 가져고 와서 확장하여 1:1 오델로 게임 구현 채팅과 동일하게 서버 한대와 클라이언트 두대로 구성 게임 규칙 오델로#규칙 참조 첫번째와 두번째 규칙만 구현됨 (패스, 게임 종료, 승리 판단 여부는 아직 미구현) 소스코드 github project 프로토타이핑이기 때문에 최적화와 하드 코딩은 신경쓰지 않고 구현에 집중 구현규칙 패킷 채팅에서 사용한 StringEncoder/StringDecoder를 사용 포멧 CommandKey::CommandValue 예) Put::5,4 // 5,4에 돌을 놓아둡니다. CommandKey Client : 유저가 내릴 수 있는 명령 Join : 자동 명령, 닉네임 입력하면 자동으로 서버에 등록됩니다. Start : 첫번째 Join 유저가 Host 되어 게임 시작할 수 있으나, 단 구성원이 두명이어야 합니다. Put : 게임 시작후 각자 턴에 특정 좌표에 돌을 놓아둡니다. Server : 서버에서 판단하여 전파하는 명령 CompleteJoin : Join이 성공적으로 처리되었을 때의 응답명령 StartGame : Host 클라이언트의 Start 명령을 받으면 오델로 판을 초기화 후 응답 명령 TileType : StartGame 후 각 클라이언트이 돌 색깔을 알려주는 명령 Message : Message 뒤의 CommandValue를 클라이언트에서 출력하도록 명령 Members : 현재 접속한 구성원들을 알려주는 명령 FailPut : 클라이언트의 Put 명령 CommandValue 유효성 실패했을 때, 그 뒤에 오류가 붙어서 전송됨 SuccessPut : Put 명령이 문제없이 실행되었을 때 응답 FlipTiles : SuccessPut 이후 뒤집어질 돌들의 좌표들을 전송, 클라이언트는 오델로 판에 맞게 출력 NextTurn : FlipTiles 처리 후, 다음 턴의 클라이언트를 지정하여 전송 클라이언트 소스코드 : /Othello/OthelloClient/OthelloClientHandler.cs 클라이언트들은 유저로부터 입력만 받고, 내부 로직을 처리안함 입력받은 내용을 패킷을 통해 모두 서버로 전송 즉, 클라이언트에서는 판단하는 로직이 없음 서버 소스코드 : /Othello/OthelloServer/OthelloServerHandler.cs 서버는 클라이언트들이 접속하고 게임 시작 후 오델로 판을 생성한 각 클라이언트들에게 턴을 부여하고, 해당 턴에 전송받은 내용의 유효성을 검사, 명령(CommandKey)을 실행 그 결과값을 다시 전체 클라이언트에 전송하고(SendMessage/BroadCast) 2부터 다시 시작 구현중 발견된 문제점 패킷단위로 전송되는게 아니라, Tcp 특성상 Stream 으로 전송되다보니 여러패킷이 같이 보내져서 클라이언트에서 Decode하면서 오류 발생 다음 스텝에서 해결할 예정이나 일단 패킷 끝날때 구분자인 | 을 붙여서, Decode할 때 Split 하여 여러 패킷을 분리하여 순차적으로 처리 처리 예) Packet[ SuccessPut::5,4,BLACK|FlipTiles::BLACK#4,4|NextTurn::0| ] SuccessPut 처리 FlipTiles 처리 NextTurn 처리 위의 오델로 규칙 참고 문서를 보면 판정하는 로직이 복잡 여기서는 최적화 신경쓰지 않고 생각나는 데로 처리 (짐승 알고리즘 보다 조금 나은 방법 사용) 클라이언트 콘솔 문제 오델로 판을 파악하기 어려움 오델로 서버/클라이언트 콘솔화면]]></summary></entry><entry><title type="html">Unity Prototype Step1</title><link href="http://localhost:4000/unity-prototype-step1" rel="alternate" type="text/html" title="Unity Prototype Step1" /><published>2023-09-27T00:00:00+09:00</published><updated>2023-09-27T00:00:00+09:00</updated><id>http://localhost:4000/15-unity-client-step1</id><content type="html" xml:base="http://localhost:4000/unity-prototype-step1"><![CDATA[<h1 id="1-두-캐릭터를-그리드-안에서-이동하기">1. 두 캐릭터를 그리드 안에서 이동하기</h1>
-<ul>
-  <li>10x10 그리드에 두 캐릭터를 놓고 서로 한번씩 이동하기</li>
-  <li>단, 그리드를 넘어갈 수 없고, 두 캐릭터가 겹쳐도 안됨</li>
-</ul>
-
-<p><img src="/assets/images/prototype/prototype-unity-step1-movement.png" alt="캐릭터 이동" /></p>
-
-<h2 id="데이터">데이터</h2>
-<ul>
-  <li>드워프/전사 : 가로,세로 2칸씩 이동(파란색)</li>
-  <li>인간/성직자 : 가로,세로 1칸씩 이동(핫핑크색)</li>
-</ul>
-
-<h2 id="플로우">플로우</h2>
-<ol>
-  <li>드워프 선택됨</li>
-  <li>해당 드워프의 이동 가능 거리가 표시</li>
-  <li>이동가능한 그리드를 선택하면 드워프 이동</li>
-  <li>성직자 선택됨</li>
-  <li>2,3 동일하게 반복</li>
-  <li>1부터 다시 시작</li>
-</ol>
-
-<h2 id="데이터구조">데이터구조</h2>
-<ul>
-  <li>2차원 배열로 캐릭터들 위치 저장하고, 충돌판정할 것.</li>
-  <li>즉 데이터로만 처리하고 GameObject로 처리하지 않는다 (차후 서버 연동시에 데이터와 로직, View 분리위해서)</li>
-</ul>
-
-<h2 id="나중에">나중에…</h2>
-<ul>
-  <li><a href="/2023/09/25/10-basic-fantasy-pregenerated-characters.html">미리 생성된 캐릭터들</a> 데이터의 movement로 대체해서 개별 캐릭터마다 이동거리를 데이터로 처리할 계획</li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="C#" /><category term="Unity" /><category term="Client" /><category term="Prototype" /><summary type="html"><![CDATA[1. 두 캐릭터를 그리드 안에서 이동하기 10x10 그리드에 두 캐릭터를 놓고 서로 한번씩 이동하기 단, 그리드를 넘어갈 수 없고, 두 캐릭터가 겹쳐도 안됨 데이터 드워프/전사 : 가로,세로 2칸씩 이동(파란색) 인간/성직자 : 가로,세로 1칸씩 이동(핫핑크색) 플로우 드워프 선택됨 해당 드워프의 이동 가능 거리가 표시 이동가능한 그리드를 선택하면 드워프 이동 성직자 선택됨 2,3 동일하게 반복 1부터 다시 시작 데이터구조 2차원 배열로 캐릭터들 위치 저장하고, 충돌판정할 것. 즉 데이터로만 처리하고 GameObject로 처리하지 않는다 (차후 서버 연동시에 데이터와 로직, View 분리위해서) 나중에… 미리 생성된 캐릭터들 데이터의 movement로 대체해서 개별 캐릭터마다 이동거리를 데이터로 처리할 계획]]></summary></entry></feed>
+</ul>]]></content><author><name>nickchoi</name></author><category term="C#" /><category term="Dotnetty" /><category term="Server" /><category term="Prototype" /><summary type="html"><![CDATA[채팅 프로그램으로 오델로 게임 구현하기 채팅 구현의 Server/Client 소스를 그대로 가져고 와서 확장하여 1:1 오델로 게임 구현 채팅과 동일하게 서버 한대와 클라이언트 두대로 구성 게임 규칙 오델로#규칙 참조 첫번째와 두번째 규칙만 구현됨 (패스, 게임 종료, 승리 판단 여부는 아직 미구현) 소스코드 github project 프로토타이핑이기 때문에 최적화와 하드 코딩은 신경쓰지 않고 구현에 집중 구현규칙 패킷 채팅에서 사용한 StringEncoder/StringDecoder를 사용 포멧 CommandKey::CommandValue 예) Put::5,4 // 5,4에 돌을 놓아둡니다. CommandKey Client : 유저가 내릴 수 있는 명령 Join : 자동 명령, 닉네임 입력하면 자동으로 서버에 등록됩니다. Start : 첫번째 Join 유저가 Host 되어 게임 시작할 수 있으나, 단 구성원이 두명이어야 합니다. Put : 게임 시작후 각자 턴에 특정 좌표에 돌을 놓아둡니다. Server : 서버에서 판단하여 전파하는 명령 CompleteJoin : Join이 성공적으로 처리되었을 때의 응답명령 StartGame : Host 클라이언트의 Start 명령을 받으면 오델로 판을 초기화 후 응답 명령 TileType : StartGame 후 각 클라이언트이 돌 색깔을 알려주는 명령 Message : Message 뒤의 CommandValue를 클라이언트에서 출력하도록 명령 Members : 현재 접속한 구성원들을 알려주는 명령 FailPut : 클라이언트의 Put 명령 CommandValue 유효성 실패했을 때, 그 뒤에 오류가 붙어서 전송됨 SuccessPut : Put 명령이 문제없이 실행되었을 때 응답 FlipTiles : SuccessPut 이후 뒤집어질 돌들의 좌표들을 전송, 클라이언트는 오델로 판에 맞게 출력 NextTurn : FlipTiles 처리 후, 다음 턴의 클라이언트를 지정하여 전송 클라이언트 소스코드 : /Othello/OthelloClient/OthelloClientHandler.cs 클라이언트들은 유저로부터 입력만 받고, 내부 로직을 처리안함 입력받은 내용을 패킷을 통해 모두 서버로 전송 즉, 클라이언트에서는 판단하는 로직이 없음 서버 소스코드 : /Othello/OthelloServer/OthelloServerHandler.cs 서버는 클라이언트들이 접속하고 게임 시작 후 오델로 판을 생성한 각 클라이언트들에게 턴을 부여하고, 해당 턴에 전송받은 내용의 유효성을 검사, 명령(CommandKey)을 실행 그 결과값을 다시 전체 클라이언트에 전송하고(SendMessage/BroadCast) 2부터 다시 시작 구현중 발견된 문제점 패킷단위로 전송되는게 아니라, Tcp 특성상 Stream 으로 전송되다보니 여러패킷이 같이 보내져서 클라이언트에서 Decode하면서 오류 발생 다음 스텝에서 해결할 예정이나 일단 패킷 끝날때 구분자인 | 을 붙여서, Decode할 때 Split 하여 여러 패킷을 분리하여 순차적으로 처리 처리 예) Packet[ SuccessPut::5,4,BLACK|FlipTiles::BLACK#4,4|NextTurn::0| ] SuccessPut 처리 FlipTiles 처리 NextTurn 처리 위의 오델로 규칙 참고 문서를 보면 판정하는 로직이 복잡 여기서는 최적화 신경쓰지 않고 생각나는 데로 처리 (짐승 알고리즘 보다 조금 나은 방법 사용) 클라이언트 콘솔 문제 오델로 판을 파악하기 어려움 오델로 서버/클라이언트 콘솔화면]]></summary></entry></feed>
