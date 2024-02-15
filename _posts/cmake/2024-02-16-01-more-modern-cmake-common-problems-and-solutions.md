@@ -49,7 +49,7 @@ CMake may pick the wrong compiler on systems with multiple compilers. You can us
 
 ## 4: Spaces in paths
 
-CMake’s list and argument system is very crude (it is a macro language); you can use it to your advantage, but it can cause issues. (This is also why there is no “splat” operator in CMake, like **f( args )** in Python.) If you have multiple items, that’s a list (distinct arguments):
+CMake’s list and argument system is very crude (it is a macro language); you can use it to your advantage, but it can cause issues. (This is also why there is no "splat" operator in CMake, like **f( \*args )** in Python.) If you have multiple items, that’s a list (distinct arguments):
 ```
 set(VAR a b v)
 ```
