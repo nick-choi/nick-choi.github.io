@@ -18,3 +18,4 @@ HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적
 * [Working with Targets](/more-modern-cmake-working-with-targets)
 * [Variables explained](/more-modern-cmake-variables-explained)
 * [Project Structure](/more-modern-cmake-project-structure)
+* [Problems and Soultions](/more-modern-cmake-common-problems-and-solutions)
