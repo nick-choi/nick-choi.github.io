@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-16T23:16:54+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
-</subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Common Problems and Solutions</title><link href="http://localhost:4000/more-modern-cmake-common-problems-and-solutions" rel="alternate" type="text/html" title="More Modern CMake - Common Problems and Solutions" /><published>2024-02-16T00:00:00+09:00</published><updated>2024-02-16T00:00:00+09:00</updated><id>http://localhost:4000/01-more-modern-cmake-common-problems-and-solutions</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-common-problems-and-solutions"><![CDATA[<h1 id="common-problems-and-solutions">Common Problems and Solutions</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-19T22:57:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+</subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Common Problems and Solutions</title><link href="http://localhost:4000/more-modern-cmake-common-problems-and-solutions" rel="alternate" type="text/html" title="More Modern CMake - Common Problems and Solutions" /><published>2024-02-16T00:00:00+09:00</published><updated>2024-02-16T00:00:00+09:00</updated><id>http://localhost:4000/01-more-modern-cmake-common-problems-and-solutions</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-common-problems-and-solutions"><![CDATA[<h1 id="일반적인-문제-및-해결-방법">일반적인 문제 및 해결 방법</h1>
 
 <h2 id="overview">Overview</h2>
 
 <ul>
   <li>질문
     <ul>
-      <li>What could go possibly wrong?</li>
+      <li>무엇이 잘못될 수 있나?</li>
     </ul>
   </li>
   <li>목표
     <ul>
-      <li>Identify some common mistakes</li>
-      <li>Avoid making common mistakes</li>
+      <li>몇 가지 일반적인 실수 식별하기</li>
+      <li>일반적인 실수 피하기</li>
     </ul>
   </li>
 </ul>
 
-<p>Now let’s take a look at some common problems with CMake code and with builds.</p>
+<p>이제 CMake 코드 및 빌드와 관련된 몇 가지 일반적인 문제를 살펴보자.</p>
 
-<h2 id="1-low-minimum-cmake-version">1: Low minimum CMake version</h2>
+<h2 id="1-낮은-최소-cmake-버전">1: 낮은 최소 CMake 버전</h2>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 </code></pre></div></div>
 
-<p>Okay, I had to put this one in. But in some cases, just increasing this number fixes problems. 3.0 or less, for example, has a tendency to do the wrong thing when linking on macOS.</p>
+<p>어떤 경우에는 이 숫자를 올리는 것만으로도 문제가 해결된다. 예를 들어 3.0 이하에서는 맥OS에서 링크할 때 잘못된 동작하는 경향이 있다.</p>
 
-<p>Solution: Either set a high minimum version or use the version range feature and CMake 3.12 or better. The lowest version you should ever choose is 3.4 even for an ultra-conservative project; several common issues were fixed by that version.</p>
+<p>해결책: 최소 버전을 높게 설정하거나 버전 범위 기능과 CMake 3.12 이상을 사용한다. 극도로 보수적인 프로젝트라도 선택해야 할 가장 낮은 버전은 3.4 이다; 해당 버전에서는 몇 가지 일반적인 이슈가 해결되었다.</p>
 
-<h2 id="2-building-inplace">2: Building inplace</h2>
+<h2 id="2-내부-폴더에서-빌드">2: 내부 폴더에서 빌드</h2>
 
-<p>CMake should never be used to build in-place; but it’s easy to accidentally do so. And once it happens, you have to manually clean the directory before you can do an out-of-source build again. Because of this, while you can run <strong>cmake .</strong> from the build directory after the initial run, it’s best to avoid this form just in case you forget and run it from the source directory. Also, you can add the following check to your <strong>CMakeLists.txt</strong>:</p>
+<p>CMake를 소스 디렉토리에서 빌드할 때 사용해서는 안되지만 실수하기 쉽다. 그리고 일단 발생하면, 소스 외부에서 다시 빌드하기 전에 디렉토리를 수동으로 정리해야 한다. 이 때문에 초기 실행 후 빌드 디렉토리에서 <strong>cmake .</strong>을 실행할 수 있지만, 소스 디렉토리에서 잊어버리고 실행할 경우를 대비하여 이 방법은 피하는 것이 좋다. 또한 <strong>CMakeLists.txt</strong>에 다음 체크를 추가할 수 있다:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### Require out-of-source builds
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### 소스 외부에서 빌드 필요
 file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if(EXISTS "${LOC_PATH}")
     message(FATAL_ERROR "You cannot build in a source directory (or any directory with "
@@ -40,39 +40,47 @@ if(EXISTS "${LOC_PATH}")
                         "remove CMakeCache.txt and CMakeFiles.")
 endif()
 </code></pre></div></div>
-<p>One or two generated files cannot be avoided, but if you put this near the top, you can avoid most of the generated files as well as immediately notifying the user (possibly you) that you’ve made a mistake.</p>
 
-<h2 id="3-picking-a-compiler">3: Picking a compiler</h2>
+<p>한 두 개의 생성된 파일을 피할 수는 없지만, 맨 위에 두면 생성된 대부분의 파일을 피할 수 있을 뿐만 아니라, 사용자(아마도 당신)에게 실수를 했다는 것을 즉시 알릴 수 있다.</p>
 
-<p>CMake may pick the wrong compiler on systems with multiple compilers. You can use the environment variables <strong>CC</strong> and <strong>CXX</strong> when you first configure, or CMake variables <strong>CMAKE_CXX_COMPILER</strong>, etc. - but you need to pick the compiler on the first run; you can’t just reconfigure to get a new compiler.</p>
+<h2 id="3-컴파일러-선택하기">3: 컴파일러 선택하기</h2>
 
-<h2 id="4-spaces-in-paths">4: Spaces in paths</h2>
+<p>CMake는 여러 컴파일러가 있는 시스템에서 잘못된 컴파일러를 선택할 수 있다. 처음 구성할 때 환경 변수 <strong>CC</strong> 및 <strong>CXX</strong>를 사용하거나 CMake 변수 <strong>CMAKE_CXX_COMPILER</strong> 등을 사용할 수 있지만 - 첫 실행 시 컴파일러를 선택해야만 한다; 새로운 컴파일러를 얻기 위해 재구성만 할 수는 없다.</p>
 
-<p>CMake’s list and argument system is very crude (it is a macro language); you can use it to your advantage, but it can cause issues. (This is also why there is no “splat” operator in CMake, like <strong>f( args )</strong> in Python.) If you have multiple items, that’s a list (distinct arguments):</p>
+<h2 id="4-경로의-공백이-있을-때">4: 경로의 공백이 있을 때</h2>
+
+<p>CMake의 목록 및 인자 시스템은 매우 조잡하다(매크로 언어다); 이를 유리하게 사용할 수 있지만 문제가 발생할 수 있다(이것이 Python의 <strong>f( args )</strong>처럼 CMake에 “splat” 연산자가 없는 이유이기도 하다). 항목이 여러 개일 경우 목록(고유 인자)이다:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(VAR a b v)
 </code></pre></div></div>
-<p>The value of VAR is a list with three elements, or the string “a;b;c” (the two things are exactly the same). So, if you do:</p>
+
+<p>VAR의 값은 세 개의 요소가 있는 목록이거나 문자열 <strong>“a;b;c”</strong>이다(두 항목은 정확히 동일하다). 
+따라서 이렇게 하면:</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(MY_DIR "/path/with spaces/")
 target_include_directories(target PRIVATE ${MY_DIR})
 </code></pre></div></div>
-<p>that is identical to:</p>
+
+<p>아래 것과 동일하다.</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>target_include_directories(target PRIVATE /path/with spaces/)
 </code></pre></div></div>
-<p>which is two separate arguments, which is not at all what you wanted. The solution is to surround the original call with quotes:</p>
+
+<p>두 개의 별도 인자이기 때문에, 원하는 바가 전혀 아니다. 해결책은 원래 값을 큰 따옴표로 묶는 것이다:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(MY_DIR "/path/with spaces/")
 target_include_directories(target PRIVATE "${MY_DIR}")
 </code></pre></div></div>
-<p>Now you will correctly set a single include directory with spaces in it.</p>
+
+<p>이제 공백을 포함한 단일 디렉터리가 올바르게 설정된다.</p>
 
 <h2 id="핵심사항">핵심사항</h2>
 
 <ul>
-  <li>Setting a CMake version too low.</li>
-  <li>Avoid building inplace.</li>
-  <li>How to select a compiler.</li>
-  <li>How to work with spaces in paths.</li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Common Problems and Solutions Overview 질문 What could go possibly wrong? 목표 Identify some common mistakes Avoid making common mistakes Now let’s take a look at some common problems with CMake code and with builds. 1: Low minimum CMake version cmake_minimum_required(VERSION 3.0 FATAL_ERROR) Okay, I had to put this one in. But in some cases, just increasing this number fixes problems. 3.0 or less, for example, has a tendency to do the wrong thing when linking on macOS. Solution: Either set a high minimum version or use the version range feature and CMake 3.12 or better. The lowest version you should ever choose is 3.4 even for an ultra-conservative project; several common issues were fixed by that version. 2: Building inplace CMake should never be used to build in-place; but it’s easy to accidentally do so. And once it happens, you have to manually clean the directory before you can do an out-of-source build again. Because of this, while you can run cmake . from the build directory after the initial run, it’s best to avoid this form just in case you forget and run it from the source directory. Also, you can add the following check to your CMakeLists.txt: ### Require out-of-source builds file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH) if(EXISTS "${LOC_PATH}") message(FATAL_ERROR "You cannot build in a source directory (or any directory with " "CMakeLists.txt file). Please make a build subdirectory. Feel free to " "remove CMakeCache.txt and CMakeFiles.") endif() One or two generated files cannot be avoided, but if you put this near the top, you can avoid most of the generated files as well as immediately notifying the user (possibly you) that you’ve made a mistake. 3: Picking a compiler CMake may pick the wrong compiler on systems with multiple compilers. You can use the environment variables CC and CXX when you first configure, or CMake variables CMAKE_CXX_COMPILER, etc. - but you need to pick the compiler on the first run; you can’t just reconfigure to get a new compiler. 4: Spaces in paths CMake’s list and argument system is very crude (it is a macro language); you can use it to your advantage, but it can cause issues. (This is also why there is no “splat” operator in CMake, like f( args ) in Python.) If you have multiple items, that’s a list (distinct arguments): set(VAR a b v) The value of VAR is a list with three elements, or the string “a;b;c” (the two things are exactly the same). So, if you do: set(MY_DIR "/path/with spaces/") target_include_directories(target PRIVATE ${MY_DIR}) that is identical to: target_include_directories(target PRIVATE /path/with spaces/) which is two separate arguments, which is not at all what you wanted. The solution is to surround the original call with quotes: set(MY_DIR "/path/with spaces/") target_include_directories(target PRIVATE "${MY_DIR}") Now you will correctly set a single include directory with spaces in it. 핵심사항 Setting a CMake version too low. Avoid building inplace. How to select a compiler. How to work with spaces in paths.]]></summary></entry><entry><title type="html">More Modern CMake - Project Structure</title><link href="http://localhost:4000/more-modern-cmake-project-structure" rel="alternate" type="text/html" title="More Modern CMake - Project Structure" /><published>2024-02-02T00:00:00+09:00</published><updated>2024-02-02T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-project-structure</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-project-structure"><![CDATA[<h1 id="프로젝트-구조">프로젝트 구조</h1>
+  <li>CMake 버전을 너무 낮게 설정했다.</li>
+  <li>소스 안에서 빌드하면 안된다.</li>
+  <li>컴파일러를 선택하는 방법.</li>
+  <li>경로에서 공백을 사용하는 방법.</li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[일반적인 문제 및 해결 방법 Overview 질문 무엇이 잘못될 수 있나? 목표 몇 가지 일반적인 실수 식별하기 일반적인 실수 피하기 이제 CMake 코드 및 빌드와 관련된 몇 가지 일반적인 문제를 살펴보자. 1: 낮은 최소 CMake 버전 cmake_minimum_required(VERSION 3.0 FATAL_ERROR) 어떤 경우에는 이 숫자를 올리는 것만으로도 문제가 해결된다. 예를 들어 3.0 이하에서는 맥OS에서 링크할 때 잘못된 동작하는 경향이 있다. 해결책: 최소 버전을 높게 설정하거나 버전 범위 기능과 CMake 3.12 이상을 사용한다. 극도로 보수적인 프로젝트라도 선택해야 할 가장 낮은 버전은 3.4 이다; 해당 버전에서는 몇 가지 일반적인 이슈가 해결되었다. 2: 내부 폴더에서 빌드 CMake를 소스 디렉토리에서 빌드할 때 사용해서는 안되지만 실수하기 쉽다. 그리고 일단 발생하면, 소스 외부에서 다시 빌드하기 전에 디렉토리를 수동으로 정리해야 한다. 이 때문에 초기 실행 후 빌드 디렉토리에서 cmake .을 실행할 수 있지만, 소스 디렉토리에서 잊어버리고 실행할 경우를 대비하여 이 방법은 피하는 것이 좋다. 또한 CMakeLists.txt에 다음 체크를 추가할 수 있다: ### 소스 외부에서 빌드 필요 file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH) if(EXISTS "${LOC_PATH}") message(FATAL_ERROR "You cannot build in a source directory (or any directory with " "CMakeLists.txt file). Please make a build subdirectory. Feel free to " "remove CMakeCache.txt and CMakeFiles.") endif() 한 두 개의 생성된 파일을 피할 수는 없지만, 맨 위에 두면 생성된 대부분의 파일을 피할 수 있을 뿐만 아니라, 사용자(아마도 당신)에게 실수를 했다는 것을 즉시 알릴 수 있다. 3: 컴파일러 선택하기 CMake는 여러 컴파일러가 있는 시스템에서 잘못된 컴파일러를 선택할 수 있다. 처음 구성할 때 환경 변수 CC 및 CXX를 사용하거나 CMake 변수 CMAKE_CXX_COMPILER 등을 사용할 수 있지만 - 첫 실행 시 컴파일러를 선택해야만 한다; 새로운 컴파일러를 얻기 위해 재구성만 할 수는 없다. 4: 경로의 공백이 있을 때 CMake의 목록 및 인자 시스템은 매우 조잡하다(매크로 언어다); 이를 유리하게 사용할 수 있지만 문제가 발생할 수 있다(이것이 Python의 f( args )처럼 CMake에 “splat” 연산자가 없는 이유이기도 하다). 항목이 여러 개일 경우 목록(고유 인자)이다: set(VAR a b v) VAR의 값은 세 개의 요소가 있는 목록이거나 문자열 “a;b;c”이다(두 항목은 정확히 동일하다). 따라서 이렇게 하면: set(MY_DIR "/path/with spaces/") target_include_directories(target PRIVATE ${MY_DIR}) 아래 것과 동일하다. target_include_directories(target PRIVATE /path/with spaces/) 두 개의 별도 인자이기 때문에, 원하는 바가 전혀 아니다. 해결책은 원래 값을 큰 따옴표로 묶는 것이다: set(MY_DIR "/path/with spaces/") target_include_directories(target PRIVATE "${MY_DIR}") 이제 공백을 포함한 단일 디렉터리가 올바르게 설정된다. 핵심사항 CMake 버전을 너무 낮게 설정했다. 소스 안에서 빌드하면 안된다. 컴파일러를 선택하는 방법. 경로에서 공백을 사용하는 방법.]]></summary></entry><entry><title type="html">More Modern CMake - Project Structure</title><link href="http://localhost:4000/more-modern-cmake-project-structure" rel="alternate" type="text/html" title="More Modern CMake - Project Structure" /><published>2024-02-02T00:00:00+09:00</published><updated>2024-02-02T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-project-structure</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-project-structure"><![CDATA[<h1 id="프로젝트-구조">프로젝트 구조</h1>
 
 <h2 id="overview">Overview</h2>
 

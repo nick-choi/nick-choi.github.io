@@ -316,32 +316,34 @@
 <article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/more-modern-cmake-common-problems-and-solutions"><h2 itemprop="headline" class="item__header">More Modern CMake - Common Problems and Solutions</h2></a></header>
           <div class="item__description">
-<div class="article__content" itemprop="description articleBody">Common Problems and Solutions
+<div class="article__content" itemprop="description articleBody">일반적인 문제 및 해결 방법
 
 Overview
 
 
   질문
     
-      What could go possibly wrong?
+      무엇이 잘못될 수 있나?
     
   
   목표
     
-      Identify some common mistakes
-      Avoid making common mistakes
+      몇 가지 일반적인 실수 식별하기
+      일반적인 실수 피하기
     
   
 
 
-Now let’s take a look at some common problems with CMake code and with builds.
+이제 CMake 코드 및 빌드와 관련된 몇 가지 일반적인 문제를 살펴보자.
 
-1: Low minimum CMake version
+1: 낮은 최소 CMake 버전
 
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 
-...</div>
+어떤 경우에는 이 숫자를 올리는 것만으로도 문제가 해결된다. 예를 들어 3.0 이하에서는 맥OS에서 링크할 때 잘못된 동작하는 경향이 있다.
+
+해결책: 최소 버전을 높게 설정하거나 버전 범위 ...</div>
 <p><a href="/more-modern-cmake-common-problems-and-solutions">Read more</a></p>
 </div>
 <div class="article__info clearfix">
