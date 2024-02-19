@@ -2,6 +2,7 @@
 layout: article
 title: More Modern CMake
 tags: CMake
+permalink: /more-modern-cmake
 ---
 
 More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리
@@ -20,3 +21,4 @@ HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적
 * [Project Structure](/more-modern-cmake-project-structure)
 * [Problems and Soultions](/more-modern-cmake-common-problems-and-solutions)
 * [Debugging](/more-modern-cmake-debugging)
+* [Finding Packages](/more-modern-cmake-finding-packages)

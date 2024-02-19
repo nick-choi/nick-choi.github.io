@@ -1,5 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-20T00:27:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
-</subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Debugging</title><link href="http://localhost:4000/more-modern-cmake-debugging" rel="alternate" type="text/html" title="More Modern CMake - Debugging" /><published>2024-02-19T00:00:00+09:00</published><updated>2024-02-19T00:00:00+09:00</updated><id>http://localhost:4000/23-more-modern-cmake-debugging</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-debugging"><![CDATA[<h1 id="debugging">Debugging</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-20T00:46:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nick Choi’s Works</title><subtitle>Nick Choi&apos;s Works
+</subtitle><author><name>nickchoi</name></author><entry><title type="html">More Modern CMake - Finding Packages</title><link href="http://localhost:4000/more-modern-cmake-finding-packages" rel="alternate" type="text/html" title="More Modern CMake - Finding Packages" /><published>2024-02-20T00:00:00+09:00</published><updated>2024-02-20T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake-finding-packages</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-finding-packages"><![CDATA[<h1 id="finding-packages">Finding Packages</h1>
+
+<h2 id="overview">Overview</h2>
+
+<ul>
+  <li>질문
+    <ul>
+      <li>How do I search for packages?</li>
+    </ul>
+  </li>
+  <li>목표
+    <ul>
+      <li>Understand FindPackage.cmake</li>
+      <li>Understand PackageConfig.cmake</li>
+    </ul>
+  </li>
+</ul>
+
+<p>You can search for packages in CMake in two ways; both of them, however, use the same interface. Here’s what it would look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find_package(MyPackage 1.2)
+</code></pre></div></div>
+
+<p>This will look for a file in the <strong>CMAKE_MODULE_PATH</strong> that is named <strong>FindMyPackage.cmake</strong>. If it does not find one, it will look for a file named <strong>MyPackageConfig.cmake</strong> in several places, including <strong>MyPackage_DIR</strong> if that variable exists. You can only perform one of these searches with <strong>MODULE</strong> or <strong>CONFIG</strong>, respectively.</p>
+
+<p>You can add <strong>COMPONENTS</strong> in some cases, if the package supports it, and you can also add <strong>QUIET</strong> to hide extra text, or <strong>REQUIRED</strong> to cause a missing package to fail the configure step.</p>
+
+<h3 id="aside-environment-hints">Aside: Environment Hints</h3>
+
+<p>Hinting the installation of software package that is installed outside of a system paths works can also be done with environment variables. In CMake 3.12+, individual packages locations can be hinted by setting their installation root path in [<PackageName>_ROOT](https://cmake.org/cmake/help/latest/envvar/PackageName_ROOT.html).</PackageName></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export HDF5_ROOT=$HOME/software/hdf5-1.12.0
+</code></pre></div></div>
+
+<p>Similarly, the variable <strong>CMAKE_PREFIX_PATH</strong> can be used to hint a list of installation root paths at once:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export CMAKE_PREFIX_PATH=$HOME/software/hdf5-1.12.0:$HOME/software/boost-1.74.0:$CMAKE_PREFIX_PATH
+</code></pre></div></div>
+
+<h2 id="findpackage">FindPackage</h2>
+
+<p>The older method for finding packages is the FindPackage.cmake method (<strong>MODULE</strong>). This is a CMake or user supplied search script that knows how to look for a package. While there are some conventions here, and some tools to help, there are not many hard-and-fast requirements. A package should at least set the variable <strong>Package_FOUND</strong>. There are 100 or so find packages included in CMake, refer to the documentation for each.</p>
+
+<ul>
+  <li>See the included <a href="https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules">FindPackages</a> here.</li>
+  <li>Many of the packages took a long time to add imported targets</li>
+  <li>The old <strong>FindPythonLibs</strong> and <strong>FindPythonInterp</strong> are in the process of being replaced by <strong>FindPython</strong>, but you need a very new version of CMake for the new ones; 3.12 minimum, 3.15 recommended (and 3.18.2+ ideal).</li>
+</ul>
+
+<h2 id="packageconfig">PackageConfig</h2>
+
+<p>The “better” way to do things is to have an installed package provide its own details to CMake; these are “CONFIG” files and come with many packages. These files can be simpler and smarter, since they don’t have to search for the package and query the options, but rather can be generated with the correct paths and options for a particular install. ROOT is an example of a package that is now providing a CONFIG file; another one that is just beginning to is Boost; while CMake includes a <strong>FindBoost</strong>, it has to be updated with each new Boost release, whereas <strong>BoostConfig.cmake</strong> can be included with each Boost release (first version in 1.70). One issue with some packages (TBB, for example) is that they may provide <em>optional</em> CONFIG files, and your packager may not have activated them.</p>
+
+<p>To be clear: If you are a package author, never supply a **Find<package>.cmake**, but instead always supply a **<package>Config.cmake** with all your builds. If you are depending on another package, try to look for a Config first, and if that is not available, or often not available, then write a find package for it for your use.</package></package></p>
+
+<h2 id="핵심사항">핵심사항</h2>
+
+<ul>
+  <li>A FindPackage.cmake file can factor out package discovery for a package you don’t own.</li>
+  <li>A PackageConfig.cmake helps others find your package.</li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Finding Packages Overview 질문 How do I search for packages? 목표 Understand FindPackage.cmake Understand PackageConfig.cmake You can search for packages in CMake in two ways; both of them, however, use the same interface. Here’s what it would look like: find_package(MyPackage 1.2) This will look for a file in the CMAKE_MODULE_PATH that is named FindMyPackage.cmake. If it does not find one, it will look for a file named MyPackageConfig.cmake in several places, including MyPackage_DIR if that variable exists. You can only perform one of these searches with MODULE or CONFIG, respectively. You can add COMPONENTS in some cases, if the package supports it, and you can also add QUIET to hide extra text, or REQUIRED to cause a missing package to fail the configure step. Aside: Environment Hints Hinting the installation of software package that is installed outside of a system paths works can also be done with environment variables. In CMake 3.12+, individual packages locations can be hinted by setting their installation root path in [_ROOT](https://cmake.org/cmake/help/latest/envvar/PackageName_ROOT.html). export HDF5_ROOT=$HOME/software/hdf5-1.12.0 Similarly, the variable CMAKE_PREFIX_PATH can be used to hint a list of installation root paths at once: export CMAKE_PREFIX_PATH=$HOME/software/hdf5-1.12.0:$HOME/software/boost-1.74.0:$CMAKE_PREFIX_PATH FindPackage The older method for finding packages is the FindPackage.cmake method (MODULE). This is a CMake or user supplied search script that knows how to look for a package. While there are some conventions here, and some tools to help, there are not many hard-and-fast requirements. A package should at least set the variable Package_FOUND. There are 100 or so find packages included in CMake, refer to the documentation for each. See the included FindPackages here. Many of the packages took a long time to add imported targets The old FindPythonLibs and FindPythonInterp are in the process of being replaced by FindPython, but you need a very new version of CMake for the new ones; 3.12 minimum, 3.15 recommended (and 3.18.2+ ideal). PackageConfig The “better” way to do things is to have an installed package provide its own details to CMake; these are “CONFIG” files and come with many packages. These files can be simpler and smarter, since they don’t have to search for the package and query the options, but rather can be generated with the correct paths and options for a particular install. ROOT is an example of a package that is now providing a CONFIG file; another one that is just beginning to is Boost; while CMake includes a FindBoost, it has to be updated with each new Boost release, whereas BoostConfig.cmake can be included with each Boost release (first version in 1.70). One issue with some packages (TBB, for example) is that they may provide optional CONFIG files, and your packager may not have activated them. To be clear: If you are a package author, never supply a **Find.cmake**, but instead always supply a **Config.cmake** with all your builds. If you are depending on another package, try to look for a Config first, and if that is not available, or often not available, then write a find package for it for your use. 핵심사항 A FindPackage.cmake file can factor out package discovery for a package you don’t own. A PackageConfig.cmake helps others find your package.]]></summary></entry><entry><title type="html">More Modern CMake - Debugging</title><link href="http://localhost:4000/more-modern-cmake-debugging" rel="alternate" type="text/html" title="More Modern CMake - Debugging" /><published>2024-02-19T00:00:00+09:00</published><updated>2024-02-19T00:00:00+09:00</updated><id>http://localhost:4000/23-more-modern-cmake-debugging</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake-debugging"><![CDATA[<h1 id="debugging">Debugging</h1>
 
 <h2 id="overview">Overview</h2>
 
@@ -1130,7 +1190,7 @@ make test
   <li>빌드 시스템은 타겟을 빌드하는 방법을 정확하게 설명한다.</li>
   <li>빌드 시스템 생성기는 일반적인 관계를 설명한다.</li>
   <li>모던 CMake는 더 간단하며 빌드 문제가 발생할 가능성을 줄인다.</li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Introduction Overview 질문 빌드 시스템(Build System)과 빌드 시스템 생성기(Build System Generator)의 차이점은 무엇인가? 목표 빌드 시스템 및 빌드 시스템 생성기에 대해 알아본다 CMake가 사용되는 이유를 이해한다. 최신 CMake가 더 좋다. 코드를 빌드하는 것은 어렵다. 코드의 각 부분을 빌드하려면 긴 명령어가 필요하다. 그리고 코드의 많은 부분에서 이 작업을 수행해야 한다. 그래서 사람들은 빌드 시스템을 생각해냈다. 여기에는 종속성을 설정하는 방법(예: 파일 B를 빌드하려면 파일 A를 빌드해야 함)과 각 파일 또는 파일 유형을 빌드하는 데 사용되는 명령을 저장하는 방법이 있었다. 이는 (주로) 언어 독립적이므로 거의 모든 빌드를 설정할 수 있다. 원하는 경우 make를 사용하여 LaTeX 문서를 작성할 수 있다. 몇가지 일반적인 빌드 시스템에는 make(전통적인 널리 사용되는 시스템), ninja(빌드 시스템 생성기 시대에 설계된 Google의 최신 시스템), Invoke(Python 시스템) 및 rake(Ruby make, Ruby 사용자를 위한 좋은 구문)가 포함된다. 그러나 이는 다음과 같다. 대부분 손으로 코딩 : 적절한 명령을 모두 알아야 한다. 플랫폼/컴파일러에 따라 다름: 컴파일러마다 명령어를 작성해야 한다. 종속성을 인식하지 못함: 라이브러리가 필요한 경우, 경로 등을 처리해야 한다. 확장하기가 어려움; 대신 IDE를 사용하고 싶다면 행운을 빈다. 빌드 시스템 생성기를 보자(간단히 설명하기 위해 BSG로 표시). 이들은 프로그래밍 언어 빌드의 개념을 이해한다. 일반적으로 일반적인 컴파일러, 언어, 라이브러리 및 출력 형식을 지원한다. 이는 보통 빌드 시스템(또는 IDE) 파일을 작성한 다음 실제 빌드를 수행하도록 한다. 가장 인기 있는 BSG는 CMake(Cross-Platform Make) 이다. 하지만 방금 보듯이 실제로는 make와 같은 카테고리가 아니다. 다른 BSG로는 Autotools(오래되고 유연성이 없음), Bazel(Google 제공), SCons(이전 Python 시스템), Meson(신형 Python 시스템, 매우 독선적) 등이 있다. 그러나 CMake는 IDE, 라이브러리 및 컴파일러를 통해 비교할 수 없는 지원을 제공한다. 또한 소규모 프로젝트에서 쉽게 선택할 수 있고(어쨌든 모던 CMake), CERN 실험과 같은 대규모 프로젝트에서 수천 개의 모듈에 사용할 수 있어 확장성이 매우 좋다. CMake와 Make 모두 Rake, SCon 등과 같이 기존 언어로 만들어진 게 아니라 사용자 정의 언어라는 점에 주목해라. 언어를 통합하는 것은 좋지만, 외부 언어를 설치하고 구성해야 한다는 요구 사항이 너무 높아 일반적으로 사용하기에는 충분하지 않았다. 요약하면 다음과 같은 경우 CMake를 사용해야 한다. 하드 코딩 경로를 피하고 싶은 경우 두 대 이상의 컴퓨터에서 패키지를 빌드해야할 경우 CI(지속적 통합)를 사용하고 싶은 경우 다양한 OS를 지원해야할 경우(어쩌면 Unix 버전일 수도 있음) 여러 컴파일러를 지원하고 싶은 경우 IDE를 사용하고 싶지만 항상 그렇지는 않을 경우 플래그나 명령이 아닌 프로그램이 논리적으로 어떻게 구성되어 있는지 설명하고 싶은 경우 라이브러리를 이용하고 싶은 경우 Clang-Tidy와 같은 도구를 사용하여 코딩을 돕고 싶은 경우 디버거를 사용하려는 경우 (More) Modern CMake CMake는 2000년경에 도입된 이후 정말 극적으로 변화했다. 그리고 2.8이 되었을 때 많은 Linux 배포 패키지 관리자에서 사용할 수 있었다. 하지만 이는 종종 환경에 “기본적으로 사용 가능한” 정말 오래된 버전의 CMake가 있음을 의미한다. 최신 CMake에 맞게 업그레이드하고 설계하라. 빌드 시스템을 작성하거나 디버깅하는 것을 좋아하는 사람은 아무도 없다. 최신 버전을 사용하면 빌드 시스템 코드를 절반 이하로 줄일 수 있고 버그를 줄이고, 외부 종속 항목과 더 효과적으로 통합할 수 있다. CMake 설치는 한 줄이면 충분하며 sudo 액세스가 필요하지 않다. 자세한 내용은 여기를 참조하라. 왠지 이해하기 어렵기 때문에 더 명확하게 외쳐보겠다. 모던 CMake를 작성하면 빌드 문제가 발생할 가능성이 줄어든다. CMake가 제공하는 도구는 여러분이 직접 작성하려고 하는 도구보다 더 좋다. CMake는 여러분보다 더 많은 상황에서 더 많은 컴파일러와 함께 작동한다. 플래그를 추가하려고 하면 일부 컴파일러나 OS에서는 잘못된 결과를 얻을 가능성이 있지만 CMake가 제공하는 도구를 대신 사용할 수 있다면, 올바른 플래그를 추가하는 것은 CMake의 몫이지 당신의 몫이 아니다. 모던 CMake의 예 잘못된 2.8 스타일 CMake: C++11 플래그를 수동으로 추가한다. 이는 컴파일러에 따라 다르며 CUDA와 다르며 최소 버전이 아닌 설정된 버전으로 고정된다. CMake 3.1+가 필요한 경우 CXX_STANDARD를 설정할 수 있지만 최종 타겟에만 설정할 수 있다. 또는 개별 C++11 및 C++14 기능에 대한 compile_features를 수동으로 나열할 수 있으며, 이를 사용하는 모든 타겟은 최소한 해당 수준으로 설정된다. CMake 3.8+가 필요한 경우 여러 기능을 수동으로 나열하는 대신 compile_features를 사용하여 cxx_std_11과 같은 최소 표준 수준을 설정할 수 있다. 이는 C++17 이상 C++20 및 C__23에만 사용되었다. 2023년 최소한의 선택 로컬에서 실행해야 하는 최소 CMake와 코드를 사용하는 사람들을 위해 지원해야 하는 최소 버전은 무엇일까? 이 글을 읽고 있다면 CMake의 마지막 몇 가지 버전에서 릴리스를 얻을 수 있을 것이다. 그렇게 하면 개발이 더 쉬워질 것이다. 지원을 위해 최소 버전을 선택하는 두 가지 방법이 있다. 즉, 추가된 기능(개발자가 관심을 갖는 부분)을 기반으로 하거나 사전 설치된 일반적인 CMake(사용자가 관심을 갖는 부분)를 기반으로 한다. 지원하는 가장 오래된 컴파일러 버전보다 오래된 최소 버전을 선택하지 말라. CMake는 항상 최소한 컴파일러만큼 새로운 것이어야 한다. 선택할 최소 항목 - OS 지원: 3.4: 최소한의 수준. 절대 이보다 낮게 설정하지 마라. 3.7: Debian의 오래된 Stable. 3.10: Ubuntu 18.04. 3.11: CentOS 8(단, EPEL 또는 AppSteams 사용) 3.13: Debian Stable. 3.16: Ubuntu 20.04. 3.19: 최초로 Apple Silicon을 지원. 최신: pip/conda-forge/homebew/chocolaty 등 선택할 최소 항목 - 기능: 3.8: C++ 메타 기능, CUDA 등 다양한 기능 3.11: 가져온 인터페이스 설정, 더 빨라짐, FetchContent, IDE의 COMPILE_LANGUAGE 3.12: C++20, cmake –build build -j N, SHELL:, FindPython 3.14/3.15: CLI, FindPython 업데이트 3.16: Unity 빌드/프리컴파일된 헤더, CUDA 메타 기능 3.17/3.18: 훨씬 더 많은 CUDA, 메타프로그래밍 3.20: C++23, CUDARCHS, IntelLLVM, NVHPC 3.21: 다양한 메시지 유형, MSVC 2022, C17 &amp; C23, HIP, MSYS 3.24: 다운로드와 패키지 찾기 통합, –fresh 3.25: C++26 지원, CUDA용 LTO 다른 소스들 웹에서 좋은 정보를 찾을 수 있는 다른 곳도 있다. 그 중 일부는 다음과 같다. Modern CMake: 이 튜토리얼의 출처가 되는 책. The official help: 정말 놀라운 문서이다. 잘 정리되어 있고 검색 기능이 뛰어나며 상단에서 버전을 전환할 수 있다. 이 책이 채우려고 하는 훌륭한 “모범 튜토리얼”이 없을 뿐. Effective Modern CMake: 해야 할 일과 하지 말아야 할 일의 훌륭한 목록. Embracing Modern CMake: 용어에 대한 좋은 설명이 포함된 게시물. It’s time to do CMake Right: 모던 CMake 프로젝트를 위한 훌륭한 모범 사례 모음. The Ultimate Guide to Modern CMake: 비슷한 의도를 지닌 약간 오래된 게시물. More Modern CMake: CMake 3.12+를 추천하는 Meeting C++ 2018의 훌륭한 프레젠테이션. 이 강연에서는 CMake 3.0+를 “Modern CMake” 및 CMake 3.12+ “More Modern CMake”라고 칭한다. toeb/moderncmake: 프로젝트 구성을 통한 구문 소개와 함께 CMake 3.5+에 대한 멋진 프레젠테이션 및 예제 핵심사항 빌드 시스템은 타겟을 빌드하는 방법을 정확하게 설명한다. 빌드 시스템 생성기는 일반적인 관계를 설명한다. 모던 CMake는 더 간단하며 빌드 문제가 발생할 가능성을 줄인다.]]></summary></entry><entry><title type="html">More Modern CMake</title><link href="http://localhost:4000/2024/01/15/00-more-modern-cmake.html" rel="alternate" type="text/html" title="More Modern CMake" /><published>2024-01-15T00:00:00+09:00</published><updated>2024-01-15T00:00:00+09:00</updated><id>http://localhost:4000/2024/01/15/00-more-modern-cmake</id><content type="html" xml:base="http://localhost:4000/2024/01/15/00-more-modern-cmake.html"><![CDATA[<p>More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리</p>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[Introduction Overview 질문 빌드 시스템(Build System)과 빌드 시스템 생성기(Build System Generator)의 차이점은 무엇인가? 목표 빌드 시스템 및 빌드 시스템 생성기에 대해 알아본다 CMake가 사용되는 이유를 이해한다. 최신 CMake가 더 좋다. 코드를 빌드하는 것은 어렵다. 코드의 각 부분을 빌드하려면 긴 명령어가 필요하다. 그리고 코드의 많은 부분에서 이 작업을 수행해야 한다. 그래서 사람들은 빌드 시스템을 생각해냈다. 여기에는 종속성을 설정하는 방법(예: 파일 B를 빌드하려면 파일 A를 빌드해야 함)과 각 파일 또는 파일 유형을 빌드하는 데 사용되는 명령을 저장하는 방법이 있었다. 이는 (주로) 언어 독립적이므로 거의 모든 빌드를 설정할 수 있다. 원하는 경우 make를 사용하여 LaTeX 문서를 작성할 수 있다. 몇가지 일반적인 빌드 시스템에는 make(전통적인 널리 사용되는 시스템), ninja(빌드 시스템 생성기 시대에 설계된 Google의 최신 시스템), Invoke(Python 시스템) 및 rake(Ruby make, Ruby 사용자를 위한 좋은 구문)가 포함된다. 그러나 이는 다음과 같다. 대부분 손으로 코딩 : 적절한 명령을 모두 알아야 한다. 플랫폼/컴파일러에 따라 다름: 컴파일러마다 명령어를 작성해야 한다. 종속성을 인식하지 못함: 라이브러리가 필요한 경우, 경로 등을 처리해야 한다. 확장하기가 어려움; 대신 IDE를 사용하고 싶다면 행운을 빈다. 빌드 시스템 생성기를 보자(간단히 설명하기 위해 BSG로 표시). 이들은 프로그래밍 언어 빌드의 개념을 이해한다. 일반적으로 일반적인 컴파일러, 언어, 라이브러리 및 출력 형식을 지원한다. 이는 보통 빌드 시스템(또는 IDE) 파일을 작성한 다음 실제 빌드를 수행하도록 한다. 가장 인기 있는 BSG는 CMake(Cross-Platform Make) 이다. 하지만 방금 보듯이 실제로는 make와 같은 카테고리가 아니다. 다른 BSG로는 Autotools(오래되고 유연성이 없음), Bazel(Google 제공), SCons(이전 Python 시스템), Meson(신형 Python 시스템, 매우 독선적) 등이 있다. 그러나 CMake는 IDE, 라이브러리 및 컴파일러를 통해 비교할 수 없는 지원을 제공한다. 또한 소규모 프로젝트에서 쉽게 선택할 수 있고(어쨌든 모던 CMake), CERN 실험과 같은 대규모 프로젝트에서 수천 개의 모듈에 사용할 수 있어 확장성이 매우 좋다. CMake와 Make 모두 Rake, SCon 등과 같이 기존 언어로 만들어진 게 아니라 사용자 정의 언어라는 점에 주목해라. 언어를 통합하는 것은 좋지만, 외부 언어를 설치하고 구성해야 한다는 요구 사항이 너무 높아 일반적으로 사용하기에는 충분하지 않았다. 요약하면 다음과 같은 경우 CMake를 사용해야 한다. 하드 코딩 경로를 피하고 싶은 경우 두 대 이상의 컴퓨터에서 패키지를 빌드해야할 경우 CI(지속적 통합)를 사용하고 싶은 경우 다양한 OS를 지원해야할 경우(어쩌면 Unix 버전일 수도 있음) 여러 컴파일러를 지원하고 싶은 경우 IDE를 사용하고 싶지만 항상 그렇지는 않을 경우 플래그나 명령이 아닌 프로그램이 논리적으로 어떻게 구성되어 있는지 설명하고 싶은 경우 라이브러리를 이용하고 싶은 경우 Clang-Tidy와 같은 도구를 사용하여 코딩을 돕고 싶은 경우 디버거를 사용하려는 경우 (More) Modern CMake CMake는 2000년경에 도입된 이후 정말 극적으로 변화했다. 그리고 2.8이 되었을 때 많은 Linux 배포 패키지 관리자에서 사용할 수 있었다. 하지만 이는 종종 환경에 “기본적으로 사용 가능한” 정말 오래된 버전의 CMake가 있음을 의미한다. 최신 CMake에 맞게 업그레이드하고 설계하라. 빌드 시스템을 작성하거나 디버깅하는 것을 좋아하는 사람은 아무도 없다. 최신 버전을 사용하면 빌드 시스템 코드를 절반 이하로 줄일 수 있고 버그를 줄이고, 외부 종속 항목과 더 효과적으로 통합할 수 있다. CMake 설치는 한 줄이면 충분하며 sudo 액세스가 필요하지 않다. 자세한 내용은 여기를 참조하라. 왠지 이해하기 어렵기 때문에 더 명확하게 외쳐보겠다. 모던 CMake를 작성하면 빌드 문제가 발생할 가능성이 줄어든다. CMake가 제공하는 도구는 여러분이 직접 작성하려고 하는 도구보다 더 좋다. CMake는 여러분보다 더 많은 상황에서 더 많은 컴파일러와 함께 작동한다. 플래그를 추가하려고 하면 일부 컴파일러나 OS에서는 잘못된 결과를 얻을 가능성이 있지만 CMake가 제공하는 도구를 대신 사용할 수 있다면, 올바른 플래그를 추가하는 것은 CMake의 몫이지 당신의 몫이 아니다. 모던 CMake의 예 잘못된 2.8 스타일 CMake: C++11 플래그를 수동으로 추가한다. 이는 컴파일러에 따라 다르며 CUDA와 다르며 최소 버전이 아닌 설정된 버전으로 고정된다. CMake 3.1+가 필요한 경우 CXX_STANDARD를 설정할 수 있지만 최종 타겟에만 설정할 수 있다. 또는 개별 C++11 및 C++14 기능에 대한 compile_features를 수동으로 나열할 수 있으며, 이를 사용하는 모든 타겟은 최소한 해당 수준으로 설정된다. CMake 3.8+가 필요한 경우 여러 기능을 수동으로 나열하는 대신 compile_features를 사용하여 cxx_std_11과 같은 최소 표준 수준을 설정할 수 있다. 이는 C++17 이상 C++20 및 C__23에만 사용되었다. 2023년 최소한의 선택 로컬에서 실행해야 하는 최소 CMake와 코드를 사용하는 사람들을 위해 지원해야 하는 최소 버전은 무엇일까? 이 글을 읽고 있다면 CMake의 마지막 몇 가지 버전에서 릴리스를 얻을 수 있을 것이다. 그렇게 하면 개발이 더 쉬워질 것이다. 지원을 위해 최소 버전을 선택하는 두 가지 방법이 있다. 즉, 추가된 기능(개발자가 관심을 갖는 부분)을 기반으로 하거나 사전 설치된 일반적인 CMake(사용자가 관심을 갖는 부분)를 기반으로 한다. 지원하는 가장 오래된 컴파일러 버전보다 오래된 최소 버전을 선택하지 말라. CMake는 항상 최소한 컴파일러만큼 새로운 것이어야 한다. 선택할 최소 항목 - OS 지원: 3.4: 최소한의 수준. 절대 이보다 낮게 설정하지 마라. 3.7: Debian의 오래된 Stable. 3.10: Ubuntu 18.04. 3.11: CentOS 8(단, EPEL 또는 AppSteams 사용) 3.13: Debian Stable. 3.16: Ubuntu 20.04. 3.19: 최초로 Apple Silicon을 지원. 최신: pip/conda-forge/homebew/chocolaty 등 선택할 최소 항목 - 기능: 3.8: C++ 메타 기능, CUDA 등 다양한 기능 3.11: 가져온 인터페이스 설정, 더 빨라짐, FetchContent, IDE의 COMPILE_LANGUAGE 3.12: C++20, cmake –build build -j N, SHELL:, FindPython 3.14/3.15: CLI, FindPython 업데이트 3.16: Unity 빌드/프리컴파일된 헤더, CUDA 메타 기능 3.17/3.18: 훨씬 더 많은 CUDA, 메타프로그래밍 3.20: C++23, CUDARCHS, IntelLLVM, NVHPC 3.21: 다양한 메시지 유형, MSVC 2022, C17 &amp; C23, HIP, MSYS 3.24: 다운로드와 패키지 찾기 통합, –fresh 3.25: C++26 지원, CUDA용 LTO 다른 소스들 웹에서 좋은 정보를 찾을 수 있는 다른 곳도 있다. 그 중 일부는 다음과 같다. Modern CMake: 이 튜토리얼의 출처가 되는 책. The official help: 정말 놀라운 문서이다. 잘 정리되어 있고 검색 기능이 뛰어나며 상단에서 버전을 전환할 수 있다. 이 책이 채우려고 하는 훌륭한 “모범 튜토리얼”이 없을 뿐. Effective Modern CMake: 해야 할 일과 하지 말아야 할 일의 훌륭한 목록. Embracing Modern CMake: 용어에 대한 좋은 설명이 포함된 게시물. It’s time to do CMake Right: 모던 CMake 프로젝트를 위한 훌륭한 모범 사례 모음. The Ultimate Guide to Modern CMake: 비슷한 의도를 지닌 약간 오래된 게시물. More Modern CMake: CMake 3.12+를 추천하는 Meeting C++ 2018의 훌륭한 프레젠테이션. 이 강연에서는 CMake 3.0+를 “Modern CMake” 및 CMake 3.12+ “More Modern CMake”라고 칭한다. toeb/moderncmake: 프로젝트 구성을 통한 구문 소개와 함께 CMake 3.5+에 대한 멋진 프레젠테이션 및 예제 핵심사항 빌드 시스템은 타겟을 빌드하는 방법을 정확하게 설명한다. 빌드 시스템 생성기는 일반적인 관계를 설명한다. 모던 CMake는 더 간단하며 빌드 문제가 발생할 가능성을 줄인다.]]></summary></entry><entry><title type="html">More Modern CMake</title><link href="http://localhost:4000/more-modern-cmake" rel="alternate" type="text/html" title="More Modern CMake" /><published>2024-01-15T00:00:00+09:00</published><updated>2024-01-15T00:00:00+09:00</updated><id>http://localhost:4000/00-more-modern-cmake</id><content type="html" xml:base="http://localhost:4000/more-modern-cmake"><![CDATA[<p>More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리</p>
 
 <p>출처 : <a href="https://hsf-training.github.io/hsf-training-cmake-webpage/">More Modern CMake</a></p>
 
@@ -1147,150 +1207,5 @@ make test
   <li><a href="/more-modern-cmake-project-structure">Project Structure</a></li>
   <li><a href="/more-modern-cmake-common-problems-and-solutions">Problems and Soultions</a></li>
   <li><a href="/more-modern-cmake-debugging">Debugging</a></li>
-</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리 출처 : More Modern CMake HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적은 CMake 사용의 기본 사항을 다루는 것이다. 이 튜토리얼은 CMake 3.15+에 초점을 맞춘 온라인 서적 Modern CMake를 기반으로 한다. 이것은 CMake의 “More Modern” 시대(대략 3.12+로 정의됨)에 해당하며 CMake π(3.14) 및 3.15의 환상적인 명령 개선이 포함된다. 이 글을 쓰는 시점의 현재 버전은 CMake 3.21이다. 목차 Introduction Building With CMake Your first file CMakeLists.txt file Working with Targets Variables explained Project Structure Problems and Soultions Debugging]]></summary></entry><entry><title type="html">Unity Prototype Step2</title><link href="http://localhost:4000/2023/10/26/18-unity-client-step2.html" rel="alternate" type="text/html" title="Unity Prototype Step2" /><published>2023-10-26T00:00:00+09:00</published><updated>2023-10-26T00:00:00+09:00</updated><id>http://localhost:4000/2023/10/26/18-unity-client-step2</id><content type="html" xml:base="http://localhost:4000/2023/10/26/18-unity-client-step2.html"><![CDATA[<h1 id="2-캐릭터-클래스-정의">2. 캐릭터 클래스 정의</h1>
-<ul>
-  <li>프로토타입에 사용될 예제들은 페이지 마지막에 정리</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Character
-{
-  Race : type // 인간,드워프
-  Class : type // 전사, 성직자
-  Level : uint // 레벨
-  Movement : uint //이동 가능 칸수
-  CurrentHitPoint : uint //현재 HP
-  MaxHitPoint : uint //최대 HP
-  Strength : uint // 힘, 일단 1
-  AttackBonus : uint //직업과 레벨에 따로 부가 공격 보너스
-  AttackRange : uint //공격범위, 근거리일 경우는 1
-  ArmorClass : uint //AC, 갑옷의 방어력, 갑옷이 없을 경우 11
-  WeaponType : type //한손
-  WeaponDamage : uint //무기의 최대 데미지(1~WeaponDamage)
-}
-</code></pre></div></div>
-
-<h1 id="3-두-캐릭터의-hp-표시하기">3. 두 캐릭터의 HP 표시하기</h1>
-
-<ul>
-  <li>Character Class에 HP 프로퍼티를 적용하고, 해당 데이터를 View에서 백분율로 각 캐릭터의 머리위에 HP Bar로 표시</li>
-</ul>
-
-<p><img src="/assets/images/prototype/prototype-unity-step2-hpbar.png" alt="캐릭터 HP" /></p>
-
-<h1 id="4-커맨드-메뉴-구현하기">4. 커맨드 메뉴 구현하기</h1>
-
-<ul>
-  <li>해당 턴의 캐릭터에 명령을 내릴 때 이동 명령이 아니라, 이동,공격,대기 명령을 선택하여 각 명령에 맞게 실행</li>
-  <li>한 번의 턴에서는 3개의 명령 중 하나만 선택할 수 있으며, 선택 후 실행이 끝나면 상대방 턴으로 변경</li>
-</ul>
-
-<p><img src="/assets/images/prototype/prototype-unity-step2-menu.png" alt="캐릭터 메뉴" /></p>
-
-<h2 id="1-이동">1. 이동</h2>
-
-<ul>
-  <li>이동 메뉴를 선택시 <a href="/unity-prototype-step1">이전페이지</a> 와 동일하게 이동할 수 있는 영역이 표시됨</li>
-  <li>영역은 Character Class의 Movement 값을 적용하여 표시</li>
-  <li>영역 클릭시 해당 타일로 이동</li>
-</ul>
-
-<p><img src="/assets/images/prototype/prototype-unity-step2-move.png" alt="캐릭터 이동" /></p>
-
-<h2 id="2-공격">2. 공격</h2>
-
-<ul>
-  <li>영역은 Character Class의 AttackRange 값을 적용하여 표시</li>
-  <li>영역 클릭시 아래 공격 로직을 적용</li>
-</ul>
-
-<p><img src="/assets/images/prototype/prototype-unity-step2-attack.png" alt="캐릭터 공격" /></p>
-
-<h2 id="3-대기">3. 대기</h2>
-
-<ul>
-  <li>따로 영역 필요없이 상대방에게 턴을 넘김</li>
-</ul>
-
-<h1 id="5-공격-적용">5. 공격 적용</h1>
-<ul>
-  <li>이번에는 따로 무기없이 한손, 근거리 전투로만 한정</li>
-</ul>
-
-<h2 id="명중-굴림">명중 굴림</h2>
-
-<ul>
-  <li>공격이 성공하는지 체크하는 로직으로 <strong>공격자의 공격력이 상대편의 방어력(AC)보다 크면 공격 성공</strong></li>
-  <li>
-    <p><a href="/basic-fantasy/encounter#공격하기">Basic Fantasy - 조우</a>의 공격하기 설명 참고</p>
-  </li>
-  <li>명중 굴림 성공 유무 수식
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Math.Rand(20) + Strength + AttackBonus &gt;= 상대편 AC
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="피해">피해</h2>
-
-<ul>
-  <li>명중 굴림이 성공하면 WeaponDamage 굴림하여 상대편에게 피해를 주고, 이 피해는 상대편의 HP에 반영</li>
-  <li>
-    <p><a href="/basic-fantasy/encounter#피해">Basic Fantasy - 조우</a>의 피해 설명 참고</p>
-  </li>
-  <li>피해 산정 수식
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>피해 = Math.Rand(WeaponDamage) + Strength
-</code></pre></div>    </div>
-  </li>
-  <li>상대편 HP 적용, 상대편 HPBar에 업데이트
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CurrentHitPoint = CurrentHitPoint - 피해
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="공격턴-마무리">공격턴 마무리</h2>
-
-<ul>
-  <li>상대편 CurrentHitPoint가 0이 되면, 게임 오버 처리</li>
-</ul>
-
-<h1 id="5-프로토타입에-적용할-chracter-예제-데이터">5. 프로토타입에 적용할 Chracter 예제 데이터</h1>
-<ul>
-  <li>드워프/전사</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Character
-{
-  Race : Dwarf
-  Class : Fighter
-  Level : 1
-  Movement : 2
-  CurrentHitPoint : 15
-  MaxHitPoint : 15
-  Strength : 2
-  AttackBonus : 1
-  AttackRange : 1
-  ArmorClass : 11
-  WeaponType : OneHand
-  WeaponDamage : 6
-}
-</code></pre></div></div>
-
-<ul>
-  <li>인간/성직자</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Character
-{
-  Race : Human
-  Class : Cleric
-  Level : 1
-  Movement : 1
-  CurrentHitPoint : 12
-  MaxHitPoint : 12
-  Strength : 1
-  AttackBonus : 1
-  AttackRange : 1
-  ArmorClass : 11
-  WeaponType : OneHand
-  WeaponDamage : 4
-}
-</code></pre></div></div>]]></content><author><name>nickchoi</name></author><category term="C#" /><category term="Unity" /><category term="Client" /><category term="Prototype" /><summary type="html"><![CDATA[2. 캐릭터 클래스 정의 프로토타입에 사용될 예제들은 페이지 마지막에 정리 Character { Race : type // 인간,드워프 Class : type // 전사, 성직자 Level : uint // 레벨 Movement : uint //이동 가능 칸수 CurrentHitPoint : uint //현재 HP MaxHitPoint : uint //최대 HP Strength : uint // 힘, 일단 1 AttackBonus : uint //직업과 레벨에 따로 부가 공격 보너스 AttackRange : uint //공격범위, 근거리일 경우는 1 ArmorClass : uint //AC, 갑옷의 방어력, 갑옷이 없을 경우 11 WeaponType : type //한손 WeaponDamage : uint //무기의 최대 데미지(1~WeaponDamage) } 3. 두 캐릭터의 HP 표시하기 Character Class에 HP 프로퍼티를 적용하고, 해당 데이터를 View에서 백분율로 각 캐릭터의 머리위에 HP Bar로 표시 4. 커맨드 메뉴 구현하기 해당 턴의 캐릭터에 명령을 내릴 때 이동 명령이 아니라, 이동,공격,대기 명령을 선택하여 각 명령에 맞게 실행 한 번의 턴에서는 3개의 명령 중 하나만 선택할 수 있으며, 선택 후 실행이 끝나면 상대방 턴으로 변경 1. 이동 이동 메뉴를 선택시 이전페이지 와 동일하게 이동할 수 있는 영역이 표시됨 영역은 Character Class의 Movement 값을 적용하여 표시 영역 클릭시 해당 타일로 이동 2. 공격 영역은 Character Class의 AttackRange 값을 적용하여 표시 영역 클릭시 아래 공격 로직을 적용 3. 대기 따로 영역 필요없이 상대방에게 턴을 넘김 5. 공격 적용 이번에는 따로 무기없이 한손, 근거리 전투로만 한정 명중 굴림 공격이 성공하는지 체크하는 로직으로 공격자의 공격력이 상대편의 방어력(AC)보다 크면 공격 성공 Basic Fantasy - 조우의 공격하기 설명 참고 명중 굴림 성공 유무 수식 Math.Rand(20) + Strength + AttackBonus &gt;= 상대편 AC 피해 명중 굴림이 성공하면 WeaponDamage 굴림하여 상대편에게 피해를 주고, 이 피해는 상대편의 HP에 반영 Basic Fantasy - 조우의 피해 설명 참고 피해 산정 수식 피해 = Math.Rand(WeaponDamage) + Strength 상대편 HP 적용, 상대편 HPBar에 업데이트 CurrentHitPoint = CurrentHitPoint - 피해 공격턴 마무리 상대편 CurrentHitPoint가 0이 되면, 게임 오버 처리 5. 프로토타입에 적용할 Chracter 예제 데이터 드워프/전사 Character { Race : Dwarf Class : Fighter Level : 1 Movement : 2 CurrentHitPoint : 15 MaxHitPoint : 15 Strength : 2 AttackBonus : 1 AttackRange : 1 ArmorClass : 11 WeaponType : OneHand WeaponDamage : 6 } 인간/성직자 Character { Race : Human Class : Cleric Level : 1 Movement : 1 CurrentHitPoint : 12 MaxHitPoint : 12 Strength : 1 AttackBonus : 1 AttackRange : 1 ArmorClass : 11 WeaponType : OneHand WeaponDamage : 4 }]]></summary></entry></feed>
+  <li><a href="/more-modern-cmake-finding-packages">Finding Packages</a></li>
+</ul>]]></content><author><name>nickchoi</name></author><category term="CMake" /><summary type="html"><![CDATA[More Modern CMake 공부하려고 대충 번역함. 구글과 파파고 사용해서 내가 보기 쉽게 정리 출처 : More Modern CMake HSF CMake 튜토리얼에 오신 것을 환영한다! 이 튜토리얼의 목적은 CMake 사용의 기본 사항을 다루는 것이다. 이 튜토리얼은 CMake 3.15+에 초점을 맞춘 온라인 서적 Modern CMake를 기반으로 한다. 이것은 CMake의 “More Modern” 시대(대략 3.12+로 정의됨)에 해당하며 CMake π(3.14) 및 3.15의 환상적인 명령 개선이 포함된다. 이 글을 쓰는 시점의 현재 버전은 CMake 3.21이다. 목차 Introduction Building With CMake Your first file CMakeLists.txt file Working with Targets Variables explained Project Structure Problems and Soultions Debugging Finding Packages]]></summary></entry></feed>
