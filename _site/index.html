@@ -314,6 +314,80 @@
 <div class="layout--articles">
 <div class="article-list items items--divided">
 <article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/more-modern-cmake-functions-in-cmake"><h2 itemprop="headline" class="item__header">More Modern CMake - Functions in CMake</h2></a></header>
+          <div class="item__description">
+<div class="article__content" itemprop="description articleBody">Functions in CMake
+
+Overview
+
+
+  질문
+    
+      How do I write my own CMake commands?
+    
+  
+  목표
+    
+      Know how to make a macro or a function in CMake.
+    
+  
+
+
+Let’s take a look at making a CMake macro or function. The only difference is in scope; a macro does not make a new scope, while a function does.
+
+function(EXAMPLE_FUNCTION AN_ARG...</div>
+<p><a href="/more-modern-cmake-functions-in-cmake">Read more</a></p>
+</div>
+<div class="article__info clearfix">
+<ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=CMake">CMake</a>
+            </li></ul>
+<ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>Feb 20, 2024</span>
+            </li></ul>
+</div>
+<meta itemprop="author" content="nickchoi">
+<meta itemprop="datePublished" content="2024-02-20T00:00:00+09:00">
+    <meta itemprop="keywords" content="CMake">
+</div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/more-modern-cmake-root"><h2 itemprop="headline" class="item__header">More Modern CMake - ROOT</h2></a></header>
+          <div class="item__description">
+<div class="article__content" itemprop="description articleBody">Finding Packages
+
+Overview
+
+
+  질문
+    
+      How do I use ROOT?
+    
+  
+  목표
+    
+      Use ROOT a couple of different ways
+    
+  
+
+
+ROOT is a data analysis framework.
+
+Let’s try a couple of ROOT examples; one with the classic variable/global configure and one with the newer target method. You will need a ROOT install or a ROOT docker container...</div>
+<p><a href="/more-modern-cmake-root">Read more</a></p>
+</div>
+<div class="article__info clearfix">
+<ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=CMake">CMake</a>
+            </li></ul>
+<ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>Feb 20, 2024</span>
+            </li></ul>
+</div>
+<meta itemprop="author" content="nickchoi">
+<meta itemprop="datePublished" content="2024-02-20T00:00:00+09:00">
+    <meta itemprop="keywords" content="CMake">
+</div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/more-modern-cmake-finding-packages"><h2 itemprop="headline" class="item__header">More Modern CMake - Finding Packages</h2></a></header>
           <div class="item__description">
 <div class="article__content" itemprop="description articleBody">Finding Packages
@@ -347,11 +421,11 @@ This will lo...</div>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=CMake">CMake</a>
             </li></ul>
 <ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Feb 20, 2024</span>
+<i class="far fa-calendar-alt"></i> <span>Feb 19, 2024</span>
             </li></ul>
 </div>
 <meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2024-02-20T00:00:00+09:00">
+<meta itemprop="datePublished" content="2024-02-19T00:00:00+09:00">
     <meta itemprop="keywords" content="CMake">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
@@ -393,11 +467,11 @@ message(STATUS "MY_VARIA...</div>
               <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=CMake">CMake</a>
             </li></ul>
 <ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Feb 19, 2024</span>
+<i class="far fa-calendar-alt"></i> <span>Feb 18, 2024</span>
             </li></ul>
 </div>
 <meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2024-02-19T00:00:00+09:00">
+<meta itemprop="datePublished" content="2024-02-18T00:00:00+09:00">
     <meta itemprop="keywords" content="CMake">
 </div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
@@ -575,99 +649,11 @@ Overview
 <meta itemprop="datePublished" content="2024-01-22T00:00:00+09:00">
     <meta itemprop="keywords" content="CMake">
 </div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/more-modern-cmake-your-first-file"><h2 itemprop="headline" class="item__header">More Modern CMake - Your first CMakeLists.txt file</h2></a></header>
-          <div class="item__description">
-<div class="article__content" itemprop="description articleBody">Your first CMakeLists.txt file
-
-Overview
-
-
-  질문
-    
-      내 CMakeLists에서 얼마나 최소화할 수 있는가?
-    
-  
-  목표
-    
-      cmake_minimum_version의 깊은 의미를 이해하자.
-      project 설정 방법을 알아두자.
-      적어도 하나의 타겟을 만드는 방법을 알아두자.
-    
-  
-
-
-CMakeLists 파일 작성
-
-다음 파일은 그 다음 예에 적합하다 :
-/* simple.c or simple.cpp */
-#include &lt;stdio.h&gt;
-
-int main() {
-    printf("Hello, W...</div>
-<p><a href="/more-modern-cmake-your-first-file">Read more</a></p>
-</div>
-<div class="article__info clearfix">
-<ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=CMake">CMake</a>
-            </li></ul>
-<ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Jan 20, 2024</span>
-            </li></ul>
-</div>
-<meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2024-01-20T00:00:00+09:00">
-    <meta itemprop="keywords" content="CMake">
-</div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/more-modern-cmake-build-with-cmake"><h2 itemprop="headline" class="item__header">More Modern CMake - Building with CMake</h2></a></header>
-          <div class="item__description">
-<div class="article__content" itemprop="description articleBody">Building With CMake
-
-Overview
-
-
-  질문
-    
-      프로젝트를 어떻게 빌드하는가?
-    
-  
-  목표
-    
-      CMake 설치에 대한 참고.
-      기존 프로젝트를 빌드하는 방법을 알아보자.
-      빌드를 사용자 정의한다.
-      몇 가지 기본적인 디버깅을 수행하는 방법을 알아보자.
-    
-  
-
-
-CMake 설치
-
-거의 모든 곳에 최신 버전의 CMake를 설치하는 데 일반적으로 한 줄 또는 두 줄에 불과하다. CMake 설명을 참조.
-
-CMake 로 빌드하기
-
-CMake를 작성하기 전에 CMake를 실행하여 만드는 방법을 알고 있는지 확인하겠다. 이는 ...</div>
-<p><a href="/more-modern-cmake-build-with-cmake">Read more</a></p>
-</div>
-<div class="article__info clearfix">
-<ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=CMake">CMake</a>
-            </li></ul>
-<ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>Jan 18, 2024</span>
-            </li></ul>
-</div>
-<meta itemprop="author" content="nickchoi">
-<meta itemprop="datePublished" content="2024-01-18T00:00:00+09:00">
-    <meta itemprop="keywords" content="CMake">
-</div>
       </article>
 </div>
 </div>
 <div class="layout--home"><div class="pagination">
-<p>26 post articles, 4 pages.</p>
+<p>28 post articles, 4 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap">
 <li><div class="button button--secondary button--circle disabled">
