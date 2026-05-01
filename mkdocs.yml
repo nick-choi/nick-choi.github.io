@@ -1,0 +1,25 @@
+site_name: Nick's Digital Garden
+theme:
+  name: material
+  language: ko  # 한국어 검색 지원
+  palette:
+    - scheme: slate  # 이게 바로 Deep Dark (Slate) 모드입니다
+      primary: black
+      accent: blue
+    - scheme: default # 라이트 모드 (선택 가능)
+      primary: white
+      accent: blue
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
