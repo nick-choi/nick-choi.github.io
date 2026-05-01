@@ -1,11 +1,13 @@
----
-tags: public
----
+# Docker
 
-# 컨테이너 삭제
+## 실행
+* 컨테이너 안의 명령어 실행하기
+  ```docker exec -it [ContainerId] /bin/sh```
+  
+## 컨테이너 삭제
 
 * 동작중인 컨테이너들 확인하기
-  ``` docker ps```
+  ```docker ps```
 
 * 정지된 컨테이너들 확인하기
   ```docker ps -a```

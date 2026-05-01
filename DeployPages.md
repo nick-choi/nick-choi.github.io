@@ -1,4 +1,13 @@
 ```space-lua
+function convertWikiLinks(text)
+  -- [[Page]] → [Page](Page.md)
+  text = string.gsub(text, "%[%[([^%]]+)%]%]", function(link)
+    return "[" .. link .. "](" .. link .. ".md)"
+  end)
+
+  return text
+end
+
 function runDeploy()
     -- 0 clean up old dist files
     local oldDistFiles = query[[
@@ -6,6 +15,7 @@ function runDeploy()
         where p.name:startsWith("dist/")
         select p.name
     ]]
+  
     for _, oldFile in ipairs(oldDistFiles) do
         space.deletePage(oldFile)
     end
@@ -28,14 +38,15 @@ function runDeploy()
     for _, name in ipairs(publicPages) do
         -- 2. 본문 읽기
         local content = space.readPage(name)
-        
-        if content then
+        local newContent = convertWikiLinks(content)
+  
+        if newContent then
             -- 3. 배포용 경로 설정 (예: 'dist/파일명')
             -- 실버불렛 내부에 'dist'라는 가상 폴더를 만들어 결과물을 모읍니다.
             local deployPath = "dist/" .. name
             
             -- 4. 파일 쓰기 (기존 내용 덮어쓰기)
-            space.writePage(deployPath, content)
+            space.writePage(deployPath, newContent)
             
             print("복사 완료: " .. name .. " -> " .. deployPath)
             count = count + 1
