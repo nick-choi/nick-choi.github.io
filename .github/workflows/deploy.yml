@@ -1,63 +1,39 @@
-name: Deploy Quartz Site
+name: Deploy MkDocs Site
 on:
   push:
     branches:
-      - main  # main 브랜치에 푸시될 때마다 작동
+      - main
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          node-version: 20
+          python-version: '3.x'
 
-      - name: Build Quartz
+      - name: Install MkDocs and Material Theme
         run: |
-          # 1. 내 저장소의 커스텀 파일들을 임시 폴더로 대피 (삭제 방지)
-          mkdir -p my-configs
-          cp -r quartz/styles/custom.scss my-configs/ || true
-          cp quartz.config.ts my-configs/ || true
+          pip install mkdocs-material
 
-          # 2. Quartz 순정 소스 가져오기
-          git clone https://github.com/jackyzha0/quartz.git tmp-quartz
-          cp -r tmp-quartz/* .
+      - name: Prepare Docs Folder
+        run: |
+          # MkDocs는 기본적으로 docs/ 폴더를 바라봅니다.
+          # 실버불렛이 만든 dist/ 폴더를 docs/로 이름을 바꿉니다.
+          mkdir -p docs
+          cp -r dist/* docs/
+          # 만약 index.md가 없다면 첫 페이지 에러가 나므로 확인
+          [ -f docs/index.md ] || echo "# Welcome" > docs/index.md
 
-          # 3. [핵심] 대피시켰던 내 설정 파일들을 다시 제자리로 덮어쓰기
-          cp my-configs/custom.scss quartz/styles/custom.scss || true
-          cp my-configs/quartz.config.ts . || true
-
-          # 4. 의존성 설치 및 빌드
-          npm install
-          rm -rf content/*
-          cp -r dist/* content/
-          npx quartz build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    outputs:
-      page_url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        run: |
+          # 이 명령어 한 줄로 gh-pages 브랜치에 자동으로 HTML이 빌드되어 올라갑니다.
+          mkdocs gh-deploy --force
