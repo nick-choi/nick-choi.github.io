@@ -1,138 +1,360 @@
-/* ===== 완전 다크 팔레트 ===== */
+/* Silverbullet-inspired MkDocs Custom CSS */
+/* Extracted from main.css with dark theme support */
+
+/* ===== Color Scheme ===== */
 :root {
-  --bg: #000000;
-  --surface: #0f1115;
-  --text: #d1d1d1;
-  --muted: #9aa0a6;
-  --border: #1f2937;
-  --accent: #4f8cff;
-  --code-bg: #111827;
+  /* Dark theme colors */
+  --sb-bg-primary: #111;
+  --sb-text-primary: #fff;
+  --sb-text-secondary: #d1d1d1;
+  --sb-link: #7e99fc;
+  --sb-link-missing: #9e4705;
+  --sb-heading: #d1d1d1;
+  --sb-meta: #d6222e;
+  --sb-subtle: #959595;
+  --sb-code-bg: rgba(105, 105, 105, 0.1);
+  --sb-code-color: #7c828e;
+  --sb-blockquote-bg: rgba(105, 105, 105, 0.1);
+  --sb-blockquote-border: rgb(74, 74, 74);
+  --sb-blockquote-color: #959595;
+  --sb-table-header-bg: rgba(72, 72, 72, 0.4);
+  --sb-table-even-bg: rgba(72, 72, 72, 0.3);
+  --sb-hashtag-bg: #004bbb;
+  --sb-hashtag-color: #e2e9ff;
+  --sb-hashtag-border: #007bff6b;
+  --sb-wiki-link-bg: #a3bce712;
+  --sb-wiki-link-color: #7e99fc;
 }
 
-/* ===== 전체 배경 ===== */
+/* Light theme fallback */
+@media (prefers-color-scheme: light) {
+  :root {
+    --sb-bg-primary: #fff;
+    --sb-text-primary: #000;
+    --sb-text-secondary: #333;
+    --sb-link: #0330cb;
+    --sb-heading: #333;
+    --sb-code-bg: rgba(72, 72, 72, 0.1);
+    --sb-code-color: #7c828e;
+    --sb-blockquote-bg: rgba(72, 72, 72, 0.1);
+    --sb-blockquote-border: rgb(74, 74, 74);
+    --sb-blockquote-color: #676767;
+    --sb-table-header-bg: #333;
+    --sb-table-header-color: #eee;
+    --sb-table-even-bg: #f3f3f3;
+    --sb-hashtag-bg: #002b6aad;
+    --sb-hashtag-color: #e2e9ff;
+    --sb-hashtag-border: #0120416b;
+    --sb-wiki-link-bg: rgba(77, 141, 255, 0.07);
+    --sb-wiki-link-color: #0330cb;
+  }
+}
+
+/* ===== Font Configuration ===== */
+:root {
+  --sb-font-family: "iA-Mono", "Menlo", monospace;
+  --sb-font-size: 18px;
+  --sb-line-height: 1.4;
+  --sb-content-width: 800px;
+}
+
+@font-face {
+  font-family: "iA-Mono";
+  src: url("iAWriterMonoS-Regular.woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "iA-Mono";
+  src: url("iAWriterMonoS-Bold.woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* ===== Typography ===== */
+
+/* Base styling */
 body {
-  background: var(--bg);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: var(--sb-bg-primary);
+  color: var(--sb-text-primary);
+  font-family: var(--sb-font-family);
+  font-size: var(--sb-font-size);
+  line-height: var(--sb-line-height);
 }
 
-/* ===== 상단/사이드/푸터 제거 ===== */
-.md-header,
-.md-sidebar,
-.md-footer,
-.md-search {
-  display: none !important;
-}
-
-/* ===== 레이아웃 ===== */
-.md-main__inner {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
-}
-
-.md-grid {
-  max-width: 100%;
-}
-
-/* ===== 본문 ===== */
-.md-typeset {
-  color: var(--text);
-  font-size: 16px;
-  line-height: 1.75;
-}
-
-/* ===== 제목 ===== */
-.md-typeset h1 {
-  color: #d1d1d1;
-  font-size: 2.2em;
-  font-weight: 700;
-  margin-top: 1.5em;
-  margin-bottom: 0.8em;
-}
-
-.md-typeset h2 {
-  color: #d1d1d1;
+/* Headings - from main.css sizing */
+h1 {
   font-size: 1.5em;
-  margin-top: 1.4em;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0.3em;
+  color: var(--sb-heading);
+  font-weight: bold;
 }
 
-.md-typeset h3 {
+h2 {
   font-size: 1.2em;
-  margin-top: 1.2em;
+  color: var(--sb-heading);
+  font-weight: bold;
 }
 
-/* ===== 문단 ===== */
-.md-typeset p {
-  margin: 0.8em 0;
+h3 {
+  font-size: 1.1em;
+  color: var(--sb-heading);
+  font-weight: bold;
 }
 
-/* ===== 링크 ===== */
-.md-typeset a {
-  color: var(--accent);
+h4, h5, h6 {
+  font-size: 1em;
+  color: var(--sb-heading);
+  font-weight: bold;
+}
+
+/* Links */
+a {
+  color: var(--sb-link);
   text-decoration: none;
 }
 
-.md-typeset a:hover {
+a:hover {
   text-decoration: underline;
 }
 
-/* ===== 리스트 ===== */
-.md-typeset ul,
-.md-typeset ol {
-  padding-left: 1.4em;
+/* Code blocks and inline code */
+code, pre {
+  background-color: var(--sb-code-bg);
+  color: var(--sb-code-color);
+  font-family: var(--sb-font-family);
+  border-radius: 5px;
 }
 
-/* ===== 코드 ===== */
-.md-typeset code {
-  background: var(--code-bg);
-  padding: 0.2em 0.4em;
-  border-radius: 6px;
+code {
+  padding: 0 3px;
   font-size: 0.9em;
 }
 
-/* ===== 코드 블럭 ===== */
-.md-typeset pre {
-  background: var(--code-bg);
-  border-radius: 10px;
-  padding: 1em;
-  border: 1px solid var(--border);
+pre {
+  padding: 12px;
   overflow-x: auto;
-}
-
-/* ===== 인용문 ===== */
-.md-typeset blockquote {
-  border-left: 3px solid var(--border);
-  padding-left: 1em;
-  color: var(--muted);
   margin: 1em 0;
 }
 
-/* ===== 테이블 ===== */
-.md-typeset table {
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Blockquotes */
+blockquote {
+  background-color: var(--sb-blockquote-bg);
+  border-left: 4px solid var(--sb-blockquote-border);
+  color: var(--sb-blockquote-color);
+  padding: 12px;
+  padding-left: 16px;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+blockquote p {
+  margin: 0.5em 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-spacing: 0;
+  margin: 1em 0;
   border-collapse: collapse;
 }
 
-.md-typeset th,
-.md-typeset td {
-  border: 1px solid var(--border);
-  padding: 0.6em;
+thead tr {
+  background-color: var(--sb-table-header-bg);
+  color: var(--sb-text-secondary);
+  font-weight: bold;
 }
 
-/* ===== 이미지 ===== */
-.md-typeset img {
-  border-radius: 8px;
+thead td, thead th {
+  padding: 11px 8px;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: var(--sb-table-even-bg);
+}
+
+td, th {
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+/* Lists */
+ul, ol {
   margin: 1em 0;
+  padding-left: 2em;
 }
 
-/* ===== 스크롤바 (선택) ===== */
-::-webkit-scrollbar {
-  width: 8px;
+li {
+  margin: 0.5em 0;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #222;
+/* Hashtags (from silverbullet) */
+.hashtag {
+  background-color: var(--sb-hashtag-bg);
+  color: var(--sb-hashtag-color);
+  border: 1px solid var(--sb-hashtag-border);
+  border-radius: 6px;
+  padding: 0 3px;
+  margin: 0 1px;
+  font-size: 0.9em;
+}
+
+/* Wiki-style links (from silverbullet) */
+.wiki-link {
+  background-color: var(--sb-wiki-link-bg);
+  color: var(--sb-wiki-link-color);
+  border-radius: 5px;
+  padding: 0 5px;
+  text-decoration: none;
+}
+
+.wiki-link:hover {
+  text-decoration: underline;
+}
+
+/* Strikethrough */
+.strikethrough {
+  text-decoration: line-through;
+}
+
+/* Task lists */
+.task-list-item {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.task-list-item input {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.task-list-item input:checked + label {
+  text-decoration: line-through;
+  color: var(--sb-subtle);
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  border-top: 1px solid var(--sb-blockquote-border);
+  margin: 2em 0;
+}
+
+/* Strong and emphasis */
+strong {
+  font-weight: 900;
+}
+
+em {
+  font-style: italic;
+}
+
+/* Container for content width control */
+.content {
+  max-width: var(--sb-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+/* Admonitions (callout blocks from silverbullet) */
+.admonition {
+  border-left: 4px solid #999;
+  padding: 12px;
+  padding-left: 16px;
+  margin: 1em 0;
   border-radius: 4px;
+  background-color: rgba(105, 105, 105, 0.05);
+}
+
+.admonition.note {
+  border-left-color: #00b8d4;
+}
+
+.admonition.warning {
+  border-left-color: #ff9100;
+}
+
+.admonition.danger {
+  border-left-color: #d50000;
+}
+
+.admonition.success {
+  border-left-color: #00c853;
+}
+
+.admonition-title {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+/* Selection color */
+::selection {
+  background-color: #d7e1f630;
+  color: inherit;
+}
+
+/* Cursor */
+:focus {
+  outline: none;
+}
+
+/* MkDocs specific overrides for Material theme */
+.md-content {
+  font-size: var(--sb-font-size);
+}
+
+.md-typeset {
+  font-family: var(--sb-font-family);
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  color: var(--sb-heading);
+}
+
+.md-typeset a {
+  color: var(--sb-link);
+}
+
+.md-typeset code {
+  background-color: var(--sb-code-bg);
+  color: var(--sb-code-color);
+  font-family: var(--sb-font-family);
+}
+
+.md-typeset pre {
+  background-color: var(--sb-code-bg);
+}
+
+.md-typeset blockquote {
+  background-color: var(--sb-blockquote-bg);
+  border-left-color: var(--sb-blockquote-border);
+  color: var(--sb-blockquote-color);
+}
+
+.md-typeset table tr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.md-typeset table thead tr {
+  background-color: var(--sb-table-header-bg);
+  color: var(--sb-text-secondary);
+}
+
+.md-typeset table tbody tr:nth-child(even) {
+  background-color: var(--sb-table-even-bg);
 }
 
