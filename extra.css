@@ -1,0 +1,8 @@
+/* docs/extra.css */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #000000;           /* 전체 배경색을 완전 블랙으로 */
+  --md-default-bg-color--light: #121212;    /* 보조 배경색 */
+  --md-code-bg-color: #1a1a1a;              /* 코드 블록 배경 */
+  --md-typeset-color: #ffffff;              /* 본문 텍스트를 완전 화이트로 */
+  --md-typeset-a-color: #ff9100;            /* 링크를 고대비 오렌지로 */
+}

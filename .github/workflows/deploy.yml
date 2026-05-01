@@ -30,6 +30,7 @@ jobs:
           # 실버불렛이 만든 dist/ 폴더를 docs/로 이름을 바꿉니다.
           mkdir -p docs
           cp -r dist/* docs/
+          cp extra.css docs/  # 루트에 있는 CSS를 docs로 복사
           # 만약 index.md가 없다면 첫 페이지 에러가 나므로 확인
           [ -f docs/index.md ] || echo "# Welcome" > docs/index.md
 
