@@ -1,0 +1,54 @@
+name: Deploy Quartz Site
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 푸시될 때마다 작동
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build Quartz
+        run: |
+          # 1. Quartz 엔진 가상 설치
+          npx quartz create --strategy link
+          
+          # 2. 기존 샘플 삭제 및 dist 내용 주입
+          rm -rf content/*
+          cp -r dist/* content/ 
+          
+          # 3. 빌드 실행
+          npx quartz build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
