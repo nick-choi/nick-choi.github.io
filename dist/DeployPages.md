@@ -26,6 +26,19 @@ function convertWikiLinks(text)
   return text
 end
 
+-- URL을 찾아 마크다운 링크 [URL](URL)로 변환하는 함수
+function linkify(text)
+  -- 이미 마크다운 링크 안에 있거나, 이미지 링크인 경우를 제외하고
+  -- http/https로 시작하는 URL만 찾아 치환합니다.
+  -- 패턴: (공백 또는 줄바꿈)(http...)
+  local urlPattern = "([^%[%(!])(https?://[%w-_%.%?%/%+=&#%%]+)"
+  
+  -- URL을 [URL](URL) 형태로 변경
+  local linkedText = text:gsub(urlPattern, "%1[%2](%2)")
+  
+  return linkedText
+end
+
 --  제거 (원하면 주석 처리)
 function cleanup(text)
   text = string.gsub(text, "#%w+", "")
@@ -80,6 +93,7 @@ function runDeploy()
         -- 2. 본문 읽기
         local content = space.readPage(name)
         local newContent = convertAliasLinks(content)
+        newContent = linkify(newContent)
         newContent = convertWikiLinks(newContent)
         newContent = cleanup(newContent)
   

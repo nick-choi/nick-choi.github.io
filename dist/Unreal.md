@@ -1,6 +1,6 @@
 ## 2026-04-14 새로운 공부
 ### How to Create a Souls-Like Game in Unreal Engine 5 
-* URL : https://www.youtube.com/watch?v=Hs2sM7eFf6Q
+* URL : [https://www.youtube.com/watch?v=Hs2sM7eFf6Q](https://www.youtube.com/watch?v=Hs2sM7eFf6Q)
 
 #### 공부 과정
 * udemy에서 기초 공부는 하고 보는게 따라가기 쉽다
