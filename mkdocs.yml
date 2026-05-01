@@ -1,17 +1,53 @@
-site_name: Nick's Digital Garden
+site_name: My Documentation
+site_description: Silverbullet-inspired MkDocs Documentation
+
 theme:
-  name: material
-  language: ko  # 한국어 검색 지원
-  features: []      
+  name: mkdocs
+  custom_dir: mkdocs-theme
+  language: en
 
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
+docs_dir: dist
 
+# Extra CSS
 extra_css:
-  - extra.css
+  - css/base.css
+
+# Extra JavaScript (optional)
+# extra_javascript: []
+
+# Markdown Extensions
+markdown_extensions:
+  - meta
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - codehilite
+  - fenced_code
+  - md_in_html
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+
+# Navigation (Update with your actual content structure)
+nav:
+  - Home: index.md
+
+# Repo information (optional)
+# repo_url: https://github.com/your-username/your-repo
+# repo_name: your-repo
+
+# Site URL (Update when deploying)
+site_url: https://nick-choi.github.io/
+
+# Use strict mode
+strict: false
+
+# Plugins
+plugins:
+  - search

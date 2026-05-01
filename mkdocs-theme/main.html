@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+    
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+    
+    {% if config.site_description %}
+    <meta name="description" content="{{ config.site_description }}">
+    {% endif %}
+    
+    <link rel="stylesheet" href="{{ base_url }}/css/base.css">
+    {% for css_file in config.extra_css %}
+    <link rel="stylesheet" href="{{ base_url }}/{{ css_file }}">
+    {% endfor %}
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Breadcrumb / Current Page -->
+                        <div class="sb-page-prefix">
+                            {% if page.edit_url %}
+                            <a href="{{ page.edit_url }}" class="sb-edit-link" title="Edit this page">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </a>
+                            {% endif %}
+                            {% if page.file.src_path %}
+                            {{ page.file.src_path }}
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            {% if page.title %}
+                            <h1 class="page-title">{{ page.title }}</h1>
+                            {% endif %}
+                        </span>
+                        
+                        <!-- Top Actions -->
+                        <div class="sb-actions">
+                            {% if config.repo_url %}
+                            <a href="{{ config.repo_url }}" class="action-button" title="View on {{ config.repo_name | default('Repository') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-1.02-2.44l2.58-2.58A3.37 3.37 0 0 0 20 9.24V5a2 2 0 0 0-2-2h-3.28a2 2 0 0 0-2 2v.5"></path>
+                                    <circle cx="7" cy="17" r="1"></circle>
+                                </svg>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    {% if page.toc %}
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    {% for item in page.toc %}
+                                    <li>
+                                        <a href="#{{ item.id }}" class="sb-toc-link">{{ item.title }}</a>
+                                        {% if item.children %}
+                                        <ul>
+                                            {% for child in item.children %}
+                                            <li>
+                                                <a href="#{{ child.id }}" class="sb-toc-link">{{ child.title }}</a>
+                                                {% if child.children %}
+                                                <ul>
+                                                    {% for grandchild in child.children %}
+                                                    <li>
+                                                        <a href="#{{ grandchild.id }}" class="sb-toc-link">{{ grandchild.title }}</a>
+                                                    </li>
+                                                    {% endfor %}
+                                                </ul>
+                                                {% endif %}
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    {% endif %}
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        {% if page.title %}
+                        <h1>{{ page.title }}</h1>
+                        {% endif %}
+                        {{ page.content }}
+                    </article>
+
+                    <!-- Navigation Links -->
+                    <nav class="sb-page-nav">
+                        {% if page.previous_page %}
+                        <a href="{{ page.previous_page.url }}" class="nav-prev">
+                            <span class="nav-arrow">←</span>
+                            <span class="nav-label">{{ page.previous_page.title }}</span>
+                        </a>
+                        {% endif %}
+                        {% if page.next_page %}
+                        <a href="{{ page.next_page.url }}" class="nav-next">
+                            <span class="nav-label">{{ page.next_page.title }}</span>
+                            <span class="nav-arrow">→</span>
+                        </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for js_file in config.extra_javascript %}
+    <script src="{{ base_url }}/{{ js_file }}"></script>
+    {% endfor %}
+</body>
+</html>
