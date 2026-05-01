@@ -1,65 +1,137 @@
-/* ===== 모든 UI 제거 ===== */
+/* ===== 완전 다크 팔레트 ===== */
+:root {
+  --bg: #000000;
+  --surface: #0f1115;
+  --text: #f1f5f9;
+  --muted: #9aa0a6;
+  --border: #1f2937;
+  --accent: #4f8cff;
+  --code-bg: #111827;
+}
 
+/* ===== 전체 배경 ===== */
 body {
-  background: #000;
+  background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, sans-serif;
 }
 
-/* 상단 헤더 */
-.md-header {
-  display: none;
-}
-
-/* 좌측 사이드바 */
-.md-sidebar--primary {
-  display: none;
-}
-
-/* 우측 목차 */
-.md-sidebar--secondary {
-  display: none;
-}
-
-/* 검색 */
+/* ===== 상단/사이드/푸터 제거 ===== */
+.md-header,
+.md-sidebar,
+.md-footer,
 .md-search {
-  display: none;
+  display: none !important;
 }
 
-/* 푸터 */
-.md-footer {
-  display: none;
-}
-
-/* ===== 레이아웃 중앙 정렬 ===== */
-
+/* ===== 레이아웃 ===== */
 .md-main__inner {
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 3rem 1.5rem;
 }
 
-/* grid 제한 해제 */
 .md-grid {
   max-width: 100%;
 }
 
-/* ===== 본문 스타일 (미니멀) ===== */
-
+/* ===== 본문 ===== */
 .md-typeset {
+  color: var(--text);
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
-/* 제목 */
+/* ===== 제목 ===== */
 .md-typeset h1 {
-  font-size: 2.4em;
+  font-size: 2.2em;
   font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
 }
-/* 링크 */
+
+.md-typeset h2 {
+  font-size: 1.5em;
+  margin-top: 1.4em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3em;
+}
+
+.md-typeset h3 {
+  font-size: 1.2em;
+  margin-top: 1.2em;
+}
+
+/* ===== 문단 ===== */
+.md-typeset p {
+  margin: 0.8em 0;
+}
+
+/* ===== 링크 ===== */
 .md-typeset a {
+  color: var(--accent);
   text-decoration: none;
 }
 
 .md-typeset a:hover {
   text-decoration: underline;
+}
+
+/* ===== 리스트 ===== */
+.md-typeset ul,
+.md-typeset ol {
+  padding-left: 1.4em;
+}
+
+/* ===== 코드 ===== */
+.md-typeset code {
+  background: var(--code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* ===== 코드 블럭 ===== */
+.md-typeset pre {
+  background: var(--code-bg);
+  border-radius: 10px;
+  padding: 1em;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+/* ===== 인용문 ===== */
+.md-typeset blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1em;
+  color: var(--muted);
+  margin: 1em 0;
+}
+
+/* ===== 테이블 ===== */
+.md-typeset table {
+  border-collapse: collapse;
+}
+
+.md-typeset th,
+.md-typeset td {
+  border: 1px solid var(--border);
+  padding: 0.6em;
+}
+
+/* ===== 이미지 ===== */
+.md-typeset img {
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+/* ===== 스크롤바 (선택) ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
 }
 
