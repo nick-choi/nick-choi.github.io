@@ -25,14 +25,20 @@ jobs:
 
       - name: Build Quartz
         run: |
-          # 1. Quartz 엔진 가상 설치
-          npx quartz create --strategy link
+          # 1. Quartz 소스 코드를 가상 서버의 임시 폴더로 가져오기
+          git clone https://github.com/jackyzha0/quartz.git tmp-quartz
           
-          # 2. 기존 샘플 삭제 및 dist 내용 주입
+          # 2. 필요한 파일들을 현재 루트로 이동 (force copy)
+          cp -r tmp-quartz/* .
+          
+          # 3. 의존성 설치 (가장 확실한 방법)
+          npm install
+          
+          # 4. 기존 샘플 삭제 및 우리가 보낸 dist 내용 주입
           rm -rf content/*
-          cp -r dist/* content/ 
+          cp -r dist/* content/
           
-          # 3. 빌드 실행
+          # 5. 빌드 실행 (설치된 로컬 실행 파일 사용)
           npx quartz build
 
       - name: Upload artifact
