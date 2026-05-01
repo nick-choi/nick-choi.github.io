@@ -1,8 +1,135 @@
-/* docs/extra.css */
-[data-md-color-scheme="slate"] {
-  --md-default-bg-color: #000000;           /* 전체 배경색을 완전 블랙으로 */
-  --md-default-bg-color--light: #121212;    /* 보조 배경색 */
-  --md-code-bg-color: #1a1a1a;              /* 코드 블록 배경 */
-  --md-typeset-color: #ffffff;              /* 본문 텍스트를 완전 화이트로 */
-  --md-typeset-a-color: #ff9100;            /* 링크를 고대비 오렌지로 */
+/* ===== 전체 톤 (미니멀 & 차분) ===== */
+:root {
+  --sb-bg: #ffffff;
+  --sb-text: #1e1e1e;
+  --sb-muted: #6b7280;
+  --sb-border: #e5e7eb;
+  --sb-accent: #3b82f6;
+  --sb-code-bg: #f6f8fa;
 }
+
+/* 배경 & 기본 텍스트 */
+.md-main {
+  background: var(--sb-bg);
+}
+
+.md-typeset {
+  color: var(--sb-text);
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 760px;   /* 핵심: 중앙 좁은 컬럼 */
+  margin: 0 auto;
+}
+
+/* ===== 헤딩 ===== */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h1 {
+  font-size: 2em;
+  margin-top: 1.6em;
+}
+
+.md-typeset h2 {
+  font-size: 1.5em;
+  margin-top: 1.4em;
+  border-bottom: 1px solid var(--sb-border);
+  padding-bottom: 0.3em;
+}
+
+.md-typeset h3 {
+  font-size: 1.2em;
+  margin-top: 1.2em;
+}
+
+/* ===== 문단 ===== */
+.md-typeset p {
+  margin: 0.8em 0;
+}
+
+/* ===== 링크 ===== */
+.md-typeset a {
+  color: var(--sb-accent);
+  text-decoration: none;
+}
+
+.md-typeset a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 리스트 ===== */
+.md-typeset ul,
+.md-typeset ol {
+  padding-left: 1.4em;
+}
+
+.md-typeset li {
+  margin: 0.3em 0;
+}
+
+/* ===== 코드 (inline) ===== */
+.md-typeset code {
+  background: var(--sb-code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* ===== 코드 블럭 ===== */
+.md-typeset pre {
+  background: var(--sb-code-bg);
+  border-radius: 10px;
+  padding: 1em;
+  overflow-x: auto;
+  border: 1px solid var(--sb-border);
+}
+
+/* ===== 인용문 ===== */
+.md-typeset blockquote {
+  border-left: 3px solid var(--sb-border);
+  padding-left: 1em;
+  color: var(--sb-muted);
+  margin: 1em 0;
+}
+
+/* ===== 테이블 ===== */
+.md-typeset table {
+  border-collapse: collapse;
+}
+
+.md-typeset th,
+.md-typeset td {
+  border: 1px solid var(--sb-border);
+  padding: 0.6em;
+}
+
+/* ===== 사이드바 줄이기 (핵심 느낌) ===== */
+.md-sidebar {
+  width: 260px;
+}
+
+.md-sidebar__inner {
+  font-size: 14px;
+}
+
+/* ===== 상단 바 최소화 ===== */
+.md-header {
+  box-shadow: none;
+  border-bottom: 1px solid var(--sb-border);
+}
+
+/* ===== 불필요한 강조 제거 ===== */
+.md-typeset strong {
+  font-weight: 600;
+}
+
+/* ===== 이미지 ===== */
+.md-typeset img {
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
