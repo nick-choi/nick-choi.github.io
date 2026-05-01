@@ -4,11 +4,6 @@ theme:
   language: ko  # 한국어 검색 지원
   palette:
     - scheme: slate  # 이게 바로 Deep Dark (Slate) 모드입니다
-      primary: black
-      accent: blue
-    - scheme: default # 라이트 모드 (선택 가능)
-      primary: white
-      accent: blue
   features:
     - navigation.tabs
     - navigation.sections
