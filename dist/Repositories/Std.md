@@ -1,8 +1,6 @@
-#meta/repository
-
+/repository
 Here are a few vetted libraries to get you started.
-
-```#meta/library/remote
+```/library/remote
 name: Git
 description: Rudamentary Git integration into SilverBullet
 author: Zef Hemel
