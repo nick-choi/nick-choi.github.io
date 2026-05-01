@@ -1,7 +1,7 @@
 /* ===== 모든 UI 제거 ===== */
 
 body {
-  background: #fff;
+  background: #000;
 }
 
 /* 상단 헤더 */
@@ -32,7 +32,7 @@ body {
 /* ===== 레이아웃 중앙 정렬 ===== */
 
 .md-main__inner {
-  max-width: 720px;
+  max-width: 640px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
@@ -51,10 +51,9 @@ body {
 
 /* 제목 */
 .md-typeset h1 {
-  font-size: 2em;
-  margin-bottom: 1rem;
+  font-size: 2.4em;
+  font-weight: 700;
 }
-
 /* 링크 */
 .md-typeset a {
   text-decoration: none;
