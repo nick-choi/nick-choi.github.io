@@ -1,153 +1,66 @@
-/* ===== 다크 컬러 팔레트 ===== */
-:root {
-  --sb-bg: #0f1115;
-  --sb-surface: #151821;
-  --sb-text: #e6e8eb;
-  --sb-muted: #9aa0a6;
-  --sb-border: #2a2f3a;
-  --sb-accent: #4f8cff;
-  --sb-code-bg: #1a1f29;
+/* ===== 모든 UI 제거 ===== */
+
+body {
+  background: #fff;
 }
 
-/* ===== 배경 ===== */
-.md-main {
-  background: var(--sb-bg);
+/* 상단 헤더 */
+.md-header {
+  display: none;
 }
 
-.md-content {
-  background: var(--sb-bg);
+/* 좌측 사이드바 */
+.md-sidebar--primary {
+  display: none;
 }
 
-/* ===== 본문 ===== */
-.md-typeset {
-  color: var(--sb-text);
-  font-size: 16px;
-  line-height: 1.75;
-  max-width: 760px;
+/* 우측 목차 */
+.md-sidebar--secondary {
+  display: none;
+}
+
+/* 검색 */
+.md-search {
+  display: none;
+}
+
+/* 푸터 */
+.md-footer {
+  display: none;
+}
+
+/* ===== 레이아웃 중앙 정렬 ===== */
+
+.md-main__inner {
+  max-width: 720px;
   margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-/* ===== 헤딩 ===== */
-.md-typeset h1,
-.md-typeset h2,
-.md-typeset h3 {
-  color: var(--sb-text);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+/* grid 제한 해제 */
+.md-grid {
+  max-width: 100%;
 }
 
-.md-typeset h2 {
-  border-bottom: 1px solid var(--sb-border);
+/* ===== 본문 스타일 (미니멀) ===== */
+
+.md-typeset {
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-/* ===== 문단 ===== */
-.md-typeset p {
-  color: var(--sb-text);
+/* 제목 */
+.md-typeset h1 {
+  font-size: 2em;
+  margin-bottom: 1rem;
 }
 
-/* ===== 링크 ===== */
+/* 링크 */
 .md-typeset a {
-  color: var(--sb-accent);
   text-decoration: none;
 }
 
 .md-typeset a:hover {
   text-decoration: underline;
-}
-
-/* ===== 리스트 ===== */
-.md-typeset li {
-  color: var(--sb-text);
-}
-
-/* ===== 인라인 코드 ===== */
-.md-typeset code {
-  background: var(--sb-code-bg);
-  color: #d1d5db;
-  padding: 0.2em 0.4em;
-  border-radius: 6px;
-}
-
-/* ===== 코드 블럭 ===== */
-.md-typeset pre {
-  background: var(--sb-code-bg);
-  border-radius: 10px;
-  padding: 1em;
-  border: 1px solid var(--sb-border);
-}
-
-/* ===== 인용문 ===== */
-.md-typeset blockquote {
-  border-left: 3px solid var(--sb-border);
-  color: var(--sb-muted);
-}
-
-/* ===== 테이블 ===== */
-.md-typeset table {
-  border-collapse: collapse;
-}
-
-.md-typeset th,
-.md-typeset td {
-  border: 1px solid var(--sb-border);
-}
-
-/* ===== 사이드바 ===== */
-.md-sidebar {
-  background: var(--sb-surface);
-}
-
-.md-sidebar__inner {
-  font-size: 14px;
-}
-
-/* ===== 사이드바 링크 ===== */
-.md-nav__link {
-  color: var(--sb-muted);
-}
-
-.md-nav__link--active {
-  color: var(--sb-text);
-}
-
-/* ===== 헤더 ===== */
-.md-header {
-  background: var(--sb-surface);
-  box-shadow: none;
-  border-bottom: 1px solid var(--sb-border);
-}
-
-/* ===== 검색창 ===== */
-.md-search__form {
-  background: var(--sb-code-bg);
-}
-
-/* ===== strong ===== */
-.md-typeset strong {
-  color: var(--sb-text);
-}
-
-/* ===== 이미지 ===== */
-.md-typeset img {
-  border-radius: 8px;
-}
-
-/* ===== 스크롤바 (선택, mac 느낌) ===== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2a2f3a;
-  border-radius: 4px;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, sans-serif;
-}
-
-.md-grid {
-  max-width: 900px;
 }
 

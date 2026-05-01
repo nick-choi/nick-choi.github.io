@@ -1,6 +1,7 @@
 ## 2026-04-14 새로운 공부
 ### How to Create a Souls-Like Game in Unreal Engine 5 
 * URL : https://www.youtube.com/watch?v=Hs2sM7eFf6Q
+
 #### 공부 과정
 * udemy에서 기초 공부는 하고 보는게 따라가기 쉽다
 * 2026-04-14
@@ -32,6 +33,7 @@
   * AnimNotifyState
     * Begin Sword Trace / End Sword Trace
     * Animation Montage 의 각 Combo에 맞게 BP_Notify_Damage 적용
+
 * 2026-04-19
   * ApplyDamage
     * Unreal 자체에 있는 ApplyDamage 함수 호출
@@ -39,6 +41,7 @@
   * Dodge
     * Use Controller Desired Rotation 시에는 키 입력 방향에 따라 구르는 방향의 애니메이션을 재생(W-Forward,A-Left,S-Backward,D-Rgith)
     * 그 외에는 항상 Forward 재생
+
 * 2026-04-20
   * Enemy AI : Sense Component를 이용해서 시야 내를 감지하고 다가와사 근처이면 공격
     * Blackboard
@@ -56,13 +59,16 @@
 * 2026-04-22
   * 드디어 mannequin Mesh를 사용하지 않고 asset을 통해서 Warrior mesh 사용!
   * 보스는 Grux 사용
+
 * 2026-04-24
   * Boss의 Primary Attack이 씹히는 버그 수정하기 위해 롤백하고 동영상 강의 보면서 다시 정리.
     * Primary Attack Montage의 DefaultGroup.DefaultSlot 으로 설정필요
+
 * 2026-04-25
   * Audio 적용
+
 | 구분 | 역할 | 비유 |
-| ---- | ---- | ---- |
+|----|----|----|
 | Meta Sound | 오디오계의 블루프린트 | 프로그래밍 가능한 악기 |
 | Sound Cue | 전통적인 사운드 조립 도구 | 레고 블록 조립 |
 | Sound Attenuation | 거리 및 공간감 설정 | 스피커 배치와 볼륨 조절 |

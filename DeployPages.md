@@ -36,60 +36,6 @@ function cleanup(text)
   return text
 end
 
--- 테이블 보정
-function fixTables(text)
-  local lines = {}
-
-  for line in string.gmatch(text, "[^\n]+") do
-    -- 한 줄에 여러 |----| 구조가 있는 경우 감지
-    if string.match(line, "|.*|.*|") and string.match(line, "|%-") then
-      local cells = {}
-
-      -- | 기준으로 셀 추출
-      for cell in string.gmatch(line, "|([^|]+)") do
-        table.insert(cells, cell)
-      end
-
-      -- 최소 3개 이상이면 테이블로 판단
-      if #cells >= 3 then
-        local rowLength = 3  -- 기본 3열 (필요하면 동적으로 개선 가능)
-
-        local rebuilt = {}
-        local rowIndex = 1
-
-        for i = 1, #cells, rowLength do
-          local row = {}
-
-          for j = i, math.min(i + rowLength - 1, #cells) do
-            table.insert(row, cells[j])
-          end
-
-          local rowText = "| " .. table.concat(row, " | ") .. " |"
-
-          -- 두 번째 줄은 separator로 처리
-          if rowIndex == 2 then
-            rowText = "|"
-            for _ = 1, #row do
-              rowText = rowText .. "------|"
-            end
-          end
-
-          table.insert(rebuilt, rowText)
-          rowIndex = rowIndex + 1
-        end
-
-        table.insert(lines, table.concat(rebuilt, "\n"))
-      else
-        table.insert(lines, line)
-      end
-    else
-      table.insert(lines, line)
-    end
-  end
-
-  return table.concat(lines, "\n")
-end
-
 
 function runDeploy()
     -- 0 clean up old dist files
@@ -124,7 +70,6 @@ function runDeploy()
         local newContent = convertAliasLinks(content)
         newContent = convertWikiLinks(newContent)
         newContent = cleanup(newContent)
-        newContent = fixTables(newContent)
   
         if newContent then
             -- 3. 배포용 경로 설정 (예: 'dist/파일명')

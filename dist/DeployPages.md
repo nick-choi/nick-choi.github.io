@@ -6,6 +6,7 @@ function slugify(name)
   s = string.gsub(s, "[^%w%-/]", "")    -- 특수문자 제거 (/, - 제외)
   return s
 end
+
 -- [Alias](page.md) 처리
 function convertAliasLinks(text)
   text = string.gsub(text, "%[%[([^%]|]+)|([^%]]+)%]%]", function(target, alias)
@@ -14,63 +15,27 @@ function convertAliasLinks(text)
   end)
   return text
 end
+
 -- [Page](Page.md) 처리
 function convertWikiLinks(text)
   -- [Page](Page.md) → [Page](Page.md)
   text = string.gsub(text, "%[%[([^%]]+)%]%]", function(link)
     return "[" .. link .. "](" .. link .. ".md)"
   end)
+
   return text
 end
+
 --  제거 (원하면 주석 처리)
 function cleanup(text)
   text = string.gsub(text, "#%w+", "")
+
   -- 불필요한 공백 정리
   text = string.gsub(text, "\n%s*\n%s*\n+", "\n\n")
+
   return text
 end
--- 테이블 보정
-function fixTables(text)
-  local lines = {}
-  for line in string.gmatch(text, "[^\n]+") do
-    -- 한 줄에 여러 |----| 구조가 있는 경우 감지
-    if string.match(line, "|.*|.*|") and string.match(line, "|%-") then
-      local cells = {}
-      -- | 기준으로 셀 추출
-      for cell in string.gmatch(line, "|([^|]+)") do
-        table.insert(cells, cell)
-      end
-      -- 최소 3개 이상이면 테이블로 판단
-      if  >= 3 then
-        local rowLength = 3  -- 기본 3열 (필요하면 동적으로 개선 가능)
-        local rebuilt = {}
-        local rowIndex = 1
-        for i = 1, , rowLength do
-          local row = {}
-          for j = i, math.min(i + rowLength - 1, ) do
-            table.insert(row, cells[j])
-          end
-          local rowText = "| " .. table.concat(row, " | ") .. " |"
-          -- 두 번째 줄은 separator로 처리
-          if rowIndex == 2 then
-            rowText = "|"
-            for _ = 1,  do
-              rowText = rowText .. "------|"
-            end
-          end
-          table.insert(rebuilt, rowText)
-          rowIndex = rowIndex + 1
-        end
-        table.insert(lines, table.concat(rebuilt, "\n"))
-      else
-        table.insert(lines, line)
-      end
-    else
-      table.insert(lines, line)
-    end
-  end
-  return table.concat(lines, "\n")
-end
+
 function runDeploy()
     -- 0 clean up old dist files
     local oldDistFiles = query[
@@ -117,7 +82,6 @@ function runDeploy()
         local newContent = convertAliasLinks(content)
         newContent = convertWikiLinks(newContent)
         newContent = cleanup(newContent)
-        newContent = fixTables(newContent)
   
         if newContent then
             -- 3. 배포용 경로 설정 (예: 'dist/파일명')
@@ -134,6 +98,7 @@ function runDeploy()
     
     editor.flashNotification(count .. "개의 파일이 dist/ 폴더로 복사되었습니다.", "info")
 end
+
 command.define {
     name = "Custom: Deploy to Dist",
     run = runDeploy
