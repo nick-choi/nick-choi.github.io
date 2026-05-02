@@ -95,78 +95,66 @@
 <h4 id="_1">공부 과정<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li>udemy에서 기초 공부는 하고 보는게 따라가기 쉽다</li>
-<li>2026-04-14</li>
 <li>
-<p><strong>BlendSpace</strong></p>
+<p>2026-04-14</p>
 <ul>
+<li><strong>BlendSpace</strong></li>
 <li>StrafeMovement</li>
-<li>다크소울처럼 좌우키 움직였을 때 정면바라보면서 좌우로 이동. 회전X</li>
-</ul>
+<li>
+<p>다크소울처럼 좌우키 움직였을 때 정면바라보면서 좌우로 이동. 회전X</p>
 </li>
 <li>
 <p><strong>CharacterMovement</strong></p>
-<ul>
+</li>
 <li>Orient Rotation to Movement : 캐릭터가 이동하고 있는 방향을 향해 몸을 자동으로 돌리는 설정</li>
-<li>Use Controller Desired Rotation : 캐릭터가 카메라가 바라보는 방향을 향해 몸을 맞추는 설정</li>
-</ul>
+<li>
+<p>Use Controller Desired Rotation : 캐릭터가 카메라가 바라보는 방향을 향해 몸을 맞추는 설정</p>
 </li>
 <li>
 <p><strong>BPC_Combat</strong></p>
-<ul>
+</li>
 <li>LockOn</li>
 </ul>
 </li>
 <li>
 <p>2026-04-17</p>
-</li>
-<li>
-<p><strong>WBP_TargetLock</strong> - <strong>Spawn Actor</strong></p>
 <ul>
+<li><strong>WBP_TargetLock</strong> - <strong>Spawn Actor</strong></li>
 <li>LockOn - UI 표시</li>
 </ul>
 </li>
 <li>
 <p>2026-04-18</p>
-</li>
-<li>Animation Montage - Combo 애니메이션 관리<ul>
+<ul>
+<li>Animation Montage - Combo 애니메이션 관리</li>
 <li>섹션(Sections) 관리</li>
 <li>하나의 몽타주를 여러 구역(예: 시작, 루프, 끝)으로 나누어, 특정 조건에 따라 특정 섹션으로 즉시 이동하거나 반복 재생할 수 있습니다.</li>
-<li>슬롯(Slots) 기반 재생</li>
-<li>애니메이션 블루프린트(AnimBP) 내에 '슬롯' 노드를 배치해두면, 몽타주가 실행될 때 현재 재생 중인 기본 애니메이션(걷기, 대기 등) 위에 몽타주 애니메이션을 <strong>덮어씌워(Override)</strong> 보여줍니다.</li>
+<li>슬롯(Slots) 기반 재생
+니다.</li>
 <li>애니메이션 통지(Anim Notifies)</li>
 <li>애니메이션 도중에 소리를 내거나, 파티클을 소환하거나, 공격 판정을 켜고 끄는 이벤트를 특정 프레임에 정확히 배치할 수 있습니다.</li>
 <li>루트 모션(Root Motion) 지원</li>
 <li>애니메이션의 움직임값이 실제 캐릭터의 좌표(Capsule Component)에 반영되도록 설정할 수 있어, 공격 시 앞으로 전진하는 등의 자연스러운 움직임을 구현할 때 필수적입니다.</li>
-</ul>
-</li>
-<li>
-<p>AnimNotifyState</p>
-<ul>
+<li>AnimNotifyState</li>
 <li>Begin Sword Trace / End Sword Trace</li>
 <li>Animation Montage 의 각 Combo에 맞게 BP_Notify_Damage 적용</li>
 </ul>
 </li>
 <li>
 <p>2026-04-19</p>
-</li>
-<li>ApplyDamage<ul>
+<ul>
+<li>ApplyDamage</li>
 <li>Unreal 자체에 있는 ApplyDamage 함수 호출</li>
 <li>계속 Damage가 들어가기 때문에 Do Once -&gt; Apply Damage -&gt; Delay -&gt; Reset 처리</li>
-</ul>
-</li>
-<li>
-<p>Dodge</p>
-<ul>
+<li>Dodge</li>
 <li>Use Controller Desired Rotation 시에는 키 입력 방향에 따라 구르는 방향의 애니메이션을 재생(W-Forward,A-Left,S-Backward,D-Rgith)</li>
 <li>그 외에는 항상 Forward 재생</li>
 </ul>
 </li>
 <li>
 <p>2026-04-20</p>
-</li>
-<li>
-<p>Enemy AI : Sense Component를 이용해서 시야 내를 감지하고 다가와사 근처이면 공격</p>
 <ul>
+<li>Enemy AI : Sense Component를 이용해서 시야 내를 감지하고 다가와사 근처이면 공격</li>
 <li>Blackboard</li>
 <li>Behavior Tree : Idle -&gt; Trace, Attack</li>
 <li>Task</li>
@@ -174,10 +162,8 @@
 </li>
 <li>
 <p>2026-04-21</p>
-</li>
-<li>
-<p>Boss AI : Enemy AI를 상속받아서 Boss AI 작성하기</p>
 <ul>
+<li>Boss AI : Enemy AI를 상속받아서 Boss AI 작성하기</li>
 <li>04-20에 진행했던 작업을 상속받아서 BP 만들기</li>
 <li>BP_Enemy -&gt; BP_Boss</li>
 <li>BP_AI_Enemy -&gt; BP_AI_Boss</li>
@@ -187,24 +173,24 @@
 </li>
 <li>
 <p>2026-04-22</p>
-</li>
+<ul>
 <li>드디어 mannequin Mesh를 사용하지 않고 asset을 통해서 Warrior mesh 사용!</li>
-<li>
-<p>보스는 Grux 사용</p>
+<li>보스는 Grux 사용</li>
+</ul>
 </li>
 <li>
 <p>2026-04-24</p>
-</li>
-<li>
-<p>Boss의 Primary Attack이 씹히는 버그 수정하기 위해 롤백하고 동영상 강의 보면서 다시 정리.</p>
 <ul>
+<li>Boss의 Primary Attack이 씹히는 버그 수정하기 위해 롤백하고 동영상 강의 보면서 다시 정리.</li>
 <li>Primary Attack Montage의 DefaultGroup.DefaultSlot 으로 설정필요</li>
 </ul>
 </li>
 <li>
 <p>2026-04-25</p>
-</li>
+<ul>
 <li>Audio 적용</li>
+</ul>
+</li>
 </ul>
 <table>
 <thead>
@@ -216,9 +202,9 @@
 </thead>
 <tbody>
 <tr>
-<td>Meta Sound</td>
-<td>오디오계의 블루프린트</td>
-<td>프로그래밍 가능한 악기</td>
+<td>가능한 악기</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>Sound Cue</td>
@@ -233,8 +219,10 @@
 </tbody>
 </table>
 <ul>
-<li>2026-04-29</li>
+<li>2026-04-29<ul>
 <li>Stamina</li>
+</ul>
+</li>
 </ul>
                     </article>
 
