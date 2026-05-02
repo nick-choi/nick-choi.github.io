@@ -100,45 +100,63 @@
                         <h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
 <h2 id="_1">실행<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>컨테이너 안의 명령어 실행하기
-  <code>docker exec -it [ContainerId] /bin/sh</code></li>
+<li>컨테이너 안의 명령어 실행하기<blockquote>
+<p>docker exec -it &lt;컨테이너 id&gt; /bin/sh</p>
+</blockquote>
+</li>
 </ul>
 <h2 id="_2">컨테이너 삭제<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>동작중인 컨테이너들 확인하기
-  <code>docker ps</code></p>
+<p>동작중인 컨테이너들 확인하기</p>
+<blockquote>
+<p>docker ps</p>
+</blockquote>
 </li>
 <li>
-<p>정지된 컨테이너들 확인하기
-  <code>docker ps -a</code></p>
+<p>정지된 컨테이너들 확인하기</p>
+<blockquote>
+<p>docker ps -a</p>
+</blockquote>
 </li>
 <li>
-<p>컨테이너 중단하기
-  <code>docker stop [컨테이너 id]</code></p>
+<p>컨테이너 중단하기</p>
+<blockquote>
+<p>docker stop &lt;컨테이너 id&gt;</p>
+</blockquote>
 </li>
 <li>
-<p>컨테이너 삭제
-  <code>docker rm [컨테이너 id]</code></p>
+<p>컨테이너 삭제</p>
+<blockquote>
+<p>docker rm &lt;컨테이너 id&gt;</p>
+</blockquote>
 </li>
 <li>
-<p>컨테이너 모두 삭제
-  <code>docker rm `docker ps -a -q`</code></p>
+<p>컨테이너 모두 삭제</p>
+<blockquote>
+<p>docker rm `docker ps -a -q`</p>
+</blockquote>
 </li>
 </ul>
 <h2 id="_3">이미지 삭제<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>이미지들 확인하기
-  <code>docker images</code></p>
+<p>이미지들 확인하기</p>
+<blockquote>
+<p>docker images</p>
+</blockquote>
 </li>
 <li>
-<p>이미지 삭제하기
-  <code>docker rmi [이미지 id]</code></p>
+<p>이미지 삭제하기</p>
+<blockquote>
+<p>docker rmi &lt;이미지 id&gt;</p>
+</blockquote>
 </li>
 <li>
-<p>컨테이너와 이미지 같이 삭제
-  <code>docker rmi -f [이미지 id]</code></p>
+<p>컨테이너와 이미지 같이 삭제</p>
+<blockquote>
+<p>docker rmi -f &lt;이미지 id&gt;</p>
+</blockquote>
 </li>
 </ul>
                     </article>
