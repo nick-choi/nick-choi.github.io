@@ -638,7 +638,6 @@ img {
   gap: var(--sb-spacing-lg);
   margin-top: var(--sb-spacing-xl);
   padding-top: var(--sb-spacing-xl);
-  border-top: 1px solid var(--sb-border-color);
 }
 
 .nav-prev, .nav-next {
