@@ -7,7 +7,28 @@ function slugify(name)
   return s
 end
 
--- [Alias](page.md) 처리
+function fixNestedListIndentation(text)
+  local lines = {}
+  
+  -- 텍스트를 한 줄씩 순회합니다.
+  for line in string.gmatch(text .. "\n", "([^\r\n]*)\n") do
+    -- 줄의 시작이 정확히 공백 2개와 별표(  *)인 패턴을 감지
+    -- 패턴 설명: ^(줄 시작) %s%s(공백 2개) %*%s+(별표와 그 뒤 공백들)
+    local match = string.match(line, "^  %*%s+(.+)")
+    
+    if match then
+      -- 공백 4개 + 별표 형태로 변환하여 삽입
+      table.insert(lines, "    * " .. match)
+    else
+      -- 그 외의 일반 줄이나 상위 목록은 그대로 유지
+      table.insert(lines, line)
+    end
+  end
+  
+  return table.concat(lines, "\n")
+end
+
+-- [Page|Alias](Page|Alias.md) 처리
 function convertAliasLinks(text)
   text = string.gsub(text, "%[%[([^%]|]+)|([^%]]+)%]%]", function(target, alias)
     local link = slugify(target)
@@ -93,6 +114,7 @@ function runDeploy()
         -- 2. 본문 읽기
         local content = space.readPage(name)
         local newContent = convertAliasLinks(content)
+        newContent = fixNestedListIndentation(content)
         newContent = linkify(newContent)
         newContent = convertWikiLinks(newContent)
         newContent = cleanup(newContent)
