@@ -14,7 +14,8 @@
 * 작업된 문서들 중 정적인 페이지로 deploy할 수 있게 스크립트 작성
         * [DeployPages](DeployPages.md) 참고
         * 전체 Pages에서 배포되면 안되는 것들을 제외하고 dist 폴더에 새로 write한다.
-        * tags 가 private 등등
+        * tags가 private인지 dist 디텍토리 안에 존재하는지 등등 예외처리
+        
 ```
         where not table.includes(p.tags, "private")
           and not p.name:startsWith("Library/")
@@ -25,6 +26,7 @@
 ```
 
 * deploy 하면 디렉토리 구조가 요롷게 된다.
+
 ```
 silverbullet
 └── space
@@ -41,6 +43,7 @@ silverbullet
 ### 2. github workflow를 이용해서 deploy시 mkdocs로 빌드하여 github.io로 배포하기
 * mkdocs를 이용해서 github.io 에 이쁘게 나오게 하기
         * 로컬 /space/mkdocs.yml에 생성하기
+    
 ```yaml
 site_name: Nick's Digital Garden
 theme:
@@ -67,6 +70,7 @@ markdown_extensions:
 ```
 
 * github workflow 에서 push 될때마다 mkdocs를 build하고 배포하는 deploy.yml 추가    
+
 ```yaml
 name: Deploy MkDocs Site
 on:
@@ -116,6 +120,7 @@ jobs:
 * 그래서 SilverBullet의 첫번째 페이지를 그냥 정적인 파일로 저장한 다음, vscode에서 ai의 도움을 받아 mkdocs의 기본 theme에 다가 SilverBullet의 css를 얻게 변경하였다.
 
 * mkdos-theme 이 적용된 디렉토리 구조
+
 ```text
 silverbullet
 └── space
@@ -131,6 +136,7 @@ silverbullet
 ```
 
 * 임의로 수정된 mkdocs.yml
+
   ```yaml
   site_name : nickchoi pages
   site_description: Silverbullet-inspired MkDocs Documentation
@@ -178,6 +184,7 @@ silverbullet
 
 * 마지막으로 workflows/deploy.yml 정리
         * 이전의 docs로 파일복사하는 step 삭제함으로써 배포가 더 빨라짐
+    
 ```yaml
   name: Deploy MkDocs Site
   on:
