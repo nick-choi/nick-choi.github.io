@@ -127,8 +127,8 @@ function runDeploy()
 
     -- 5. SilverBullet의 Git: Sync 또는 Git: Push 명령어 실행
     -- command.invoke를 사용하여 실버불렛 내장 명령어를 호출합니다.
-    system.invokeCommand("Git: Snapshot") -- git add & commit 역할
-    system.invokeCommand("Git: Sync")     -- git pull & push 역할
+    editor.invokeCommand("Git: Snapshot") -- git add & commit 역할
+    editor.invokeCommand("Git: Sync")     -- git pull & push 역할
   
     editor.flashNotification("빌드 및 Git Push 완료!")  
 end
