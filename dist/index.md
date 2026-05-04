@@ -18,9 +18,8 @@
 ## [Unreal](Unreal.md)
 * 취미 생활로 Action RPG 만들기
 
-## [Animtions](Animtions.md)
+## [Animations](Animations.md)
 * 이제는 늙어서 간간히 보는 애니메이션 이야기
 
 ## [Game](Game.md)
 * 요즘 즐기는 게임에 대한 이야기
-
