@@ -74,7 +74,6 @@ function cleanup(text)
   return text
 end
 
-
 function runDeploy()
     -- 0 clean up old dist files
     local oldDistFiles = query[[
@@ -125,6 +124,13 @@ function runDeploy()
     end
     
     editor.flashNotification(count .. "개의 파일이 dist/ 폴더로 복사되었습니다.", "info")
+
+    -- 5. SilverBullet의 Git: Sync 또는 Git: Push 명령어 실행
+    -- command.invoke를 사용하여 실버불렛 내장 명령어를 호출합니다.
+    system.invokeCommand("Git: Snapshot") -- git add & commit 역할
+    system.invokeCommand("Git: Sync")     -- git pull & push 역할
+  
+    editor.flashNotification("빌드 및 Git Push 완료!")  
 end
 
 command.define {
