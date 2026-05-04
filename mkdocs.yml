@@ -48,4 +48,3 @@ strict: false
 # Plugins
 plugins:
   - search
-  - awesome-pages
