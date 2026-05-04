@@ -128,36 +128,36 @@
 <p>작업된 문서들 중 정적인 페이지로 deploy할 수 있게 스크립트 작성
         * <a href="../DeployPages/">DeployPages</a> 참고
         * 전체 Pages에서 배포되면 안되는 것들을 제외하고 dist 폴더에 새로 write한다.
-        * tags 가 private 등등
+        * tags가 private인지 dist 디텍토리 안에 존재하는지 등등 예외처리</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code>        where not table.includes(p.tags, &quot;private&quot;)
           and not p.name:startsWith(&quot;Library/&quot;)
           and not p.name:startsWith(&quot;dist/&quot;)    
           and not p.name:startsWith(&quot;CONFIG&quot;)
           and not p.name:startsWith(&quot;SETTINGS&quot;)
           and not p.name:startsWith(&quot;_&quot;)  
-</code></pre></div></p>
-</li>
-<li>
-<p>deploy 하면 디렉토리 구조가 요롷게 된다.
+</code></pre></div>
+<ul>
+<li>deploy 하면 디렉토리 구조가 요롷게 된다.</li>
+</ul>
 <div class="highlight"><pre><span></span><code>silverbullet
 └── space
     ├── dist
     │   └── public md files...
     ├── index.md
     └── md files...
-</code></pre></div></p>
-</li>
-<li>
-<p>github 저장소에 올리기
+</code></pre></div>
+<ul>
+<li>github 저장소에 올리기
         * github.io 저장소 설정하는 방법은 웹상에 문서들이 많으니 참고해서 저장소 설정하고 위의 space 디렉토리를 기준으로 하위 모든 폴더들을 커밋,푸시한다.
-        * <strong><em>단 github.io 에 올라가면 안되는 원본 md 파일들은 .gitignore 에 반드시 추가해야 github 저장소에 공유되지 않는다.</em></strong></p>
-</li>
+        * <strong><em>단 github.io 에 올라가면 안되는 원본 md 파일들은 .gitignore 에 반드시 추가해야 github 저장소에 공유되지 않는다.</em></strong></li>
 </ul>
 <h3 id="2-github-workflow-deploy-mkdocs-githubio">2. github workflow를 이용해서 deploy시 mkdocs로 빌드하여 github.io로 배포하기<a class="headerlink" href="#2-github-workflow-deploy-mkdocs-githubio" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p>mkdocs를 이용해서 github.io 에 이쁘게 나오게 하기
-        * 로컬 /space/mkdocs.yml에 생성하기
+<li>mkdocs를 이용해서 github.io 에 이쁘게 나오게 하기
+        * 로컬 /space/mkdocs.yml에 생성하기</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nick&#39;s Digital Garden</span>
 <span class="nt">theme</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
@@ -180,10 +180,10 @@
 <span class="w">      </span><span class="nt">anchor_linenums</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.inlinehilite</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.snippets</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>github workflow 에서 push 될때마다 mkdocs를 build하고 배포하는 deploy.yml 추가  <br />
+</code></pre></div>
+<ul>
+<li>github workflow 에서 push 될때마다 mkdocs를 build하고 배포하는 deploy.yml 추가    </li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy MkDocs Site</span>
 <span class="nt">on</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">push</span><span class="p">:</span>
@@ -223,9 +223,7 @@
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 <span class="w">          </span><span class="no"># 이 명령어 한 줄로 gh-pages 브랜치에 자동으로 HTML이 빌드되어 올라갑니다.</span>
 <span class="w">          </span><span class="no">mkdocs gh-deploy --force</span>
-</code></pre></div></p>
-</li>
-</ul>
+</code></pre></div>
 <h3 id="3-silverbullet-mkdocs-custom-theme">3. SilverBullet 페이지 하나를 로컬 저장하고 mkdocs의 custom theme으로 맞추기<a class="headerlink" href="#3-silverbullet-mkdocs-custom-theme" title="Permanent link">&para;</a></h3>
 <ul>
 <li>mkdocs로 올리면 SilverBullet과는 다른 평범한 UI를 가지고 있게 된다.</li>
@@ -236,7 +234,9 @@
 <p>그래서 SilverBullet의 첫번째 페이지를 그냥 정적인 파일로 저장한 다음, vscode에서 ai의 도움을 받아 mkdocs의 기본 theme에 다가 SilverBullet의 css를 얻게 변경하였다.</p>
 </li>
 <li>
-<p>mkdos-theme 이 적용된 디렉토리 구조
+<p>mkdos-theme 이 적용된 디렉토리 구조</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code>silverbullet
 └── space
     ├── dist
@@ -248,11 +248,11 @@
     │   └── main.html
     ├── mkdocs.yml
     └── md files...
-</code></pre></div></p>
-</li>
-<li>
-<p>임의로 수정된 mkdocs.yml
-  <div class="highlight"><pre><span></span><code><span class="nt">site_name </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nickchoi pages</span>
+</code></pre></div>
+<ul>
+<li>임의로 수정된 mkdocs.yml</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">site_name </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nickchoi pages</span>
 <span class="nt">site_description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Silverbullet-inspired MkDocs Documentation</span>
 
 <span class="nt">theme</span><span class="p">:</span>
@@ -294,11 +294,11 @@
 <span class="c1"># Plugins</span>
 <span class="nt">plugins</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>마지막으로 workflows/deploy.yml 정리
-        * 이전의 docs로 파일복사하는 step 삭제함으로써 배포가 더 빨라짐
+</code></pre></div>
+<ul>
+<li>마지막으로 workflows/deploy.yml 정리
+        * 이전의 docs로 파일복사하는 step 삭제함으로써 배포가 더 빨라짐</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy MkDocs Site</span>
 <span class="w">  </span><span class="nt">on</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">push</span><span class="p">:</span>
@@ -330,9 +330,7 @@
 <span class="w">            </span><span class="no"># mkdocs-theme 폴더가 루트에 그대로 있으므로</span>
 <span class="w">            </span><span class="no"># mkdocs.yml의 &#39;custom_dir: mkdocs-theme/&#39;를 통해 자동으로 참조하여 빌드합니다.</span>
 <span class="w">            </span><span class="no">mkdocs gh-deploy --force</span>
-</code></pre></div></p>
-</li>
-</ul>
+</code></pre></div>
 <h3 id="4">4. 그 외 개선 필요한 사항들<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> History 기능 - 네비게이션이 불편함. 그러나 mkdocs의 네비는 심플하지 않아서 고민중.</li>
