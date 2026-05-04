@@ -18,9 +18,8 @@
 ## [[Unreal]]
 * 취미 생활로 Action RPG 만들기
 
-## [[Animtions]]
+## [[Animations]]
 * 이제는 늙어서 간간히 보는 애니메이션 이야기
 
 ## [[Game]]
 * 요즘 즐기는 게임에 대한 이야기
-
