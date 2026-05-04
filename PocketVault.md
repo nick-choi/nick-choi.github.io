@@ -213,7 +213,8 @@ silverbullet
 ```
 
 ### 4. 그 외 개선 필요한 사항들
-[ ] History 기능 - 네비게이션이 불편함. 그러나 mkdocs의 네비는 심플하지 않아서 고민중.
-[ ] Private 저장소에 따로 올리는 기능. github.io 의 저장소는 public이야되는 조건 때문에 2중 관리가 필요
-[ ] tags에 private 이 있으면 .gitignore에 자동으로 추가되는 기능
+* [ ] History 기능 - 네비게이션이 불편함. 그러나 mkdocs의 네비는 심플하지 않아서 고민중.
+* [ ] Private 저장소에 따로 올리는 기능. github.io 의 저장소는 public이야되는 조건 때문에 2중 관리가 필요
+* [ ] tags에 private 이 있으면 .gitignore에 자동으로 추가되는 기능
+* [ ] SilverBullet의 마크다운과 기존 마크다운의 다를 때 예외처리
 
