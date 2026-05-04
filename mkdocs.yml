@@ -12,9 +12,6 @@ docs_dir: dist
 extra_css:
   - css/base.css
 
-# Extra JavaScript (optional)
-# extra_javascript: []
-
 # Markdown Extensions
 markdown_extensions:
   - meta
@@ -35,8 +32,8 @@ markdown_extensions:
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
 
 # Navigation (Update with your actual content structure)
-nav:
-  - Home: index.md
+# nav:
+#   - index: index.md
 
 # Repo information (optional)
 # repo_url: https://github.com/your-username/your-repo
@@ -51,3 +48,4 @@ strict: false
 # Plugins
 plugins:
   - search
+  - awesome-pages
