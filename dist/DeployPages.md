@@ -11,22 +11,21 @@ function fixThreeLevelList(text)
   local lines = {}
   
   for line in string.gmatch(text .. "\n", "([^\r\n]*)\n") do
-    -- 1. 먼저 가장 깊은 '3단계(공백 4개)'를 찾아서 '공백 8개'로 치환
-    local level3_match = string.match(line, "^    %*%s+(.+)")
+    local processed = line
     
-    if level3_match then
-      table.insert(lines, "        * " .. level3_match)
-    else
-      -- 2. 그 다음 '2단계(공백 2개)'를 찾아서 '공백 4개'로 치환
-      local level2_match = string.match(line, "^  %*%s+(.+)")
-      
-      if level2_match then
-        table.insert(lines, "    * " .. level2_match)
-      else
-        -- 3. 1단계(상위)나 일반 문장은 그대로 유지
-        table.insert(lines, line)
-      end
+    -- [핵심] 패턴 매칭 시 앞에 공백이 "더 있거나 덜 있지 않은" 정확한 상태를 체크해야 합니다.
+    
+    -- 1. 레벨 3 처리: 정확히 공백 4칸인 것만 찾아서 8칸으로 (이미 8칸인 건 패스)
+    if string.match(processed, "^    %* ") then
+        processed = string.gsub(processed, "^    %*", "        *")
+        
+    -- 2. 레벨 2 처리: 정확히 공백 2칸인 것만 찾아서 4칸으로 (이미 4칸인 건 패스)
+    -- 패턴 설명: ^(시작) + 공백2개 + (세번째 칸은 공백이 아니어야 함: [^ ])
+    elseif string.match(processed, "^  [^ ]") and string.match(processed, "^  %* ") then
+        processed = string.gsub(processed, "^  %*", "    *")
     end
+    
+    table.insert(lines, processed)
   end
   
   return table.concat(lines, "\n")
