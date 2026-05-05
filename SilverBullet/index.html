@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+
+    <title>
+        
+        SilverBullet
+        
+    </title>
+
+    
+    <meta name="description" content="Silverbullet-inspired MkDocs Documentation">
+    
+
+    <link rel="stylesheet" href="../css/base.css">
+    
+    <link rel="stylesheet" href="../css/base.css">
+    
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            
+                            <h1 class="page-title">SilverBullet</h1>
+                            
+                        </span>
+
+                        <!-- Top Actions -->
+                        <div class="sb-actions">    
+                            <button type="button" title="Go to the index page" onclick="location.href='/' ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    
+                                    <li>
+                                        <a href="#silverbullet" class="sb-toc-link">SilverBullet으로 생성된 문서들 정적인 페이지로 배포하기</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-spacelua-deploy-github" class="sb-toc-link">1. SpaceLua를 이용해서 Deploy 기능 만들고 github 저장소에 올리기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-github-workflow-deploy-mkdocs-githubio" class="sb-toc-link">2. github workflow를 이용해서 deploy시 mkdocs로 빌드하여 github.io로 배포하기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-silverbullet-mkdocs-custom-theme" class="sb-toc-link">3. SilverBullet 페이지 하나를 로컬 저장하고 mkdocs의 custom theme으로 맞추기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4" class="sb-toc-link">4. 그 외 개선 필요한 사항들</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        <!-- Breadcrumb Navigation -->
+                        <h2 id="silverbullet">SilverBullet으로 생성된 문서들 정적인 페이지로 배포하기<a class="headerlink" href="#silverbullet" title="Permanent link">&para;</a></h2>
+<ul>
+<li>홈서버에서 기록용으로 silverbullet을 도입하려고 하는데, 심플한 UI가 마음에 들어서 외부에 정적페이지로 공유되면 좋겠다 생각으로 시작하게 되었다.</li>
+<li>2026-05-01 작업시작</li>
+</ul>
+<h3 id="1-spacelua-deploy-github">1. SpaceLua를 이용해서 Deploy 기능 만들고 github 저장소에 올리기<a class="headerlink" href="#1-spacelua-deploy-github" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>SpaceLua란?
+        * SilverBullet 환경 내에서 실행되며, 문서 관리 및 자동화 작업을 처리하기 위해 설계된 경량 스크립팅 언어
+        * 즉 스크립트를 작성해서 실행할 수 있다. 내부 스크립트로 문서를 내보내고, git 작업까지 일괄처리했다.</p>
+</li>
+<li>
+<p>작업된 문서들 중 정적인 페이지로 deploy할 수 있게 스크립트 작성
+        * <a href="../DeployPages/">DeployPages</a> 참고
+        * 전체 Pages에서 배포되면 안되는 것들을 제외하고 dist 폴더에 새로 write한다.
+        * tags가 private인지 dist 디텍토리 안에 존재하는지 등등 예외처리</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>        where not table.includes(p.tags, &quot;private&quot;)
+          and not p.name:startsWith(&quot;Library/&quot;)
+          and not p.name:startsWith(&quot;dist/&quot;)    
+          and not p.name:startsWith(&quot;CONFIG&quot;)
+          and not p.name:startsWith(&quot;SETTINGS&quot;)
+          and not p.name:startsWith(&quot;_&quot;)  
+</code></pre></div>
+<ul>
+<li>deploy 하면 디렉토리 구조가 요롷게 된다.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>silverbullet
+└── space
+    ├── dist
+    │   └── public md files...
+    ├── index.md
+    └── md files...
+</code></pre></div>
+<ul>
+<li>github 저장소에 올리기
+        * github.io 저장소 설정하는 방법은 웹상에 문서들이 많으니 참고해서 저장소 설정하고 위의 space 디렉토리를 기준으로 하위 모든 폴더들을 커밋,푸시한다.
+        * <strong><em>단 github.io 에 올라가면 안되는 원본 md 파일들은 .gitignore 에 반드시 추가해야 github 저장소에 공유되지 않는다.</em></strong></li>
+</ul>
+<h3 id="2-github-workflow-deploy-mkdocs-githubio">2. github workflow를 이용해서 deploy시 mkdocs로 빌드하여 github.io로 배포하기<a class="headerlink" href="#2-github-workflow-deploy-mkdocs-githubio" title="Permanent link">&para;</a></h3>
+<ul>
+<li>mkdocs를 이용해서 github.io 에 이쁘게 나오게 하기
+        * 로컬 /space/mkdocs.yml에 생성하기</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nick&#39;s Digital Garden</span>
+<span class="nt">theme</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
+<span class="w">  </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ko</span><span class="w">  </span><span class="c1"># 한국어 검색 지원</span>
+<span class="w">  </span><span class="nt">palette</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slate</span><span class="w">  </span><span class="c1"># 이게 바로 Deep Dark (Slate) 모드입니다</span>
+<span class="w">      </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">black</span>
+<span class="w">      </span><span class="nt">accent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">blue</span>
+<span class="w">  </span><span class="nt">features</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.tabs</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.sections</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search.suggest</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search.highlight</span>
+
+<span class="nt">markdown_extensions</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.highlight</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">anchor_linenums</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.inlinehilite</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.snippets</span>
+</code></pre></div>
+<ul>
+<li>github workflow 에서 push 될때마다 mkdocs를 build하고 배포하는 deploy.yml 추가    </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy MkDocs Site</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+
+<span class="nt">permissions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Python</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.x&#39;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install MkDocs and Material Theme</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">pip install mkdocs-material</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prepare Docs Folder</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no"># MkDocs는 기본적으로 docs/ 폴더를 바라봅니다.</span>
+<span class="w">          </span><span class="no"># 실버불렛이 만든 dist/ 폴더를 docs/로 이름을 바꿉니다.</span>
+<span class="w">          </span><span class="no">mkdir -p docs</span>
+<span class="w">          </span><span class="no">cp -r dist/* docs/</span>
+<span class="w">          </span><span class="no"># 만약 index.md가 없다면 첫 페이지 에러가 나므로 확인</span>
+<span class="w">          </span><span class="no">[ -f docs/index.md ] || echo &quot;# Welcome&quot; &gt; docs/index.md</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to GitHub Pages</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no"># 이 명령어 한 줄로 gh-pages 브랜치에 자동으로 HTML이 빌드되어 올라갑니다.</span>
+<span class="w">          </span><span class="no">mkdocs gh-deploy --force</span>
+</code></pre></div>
+<h3 id="3-silverbullet-mkdocs-custom-theme">3. SilverBullet 페이지 하나를 로컬 저장하고 mkdocs의 custom theme으로 맞추기<a class="headerlink" href="#3-silverbullet-mkdocs-custom-theme" title="Permanent link">&para;</a></h3>
+<ul>
+<li>mkdocs로 올리면 SilverBullet과는 다른 평범한 UI를 가지고 있게 된다.</li>
+<li>
+<p>즉, SilverBullet의 간결한 UI 맛이 없어서 gemini, chatGPT로 확인해보니 SilverBullet 자체의 랜더링이라 mkdocs 에서 맞게하기 어렵다고 한다.</p>
+</li>
+<li>
+<p>그래서 SilverBullet의 첫번째 페이지를 그냥 정적인 파일로 저장한 다음, vscode에서 ai의 도움을 받아 mkdocs의 기본 theme에 다가 SilverBullet의 css를 얻게 변경하였다.</p>
+</li>
+<li>
+<p>mkdos-theme 이 적용된 디렉토리 구조</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>silverbullet
+└── space
+    ├── dist
+    │   └── public files...
+    ├── mkdocs-theme #추가된 theme 
+    │   ├── css
+    │   │   └── base.css
+    │   ├── js
+    │   └── main.html
+    ├── mkdocs.yml
+    └── md files...
+</code></pre></div>
+<ul>
+<li>임의로 수정된 mkdocs.yml</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">site_name </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nickchoi pages</span>
+<span class="nt">site_description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Silverbullet-inspired MkDocs Documentation</span>
+
+<span class="nt">theme</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs</span>
+<span class="w">  </span><span class="nt">custom_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs-theme</span>
+<span class="w">  </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">en</span>
+
+<span class="nt">docs_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist</span><span class="w"> </span><span class="c1">#처음부터 dist로 지정하여 나중 배포시 docs로 복사 단계를 없앰</span>
+
+<span class="c1"># Extra CSS</span>
+<span class="nt">extra_css</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">css/base.css</span>
+
+<span class="c1"># Markdown Extensions</span>
+<span class="nt">markdown_extensions</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meta</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tables</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toc</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">toc_depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codehilite</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fenced_code</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">md_in_html</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attr_list</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.highlight</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.tasklist</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">custom_checkbox</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.emoji</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">emoji_index</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/name:pymdownx.emoji.twemoji</span>
+<span class="w">    </span><span class="nt">emoji_generator</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/name:pymdownx.emoji.to_svg</span>
+
+<span class="c1"># Site URL (Update when deploying)</span>
+<span class="nt">site_url</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">https</span><span class="p p-Indicator">:</span><span class="nv">//nick-choi.github.io/</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">(https://nick-choi.github.io/)</span>
+
+<span class="c1"># Use strict mode</span>
+<span class="nt">strict</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="c1"># Plugins</span>
+<span class="nt">plugins</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search</span>
+</code></pre></div>
+<ul>
+<li>마지막으로 workflows/deploy.yml 정리
+        * 이전의 docs로 파일복사하는 step 삭제함으로써 배포가 더 빨라짐</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy MkDocs Site</span>
+<span class="w">  </span><span class="nt">on</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+
+<span class="w">  </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+
+<span class="w">  </span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">      </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">          </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Python</span>
+<span class="w">          </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">          </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.x&#39;</span>
+
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install MkDocs and Material Theme</span>
+<span class="w">          </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">pip install mkdocs-material</span>
+
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to GitHub Pages</span>
+<span class="w">          </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no"># mkdocs-theme 폴더가 루트에 그대로 있으므로</span>
+<span class="w">            </span><span class="no"># mkdocs.yml의 &#39;custom_dir: mkdocs-theme/&#39;를 통해 자동으로 참조하여 빌드합니다.</span>
+<span class="w">            </span><span class="no">mkdocs gh-deploy --force</span>
+</code></pre></div>
+<h3 id="4">4. 그 외 개선 필요한 사항들<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> History 기능 - 네비게이션이 불편함. 그러나 mkdocs의 네비는 심플하지 않아서 고민중.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Private 저장소에 따로 올리는 기능. github.io 의 저장소는 public이야되는 조건 때문에 2중 관리가 필요</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> tags에 private 이 있으면 .gitignore에 자동으로 추가되는 기능</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> SilverBullet의 마크다운과 기존 마크다운의 다를 때 예외처리</li>
+</ul>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../search/main.js"></script>
+    
+</body>
+</html>
