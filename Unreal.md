@@ -74,4 +74,10 @@
 | Sound Attenuation | 거리 및 공간감 설정 | 스피커 배치와 볼륨 조절 |
     
 * 2026-04-29
-  * Stamina
+  * Stamina 작업
+    * Tick에서는 기본적으로 증가
+    * dodge, attack, combo에서는 증가를 멈추고 일정량 감소시킴
+    * Stamina가 일정량이 되지않으면 dodge, atack, combo가 실행되지 않음
+      
+* 2026-05-04
+  * Inventory Slot UI 작업 시작
