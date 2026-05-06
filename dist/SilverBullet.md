@@ -4,11 +4,11 @@
 
 ### 1. SpaceLua를 이용해서 Deploy 기능 만들고 github 저장소에 올리기
 * SpaceLua란?
-        * SilverBullet 환경 내에서 실행되며, 문서 관리 및 자동화 작업을 처리하기 위해 설계된 경량 스크립팅 언어
-        * 즉 스크립트를 작성해서 실행할 수 있다. 내부 스크립트로 문서를 내보내고, git 작업까지 일괄처리했다.
+    * SilverBullet 환경 내에서 실행되며, 문서 관리 및 자동화 작업을 처리하기 위해 설계된 경량 스크립팅 언어
+    * 즉 스크립트를 작성해서 실행할 수 있다. 내부 스크립트로 문서를 내보내고, git 작업까지 일괄처리했다.
   
 * 작업된 문서들 중 정적인 페이지로 deploy할 수 있게 스크립트 작성
-        * [DeployPages](DeployPages.md) 참고
+    * [DeployPages](DeployPages.md) 참고
         * 전체 Pages에서 배포되면 안되는 것들을 제외하고 dist 폴더에 새로 write한다.
         * tags가 private인지 dist 디텍토리 안에 존재하는지 등등 예외처리
         
@@ -33,12 +33,12 @@ silverbullet
 ```
 
 * github 저장소에 올리기
-        * github.io 저장소 설정하는 방법은 웹상에 문서들이 많으니 참고해서 저장소 설정하고 위의 space 디렉토리를 기준으로 하위 모든 폴더들을 커밋,푸시한다.
-        * **_단 github.io 에 올라가면 안되는 원본 md 파일들은 .gitignore 에 반드시 추가해야 github 저장소에 공유되지 않는다._**
+    * github.io 저장소 설정하는 방법은 웹상에 문서들이 많으니 참고해서 저장소 설정하고 위의 space 디렉토리를 기준으로 하위 모든 폴더들을 커밋,푸시한다.
+    * **_단 github.io 에 올라가면 안되는 원본 md 파일들은 .gitignore 에 반드시 추가해야 github 저장소에 공유되지 않는다._**
       
 ### 2. github workflow를 이용해서 deploy시 mkdocs로 빌드하여 github.io로 배포하기
 * mkdocs를 이용해서 github.io 에 이쁘게 나오게 하기
-        * 로컬 /space/mkdocs.yml에 생성하기
+    * 로컬 /space/mkdocs.yml에 생성하기
     
 ```yaml
 site_name: Nick's Digital Garden
@@ -179,7 +179,7 @@ silverbullet
   ```
 
 * 마지막으로 workflows/deploy.yml 정리
-        * 이전의 docs로 파일복사하는 step 삭제함으로써 배포가 더 빨라짐
+    * 이전의 docs로 파일복사하는 step 삭제함으로써 배포가 더 빨라짐
     
 ```yaml
   name: Deploy MkDocs Site

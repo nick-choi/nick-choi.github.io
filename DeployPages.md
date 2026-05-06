@@ -104,7 +104,7 @@ function runDeploy()
         -- 2. 본문 읽기
         local content = space.readPage(name)
         local newContent = convertAliasLinks(content)
-        newContent = fixThreeLevelList(content)
+        -- newContent = fixThreeLevelList(content)
         newContent = linkify(newContent)
         newContent = convertWikiLinks(newContent)
         newContent = cleanup(newContent)

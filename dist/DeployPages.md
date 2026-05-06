@@ -31,7 +31,7 @@ function fixThreeLevelList(text)
   return table.concat(lines, "\n")
 end
 
--- [Page|Alias](Page|Alias.md) 처리
+-- [Alias](page.md) 처리
 function convertAliasLinks(text)
   text = string.gsub(text, "%[%[([^%]|]+)|([^%]]+)%]%]", function(target, alias)
     local link = slugify(target)
@@ -117,7 +117,7 @@ function runDeploy()
         -- 2. 본문 읽기
         local content = space.readPage(name)
         local newContent = convertAliasLinks(content)
-        newContent = fixThreeLevelList(content)
+        -- newContent = fixThreeLevelList(content)
         newContent = linkify(newContent)
         newContent = convertWikiLinks(newContent)
         newContent = cleanup(newContent)

@@ -24,10 +24,13 @@
 * Animation Montage - Combo 애니메이션 관리
     * 섹션(Sections) 관리
         * 하나의 몽타주를 여러 구역(예: 시작, 루프, 끝)으로 나누어, 특정 조건에 따라 특정 섹션으로 즉시 이동하거나 반복 재생할 수 있습니다.
+        
     * 슬롯(Slots) 기반 재생
         * 애니메이션 블루프린트(AnimBP) 내에 '슬롯' 노드를 배치해두면, 몽타주가 실행될 때 현재 재생 중인 기본 애니메이션(걷기, 대기 등) 위에 몽타주 애니메이션을 **덮어씌워(Override)** 보여줍니다.
+        
     * 애니메이션 통지(Anim Notifies)
         * 애니메이션 도중에 소리를 내거나, 파티클을 소환하거나, 공격 판정을 켜고 끄는 이벤트를 특정 프레임에 정확히 배치할 수 있습니다.
+        
     * 루트 모션(Root Motion) 지원
         * 애니메이션의 움직임값이 실제 캐릭터의 좌표(Capsule Component)에 반영되도록 설정할 수 있어, 공격 시 앞으로 전진하는 등의 자연스러운 움직임을 구현할 때 필수적입니다.
 
@@ -85,7 +88,7 @@
     * 힐포션, 단검 Icon (512x512)
     * WB_InventorySlots UI 작업
 
-### 2026-05-05
+## 2026-05-05
 * Inventory Slot 작업
     * Weapon
         * WB_DA_Weapon / DA_Dagger
@@ -93,3 +96,8 @@
             * DA_Dagger를 저장
             * Collider 로 Player와 충돌 판정(interface로 체크)
             * 충돌 판정되면 Player와 UI 에 세팅 작업
+    * Heal
+        * IA_Heal
+        * Heal_Montage
+            * notify를 받아서 CharacterMovement Component의 max walk speed를 Heal 처리시에는 0, 완료 혹은 중단시에는 다시 원래대로 처리
+            * BPC_Stats에 Increase Value로 Health 증가
