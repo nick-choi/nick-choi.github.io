@@ -127,13 +127,10 @@
                                             <li>
                                                 <a href="#2026-05-04" class="sb-toc-link">2026-05-04</a>
                                                 
-                                                <ul>
-                                                    
-                                                    <li>
-                                                        <a href="#2026-05-05" class="sb-toc-link">2026-05-05</a>
-                                                    </li>
-                                                    
-                                                </ul>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2026-05-05" class="sb-toc-link">2026-05-05</a>
                                                 
                                             </li>
                                             
@@ -159,68 +156,108 @@
 <h2 id="2026-04-14_1">2026-04-14<a class="headerlink" href="#2026-04-14_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><strong>BlendSpace</strong>
-        * StrafeMovement
-        * 다크소울처럼 좌우키 움직였을 때 정면바라보면서 좌우로 이동. 회전X</p>
+<p><strong>BlendSpace</strong></p>
+<ul>
+<li>StrafeMovement</li>
+<li>다크소울처럼 좌우키 움직였을 때 정면바라보면서 좌우로 이동. 회전X</li>
+</ul>
 </li>
 <li>
-<p><strong>CharacterMovement</strong>
-        * Orient Rotation to Movement : 캐릭터가 이동하고 있는 방향을 향해 몸을 자동으로 돌리는 설정
-        * Use Controller Desired Rotation : 캐릭터가 카메라가 바라보는 방향을 향해 몸을 맞추는 설정</p>
+<p><strong>CharacterMovement</strong></p>
+<ul>
+<li>Orient Rotation to Movement : 캐릭터가 이동하고 있는 방향을 향해 몸을 자동으로 돌리는 설정</li>
+<li>Use Controller Desired Rotation : 캐릭터가 카메라가 바라보는 방향을 향해 몸을 맞추는 설정</li>
+</ul>
 </li>
 <li>
-<p><strong>BPC_Combat</strong>
-        * LockOn</p>
+<p><strong>BPC_Combat</strong></p>
+<ul>
+<li>LockOn</li>
+</ul>
 </li>
 </ul>
 <h2 id="2026-04-17">2026-04-17<a class="headerlink" href="#2026-04-17" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>WBP_TargetLock</strong> - <strong>Spawn Actor</strong>
-        * LockOn - UI 표시</li>
+<li><strong>WBP_TargetLock</strong> - <strong>Spawn Actor</strong><ul>
+<li>LockOn - UI 표시</li>
+</ul>
+</li>
 </ul>
 <h2 id="2026-04-18">2026-04-18<a class="headerlink" href="#2026-04-18" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>Animation Montage - Combo 애니메이션 관리
-        * 섹션(Sections) 관리
-        * 하나의 몽타주를 여러 구역(예: 시작, 루프, 끝)으로 나누어, 특정 조건에 따라 특정 섹션으로 즉시 이동하거나 반복 재생할 수 있습니다.
-        * 슬롯(Slots) 기반 재생
-니다.
-        * 애니메이션 통지(Anim Notifies)
-        * 애니메이션 도중에 소리를 내거나, 파티클을 소환하거나, 공격 판정을 켜고 끄는 이벤트를 특정 프레임에 정확히 배치할 수 있습니다.
-        * 루트 모션(Root Motion) 지원
-        * 애니메이션의 움직임값이 실제 캐릭터의 좌표(Capsule Component)에 반영되도록 설정할 수 있어, 공격 시 앞으로 전진하는 등의 자연스러운 움직임을 구현할 때 필수적입니다.</p>
+<p>Animation Montage - Combo 애니메이션 관리</p>
+<ul>
+<li>
+<p>섹션(Sections) 관리</p>
+<ul>
+<li>하나의 몽타주를 여러 구역(예: 시작, 루프, 끝)으로 나누어, 특정 조건에 따라 특정 섹션으로 즉시 이동하거나 반복 재생할 수 있습니다.</li>
+</ul>
 </li>
 <li>
-<p>AnimNotifyState
-        * Begin Sword Trace / End Sword Trace
-        * Animation Montage 의 각 Combo에 맞게 BP_Notify_Damage 적용</p>
+<p>슬롯(Slots) 기반 재생</p>
+<ul>
+<li>애니메이션 블루프린트(AnimBP) 내에 '슬롯' 노드를 배치해두면, 몽타주가 실행될 때 현재 재생 중인 기본 애니메이션(걷기, 대기 등) 위에 몽타주 애니메이션을 <strong>덮어씌워(Override)</strong> 보여줍니다.</li>
+</ul>
+</li>
+<li>
+<p>애니메이션 통지(Anim Notifies)</p>
+<ul>
+<li>애니메이션 도중에 소리를 내거나, 파티클을 소환하거나, 공격 판정을 켜고 끄는 이벤트를 특정 프레임에 정확히 배치할 수 있습니다.</li>
+</ul>
+</li>
+<li>
+<p>루트 모션(Root Motion) 지원</p>
+<ul>
+<li>애니메이션의 움직임값이 실제 캐릭터의 좌표(Capsule Component)에 반영되도록 설정할 수 있어, 공격 시 앞으로 전진하는 등의 자연스러운 움직임을 구현할 때 필수적입니다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>AnimNotifyState</p>
+<ul>
+<li>Begin Sword Trace / End Sword Trace</li>
+<li>Animation Montage 의 각 Combo에 맞게 BP_Notify_Damage 적용</li>
+</ul>
 </li>
 </ul>
 <h2 id="2026-04-19">2026-04-19<a class="headerlink" href="#2026-04-19" title="Permanent link">&para;</a></h2>
 <ul>
-<li>ApplyDamage
-        * Unreal 자체에 있는 ApplyDamage 함수 호출
-        * 계속 Damage가 들어가기 때문에 Do Once -&gt; Apply Damage -&gt; Delay -&gt; Reset 처리</li>
-<li>Dodge
-        * Use Controller Desired Rotation 시에는 키 입력 방향에 따라 구르는 방향의 애니메이션을 재생(W-Forward,A-Left,S-Backward,D-Rgith)
-        * 그 외에는 항상 Forward 재생</li>
+<li>ApplyDamage<ul>
+<li>Unreal 자체에 있는 ApplyDamage 함수 호출</li>
+<li>계속 Damage가 들어가기 때문에 Do Once -&gt; Apply Damage -&gt; Delay -&gt; Reset 처리</li>
+</ul>
+</li>
+<li>Dodge<ul>
+<li>Use Controller Desired Rotation 시에는 키 입력 방향에 따라 구르는 방향의 애니메이션을 재생(W-Forward,A-Left,S-Backward,D-Rgith)</li>
+<li>그 외에는 항상 Forward 재생</li>
+</ul>
+</li>
 </ul>
 <h2 id="2026-04-20">2026-04-20<a class="headerlink" href="#2026-04-20" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Enemy AI : Sense Component를 이용해서 시야 내를 감지하고 다가와사 근처이면 공격
-        * Blackboard
-        * Behavior Tree : Idle -&gt; Trace, Attack
-        * Task</li>
+<li>Enemy AI : Sense Component를 이용해서 시야 내를 감지하고 다가와사 근처이면 공격<ul>
+<li>Blackboard</li>
+<li>Behavior Tree : Idle -&gt; Trace, Attack</li>
+<li>Task</li>
+</ul>
+</li>
 </ul>
 <h2 id="2026-04-21">2026-04-21<a class="headerlink" href="#2026-04-21" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Boss AI : Enemy AI를 상속받아서 Boss AI 작성하기
-        * 04-20에 진행했던 작업을 상속받아서 BP 만들기
-        * BP_Enemy -&gt; BP_Boss
-        * BP_AI_Enemy -&gt; BP_AI_Boss
-        * 04-20에 작업했던 Task_SwordAttack과 비슷한 Task_BigAttack을 Behavior Tree에 추가
-        * 추적 후 Sword Attack-&gt;Delay-&gt;BigAttack</li>
+<li>Boss AI : Enemy AI를 상속받아서 Boss AI 작성하기<ul>
+<li>04-20에 진행했던 작업을 상속받아서 BP 만들기<ul>
+<li>BP_Enemy -&gt; BP_Boss</li>
+<li>BP_AI_Enemy -&gt; BP_AI_Boss</li>
+</ul>
+</li>
+<li>04-20에 작업했던 Task_SwordAttack과 비슷한 Task_BigAttack을 Behavior Tree에 추가<ul>
+<li>추적 후 Sword Attack-&gt;Delay-&gt;BigAttack</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="2026-04-22">2026-04-22<a class="headerlink" href="#2026-04-22" title="Permanent link">&para;</a></h2>
 <ul>
@@ -246,9 +283,9 @@
 </thead>
 <tbody>
 <tr>
-<td>가능한 악기</td>
-<td></td>
-<td></td>
+<td>Meta Sound</td>
+<td>오디오계의 블루프린트</td>
+<td>프로그래밍 가능한 악기</td>
 </tr>
 <tr>
 <td>Sound Cue</td>
@@ -264,26 +301,45 @@
 </table>
 <h2 id="2026-04-29">2026-04-29<a class="headerlink" href="#2026-04-29" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Stamina 작업
-        * Tick에서는 기본적으로 증가
-        * dodge, attack, combo에서는 증가를 멈추고 일정량 감소시킴
-        * Stamina가 일정량이 되지않으면 dodge, atack, combo가 실행되지 않음</li>
+<li>Stamina 작업<ul>
+<li>Tick에서는 기본적으로 증가</li>
+<li>dodge, attack, combo에서는 증가를 멈추고 일정량 감소시킴</li>
+<li>Stamina가 일정량이 되지않으면 dodge, atack, combo가 실행되지 않음</li>
+</ul>
+</li>
 </ul>
 <h2 id="2026-05-04">2026-05-04<a class="headerlink" href="#2026-05-04" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Inventory Slot UI 작업 시작
-        * 힐포션, 단검 Icon (512x512)
-        * WB_InventorySlots UI 작업</li>
+<li>Inventory Slot UI 작업 시작<ul>
+<li>힐포션, 단검 Icon (512x512)</li>
+<li>WB_InventorySlots UI 작업</li>
 </ul>
-<h3 id="2026-05-05">2026-05-05<a class="headerlink" href="#2026-05-05" title="Permanent link">&para;</a></h3>
+</li>
+</ul>
+<h2 id="2026-05-05">2026-05-05<a class="headerlink" href="#2026-05-05" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Inventory Slot 작업
-        * Weapon
-        * WB_DA_Weapon / DA_Dagger
-        * WB_PickableWeapon
-            * DA_Dagger를 저장
-            * Collider 로 Player와 충돌 판정(interface로 체크)
-            * 충돌 판정되면 Player와 UI 에 세팅 작업</li>
+<li>Inventory Slot 작업<ul>
+<li>Weapon<ul>
+<li>WB_DA_Weapon / DA_Dagger</li>
+<li>WB_PickableWeapon<ul>
+<li>DA_Dagger를 저장</li>
+<li>Collider 로 Player와 충돌 판정(interface로 체크)</li>
+<li>충돌 판정되면 Player와 UI 에 세팅 작업</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Heal<ul>
+<li>IA_Heal</li>
+<li>Heal_Montage<ul>
+<li>notify를 받아서 CharacterMovement Component의 max walk speed를 Heal 처리시에는 0, 완료 혹은 중단시에는 다시 원래대로 처리</li>
+<li>BPC_Stats에 Increase Value로 Health 증가</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
                     </article>
                 </div>
