@@ -34,7 +34,15 @@
   --sb-hashtag-border: #007bff6b;
   --sb-wiki-link-bg: #a3bce712;
   --sb-wiki-link-color: #7e99fc;
-  
+  --sb-link-visited: color-mix(in srgb, var(--sb-link) 82%, var(--sb-text-primary));
+
+  /* Silverbullet editor-aligned chrome */
+  --sb-top-bg: #262626;
+  --sb-top-color: #fff;
+  --sb-ruler-color: rgb(76, 75, 75);
+  --sb-list-bullet-color: rgb(150, 150, 150);
+  --sb-selection-bg: #d7e1f630;
+
   /* Borders & Dividers */
   --sb-border-color: rgba(255, 255, 255, 0.1);
   --sb-divider-color: rgb(62, 62, 62);
@@ -77,8 +85,12 @@
     --sb-hashtag-border: #0120416b;
     --sb-wiki-link-bg: rgba(77, 141, 255, 0.07);
     --sb-wiki-link-color: #0330cb;
+    --sb-link-visited: color-mix(in srgb, var(--sb-link) 78%, #000);
+    --sb-top-bg: #e1e1e1;
+    --sb-top-color: inherit;
+    --sb-selection-bg: #d7e1f6;
     --sb-divider-color: #cacaca;
-    
+
     color-scheme: light;
   }
 }
@@ -155,7 +167,8 @@ body {
   align-items: center;
   z-index: 20;
   height: 55px;
-  background-color: #262626;
+  background-color: var(--sb-top-bg);
+  color: var(--sb-top-color);
   border-bottom: 1px solid var(--sb-divider-color);
   padding: 0 var(--sb-spacing-lg);
   flex-shrink: 0;
@@ -214,7 +227,7 @@ body {
 }
 
 #sb-top .page-title {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   color: var(--sb-text-primary);
   margin: 0;
@@ -347,10 +360,11 @@ body {
 
 /* ===== Content Area ===== */
 .sb-content {
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* ===== Typography ===== */
+/* Scale aligned with Silverbullet editor headings (#sb-main .cm-editor) */
 h1, h2, h3, h4, h5, h6 {
   color: var(--sb-heading);
   font-weight: bold;
@@ -364,18 +378,14 @@ h1 {
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 h3 {
-  font-size: 1.15em;
+  font-size: 1.1em;
 }
 
-h4 {
-  font-size: 1.05em;
-}
-
-h5, h6 {
+h4, h5, h6 {
   font-size: 1em;
 }
 
@@ -396,7 +406,7 @@ a:hover {
 }
 
 a:visited {
-  color: #9e99fc;
+  color: var(--sb-link-visited);
 }
 
 /* ===== Code ===== */
@@ -433,16 +443,16 @@ pre code {
 /* ===== Blockquotes ===== */
 blockquote {
   background-color: var(--sb-blockquote-bg);
-  border-left: 4px solid var(--sb-blockquote-border);
+  border-left: 1px solid var(--sb-blockquote-border);
   color: var(--sb-blockquote-color);
-  padding: 12px 16px;
+  padding: 8px 12px 8px 14px;
   margin: 0.5em 0;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 blockquote p {
   margin: 0.25em 0;
-  font-style: italic;
+  font-style: normal;
 }
 
 blockquote p:first-child {
@@ -468,6 +478,10 @@ ul ul, ul ol, ol ul, ol ol {
   margin-bottom: 0.25em;
 }
 
+.sb-content ul > li::marker {
+  color: var(--sb-list-bullet-color);
+}
+
 /* ===== Tables ===== */
 table {
   width: 100%;
@@ -489,7 +503,7 @@ thead tr {
 }
 
 thead td, thead th {
-  padding: 11px 12px;
+  padding: 11px 8px;
   text-align: left;
 }
 
@@ -502,7 +516,7 @@ tbody tr:nth-of-type(even) {
 }
 
 td, th {
-  padding: 8px 12px;
+  padding: 8px;
   white-space: nowrap;
 }
 
@@ -514,7 +528,7 @@ td {
 /* ===== Horizontal Rule ===== */
 hr {
   border: none;
-  border-top: 1px solid var(--sb-border-color);
+  border-top: 1px solid var(--sb-ruler-color);
   margin: 1em 0;
 }
 
@@ -533,8 +547,8 @@ img {
   color: var(--sb-hashtag-color);
   border: 1px solid var(--sb-hashtag-border);
   border-radius: 6px;
-  padding: 2px 6px;
-  margin: 0 2px;
+  padding: 0 3px;
+  margin: 0 1px 0 0;
   font-size: 0.9em;
   text-decoration: none;
 }
@@ -547,7 +561,7 @@ img {
   background-color: var(--sb-wiki-link-bg);
   color: var(--sb-wiki-link-color);
   border-radius: 5px;
-  padding: 2px 6px;
+  padding: 0 5px;
   text-decoration: none;
   transition: background-color 0.2s;
 }
@@ -573,8 +587,9 @@ img {
 
 .task-list-item input {
   margin-right: 8px;
-  width: 18px;
-  height: 18px;
+  width: 3ch;
+  height: 1em;
+  min-height: 1rem;
   vertical-align: middle;
   cursor: pointer;
 }
@@ -586,12 +601,14 @@ img {
 
 /* ===== Admonitions (Callouts) ===== */
 .admonition {
-  border-left: 4px solid #999;
   padding: 12px 16px;
   margin: 0.75em 0;
   border-radius: 4px;
   background-color: rgba(105, 105, 105, 0.05);
   border: 1px solid var(--sb-border-color);
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-left-color: #999;
 }
 
 .admonition.note {
@@ -624,9 +641,28 @@ img {
   text-transform: capitalize;
 }
 
+/* Type-tinted title bar (Silverbullet .sb-admonition-title) */
+.admonition.note .admonition-title,
+.admonition.info .admonition-title {
+  background-color: color-mix(in srgb, #00b8d4, transparent 90%);
+}
+
+.admonition.warning .admonition-title {
+  background-color: color-mix(in srgb, #ff9100, transparent 90%);
+}
+
+.admonition.danger .admonition-title,
+.admonition.error .admonition-title {
+  background-color: color-mix(in srgb, #d50000, transparent 90%);
+}
+
+.admonition.success .admonition-title {
+  background-color: color-mix(in srgb, #00c853, transparent 90%);
+}
+
 /* ===== Selection ===== */
 ::selection {
-  background-color: #d7e1f630;
+  background-color: var(--sb-selection-bg);
   color: inherit;
 }
 
@@ -720,11 +756,11 @@ img {
   }
 
   h1 {
-    font-size: 1.3em;
+    font-size: 1.35em;
   }
 
   h2 {
-    font-size: 1.15em;
+    font-size: 1.1em;
   }
 }
 
@@ -739,7 +775,7 @@ img {
   }
 
   h1 {
-    font-size: 1.15em;
+    font-size: 1.25em;
   }
 
   h2 {
