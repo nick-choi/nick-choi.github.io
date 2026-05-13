@@ -65,12 +65,36 @@
                                 <ul class="sb-toc-list">
                                     
                                     <li>
+                                        <a href="#how-to-build-a-combat-damage-system" class="sb-toc-link">How to Build a Combat Damage System</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#how-to-build-a-combat-damage-system-in-c" class="sb-toc-link">How to Build A Combat Damage System in C++</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
                                         <a href="#2026-05-11" class="sb-toc-link">2026-05-11</a>
                                         
                                     </li>
                                     
                                     <li>
                                         <a href="#2026-05-12" class="sb-toc-link">2026-05-12</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#2026-05-13" class="sb-toc-link">2026-05-13</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#blueprint-to-c" class="sb-toc-link">blueprint to C++ 참고사항</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
                                         
                                     </li>
                                     
@@ -83,12 +107,15 @@
                     <!-- Page Content -->
                     <article class="sb-content">
                         <!-- Breadcrumb Navigation -->
-                        <ul>
-<li>동영상 URL<ul>
+                        <h2 id="how-to-build-a-combat-damage-system">How to Build a Combat Damage System<a class="headerlink" href="#how-to-build-a-combat-damage-system" title="Permanent link">&para;</a></h2>
+<ul>
 <li><a href="https://www.youtube.com/watch?v=o3uFXnNxwKE">https://www.youtube.com/watch?v=o3uFXnNxwKE</a></li>
-<li><a href="https://www.youtube.com/watch?v=SxRl7he0cok">https://www.youtube.com/watch?v=SxRl7he0cok</a></li>
+<li>순수하게 Blueprint로 DamageSystem 구현</li>
 </ul>
-</li>
+<h2 id="how-to-build-a-combat-damage-system-in-c">How to Build A Combat Damage System in C++<a class="headerlink" href="#how-to-build-a-combat-damage-system-in-c" title="Permanent link">&para;</a></h2>
+<ul>
+<li>URL : <a href="https://www.youtube.com/watch?v=SxRl7he0cok">https://www.youtube.com/watch?v=SxRl7he0cok</a></li>
+<li>Blueprint로 기본 시스템 만들어본 후 Unreal C++로 변환하는 과정</li>
 </ul>
 <h2 id="2026-05-11">2026-05-11<a class="headerlink" href="#2026-05-11" title="Permanent link">&para;</a></h2>
 <ul>
@@ -99,7 +126,95 @@
 <h2 id="2026-05-12">2026-05-12<a class="headerlink" href="#2026-05-12" title="Permanent link">&para;</a></h2>
 <ul>
 <li>동영상에서 나오는 모든 로직 따라하기 끝</li>
-<li>찾아보니까 C++ 영상이 있기를 그걸 따라하는 걸로 변경</li>
+<li>찾아보니까 위 C++ 영상(How to Build A Combat Damage System in C++)이 있기를 그걸 따라하는 걸로 변경</li>
+</ul>
+<h2 id="2026-05-13">2026-05-13<a class="headerlink" href="#2026-05-13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>두 영상 시청 완료</li>
+</ul>
+<h3 id="blueprint-to-c">blueprint to C++ 참고사항<a class="headerlink" href="#blueprint-to-c" title="Permanent link">&para;</a></h3>
+<h4 id="blueprint-interface-public">Blueprint interface -&gt; public<a class="headerlink" href="#blueprint-interface-public" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>UInterface 를 상속받은 클래스와 Interface 선언 클래스가 존재
+<div class="highlight"><pre><span></span><code><span class="n">UINTERFACE</span><span class="p">()</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UTestInterface</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UInterface</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DAMAGESYSTEMTEMPLATE_API</span><span class="w"> </span><span class="n">ITestInterface</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
+<span class="w">      </span><span class="p">...</span>
+<span class="p">};</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Interface 메소드 선언시 <strong>BlueprintNativeEvent</strong> 를 반드시 넣는다.
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintNativeEvent</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">GetCurrentHealth</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintNativeEvent</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">GetMaxHealth</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Interface를 구현하는 클래스에서 메소드 선언 및 구현(원래 메소드명 + <strong>_Implementation</strong>)
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nf">GetMaxHealth_Implementation</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h4 id="delegate-blueprint-bind">delegate 생성하고 blueprint에서 bind할 때<a class="headerlink" href="#delegate-blueprint-bind" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>delegate 선언
+<div class="highlight"><pre><span></span><code><span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams</span><span class="p">(</span><span class="n">FOnHealReceived</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="n">healAmount</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">healer</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>클래스 delegate 멤버 변수 선언
+<div class="highlight"><pre><span></span><code><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintAssignable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Damage Delegates&quot;</span><span class="p">)</span>
+<span class="n">FOnHealReceived</span><span class="w"> </span><span class="n">OnHealReceived</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>클래스 내부에서 호출할 때
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="n">OnHealReceived</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">healAmount</span><span class="p">,</span><span class="w"> </span><span class="n">healer</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h4 id="delegate-c-bind">위 외부 delegate를 클래스(c++)에서 내부 메소드에 bind할 때<a class="headerlink" href="#delegate-c-bind" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>클래스 내부에서 delegate에 bind할 메소드 선언</p>
+<ul>
+<li><strong>BlueprintNativeEvent</strong>가 선언되어있으면 blueprint에서 override할 수 있다.
+<div class="highlight"><pre><span></span><code><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintNativeEvent</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RespondToHealReceived</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">healAmount</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">healer</span><span class="p">);</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>외부 delegate를 bind처리(c++)
+<div class="highlight"><pre><span></span><code><span class="n">SystemComponent</span><span class="o">-&gt;</span><span class="n">OnHealReceived</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ABaseDamageableCharacter</span><span class="o">::</span><span class="n">RespondToHealReceived</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>bind할 메소드 구현(<strong>BlueprintNativeEvent</strong>가 선언되어 있으므로 원래 메소드명 + <strong>_Implementation</strong> 으로 구현)
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">ABaseCharacter::RespondToHealReceived_Implementation</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">healAmount</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">healer</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h4 id="_1">오늘의 최종 결론<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>일단 공부는 완료했다. 따라서 만들어도 봤다.</li>
+<li>다음 스텝은 <a href="/Ali Elzoheiry/CombatFeelBetter">10 Ways to Make Combat Feel Better</a> 이 영상이다.</li>
 </ul>
                     </article>
                 </div>
