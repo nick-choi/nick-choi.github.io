@@ -1,5 +1,5 @@
 ## How to Build a Combat Damage System
-* https://www.youtube.com/watch?v=o3uFXnNxwKE
+* URL : https://www.youtube.com/watch?v=o3uFXnNxwKE
 * 순수하게 Blueprint로 DamageSystem 구현
 
 ## How to Build A Combat Damage System in C++
@@ -90,6 +90,6 @@ void ABaseCharacter::RespondToHealReceived_Implementation(float healAmount, AAct
 }
 ```
 
-#### 오늘의 최종 결론
+### 오늘의 최종 결론
 * 일단 공부는 완료했다. 따라서 만들어도 봤다.
 * 다음 스텝은 [10 Ways to Make Combat Feel Better](</Ali Elzoheiry/CombatFeelBetter>) 이 영상이다.
