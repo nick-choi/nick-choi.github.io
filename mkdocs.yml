@@ -23,6 +23,7 @@ markdown_extensions:
   - fenced_code
   - md_in_html
   - attr_list
+  - nl2br  
   - pymdownx.superfences
   - pymdownx.highlight
   - pymdownx.tasklist:
