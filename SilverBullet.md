@@ -24,12 +24,12 @@
 * deploy 하면 디렉토리 구조가 요롷게 된다.
 
 ```
-silverbullet
-└── space
-    ├── dist
-    │   └── public md files...
-    ├── index.md
-    └── md files...
+  silverbullet
+  └── space
+      ├── dist
+      │   └── public md files...
+      ├── index.md
+      └── md files...
 ```
 
 * github 저장소에 올리기
