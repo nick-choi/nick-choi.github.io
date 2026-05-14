@@ -315,7 +315,7 @@ body {
 
 /* ===== Table of Contents ===== */
 .sb-toc-wrapper {
-  margin-bottom: var(--sb-spacing-xl);
+  margin-bottom: var(--sb-spacing-md);
   padding: var(--sb-spacing-md);
   background-color: rgba(105, 105, 105, 0.05);
   border: 1px solid var(--sb-border-color);
@@ -370,44 +370,40 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--sb-heading);
   font-weight: bold;
   margin: 0;
-  padding: 2px 0;
+  /* padding: 2px 0; */
   line-height: 1.3;
 }
 
 h1 {
   font-size: 1.5em;
-  margin: 0 0 0.4em 0;
+  margin-top: var(--sb-spacing-sm);
+  margin-bottom: var(--sb-spacing-sm);
 }
 
 h2 {
   font-size: 1.2em;
-  margin: 0.9em 0 0.28em 0;
+  margin-top: var(--sb-spacing-sm);
+  margin-bottom: var(--sb-spacing-sm);
 }
 
 h3 {
   font-size: 1.1em;
-  margin: 0.8em 0 0.22em 0;
+  margin-top: var(--sb-spacing-sm);
+  margin-bottom: var(--sb-spacing-sm);
+  /* margin: 0.8em 0 0.22em 0; */
 }
 
 h4, h5, h6 {
   font-size: 1em;
-  margin: 0.72em 0 0.18em 0;
+  /* margin: 0.72em 0 0.18em 0; */
 }
 
 .sb-content > :is(h1, h2, h3, h4, h5, h6):first-child {
   margin-top: 0;
 }
 
-h1 + h2,
-h1 + h3,
-h1 + h4,
-h1 + h5,
-h1 + h6 {
-  margin-top: 0.42em;
-}
-
 p {
-  margin: 0.2em 0 0.42em 0;
+  margin: 0;
 }
 
 /* ===== Links ===== */
@@ -482,7 +478,6 @@ blockquote p:last-child {
 
 /* ===== Lists ===== */
 ul, ol {
-  margin: 0.5em 0;
   padding-left: 2em;
 }
 
@@ -491,19 +486,14 @@ li {
   margin-inline: 0;
 }
 
+.sb-content ul > li::marker {
+  color: var(--sb-list-bullet-color);
+}
+
 /* Inter-item gap; scoped to article body */
 .sb-content ul > li + li,
 .sb-content ol > li + li {
-  margin-top: 0.5em;
-}
-
-ul ul, ul ol, ol ul, ol ol {
-  margin-top: 0.12em;
-  margin-bottom: 0.12em;
-}
-
-.sb-content ul > li::marker {
-  color: var(--sb-list-bullet-color);
+  margin-bottom: var(--sb-spacing-lg);
 }
 
 /* ===== Tables ===== */
