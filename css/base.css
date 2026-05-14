@@ -305,10 +305,11 @@ body {
 }
 
 /* ===== Container ===== */
+/* Silverbullet .cm-content uses padding: 5px 20px — keep horizontal 20px, tight vertical */
 .sb-container {
   max-width: var(--sb-content-width);
   margin: 0 auto;
-  padding: var(--sb-spacing-lg) var(--sb-spacing-lg);
+  padding: 6px var(--sb-spacing-lg) 8px;
   width: 100%;
 }
 
@@ -364,33 +365,49 @@ body {
 }
 
 /* ===== Typography ===== */
-/* Scale aligned with Silverbullet editor headings (#sb-main .cm-editor) */
+/* SB editor: heading lines only have padding: 2px — no UA heading margins (margin: revert was the main gap) */
 h1, h2, h3, h4, h5, h6 {
   color: var(--sb-heading);
   font-weight: bold;
-  margin: revert;
-  padding: 2px;
+  margin: 0;
+  padding: 2px 0;
   line-height: 1.3;
 }
 
 h1 {
   font-size: 1.5em;
+  margin: 0 0 0.4em 0;
 }
 
 h2 {
   font-size: 1.2em;
+  margin: 0.9em 0 0.28em 0;
 }
 
 h3 {
   font-size: 1.1em;
+  margin: 0.8em 0 0.22em 0;
 }
 
 h4, h5, h6 {
   font-size: 1em;
+  margin: 0.72em 0 0.18em 0;
+}
+
+.sb-content > :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-top: 0;
+}
+
+h1 + h2,
+h1 + h3,
+h1 + h4,
+h1 + h5,
+h1 + h6 {
+  margin-top: 0.42em;
 }
 
 p {
-  margin: 0.25em 0 0.5em 0;
+  margin: 0.2em 0 0.42em 0;
 }
 
 /* ===== Links ===== */
@@ -470,12 +487,19 @@ ul, ol {
 }
 
 li {
-  margin: 0.25em 0;
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+/* Tighter inter-item rhythm (~10px at 18px ≈ -0.56em); scoped to article body */
+.sb-content ul > li + li,
+.sb-content ol > li + li {
+  margin-top: -0.56em;
 }
 
 ul ul, ul ol, ol ul, ol ol {
-  margin-top: 0.25em;
-  margin-bottom: 0.25em;
+  margin-top: 0.12em;
+  margin-bottom: 0.12em;
 }
 
 .sb-content ul > li::marker {
