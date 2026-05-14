@@ -494,7 +494,7 @@ li {
 /* Inter-item gap; scoped to article body */
 .sb-content ul > li + li,
 .sb-content ol > li + li {
-  margin-top: 0.75em;
+  margin-top: 0.5em;
 }
 
 ul ul, ul ol, ol ul, ol ol {
