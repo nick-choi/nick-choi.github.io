@@ -491,10 +491,10 @@ li {
   margin-inline: 0;
 }
 
-/* Tighter inter-item rhythm (~20px at 18px ≈ -1.12em); scoped to article body */
+/* Inter-item gap: 4× former 0.25em collapsed rhythm ≈ 1em; scoped to article body */
 .sb-content ul > li + li,
 .sb-content ol > li + li {
-  margin-top: -1.12em;
+  margin-top: 1em;
 }
 
 ul ul, ul ol, ol ul, ol ol {
