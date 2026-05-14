@@ -5,7 +5,7 @@
 ## How to Build A Combat Damage System in C++
 * URL : [https://www.youtube.com/watch?v=SxRl7he0cok](https://www.youtube.com/watch?v=SxRl7he0cok)
 * Blueprint로 기본 시스템 만들어본 후 Unreal C++로 변환하는 과정
-  
+
 ## 2026-05-11
 * 동영상 시청 완료.
 * Blueprint를 그대로 따라서 만들어보고, C++로 다시 변환할 예정

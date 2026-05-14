@@ -2,15 +2,15 @@
 * 서버 프로그래머
 * Unity 클라이언트 프로그래머
 * 운영 중인 홈서버
-  * devcrews.com : RockyLinux 9.7
+    * devcrews.com : RockyLinux 9.7
 * 좋아하는 운영체제
-  * mac os
-  * Linux : arch linux
+    * mac os
+    * Linux : arch linux
 
 # 기술 끄적이기
 ## [[PocketVault]]
-* 소소한 개발 기록들  
-
+* 소소한 개발 기록들
+  
 # 취미 생활
 ## [[Unreal]]
 * 취미 생활로 Action RPG 만들기
