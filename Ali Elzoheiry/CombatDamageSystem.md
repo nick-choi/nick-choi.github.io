@@ -93,3 +93,6 @@ void ABaseCharacter::RespondToHealReceived_Implementation(float healAmount, AAct
 ### 오늘의 최종 결론
 * 일단 공부는 완료했다. 따라서 만들어도 봤다.
 * 다음 스텝은 [10 Ways to Make Combat Feel Better](</Ali Elzoheiry/CombatFeelBetter>) 이 영상이다.
+
+## 2026-05-14
+
