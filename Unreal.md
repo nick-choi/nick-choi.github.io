@@ -8,6 +8,6 @@
 ### 2. Ali Elzoheiry
 * [How to Build a Combat Damage System](</Ali Elzoheiry/CombatDamageSystem>)
 * [10 Ways to Make Combat Feel Better](</Ali Elzoheiry/CombatFeelBetter>)
-* [How to Shoot Projectiles]
+* [How to Shoot Projectiles](</Ali Elzoheiry/ShootProjectile>)
 * [Smart Enemy AI](</Ali Elzoheiry/SmartEnemyAI>)
 
