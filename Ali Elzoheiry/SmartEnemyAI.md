@@ -59,3 +59,6 @@
 * **방송(Broadcast):** `OnHealthChanged` 델리게이트를 통해 상태 변화 공표.
 * **관리(Orchestrator):** `BP_Player/Enemy`가 `BeginPlay`에서 델리게이트를 바인딩하여 **중앙 집중식**으로 연출(UI, Ragdoll, FX) 제어.
 * **UI:** `Widget Component`를 사용하되, `Get User Widget Object`를 통해 캐릭터가 직접 데이터를 밀어 넣어주는 방식.
+
+## 2026-05-16
+
