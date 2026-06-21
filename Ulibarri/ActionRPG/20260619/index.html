@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+
+    <title>
+        
+        20260619
+        
+    </title>
+
+    
+    <meta name="description" content="Silverbullet-inspired MkDocs Documentation">
+    
+
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            
+                            <h1 class="page-title">20260619</h1>
+                            
+                        </span>
+
+                        <!-- Top Actions -->
+                        <div class="sb-actions">    
+                            <button type="button" title="Go to the index page" onclick="location.href='/' ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    
+                                    <li>
+                                        <a href="#trig-functions" class="sb-toc-link">Trig Functions</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-sine" class="sb-toc-link">1. 블랙박스로서의 사인(Sine) 함수</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2" class="sb-toc-link">2. 직각삼각형에서의 정의</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-unit-circle-radians" class="sb-toc-link">3. 단위원(Unit Circle)과 라디안(Radians)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-x-y" class="sb-toc-link">① 단위원에서의 좌표 (X, Y)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2-radians" class="sb-toc-link">② 새로운 각도의 단위: 라디안 (Radians)</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4-sinusoidal-motion" class="sb-toc-link">4. 주기성과 사인/코사인 그래프 (Sinusoidal Motion)</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#5" class="sb-toc-link">5. 게임 개발에서의 활용 (결론)</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#the-sine-function" class="sb-toc-link">The Sine Function</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1" class="sb-toc-link">1. 블루프린트에서 사인 함수 활용하기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#c-fmathsin" class="sb-toc-link">C++에서 FMath::Sin 사용하기</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-itemh" class="sb-toc-link">① 헤더 파일 (Item.h) 변수 선언</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2-itemcpp" class="sb-toc-link">② 소스 파일 (Item.cpp) 구현</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3" class="sb-toc-link">3. 하드코딩 탈피: 진폭과 주기(시간 상수) 변수화</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-itemh_1" class="sb-toc-link">① 헤더 파일 (Item.h)에 변수 추가 및 초기화</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2-itemcpp_1" class="sb-toc-link">② 소스 파일 (Item.cpp) 코드 수정</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#c-3" class="sb-toc-link">C++ 팁: 멤버 변수를 초기화하는 3가지 방법과 효율성</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#exposing-variables-to-blueprint" class="sb-toc-link">Exposing Variables to Blueprint</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#_1" class="sb-toc-link">핵심 요약</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#uproperty-3" class="sb-toc-link">UPROPERTY 핵심 지정자 3가지</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#default-instance" class="sb-toc-link">원본(Default)과 인스턴스(Instance)의 작동 원리</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_2" class="sb-toc-link">결론 및 장점</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#visible-but-not-editable" class="sb-toc-link">Visible But Not Editable</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#visible" class="sb-toc-link">값을 수정하면 안 될 때: Visible 지정자</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#uproperty-6" class="sb-toc-link">UPROPERTY 핵심 지정자 6종 최종 요약</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_3" class="sb-toc-link">꿀팁 및 핵심 포인트</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#exposing-variables-to-the-event-graph" class="sb-toc-link">Exposing Variables to the Event Graph</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#uproperty" class="sb-toc-link">이벤트 그래프 노출을 위한 UPROPERTY 지정자</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#category" class="sb-toc-link">변수 깔끔하게 정리하기: Category</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#c-private-meta-allowprivateaccess-true" class="sb-toc-link">C++의 비밀(Private) 유지하기: meta = (AllowPrivateAccess = "true")</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_4" class="sb-toc-link">요약 및 활용 예시 (감쇠 진동 구현)</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#exposing-funcitons-to-blueprint" class="sb-toc-link">Exposing Funcitons to Blueprint</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#c-2" class="sb-toc-link">C++ 함수를 블루프린트에 노출하는 2가지 방법</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-blueprintcallable" class="sb-toc-link">① BlueprintCallable (실행 핀이 있는 노드)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2-blueprintpure" class="sb-toc-link">② BlueprintPure (실행 핀이 없는 노드)</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#access-specifier" class="sb-toc-link">함수 접근 제한자(Access Specifier) 결정 팁</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#c-const-blueprintpure" class="sb-toc-link">C++의 예약어 const가 BlueprintPure로 자동 처리되는 원리</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_5" class="sb-toc-link">단, 이것은 주의하세요! (암시적 변환의 예외)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-const" class="sb-toc-link">1. 반환값이 없는 const 함수는?</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2-pure" class="sb-toc-link">2. 무조건 Pure 노드로 강제하고 싶다면?</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_6" class="sb-toc-link">요약 및 권장 스타일</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        <!-- Breadcrumb Navigation -->
+                        <h1 id="trig-functions">Trig Functions<a class="headerlink" href="#trig-functions" title="Permanent link">&para;</a></h1>
+<h2 id="1-sine">1. 블랙박스로서의 사인(Sine) 함수<a class="headerlink" href="#1-sine" title="Permanent link">&para;</a></h2>
+<ul>
+<li>사인 함수는 하나의 '블랙박스(입력하면 출력이 나오는 상자)'로 생각할 수 있습니다.</li>
+<li>어떤 값 <em>t</em> 를 입력(<em>sin(t)</em>)하면, 사인 함수는 특정한 계산 과정을 거쳐 그에 대응하는 결과값을 우리에게 돌려줍니다.</li>
+</ul>
+<h2 id="2">2. 직각삼각형에서의 정의<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>직각삼각형에서 하나의 예각을 '세타(<em>thetaa</em>)'라고 지정했을 때, 사인과 코사인은 다음과 같은 변의 길이의 비율(Ratio)로 정의됩니다.</p>
+<ul>
+<li><strong><em>sin(θ)</em>:</strong> 대변(Opposite, 마주보는 변) / 빗변(Hypotenuse)</li>
+<li><strong><em>cos(θ)</em>:</strong> 인접변(Adjacent, 이웃한 변) / 빗변(Hypotenuse)</li>
+</ul>
+<h2 id="3-unit-circle-radians">3. 단위원(Unit Circle)과 라디안(Radians)<a class="headerlink" href="#3-unit-circle-radians" title="Permanent link">&para;</a></h2>
+<h3 id="1-x-y">① 단위원에서의 좌표 (X, Y)<a class="headerlink" href="#1-x-y" title="Permanent link">&para;</a></h3>
+<p>반지름의 길이가 <strong>1</strong>인 원을 <strong>단위원</strong>이라고 합니다. 빗변의 길이가 1이 되므로 직각삼각형의 정의가 매우 단순해집니다.<br />
+* <em>sin(θ)</em> = 대변(Opposite)/1 = Y 좌표<br />
+* <em>cos(θ)</em> = 인접변(Adjacent)/1 = X 좌표<br />
+* 즉, 단위원 위를 움직이는 점의 <em>X</em> 좌표는 코사인 값이 되고, <em>Y</em> 좌표는 사인 값이 됩니다.</p>
+<h3 id="2-radians">② 새로운 각도의 단위: 라디안 (Radians)<a class="headerlink" href="#2-radians" title="Permanent link">&para;</a></h3>
+<ul>
+<li>단위원의 둘레는 <em>2π</em> 입니다 (둘레 = 2 x π x 반지름)</li>
+<li>
+<p>원을 한 바퀴 도는 것(360)은 단위원의 둘레인 <strong>2π 라디안</strong>과 같습니다.</p>
+<ul>
+<li>360 = 2π rad</li>
+<li>180 = π rad</li>
+<li>90 = π/2 rad</li>
+<li>45 = π/4 rad</li>
+</ul>
+</li>
+<li>
+<p>컴퓨터 언어 및 게임 엔진의 삼각함수는 대부분 '도(Degrees)'가 아닌 '라디안(Radians)'을 입력값으로 받습니다.</p>
+</li>
+</ul>
+<h2 id="4-sinusoidal-motion">4. 주기성과 사인/코사인 그래프 (Sinusoidal Motion)<a class="headerlink" href="#4-sinusoidal-motion" title="Permanent link">&para;</a></h2>
+<p>위 그래프처럼 입력값 <em>t</em> 가 증가함에 따라 두 함수는 특유의 부드러운 파동을 그리며 무한히 반복되는데, 이를 주기성(Periodicity)이라고 하며 이 패턴을 <strong>사인파(Sinusoidal) 형태</strong>라고 부릅니다.<br />
+* <strong>사인 그래프 (<em>sin(t)</em>):</strong> 0에서 시작하여 π/2(90도)일 때 최대값 1, π(180도)일 때 0, 3π/2(270도)일 때 최소값 -1을 찍고 2π(360도)에서 다시 0으로 돌아옵니다.<br />
+* <strong>코사인 그래프 (<em>cos(t)</em>):</strong> 1에서 시작하여 위와 같은 주기로 부드럽게 진동합니다.<br />
+* <strong>두 그래프의 관계:</strong> 사인과 코사인은 사실 완전히 같은 형태의 곡선입니다. 단지 코사인 그래프가 π/2(90도) 왼쪽으로 만큼 평행 이동(Shift)해 있을 뿐입니다.</p>
+<h2 id="5">5. 게임 개발에서의 활용 (결론)<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>게임이 실행되면 매 프레임마다 경과 시간(Delta Time)이 누적되어 시간 <em>t</em> 변수가 계속 증가합니다.</li>
+<li>이 시간 <em>t</em> 를 사인 함수에 대입(<em>sin(t)</em>)하고, 그 결과값을 아이템이나 오브젝트의 <strong>Z축(높이) 위치</strong>에 더해주면 어떻게 될까요?</li>
+<li>오브젝트가 위아래로 부드럽게 가라앉았다가 떠오르는 보빙(Bobbing) 액션(둥둥 떠 있는 효과)을 쉽게 구현할 수 있습니다.</li>
+</ul>
+<h1 id="the-sine-function">The Sine Function<a class="headerlink" href="#the-sine-function" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 블루프린트에서 사인 함수 활용하기<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>매 프레임마다 시간의 흐름을 누적하는 '스톱워치' 역할을 할 변수를 만들어 사인 함수에 대입합니다.</p>
+<ul>
+<li><strong>시간 누적 변수 (<em>t</em>):</strong> <code>Event Tick</code>이 실행될 때마다 기존 <em>t</em> 값에 <code>Delta Seconds</code>(프레임 간 경과 시간)를 더해 다시 <em>t</em> 에 저장합니다.</li>
+<li><strong>사인 노드 사용:</strong> <code>Sign (Radians)</code> 노드를 배치하고 입력값으로 <em>t</em> 를 연결합니다.</li>
+<li><strong>액터 위치 변경:</strong> <code>Add Actor World Offset</code> 노드를 사용합니다. 입력 핀인 <code>Delta Location(Vector)</code>을 우클릭하여 <code>Split Struct Pin(구조체 핀 분할)</code>을 누르면 X, Y, Z 값을 따로 입력할 수 있습니다. 여기에 사인 함수 출력값을 <strong>Z축</strong>에 연결합니다.</li>
+<li><strong>수치 제어</strong><ul>
+<li>사인의 결과값에 <code>곱하기(Multiply)</code>를 하면 위아래로 움직이는 높이(크기)를 조절할 수 있습니다.</li>
+<li>사인 함수 전 시간 <em>t</em> 에 <code>곱하기</code>를 하면 위아래로 움직이는 속도를 조절할 수 있습니다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="c-fmathsin">C++에서 <code>FMath::Sin</code> 사용하기<a class="headerlink" href="#c-fmathsin" title="Permanent link">&para;</a></h2>
+<p>언리얼 엔진 C++에서는 <strong><code>FMath</code>라는 강력한 수학 라이브러리 클래스</strong>를 제공하며, 여기에 포함된 정적(Static) 함수인 <code>Sin()</code>을 사용합니다.</p>
+<h3 id="1-itemh">① 헤더 파일 (<code>Item.h</code>) 변수 선언<a class="headerlink" href="#1-itemh" title="Permanent link">&para;</a></h3>
+<p>클래스의 <code>private</code> 영역에 시간 누적 변수를 선언합니다.<br />
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">RunningTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.f</span><span class="p">;</span><span class="w"> </span><span class="c1">// 매 프레임 시간이 누적될 변수</span>
+</code></pre></div></p>
+<h3 id="2-itemcpp">② 소스 파일 (<code>Item.cpp</code>) 구현<a class="headerlink" href="#2-itemcpp" title="Permanent link">&para;</a></h3>
+<p><code>Tick</code> 함수 내부에서 기존의 X축 이동 및 회전 코드를 제거하고, 아래와 같이 상하 진동 코드를 작성합니다.<br />
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">AItem::Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 1. 매 프레임 경과 시간을 RunningTime에 누적 (+= 연산자 사용)</span>
+<span class="w">    </span><span class="n">RunningTime</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 2. FMath::Sin을 활용해 Z축 이동량 계산 (속도 5배, 크기 0.25배로 조절)</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Sin</span><span class="p">(</span><span class="n">RunningTime</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">5.f</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 3. 액터에 위치 오프셋 적용 (X:0, Y:0, Z:DeltaZ)</span>
+<span class="w">    </span><span class="n">AddActorWorldOffset</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="n">DeltaZ</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="3">3. 하드코딩 탈피: 진폭과 주기(시간 상수) 변수화<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>코드 안에 <code>0.25f</code>나 <code>5.f</code> 같은 숫자를 직접 써넣는 것을 하드코딩(Hard-coding)이라고 합니다. 이는 나중에 수치를 수정하기 어렵게 만들므로, 멤버 변수로 분리하는 것이 좋습니다.</p>
+<ul>
+<li><strong>진폭 (Amplitude):</strong> 사인파가 위아래로 움직이는 최대 거리입니다.</li>
+<li><strong>시간 상수 (Time Constant / <em>k</em>):</strong> 삼각함수에서 주기(Period)는 <em>2π/k</em> 로 정의됩니다. 즉, 이 값이 커질수록 파동이 빨라집니다.</li>
+</ul>
+<h3 id="1-itemh_1">① 헤더 파일 (<code>Item.h</code>)에 변수 추가 및 초기화<a class="headerlink" href="#1-itemh_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">RunningTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.f</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Amplitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">;</span><span class="w">      </span><span class="c1">// 진폭</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">TimeConstant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.f</span><span class="p">;</span><span class="w">     </span><span class="c1">// 시간 상수 (속도 조절)</span>
+</code></pre></div>
+<h3 id="2-itemcpp_1">② 소스 파일 (<code>Item.cpp</code>) 코드 수정<a class="headerlink" href="#2-itemcpp_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// 수치 대신 변수명을 대입하여 유지보수를 쉽게 만듭니다.</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">DeltaZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Sin</span><span class="p">(</span><span class="n">RunningTime</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">TimeConstant</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Amplitude</span><span class="p">;</span>
+<span class="n">AddActorWorldOffset</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="n">DeltaZ</span><span class="p">));</span>
+</code></pre></div>
+<h2 id="c-3">C++ 팁: 멤버 변수를 초기화하는 3가지 방법과 효율성<a class="headerlink" href="#c-3" title="Permanent link">&para;</a></h2>
+<p>강의에서는 C++에서 변수를 초기화하는 3가지 방법과 그에 따른 미세한 효율성 차이를 설명합니다.</p>
+<ol>
+<li>
+<p><strong>헤더 파일에서 선언과 동시에 초기화 (Variable Initialization)</strong></p>
+<ul>
+<li><code>float Amplitude = 0.25f;</code></li>
+<li>변수가 생성되자마자 값이 할당되므로 가장 효율적입니다. (강사가 본 강의에서 채택한 방식)</li>
+</ul>
+</li>
+<li>
+<p><strong>생성자 초기화 리스트 (Initializer List)</strong></p>
+<ul>
+<li><code>AItem::AItem() : Amplitude(0.25f) { ... }</code></li>
+<li>1번과 마찬가지로 변수 생성과 동시에 초기화되므로 최고 효율을 냅니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>생성자 본문(Body)에서 대입 (Assignment)</strong></p>
+<ul>
+<li><code>AItem::AItem() { Amplitude = 0.25f; }</code></li>
+<li>이는 '초기화'가 아니라 이미 쓰레기 값으로 생성된 변수에 값을 새로 '대입'하는 구조입니다. 즉, 단계가 하나 더 추가되므로 1, 2번에 비해 <strong>미세하게 효율성이 떨어집니다.</strong> (물론 현대 컴퓨터에서는 무시할 수 있는 수준의 차이입니다.)</li>
+</ul>
+</li>
+</ol>
+<h1 id="exposing-variables-to-blueprint">Exposing Variables to Blueprint<a class="headerlink" href="#exposing-variables-to-blueprint" title="Permanent link">&para;</a></h1>
+<h2 id="_1">핵심 요약<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>C++에서 정의한 변수를 언리얼 에디터의 <strong>상세(Details) 패널</strong>에 나타나게 하려면 변수 위에 <code>UPROPERTY()</code> 매크로를 붙여야 합니다. 이 매크로 안에 어떤 <strong>지정자</strong>를 넣느냐에 따라 에디터에서 편집할 수 있는 범위가 달라집니다.</p>
+<p>여기서 가장 중요한 개념은 블루프린트 원본(Default)과 레벨에 배치된 복사본(Instance)의 차이를 이해하는 것입니다.</p>
+<h3 id="uproperty-3">UPROPERTY 핵심 지정자 3가지<a class="headerlink" href="#uproperty-3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>지정자 (Specifier)</th>
+<th>블루프린트 원본 (Default)</th>
+<th>월드에 배치된 개체 (Instance)</th>
+<th>특징 및 사용처</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EditDefaultsOnly</td>
+<td>정상 수정 가능</td>
+<td>수정 불가능(숨겨짐)</td>
+<td>원본 데이터만 일괄 수정하고 싶을 때 사용</td>
+</tr>
+<tr>
+<td>EditInstanceOnly</td>
+<td>수정 불가능 (숨겨짐)</td>
+<td>정상 수정 가능</td>
+<td>월드에 배치된 개체마다 각각 다른 값을 주고 싶을 때 사용</td>
+</tr>
+<tr>
+<td>EditAnywhere</td>
+<td>정상 수정 가능</td>
+<td>정상 수정 가능</td>
+<td>가장 흔히 사용. 어디서나 자유롭게 수정하고 싶을 때 사용</td>
+</tr>
+</tbody>
+</table>
+<h2 id="default-instance">원본(Default)과 인스턴스(Instance)의 작동 원리<a class="headerlink" href="#default-instance" title="Permanent link">&para;</a></h2>
+<p>강의 후반부에서 설명하는 <strong>값의 상속과 덮어쓰기(Override)</strong> 규칙은 다음과 같습니다.<br />
+* <strong>상속 관계:</strong> 블루프린트 원본(Default)에서 값을 바꾸면, 월드에 배치된 인스턴스들의 값도 자동으로 함께 바뀝니다.</p>
+<ul>
+<li>
+<p><strong>독립적인 수정 (오버라이드):</strong> 특정 인스턴스의 값을 에디터에서 직접 수정하는 순간, 그 인스턴스는 원본과의 연결이 끊어집니다. 이후 원본 값을 아무리 바꿔도 <strong>해당 인스턴스의 값은 유지</strong>됩니다.</p>
+</li>
+<li>
+<p><strong>되돌리기:</strong> 인스턴스 창에서 변수 옆에 있는 <strong>둥근 화살표(Reset to Default) 아이콘</strong>을 클릭하면, 언제든지 다시 원본(Default)의 값으로 되돌릴 수 있습니다.</p>
+</li>
+</ul>
+<h2 id="_2">결론 및 장점<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>코드 컴파일 최소화:</strong> C++ 코드를 매번 수정하고 컴파일할 필요 없이, 에디터에서 값을 마우스나 숫자로 즉시 바꾸며 테스트(기획 및 밸런스 조정)할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>유연한 배치:</strong> 같은 C++ 클래스로 만든 아이템이더라도, 어떤 것은 높게 움직이고(<code>Amplitude</code>), 어떤 것은 느리게 움직이도록(<code>Time Constant</code>) 개별적인 설정이 가능해집니다.</p>
+</li>
+</ul>
+<h1 id="visible-but-not-editable">Visible But Not Editable<a class="headerlink" href="#visible-but-not-editable" title="Permanent link">&para;</a></h1>
+<h2 id="visible">값을 수정하면 안 될 때: <code>Visible</code> 지정자<a class="headerlink" href="#visible" title="Permanent link">&para;</a></h2>
+<p><code>runningTime</code> 같은 변수는 C++ 코드에서 매 프레임 <code>DeltaTime</code>을 더하며 실시간으로 계산합니다. 이런 변수를 에디터에서 손으로 직접 수정해 버리면 게임 로직이 꼬일 수 있습니다.</p>
+<p>이럴 때 사용하는 것이 <strong>"기획자가 볼 수는 있되, 수정은 못 하게 회색(Read-Only)으로 잠그는"</strong> <code>Visible</code> 지정자입니다. 특히 게임을 플레이(<code>Play</code>)하는 도중에 월드에 배치된 개체를 클릭하면, <strong>값이 실시간으로 올라가는 것을 눈으로 디버깅</strong>할 수 있어 매우 유용합니다.</p>
+<h2 id="uproperty-6">UPROPERTY 핵심 지정자 6종 최종 요약<a class="headerlink" href="#uproperty-6" title="Permanent link">&para;</a></h2>
+<p>언리얼 엔진의 데이터 제어는 크게 두 가지 질문으로 결정됩니다.<br />
+1. <strong>편집도 시켜줄 것인가(<code>Edit</code>), 보기만 시켜줄 것인가(<code>Visible</code>)?</strong><br />
+2. <strong>어디서 보여줄 것인가(<code>DefaultsOnly</code> / <code>InstanceOnly</code> / <code>Anywhere</code>)?</strong></p>
+<table>
+<thead>
+<tr>
+<th>지정자 (Specifier)</th>
+<th>편집 가능 여부</th>
+<th>블루프린트 원본 (Default)</th>
+<th>월드 배치 개체 (Instance)</th>
+<th>실제 활용 예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EditDefaultsOnly</td>
+<td>가능 (Edit)</td>
+<td>보임 + 편집</td>
+<td>안 보임</td>
+<td>모든 아이템에 일괄 적용할 기본 데미지 설정</td>
+</tr>
+<tr>
+<td>EditInstanceOnly</td>
+<td>가능 (Edit)</td>
+<td>안 보임</td>
+<td>보임 + 편집</td>
+<td>특정 방에 있는 보물상자만 열리도록 하는 열쇠 ID</td>
+</tr>
+<tr>
+<td>EditAnywhere</td>
+<td>가능 (Edit)</td>
+<td>보임 + 편집</td>
+<td>보임 + 편집</td>
+<td>(가장 흔함) 체력, 이동 속도 등 일반적인 스탯</td>
+</tr>
+<tr>
+<td>VisibleDefaultsOnly</td>
+<td>불가 (Read-Only)</td>
+<td>보임 (수정 불가)</td>
+<td>안 보임</td>
+<td>원본 데이터의 고유 식별 번호(ID) 확인용</td>
+</tr>
+<tr>
+<td>VisibleInstanceOnly</td>
+<td>불가 (Read-Only)</td>
+<td>안 보임</td>
+<td>보임 (수정 불가)</td>
+<td>해당 개체의 현재 좌표, 실시간 상태값 확인용</td>
+</tr>
+<tr>
+<td>VisibleAnywhere</td>
+<td>불가 (Read-Only)</td>
+<td>보임 (수정 불가)</td>
+<td>보임 (수정 불가)</td>
+<td>(흔함) 실시간 흐른 시간(runningTime), 컴포넌트 참조</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">꿀팁 및 핵심 포인트<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>실시간 디버깅의 강력함:</strong> <code>VisibleInstanceOnly</code>나 <code>VisibleAnywhere</code>를 사용하면, 게임 플레이 중에 월드 아웃라이너(World Outliner)에서 배치된 인스턴스를 선택해 값이 실시간으로 변하는 모습(예: 35초, 36초...)을 상세 패널에서 바로 관찰할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>C++ 개발자의 권한 제어:</strong> 이 지정자들을 적절히 활용하면, 블루프린트를 사용하는 디자이너나 기획자가 실수로 중요 시스템 변수를 건드려 버그를 만드는 것을 원천 차단할 수 있습니다. 데이터의 <strong>안전성</strong>과 <strong>유연성</strong>을 동시에 챙기는 핵심 도구입니다.</p>
+</li>
+</ul>
+<h1 id="exposing-variables-to-the-event-graph">Exposing Variables to the Event Graph<a class="headerlink" href="#exposing-variables-to-the-event-graph" title="Permanent link">&para;</a></h1>
+<h2 id="uproperty">이벤트 그래프 노출을 위한 UPROPERTY 지정자<a class="headerlink" href="#uproperty" title="Permanent link">&para;</a></h2>
+<p>이전의 <code>EditAnywhere</code> 등은 상세 패널 전용이었습니다. 이벤트 그래프에서 변수 노드를 사용하려면 <code>BlueprintReadOnly</code>나 <code>BlueprintReadWrite</code>를 추가해야 합니다.</p>
+<table>
+<thead>
+<tr>
+<th>지정자 (Specifier)</th>
+<th>이벤트 그래프 기능</th>
+<th>특징 및 제약 조건</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BlueprintReadOnly</td>
+<td>Getter (Get) 노드만 생성</td>
+<td>값을 읽을 수만 있고, 블루프린트에서 수정은 불가능함.</td>
+</tr>
+<tr>
+<td>BlueprintReadWrite</td>
+<td>Getter + Setter (Set) 둘 다 생성</td>
+<td>블루프린트 그래프 안에서 값을 자유롭게 가져오고 수정함.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>중요 제약:</strong> 기본적으로 이 지정자들은 C++의 <code>private</code> 섹션에 있는 변수에는 사용할 수 없으며, <code>protected</code>나 <code>public</code> 영역으로 변수를 옮겨야 컴파일 오류가 나지 않습니다. (<code>private</code>에서 쓰는 방법은 3번 참고)</p>
+</blockquote>
+<h2 id="category">변수 깔끔하게 정리하기: <code>Category</code><a class="headerlink" href="#category" title="Permanent link">&para;</a></h2>
+<p>변수가 많아지면 상세 패널과 블루프린트 변수 창이 지저분해집니다. 이럴 때 <code>Category</code> 지정자를 사용하면 에디터에 그룹을 만들어 예쁘게 분류할 수 있습니다.</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1">// 쉼표(,)로 구분하여 지정자를 이어 붙입니다.</span>
+<span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SineParameters&quot;</span><span class="p">)</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">Amplitude</span><span class="p">;</span>
+</code></pre></div><br />
+* <strong>결과:</strong> 에디터 상세 패널과 블루프린트 우측 변수 리스트에 "SineParameters"라는 그룹이 생기고 그 안에 변수가 정렬됩니다. 검색할 때도 카테고리 이름으로 모아볼 수 있어 관리가 매우 편해집니다.</p>
+<h2 id="c-private-meta-allowprivateaccess-true">C++의 비밀(Private) 유지하기: <code>meta = (AllowPrivateAccess = "true")</code><a class="headerlink" href="#c-private-meta-allowprivateaccess-true" title="Permanent link">&para;</a></h2>
+<p>객체지향 프로그래밍 관점에서 변수를 외부에 함부로 노출하지 않으려고 <code>private</code>으로 유지하고 싶을 때가 있습니다. 하지만 블루프린트 그래프에서는 이 값을 가져와서 쓰고 싶다면 어떻게 해야 할까요?</p>
+<p>언리얼 엔진은 이를 위해 아주 특수하고 강력한 <strong>메타 데이터(Meta Specifier)</strong> 문법을 제공합니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// private이지만 블루프린트 이벤트 그래프에서 Get 노드로 쓸 수 있게 허용!</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AllowPrivateAccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SineParameters&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">RunningTime</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>
+<p><strong><code>meta = (AllowPrivateAccess = "true")</code></strong>: 이 한 줄을 넣어주면, C++에서는 객체지향의 <code>private</code> 캡슐화를 철저히 지키면서도, 블루프린트 에디터에게만 "이 private 변수 접근을 특별히 허용해 줄게"라고 예외를 인정해 줍니다.</p>
+</li>
+<li>
+<p>강의 속 <code>RunningTime</code>처럼 C++ 내부에서만 계산하고(Private), 블루프린트에서는 읽기만 해야 하는(ReadOnly) 핵심 데이터를 보호할 때 가장 완벽한 보안책이 됩니다.</p>
+</li>
+</ul>
+<h2 id="_4">요약 및 활용 예시 (감쇠 진동 구현)<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>강의에서는 <code>Amplitude</code>(진폭)를 <code>BlueprintReadWrite</code>로 노출한 뒤, 블루프린트 이벤트 틱(Event Tick)에서 아래와 같이 계산하는 예시를 보여줍니다.</p>
+<ol>
+<li>
+<p>매 프레임 <code>DeltaTime</code>에 소량의 값을 곱해 진폭에서 뺍니다.</p>
+</li>
+<li>
+<p>값이 마이너스로 떨어지지 않도록 <strong><code>Clamp Float</code></strong> 노드를 사용해 최소 <code>0.0</code>, 최대 <code>1.0</code> 사이로 고정합니다.</p>
+</li>
+<li>
+<p>이 값을 다시 <code>Set Amplitude</code>로 저장하여 시간이 흐를수록 물체의 움직임이 줄어드는 감쇠 진동(Damped Oscillation)을 구현합니다.</p>
+</li>
+</ol>
+<h1 id="exposing-funcitons-to-blueprint">Exposing Funcitons to Blueprint<a class="headerlink" href="#exposing-funcitons-to-blueprint" title="Permanent link">&para;</a></h1>
+<h2 id="c-2">C++ 함수를 블루프린트에 노출하는 2가지 방법<a class="headerlink" href="#c-2" title="Permanent link">&para;</a></h2>
+<p>함수 위에 <code>UFUNCTION()</code> 매크로를 붙이고 내부에 지정자를 적어줍니다. 어떤 지정자를 쓰느냐에 따라 블루프린트 노드의 형태가 완전히 달라집니다.</p>
+<h3 id="1-blueprintcallable">① <code>BlueprintCallable</code> (실행 핀이 있는 노드)<a class="headerlink" href="#1-blueprintcallable" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>특징:</strong> 노드 좌우에 하얀색 실행 삼각형 핀(Execution Pin)이 생깁니다. 이벤트 흐름(틱, 시작 등)에 맞춰 순서대로 실행되어야 하는 함수에 사용합니다.</li>
+<li><strong>노드 색상:</strong> 보통 <strong>파란색</strong> 노드로 나타납니다.</li>
+<li><strong>사용처:</strong> 데이터를 변경하거나, 물리적인 액션을 취하는 등 게임 상태에 영향을 주는 함수.</li>
+</ul>
+<h3 id="2-blueprintpure">② <code>BlueprintPure</code> (실행 핀이 없는 노드)<a class="headerlink" href="#2-blueprintpure" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>특징:</strong> 실행 핀이 없고, 오직 입력 값과 출력(Return) 값만 존재합니다. 호출되는 순간 상태를 바꾸지 않고 <strong>단순히 계산된 값만 반환</strong>하는 함수에 사용합니다. (C++의 <code>const</code> 함수나 수학 계산 함수에 적합)</li>
+<li><strong>노드 색상:</strong> 보통 <strong>녹색</strong> 노드로 나타납니다.</li>
+<li><strong>사용처:</strong> <code>GetActorLocation</code>처럼 값을 가져오기만 하거나, 수학 공식 계산(예: 사인, 코사인 변환).</li>
+</ul>
+<h2 id="access-specifier">함수 접근 제한자(Access Specifier) 결정 팁<a class="headerlink" href="#access-specifier" title="Permanent link">&para;</a></h2>
+<p>C++에서 함수를 선언할 때 <code>public</code>, <code>protected</code>, <code>private</code> 중 어디에 둘지 고민된다면 다음 기준으로 선택합니다.</p>
+<ul>
+<li><strong><code>public</code>:</strong> 외부의 다른 클래스/오브젝트가 이 함수를 호출해야 할 때.</li>
+<li><strong><code>protected</code>:</strong> 외부에선 못 부르게 막되, 이 클래스를 상속받을 자식 클래스(예: Item을 상속받은 Weapon)에서는 호출할 수 있게 하고 싶을 때. (<strong>강의 추천: 잘 모를 때는 우선 protected에 두기</strong>)</li>
+<li><strong><code>private</code>:</strong> 오직 이 클래스 내부에서만 사용할 때.</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>주의:</strong> 변수와 마찬가지로 <code>private</code> 함수를 블루프린트에 노출하려면 컴파일 에러를 막기 위해 추가적인 설정이나 <code>protected</code>로의 이동이 필요할 수 있습니다.</p>
+</blockquote>
+<h2 id="c-const-blueprintpure">C++의 예약어 const가 BlueprintPure로 자동 처리되는 원리<a class="headerlink" href="#c-const-blueprintpure" title="Permanent link">&para;</a></h2>
+<p>C++에서 함수 멤버 뒤에 붙는 <code>const</code>는 "이 함수는 클래스의 멤버 변수(상태)를 절대 변경하지 않는 안전한 읽기 전용 함수다"라는 것을 컴파일러에게 보장하는 키워드입니다.</p>
+<p>언리얼 엔진은 이 의미를 블루프린트 시스템에 그대로 대입합니다.<br />
+* <strong>C++:</strong> <code>float GetTransformedSign() const;</code><br />
+* <strong>언리얼 엔진의 해석:</strong> "멤버 변수를 안 바꾸는 함수라고? 그럼 블루프린트에서도 실행 흐름 선(실행 핀)이 필요 없는 <strong>Pure 노드</strong>로 만들어도 되겠네!"</p>
+<p>따라서 아래의 두 코드는 블루프린트 에디터에서 <strong>완전히 동일한 녹색 Pure 노드</strong>로 나타납니다.<br />
+<div class="highlight"><pre><span></span><code><span class="c1">// 1번 방법: BlueprintPure를 명시함</span>
+<span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintPure</span><span class="p">)</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">GetTransformedSign</span><span class="p">();</span>
+
+<span class="c1">// 2번 방법: const를 사용함 (언리얼이 자동으로 Pure로 인식)</span>
+<span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">)</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">GetTransformedSign</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</code></pre></div></p>
+<h2 id="_5">단, 이것은 주의하세요! (암시적 변환의 예외)<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><code>const</code>만 붙여도 Pure 노드가 되니까 코드가 더 깔끔해 보이지만, 결정적인 차이점이 딱 하나 있습니다. 바로 <strong>함수의 반환값(Return Value) 유무</strong>입니다.</p>
+<h3 id="1-const">1. 반환값이 없는 const 함수는?<a class="headerlink" href="#1-const" title="Permanent link">&para;</a></h3>
+<p>만약 함수가 <code>void</code> 리턴형이거나 반환값이 없는데 <code>const</code>만 붙어있다면, 언리얼 엔진은 이를 Pure 노드로 만들지 않고 일반 Callable 노드(파란색 노드)로 만듭니다. 값을 돌려주지도 않는데 실행 핀까지 없으면 블루프린트에서 아예 호출할 방법이 없어지기 때문입니다.</p>
+<h3 id="2-pure">2. 무조건 Pure 노드로 강제하고 싶다면?<a class="headerlink" href="#2-pure" title="Permanent link">&para;</a></h3>
+<p>가끔 반환값이 없더라도(예: <code>void</code>형 함수이지만 내부에서 Out 파라미터 <code>레퍼런스(&amp;)</code>나 <code>포인터(*)</code>를 통해 값을 채워 반환하는 경우), 실행 핀이 없는 Pure 노드로 만들고 싶을 때가 있습니다. 이럴 때는 <code>const</code>만으로는 불가능하며, 반드시 <strong><code>BlueprintPure</code> 지정자를 명시</strong>해 주어야 합니다.</p>
+<h2 id="_6">요약 및 권장 스타일<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>자동 변환:</strong> <code>BlueprintCallable</code>과 C++ <code>const</code>가 만나고 <strong>반환값</strong>이 존재하면, 언리얼이 자동으로 <code>BlueprintPure</code>처럼 취급합니다.</p>
+</li>
+<li>
+<p><strong>객체지향 관점에서의 이점:</strong> C++ 코드 자체의 데이터 안정성(<code>const</code> 캡슐화)을 지키면서 블루프린트 노드까지 깔끔하게 녹색으로 뽑아낼 수 있으므로, 값을 단순 계산하거나 가져오는 Getter 함수에는 <strong><code>const</code>를 적극적으로 활용하는 것이 아주 좋은 습관</strong>입니다.</p>
+</li>
+</ul>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../../../search/main.js"></script>
+    
+</body>
+</html>

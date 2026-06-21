@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+
+    <title>
+        
+        MobileLinux
+        
+    </title>
+
+    
+    <meta name="description" content="Silverbullet-inspired MkDocs Documentation">
+    
+
+    <link rel="stylesheet" href="../css/base.css">
+    
+    <link rel="stylesheet" href="../css/base.css">
+    
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            
+                            <h1 class="page-title">MobileLinux</h1>
+                            
+                        </span>
+
+                        <!-- Top Actions -->
+                        <div class="sb-actions">    
+                            <button type="button" title="Go to the index page" onclick="location.href='/' ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    
+                                    <li>
+                                        <a href="#1-vbmetaimg" class="sb-toc-link">1. 패키지에 있던 순정 vbmeta.img를 구우면서 동시에 보안 검사를 강제로 꺼버립니다.</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#2" class="sb-toc-link">2. 보조 보안 파티션도 동일하게 순정 파일을 이용해 검사를 끕니다.</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#3-1-iii" class="sb-toc-link">3. 엑스페리아 1 III 기종에 따라 존재하는 최종 보안 장치까지 세트로 묶어 끕니다.</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#2_1" class="sb-toc-link">2. 드로이디안 커널 및 디바이스 트리 주입</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#3" class="sb-toc-link">3. 가상 파티션 밀어버리고 새 방 만들기</a>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#4" class="sb-toc-link">4. 드로이디안 본체 밀어</a>
+                                        
+                                    </li>
+                                    
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        <!-- Breadcrumb Navigation -->
+                        <ul>
+<li>sony</li>
+<li><a href="https://opendevices.sony.net/aosp-on-xperia-open-devices/get-started/unlock-bootloader">https://opendevices.sony.net/aosp-on-xperia-open-devices/get-started/unlock-bootloader</a></li>
+<li>unlock code : ## 23AC63CA57423DD9</li>
+<li><a href="https://developer.sony.com/open-source/aosp-on-xperia-open-devices/downloads/software-binaries">https://developer.sony.com/open-source/aosp-on-xperia-open-devices/downloads/software-binaries</a></li>
+<li><a href="https://drive.google.com/file/d/1SCokyNWNxtdwrUANyTulKLbL1S1wNdq4/view">https://drive.google.com/file/d/1SCokyNWNxtdwrUANyTulKLbL1S1wNdq4/view</a></li>
+<li><a href="https://xdaforums.com/t/tool-newflasher-xperia-command-line-flasher.3619426/">https://xdaforums.com/t/tool-newflasher-xperia-command-line-flasher.3619426/</a></li>
+<li><a href="https://github.com/r3dr0se952/RootXperia1IV/tree/main">https://github.com/r3dr0se952/RootXperia1IV/tree/main</a></li>
+</ul>
+<h1 id="1-vbmetaimg">1. 패키지에 있던 순정 vbmeta.img를 구우면서 동시에 보안 검사를 강제로 꺼버립니다.<a class="headerlink" href="#1-vbmetaimg" title="Permanent link">&para;</a></h1>
+<p>fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img</p>
+<h1 id="2">2. 보조 보안 파티션도 동일하게 순정 파일을 이용해 검사를 끕니다.<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<p>fastboot --disable-verity --disable-verification flash vbmeta_system vbmeta.img</p>
+<h1 id="3-1-iii">3. 엑스페리아 1 III 기종에 따라 존재하는 최종 보안 장치까지 세트로 묶어 끕니다.<a class="headerlink" href="#3-1-iii" title="Permanent link">&para;</a></h1>
+<p>fastboot --disable-verity --disable-verification flash vbmeta_vendor vbmeta.img</p>
+<h1 id="2_1">2. 드로이디안 커널 및 디바이스 트리 주입<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h1>
+<p>fastboot flash boot boot.img<br />
+fastboot flash dtbo dtbo.img</p>
+<h1 id="3">3. 가상 파티션 밀어버리고 새 방 만들기<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
+<p>fastboot delete-logical-partition system_a<br />
+fastboot delete-logical-partition system_b<br />
+fastboot create-logical-partition system_a 0<br />
+fastboot create-logical-partition system_b 0</p>
+<h1 id="4">4. 드로이디안 본체 밀어<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
+<p>fastboot flash system_a system.img<br />
+fastboot format userdata<br />
+fastboot reboot</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../search/main.js"></script>
+    
+</body>
+</html>

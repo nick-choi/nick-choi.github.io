@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+
+    <title>
+        
+        20260612
+        
+    </title>
+
+    
+    <meta name="description" content="Silverbullet-inspired MkDocs Documentation">
+    
+
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            
+                            <h1 class="page-title">20260612</h1>
+                            
+                        </span>
+
+                        <!-- Top Actions -->
+                        <div class="sb-actions">    
+                            <button type="button" title="Go to the index page" onclick="location.href='/' ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    
+                                    <li>
+                                        <a href="#the-actor-class" class="sb-toc-link">The Actor Class</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#_1" class="sb-toc-link">요약</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_2" class="sb-toc-link">상세 정리</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-c" class="sb-toc-link">1. C++ 클래스 생성 및 폴더 구조 설정</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2" class="sb-toc-link">2. 콘텐츠 브라우저 및 솔루션 확인</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#3-itemh" class="sb-toc-link">3. 헤더 파일 (Item.h) 구조 분석</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#4" class="sb-toc-link">4. 핵심 기본 함수 (주요 라이프사이클)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#5-itemcpp-super" class="sb-toc-link">5. 소스 파일 (Item.cpp)과 Super 구조</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#6" class="sb-toc-link">6. 코드 리팩토링 (깔끔하게 정리하기)</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#blueprint-creation" class="sb-toc-link">Blueprint Creation</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#c" class="sb-toc-link">C++과 블루프린트의 관계 및 생성</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_3" class="sb-toc-link">블루프린트 에디터 구조와 주요 탭</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#print-string-relevance" class="sb-toc-link">디버깅 기초: Print String과 액터의 중요도(Relevance)</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#c-ue_log" class="sb-toc-link">C++ 디버깅의 핵심: UE_LOG 매크로</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#ue_log" class="sb-toc-link">UE_LOG 작성 코드 분석</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_4" class="sb-toc-link">데이터 적용의 우선순위 (어떤 값이 최종 반영되는가?)</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#life-cycle" class="sb-toc-link">액터 생성 및 에디터 배치 시 실행 순서 (Life Cycle)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-c-constructor" class="sb-toc-link">① C++ 생성자 (Constructor) 호출</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2-data-serialization" class="sb-toc-link">② 데이터 직렬화 및 로드 (Data Serialization)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#3-postinitproperties-c" class="sb-toc-link">③ PostInitProperties() 호출 (C++ 내부 함수)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#4-construction-script" class="sb-toc-link">④ 블루프린트 Construction Script 실행</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#5-onconstruction-c" class="sb-toc-link">⑤ OnConstruction() 호출 (C++ 내부 함수)</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        <!-- Breadcrumb Navigation -->
+                        <h1 id="the-actor-class">The Actor Class<a class="headerlink" href="#the-actor-class" title="Permanent link">&para;</a></h1>
+<h2 id="_1">요약<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>첫 클래스로 Actor 선택</strong>: 언리얼 월드의 모든 것은 Actor에서 파생되므로 첫 클래스로 가장 적합합니다. 블루프린트 프로젝트도 C++ 클래스를 추가하면 C++ 프로젝트로 전환됩니다.</p>
+</li>
+<li>
+<p><strong>Public/Private 구조 분리</strong>: 헤더 파일(<code>.h</code>)은 <code>Public</code> 폴더에, 소스 파일(<code>.cpp</code>)은 <code>Private</code> 폴더에 저장하여 프로젝트를 깔끔하게 관리합니다.</p>
+</li>
+<li>
+<p><strong>기본 생성 코드(Boilerplate) 이해</strong>: 리플렉션 시스템을 위한 매크로(<code>UCLASS()</code>, <code>GENERATED_BODY()</code>)와 기본 함수(<code>BeginPlay()</code>, <code>Tick()</code>)의 역할을 이해합니다.</p>
+</li>
+<li>
+<p><strong>코드 정리</strong>: 불필요한 기본 주석과 중복된 <code>public</code> 섹션을 정리하여 가독성을 높입니다.</p>
+</li>
+</ul>
+<h2 id="_2">상세 정리<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-c">1. C++ 클래스 생성 및 폴더 구조 설정<a class="headerlink" href="#1-c" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>생성 방법</strong>: 에디터 상단 메뉴에서 <code>Tools</code> -&gt; <code>New C++ Class</code> 선택.</li>
+<li><strong>부모 클래스 선택</strong>: 공통 클래스 중 <code>Actor</code>를 선택 (Actor는 레벨에 배치하거나 스폰할 수 있는 오브젝트의 최상위 기본 클래스임).</li>
+<li><strong>경로 및 이름 설정</strong>: 클래스 이름을 <code>Item</code>으로 지정하고, <code>Items</code>라는 별도 폴더를 만들어 관리.</li>
+<li><strong>클래스 타입(Public/Private)</strong>:<ul>
+<li><code>Public</code>을 선택하면 헤더 파일(<code>Item.h</code>)은 <code>Public/Items/</code> 폴더에, 소스 파일(<code>Item.cpp</code>)은 <code>Private/Items/</code> 폴더에 자동으로 나누어 저장됩니다. (실무 및 대형 프로젝트에서 자주 쓰이는 방식)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2">2. 콘텐츠 브라우저 및 솔루션 확인<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>클래스를 생성하면 콘텐츠 드로어(<code>Ctrl + Space</code>)에 <code>C++ Classes</code> 폴더가 생기며, 그 안에 우리가 만든 <code>Item</code> 클래스가 나타납니다.</li>
+<li>프로젝트 이름(스크립트에서는 <code>Lecture</code>)의 모듈 구조를 보면 기본적으로 포함되는 빌드 파일(<code>.Build.cs</code>)과 프로젝트 기본 파일(<code>Lecture.h</code>, <code>Lecture.cpp</code>)이 자동 생성되어 있습니다.</li>
+</ul>
+<h3 id="3-itemh">3. 헤더 파일 (<code>Item.h</code>) 구조 분석<a class="headerlink" href="#3-itemh" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="n">once</span>
+
+<span class="w"> </span><span class="s">&quot;CoreMinimal.h&quot;</span>
+<span class="w"> </span><span class="s">&quot;GameFramework/Actor.h&quot;</span>
+<span class="w"> </span><span class="s">&quot;Item.generated.h&quot;</span>
+
+<span class="n">UCLASS</span><span class="p">()</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LECTURE_API</span><span class="w"> </span><span class="n">AItem</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AActor</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
+
+<span class="k">public</span><span class="o">:</span><span class="w"> </span>
+<span class="w">    </span><span class="n">AItem</span><span class="p">();</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">BeginPlay</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<ul>
+<li><code>once</code>: 헤더 파일이 중복으로 include되는 것을 방지합니다.</li>
+<li><code>"GameFramework/Actor.h"</code>: Actor 클래스를 상속받기 위해 필수적인 헤더입니다.</li>
+<li><code>LECTURE_API</code>: 이 클래스를 DLL(동적 링크 라이브러리)에서 사용할 수 있도록 언리얼이 자동으로 붙여주는 매크로입니다.</li>
+<li><code>UCLASS()</code> 및 <code>GENERATED_BODY()</code>: 언리얼 엔진의 핵심 기능인 <strong>리플렉션(Reflection) 시스템</strong>에 클래스를 등록하는 매크로입니다. 이를 통해 블루프린트와 연동되거나 가비지 컬렉션 등의 혜택을 받게 됩니다.</li>
+</ul>
+<h3 id="4">4. 핵심 기본 함수 (주요 라이프사이클)<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>생성자 (<code>AItem()</code>)</strong>: 오브젝트가 생성될 때 프로퍼티의 기본값을 설정합니다.</li>
+<li><strong><code>BeginPlay()</code></strong>: 게임이 시작되거나 이 Actor가 월드에 스폰될 때 딱 한 번 호출되는 가상(Virtual) 함수입니다.</li>
+<li><strong><code>Tick(float DeltaTime)</code></strong>: 게임의 매 프레임(화면이 업데이트될 때마다)마다 매우 빠르게 호출되는 함수입니다. (기기 성능에 따라 초당 60~120회 이상 호출)</li>
+</ul>
+<h3 id="5-itemcpp-super">5. 소스 파일 (<code>Item.cpp</code>)과 Super 구조<a class="headerlink" href="#5-itemcpp-super" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="s">&quot;Item.h&quot;</span>
+
+<span class="n">AItem</span><span class="o">::</span><span class="n">AItem</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">PrimaryActorTick</span><span class="p">.</span><span class="n">bCanEverTick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AItem</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AItem</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>
+<p><code>Super::BeginPlay()</code>, <code>Super::Tick(DeltaTime)</code> 처럼 <code>Super::</code>를 사용하는 것은 부모 클래스(Actor)가 내부적으로 수행해야 하는 기본 동작을 먼저 실행하도록 보장하기 위함이므로 반드시 유지해야 합니다.</p>
+</li>
+<li>
+<p><strong>성능 최적화 팁</strong>: 생성자에 있는 <code>PrimaryActorTick.bCanEverTick = true;</code>는 이 액터가 매 프레임 Tick 함수를 실행하도록 설정하는 것입니다. 만약 매 프레임 연산이 필요 없는 액터라면 이 값을 <code>false</code>로 바꾸어 성능을 아낄 수 있습니다.</p>
+</li>
+</ul>
+<h3 id="6">6. 코드 리팩토링 (깔끔하게 정리하기)<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p>강의자는 화면을 더 깔끔하고 가독성 좋게 만들기 위해 아래와 같이 코드를 정리했습니다.</p>
+<ul>
+<li>위아래로 나뉘어 있던 두 개의 <code>public:</code> 섹션을 하나로 합치고, <code>Tick</code> 함수를 상단의 <code>public:</code> 영역으로 이동시켰습니다.</li>
+<li>이미 내용을 알고 있는 기본 생성 주석들(예: "called when the game starts" 등)을 모두 삭제하여 클래스 구조를 더 콤팩트하게 만들었습니다.</li>
+</ul>
+<h1 id="blueprint-creation">Blueprint Creation<a class="headerlink" href="#blueprint-creation" title="Permanent link">&para;</a></h1>
+<h2 id="c">C++과 블루프린트의 관계 및 생성<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>원칙</strong>: 우리는 보통 생 C++ 클래스 자체를 레벨에 직접 배치하지 않습니다. C++ 클래스를 부모(Parent)로 삼고, 이를 상속받은 블루프린트(Child)를 만들어 에디터에서 시각적 기능(메시, 컴포넌트 등)을 추가해 사용합니다.</p>
+</li>
+<li>
+<p><strong>생성 방법</strong>:</p>
+<ol>
+<li>콘텐츠 브라우저에 <code>Blueprints/Items</code> 폴더 생성.</li>
+<li>C++ 클래스(<code>Item</code>)를 우클릭하여 <em>'Item 기반 블루프린트 클래스 생성'</em> 을 선택하거나, 블루프린트 생성 창에서 <code>All Classes</code>를 펼쳐 <code>Item</code>을 검색해 상속받습니다.</li>
+</ol>
+</li>
+<li>
+<p><strong>네이밍 컨벤션</strong>: C++ 클래스와 구분하기 위해 블루프린트 에셋 이름 앞에 <strong><code>BP_</code></strong> 접두사(Prefix)를 붙입니다. (예: <code>BP_Item</code>)</p>
+</li>
+</ul>
+<h2 id="_3">블루프린트 에디터 구조와 주요 탭<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><code>BP_Item</code>을 더블 클릭하면 블루프린트 에디터가 열립니다.</p>
+<ul>
+<li>
+<p><strong>Viewport(뷰포트)</strong>: 액터의 컴포넌트 구조와 로컬 좌표계(X, Y, Z축 기즈모)를 시각적으로 확인하는 곳입니다. 모든 액터는 기본적으로 <strong>Default Scene Root</strong> 컴포넌트를 가집니다.</p>
+</li>
+<li>
+<p><strong>Construction Script(구조 스크립트)</strong>: 게임이 시작되기 전, <strong>에디터에서 프로퍼티가 변경되거나 액터가 움직일 때마다 즉시 실행</strong>되는 스크립트입니다. 사전 세팅에 유용합니다.</p>
+</li>
+<li>
+<p><strong>Event Graph(이벤트 그래프)</strong>: <strong>게임 플레이 중(런타임)</strong> 실행될 로직을 노드로 짜는 곳입니다. 기본적으로 <code>BeginPlay</code>, <code>ActorBeginOverlap</code>, <code>Tick</code> 이벤트 노드가 제공됩니다.</p>
+</li>
+<li>
+<p><strong>컴파일(Compile)</strong>: 블루프린트 노드를 수정하면 C++ 코드처럼 반드시 상단의 '컴파일' 버튼을 눌러주어야 변경 사항이 반영됩니다.</p>
+</li>
+</ul>
+<h2 id="print-string-relevance">디버깅 기초: Print String과 액터의 중요도(Relevance)<a class="headerlink" href="#print-string-relevance" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Print String 노드</strong>: <code>BeginPlay</code> 이벤트에 연결하여 화면에 "Begin Play"라는 텍스트를 출력할 수 있습니다. 텍스트 색상이나 출력 시간(기본 2초에서 테스트를 위해 30초로 변경)을 상세 옵션에서 조절 가능합니다.</p>
+</li>
+<li>
+<p><strong>오픈 월드에서의 액터 중요도(Relevance)</strong>:</p>
+<ul>
+<li>오픈 월드 맵에서 플레이어(카메라) 위치가 <code>BP_Item</code>과 <strong>너무 멀리 떨어져 있으면</strong>, 엔진은 성능 최적화를 위해 해당 액터가 존재하지 않는 것처럼 취급하여 <code>BeginPlay</code>를 실행하지 않습니다. 메시지를 확인하려면 아웃라이너에서 액터를 선택하고 <code>F</code> 키를 눌러 가까이 이동(포커스)한 뒤 플레이해야 합니다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="c-ue_log">C++ 디버깅의 핵심: <code>UE_LOG</code> 매크로<a class="headerlink" href="#c-ue_log" title="Permanent link">&para;</a></h2>
+<p>블루프린트의 Print String처럼, C++에서는 <strong><code>UE_LOG</code></strong> 매크로를 사용해 에디터의 <strong>출력 로그(Output Log)</strong> 창에 원하는 메시지를 출력합니다.</p>
+<h3 id="ue_log"><code>UE_LOG</code> 작성 코드 분석<a class="headerlink" href="#ue_log" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">AItem::BeginPlay</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogTemp</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Begin Play Called&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>
+<p><strong><code>LogTemp</code> (로그 카테고리)</strong>: 디버깅용으로 흔히 쓰는 임시 로그 카테고리입니다.</p>
+</li>
+<li>
+<p><strong><code>Warning</code> (상세 수준/Verbosity)</strong>: 로그의 중요도입니다. <code>Warning</code>으로 설정하면 출력 로그 창에 <strong>노란색</strong>으로 표시되어 눈에 잘 띕니다.</p>
+</li>
+<li>
+<p><strong><code>TEXT("문자열")</code> 매크로</strong>: 언리얼 엔진은 문자열 인코딩으로 유니코드(Unicode)를 사용합니다. 일반 문자열 리터럴을 언리얼 전용 문자열(<code>FString</code> 계열)에 맞는 유니코드 형식으로 안전하게 변환하기 위해 <strong>반드시 모든 문자열을 <code>TEXT()</code> 매크로로 감싸야 합니다.</strong> (언리얼 코딩 표준 권장 사항)</p>
+</li>
+</ol>
+<h2 id="_4">데이터 적용의 우선순위 (어떤 값이 최종 반영되는가?)<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>변수의 '값'이 최종적으로 무엇으로 결정되는지에 대한 우선순위(오버라이드 권한)는 다음과 같습니다. 뒤로 갈수록 앞에 설정한 값을 덮어씁니다.</p>
+<blockquote>
+<p>C++ 생성자 초기값 -&gt; 에디터 디테일 패널 수정값 -&gt; 블루프린트 Construction Script 연산값</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>최하위 (C++ 생성자):</strong> 가장 먼저 기본값을 설정하지만, 에디터나 블루프린트에서 언제든 덮어쓸 수 있습니다.</p>
+</li>
+<li>
+<p><strong>중간 (에디터 디테일 패널):</strong> 개발자가 에디터 창에서 수동으로 입력한 값입니다. C++ 생성자에 적힌 값을 무시하고 덮어씁니다.</p>
+</li>
+<li>
+<p><strong>최상위 (Construction Script):</strong> 에디터에서 값을 어떻게 바꿨든 간에, 컴포넌트가 배치되거나 움직일 때 Construction Script의 노드가 실행되면서 <strong>최종적으로 값을 강제 지정</strong>해 버립니다.</p>
+</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>주의:</strong> 만약 Construction Script 내부에서 특정 변수의 값을 지정하는 노드(Set 변수)를 짜놓았다면, 에디터 디테일 패널에서 아무리 값을 변경해도 컴파일이나 에디터 배치 직후 Construction Script에 의해 값이 다시 초기화됩니다.</p>
+</blockquote>
+<h2 id="life-cycle">액터 생성 및 에디터 배치 시 실행 순서 (Life Cycle)<a class="headerlink" href="#life-cycle" title="Permanent link">&para;</a></h2>
+<p>액터가 에디터에 배치되거나, 게임이 시작될 때 내부적으로 함수가 호출되는 정확한 메커니즘과 순서는 다음과 같습니다.</p>
+<div class="highlight"><pre><span></span><code>C++ 생성자 (Constructor)
+        |
+데이터 직렬화 및 로드 (Data Serialization)
+        |
+PostInitProperties() 호출 (C++ 내부 함수)
+        |
+블루프린트 Construction Script 실행
+        |
+</code></pre></div>
+<h3 id="1-c-constructor">① C++ 생성자 (Constructor) 호출<a class="headerlink" href="#1-c-constructor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>시점:</strong> 에디터가 켜질 때 또는 액터가 월드에 배치되려고 메모리에 올라가는 순간.</li>
+<li><strong>역할:</strong> <code>UPROPERTY</code> 변수들의 완전한 초기 기본값을 세팅합니다.</li>
+</ul>
+<h3 id="2-data-serialization">② 데이터 직렬화 및 로드 (Data Serialization)<a class="headerlink" href="#2-data-serialization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>시점:</strong> 생성자 호출 직후.</li>
+<li><strong>역할:</strong> 에디터 디테일 패널에서 개발자가 수정한 값(저장된 데이터)이 C++ 생성자가 만든 변수 위에 덮어씌워집니다.</li>
+</ul>
+<h3 id="3-postinitproperties-c">③ PostInitProperties() 호출 (C++ 내부 함수)<a class="headerlink" href="#3-postinitproperties-c" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>시점:</strong> 생성자 기본값에 에디터 수정 사항까지 모두 반영된 직후.</li>
+<li><strong>역할:</strong> 에디터에서 수정된 최종 프로퍼티 값을 기반으로, C++ 레벨에서 추가적인 초기화 작업을 하고 싶을 때 호출되는 함수입니다.</li>
+</ul>
+<h3 id="4-construction-script">④ 블루프린트 Construction Script 실행<a class="headerlink" href="#4-construction-script" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>시점:</strong> 에디터에서 액터를 드래그하여 움직일 때(매 순간), 혹은 컴파일 버튼을 누를 때, 레벨에 처음 배치될 때 실행됩니다.</li>
+<li><strong>역할:</strong> 앞서 2번 단계까지 완료되어 들어온 변수 값들을 가져와 가공하거나, 새로운 값을 대입(<code>Set</code>)합니다. 블루프린트 기반의 동적 레벨 제작(예: 변수 값에 따라 스태틱 메시 모양 바꾸기)이 주로 여기서 일어납니다.</li>
+</ul>
+<h3 id="5-onconstruction-c">⑤ OnConstruction() 호출 (C++ 내부 함수)<a class="headerlink" href="#5-onconstruction-c" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>시점:</strong> 블루프린트의 Construction Script가 실행 완료된 바로 직후.</li>
+<li><strong>역할:</strong> 블루프린트 Construction Script의 연산 결과까지 포함된 최종 데이터를 가지고 C++에서 마지막으로 컴포넌트를 정렬하거나 세팅할 때 사용합니다.</li>
+</ul>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../../../search/main.js"></script>
+    
+</body>
+</html>

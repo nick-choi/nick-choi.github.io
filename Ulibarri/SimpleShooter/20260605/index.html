@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+
+    <title>
+        
+        20260605
+        
+    </title>
+
+    
+    <meta name="description" content="Silverbullet-inspired MkDocs Documentation">
+    
+
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            
+                            <h1 class="page-title">20260605</h1>
+                            
+                        </span>
+
+                        <!-- Top Actions -->
+                        <div class="sb-actions">    
+                            <button type="button" title="Go to the index page" onclick="location.href='/' ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    
+                                    <li>
+                                        <a href="#154-pawns-vs-characters-in-c" class="sb-toc-link">154 Pawns vs Characters in C++</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-apawn" class="sb-toc-link">1. APawn을 상속받은 블루프린트의 구조</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-acharacter" class="sb-toc-link">2. ACharacter를 상속받은 블루프린트의 구조</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-gamemode" class="sb-toc-link">3. GameMode</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#155-character-movement-functions" class="sb-toc-link">155 Character Movement Functions</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1" class="sb-toc-link">1. 선언부</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-addmovementinput" class="sb-toc-link">2. AddMovementInput</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-jump" class="sb-toc-link">3. Jump</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4-setupplayerinputcomponent" class="sb-toc-link">4. SetupPlayerInputComponent</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#5-beginplay" class="sb-toc-link">5. BeginPlay</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#6" class="sb-toc-link">6. 그외</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#156-controller-aiming" class="sb-toc-link">156 Controller Aiming</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1_1" class="sb-toc-link">1. 선언부</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-addcontrollerpitchinput-addcontrolleryawinput" class="sb-toc-link">2. AddControllerPitchInput / AddControllerYawInput</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-setupplayerinputcomponent" class="sb-toc-link">3. SetupPlayerInputComponent</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#157-third-person-camera-spring-arm" class="sb-toc-link">157 Third Person Camera Spring Arm</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#c" class="sb-toc-link">C++에서 구현했을 때의 장점</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#1_2" class="sb-toc-link">1. 컴포넌트 선언부</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2" class="sb-toc-link">2. 생성자에서 컴포넌트 생성/부착</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        <!-- Breadcrumb Navigation -->
+                        <ul>
+<li>2026년 1월까지 학습한 것 중 필요한 것들 정리(다 까먹음)</li>
+</ul>
+<h2 id="154-pawns-vs-characters-in-c">154 Pawns vs Characters in C++<a class="headerlink" href="#154-pawns-vs-characters-in-c" title="Permanent link">&para;</a></h2>
+<h3 id="1-apawn">1. APawn을 상속받은 블루프린트의 구조<a class="headerlink" href="#1-apawn" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>  BP_Pawn
+   |
+   +- DefaultScene Root
+</code></pre></div>
+<h3 id="2-acharacter">2. ACharacter를 상속받은 블루프린트의 구조<a class="headerlink" href="#2-acharacter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>  BP_Character
+   |
+   +- Character Movement(CharMoveComp)
+   |
+   +- Capsule Component(CollisionCylinder)
+     |
+     +- Arrow Component(Arrow)
+     |
+     +- Mesh (CharacterMesh0)     
+</code></pre></div>
+<h3 id="3-gamemode">3. GameMode<a class="headerlink" href="#3-gamemode" title="Permanent link">&para;</a></h3>
+<ul>
+<li>BaseGameMode 상속받은 BP_GameMode</li>
+<li>Details의 DefaultPawn 변경</li>
+<li>새로운 LevelMap에서 Project Settings에서 BP_GameMode 로 지정</li>
+<li>Editor에서 Play시 PlayerStart 위치에서 설정된 DefaultPawn 이 Spawn</li>
+</ul>
+<h2 id="155-character-movement-functions">155 Character Movement Functions<a class="headerlink" href="#155-character-movement-functions" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 선언부<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>블루프린트에서 UInputMappingContext/UInputAction 연결<br />
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetupPlayerInputComponent</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UInputComponent</span><span class="o">*</span><span class="w"> </span><span class="n">PlayerInputComponent</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">BeginPlay</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">Move</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FInputActionValue</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputActionValue</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Input&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">UInputMappingContext</span><span class="o">*</span><span class="w"> </span><span class="n">DefaultMappingContext</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//Move</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Input&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">UInputAction</span><span class="o">*</span><span class="w"> </span><span class="n">MoveAction</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//Jump</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Input&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">UInputAction</span><span class="o">*</span><span class="w"> </span><span class="n">JumpAction</span><span class="p">;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="2-addmovementinput">2. AddMovementInput<a class="headerlink" href="#2-addmovementinput" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">//3인칭</span>
+<span class="w">  </span><span class="c1">//Left/Right</span>
+<span class="w">  </span><span class="n">FRotator</span><span class="w"> </span><span class="n">controlRotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetControlRotation</span><span class="p">();</span>
+<span class="w">  </span><span class="n">controlRotation</span><span class="p">.</span><span class="n">Pitch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">AddMovementInput</span><span class="p">(</span><span class="n">FRotationMatrix</span><span class="p">(</span><span class="n">controlRotation</span><span class="p">).</span>
+<span class="w">                   </span><span class="n">GetUnitAxis</span><span class="p">(</span><span class="n">EAxis</span><span class="o">::</span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">xAxisValue</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">//Forward/Backward</span>
+<span class="w">  </span><span class="n">controlRotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetControlRotation</span><span class="p">();</span>
+<span class="w">  </span><span class="n">controlRotation</span><span class="p">.</span><span class="n">Pitch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">controlRotation</span><span class="p">.</span><span class="n">Roll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">AddMovementInput</span><span class="p">(</span><span class="n">FRotationMatrix</span><span class="p">(</span><span class="n">controlRotation</span><span class="p">).</span>
+<span class="w">                   </span><span class="n">GetUnitAxis</span><span class="p">(</span><span class="n">EAxis</span><span class="o">::</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="n">yAxisValue</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="3-jump">3. Jump<a class="headerlink" href="#3-jump" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">//Jump Started</span>
+<span class="w">  </span><span class="n">ACharacter</span><span class="o">::</span><span class="n">Jump</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">//Jump Completed</span>
+<span class="w">  </span><span class="n">ACharacter</span><span class="o">::</span><span class="n">StopJumping</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="4-setupplayerinputcomponent">4. SetupPlayerInputComponent<a class="headerlink" href="#4-setupplayerinputcomponent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">enhancedInputComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UEnhancedInputComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerInputComponent</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MoveAction</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">enhancedInputComponent</span><span class="o">-&gt;</span><span class="n">BindAction</span><span class="p">(</span><span class="n">MoveAction</span><span class="p">,</span><span class="w"> </span><span class="n">ETriggerEvent</span><span class="o">::</span><span class="n">Triggered</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AShooterCharacter</span><span class="o">::</span><span class="n">Move</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">JumpAction</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">enhancedInputComponent</span><span class="o">-&gt;</span><span class="n">BindAction</span><span class="p">(</span><span class="n">JumpAction</span><span class="p">,</span><span class="w"> </span><span class="n">ETriggerEvent</span><span class="o">::</span><span class="n">Started</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ACharacter</span><span class="o">::</span><span class="n">Jump</span><span class="p">);</span>
+<span class="w">            </span><span class="n">enhancedInputComponent</span><span class="o">-&gt;</span><span class="n">BindAction</span><span class="p">(</span><span class="n">JumpAction</span><span class="p">,</span><span class="w"> </span><span class="n">ETriggerEvent</span><span class="o">::</span><span class="n">Completed</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ACharacter</span><span class="o">::</span><span class="n">StopJumping</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="5-beginplay">5. BeginPlay<a class="headerlink" href="#5-beginplay" title="Permanent link">&para;</a></h3>
+<ul>
+<li>SubSystem에 MappingContext 추가<br />
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">DefaultMappingContext</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">playerController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">APlayerController</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Controller</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">subSystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ULocalPlayer</span><span class="o">::</span><span class="n">GetSubsystem</span><span class="o">&lt;</span><span class="n">UEnhancedInputLocalPlayerSubsystem</span><span class="o">&gt;</span>
+<span class="w">            </span><span class="p">(</span><span class="n">playerController</span><span class="o">-&gt;</span><span class="n">GetLocalPlayer</span><span class="p">()))</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">subSystem</span><span class="o">-&gt;</span><span class="n">AddMappingContext</span><span class="p">(</span><span class="n">DefaultMappingContext</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="6">6. 그외<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>inputActionValue.Get&lt;FVector2D&gt;()<ul>
+<li>입력장치의 조작량</li>
+<li>X : 가로(좌우 이동량)</li>
+<li>Y : 세로(위아래 이동량)</li>
+</ul>
+</li>
+<li>EAxis<ul>
+<li>언리얼 엔진 3D 월드 방향</li>
+<li>X : 앞/뒤(Forward/Backward)</li>
+<li>Y : 좌/우(Left/Right)</li>
+<li>Z : 위/아래(Up/Down)</li>
+</ul>
+</li>
+</ul>
+<h2 id="156-controller-aiming">156 Controller Aiming<a class="headerlink" href="#156-controller-aiming" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">1. 선언부<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>블루프린트에서 UInputMappingContext/UInputAction 연결<br />
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">Aim</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FInputActionValue</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputActionValue</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">...</span>
+
+<span class="w">    </span><span class="c1">//Aim</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Input&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">UInputAction</span><span class="o">*</span><span class="w"> </span><span class="n">AimAction</span><span class="p">;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="2-addcontrollerpitchinput-addcontrolleryawinput">2. AddControllerPitchInput / AddControllerYawInput<a class="headerlink" href="#2-addcontrollerpitchinput-addcontrolleryawinput" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">//Up/Down</span>
+<span class="w">    </span><span class="n">AddControllerPitchInput</span><span class="p">(</span><span class="n">inputActionValue</span><span class="p">.</span><span class="n">Get</span><span class="o">&lt;</span><span class="n">FVector2D</span><span class="o">&gt;</span><span class="p">().</span><span class="n">Y</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//Left/Right</span>
+<span class="w">    </span><span class="n">AddControllerYawInput</span><span class="p">(</span><span class="n">inputActionValue</span><span class="p">.</span><span class="n">Get</span><span class="o">&lt;</span><span class="n">FVector2D</span><span class="o">&gt;</span><span class="p">().</span><span class="n">X</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="3-setupplayerinputcomponent">3. SetupPlayerInputComponent<a class="headerlink" href="#3-setupplayerinputcomponent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p">...</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AimAction</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">enhancedInputComponent</span><span class="o">-&gt;</span><span class="n">BindAction</span><span class="p">(</span><span class="n">AimAction</span><span class="p">,</span><span class="w"> </span><span class="n">ETriggerEvent</span><span class="o">::</span><span class="n">Triggered</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AShooterCharacter</span><span class="o">::</span><span class="n">Aim</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">  </span><span class="p">...</span>
+</code></pre></div>
+<h2 id="157-third-person-camera-spring-arm">157 Third Person Camera Spring Arm<a class="headerlink" href="#157-third-person-camera-spring-arm" title="Permanent link">&para;</a></h2>
+<h3 id="c">C++에서 구현했을 때의 장점<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
+<ul>
+<li>일반적인 현업(AAA 게임 개발이나 규모가 있는 프로젝트)에서는 압도적으로 <strong>C++에서 <code>SpringArm</code>과 <code>CameraComponent</code>를 생성하여 붙이고(계층 구조 설계), 블루프린트에서는 세부 수치만 조절하는 방식</strong>을 선호</li>
+</ul>
+<h4 id="1-c">1. C++ 로직에서의 안전한 접근성 (가장 큰 이유)<a class="headerlink" href="#1-c" title="Permanent link">&para;</a></h4>
+<ul>
+<li>슈팅 게임(<code>ShooterCharacter</code>)의 경우 카메라의 위치나 바라보는 방향(Rotation)을 기반으로 총알이 날아가는 궤적(Line Trace)을 계산하거나, 조준(Aim) 시 카메라의 시야각(FOV)이나 SpringArm의 길이를 조절하는 등의 로직이 C++에 구현되는 경우가 많습니다. </li>
+</ul>
+<h4 id="2-corruption">2. 블루프린트 손상(Corruption) 방지<a class="headerlink" href="#2-corruption" title="Permanent link">&para;</a></h4>
+<ul>
+<li>언리얼 엔진을 사용하다 보면 드물게 블루프린트 에셋이 꼬이거나 손상되는 경우가 발생합니다. 핵심 컴포넌트 구조(캡슐, 메시, 스프링암, 카메라 등)를 C++에 하드코딩해 두면, 블루프린트가 깨지더라도 부모 C++ 클래스를 기반으로 블루프린트를 다시 만들고 수치만 다시 입력하면 되기 때문에 복구가 훨씬 수월합니다.</li>
+</ul>
+<h4 id="3">3. 명확한 설계 의도 파악<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>프로그래머가 C++ 헤더 파일만 열어봐도 "아, 이 캐릭터는 스프링암 기반의 3인칭 카메라를 사용하는 캐릭터구나"라는 것을 한눈에 파악할 수 있어 협업과 유지보수에 매우 유리합니다.</li>
+</ul>
+<h3 id="1_2">1. 컴포넌트 선언부<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">//SpringArm</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Camera&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">USpringArmComponent</span><span class="o">*</span><span class="w"> </span><span class="n">SpringArm</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//FollowCamera</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Camera&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UCameraComponent</span><span class="o">*</span><span class="w"> </span><span class="n">FollowCamera</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="2">2. 생성자에서 컴포넌트 생성/부착<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">//SpringArm 생성</span>
+<span class="w">    </span><span class="n">SpringArm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">USpringArmComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;CameraBoom&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="n">SpringArm</span><span class="o">-&gt;</span><span class="n">SetupAttachment</span><span class="p">(</span><span class="n">RootComponent</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SpringArm</span><span class="o">-&gt;</span><span class="n">TargetArmLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">300.0f</span><span class="p">;</span>
+<span class="w">    </span><span class="n">SpringArm</span><span class="o">-&gt;</span><span class="n">bUsePawnControlRotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">//카메라가 캐릭터를 따라 회전하도록 설정</span>
+
+<span class="w">    </span><span class="c1">//CameraComponent 생성</span>
+<span class="w">    </span><span class="n">FollowCamera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UCameraComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;FollowCamera&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="n">FollowCamera</span><span class="o">-&gt;</span><span class="n">SetupAttachment</span><span class="p">(</span><span class="n">SpringArm</span><span class="p">,</span><span class="w"> </span><span class="n">USpringArmComponent</span><span class="o">::</span><span class="n">SocketName</span><span class="p">);</span><span class="w"> </span><span class="c1">//SpringArm에 카메라 부착</span>
+
+<span class="w">    </span><span class="c1">//SpringArm에서 컨트롤   회전을 사용하지만, 카메라에서는 사용하지 않도록 설정</span>
+<span class="w">    </span><span class="n">FollowCamera</span><span class="o">-&gt;</span><span class="n">bUsePawnControlRotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</code></pre></div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../../../search/main.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+
+    <title>
+        
+        20260620
+        
+    </title>
+
+    
+    <meta name="description" content="Silverbullet-inspired MkDocs Documentation">
+    
+
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            
+                            <h1 class="page-title">20260620</h1>
+                            
+                        </span>
+
+                        <!-- Top Actions -->
+                        <div class="sb-actions">    
+                            <button type="button" title="Go to the index page" onclick="location.href='/' ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    
+                                    <li>
+                                        <a href="#template-functions" class="sb-toc-link">Template Functions</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#template-function" class="sb-toc-link">템플릿 함수(Template Function)란?</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#_1" class="sb-toc-link">특징</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_2" class="sb-toc-link">기본 구현 및 사용 예시 (정수와 실수)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#beginplay" class="sb-toc-link">실제 사용 (BeginPlay 단계)</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-unreal-engine-fvector" class="sb-toc-link">3. Unreal Engine 구조체(FVector) 활용</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#tick" class="sb-toc-link">틱(Tick) 함수에서의 활용</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4" class="sb-toc-link">4. 템플릿 함수의 치명적인 제약 (중요!)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#frotator" class="sb-toc-link">실패 사례: FRotator (회전값)</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#components" class="sb-toc-link">Components</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-component" class="sb-toc-link">1. 컴포넌트(Component)란 무엇인가?</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-scene-component-transform" class="sb-toc-link">2. 씬 컴포넌트(Scene Component)와 트랜스폼(Transform)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#getactorlocation" class="sb-toc-link">짚고 넘어가기: GetActorLocation()의 비밀</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-" class="sb-toc-link">3. 부모-자식 상속과 '루트 컴포넌트 변경'</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#_3" class="sb-toc-link">블루프린트에서 루트 컴포넌트 바꾸기</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4_1" class="sb-toc-link">4. 블루프린트 조작 시 팁 및 제약 조건</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#defaultsceneroot" class="sb-toc-link">DefaultSceneRoot</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-defaultsceneroot" class="sb-toc-link">1. DefaultSceneRoot의 정의</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2" class="sb-toc-link">2. 주요 역할</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-transform" class="sb-toc-link">① 액터에게 월드 좌표(Transform) 제공</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2_1" class="sb-toc-link">② 자식 컴포넌트들의 기준점 (기준 프레임)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#3" class="sb-toc-link">③ 움직임의 중심점</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3_1" class="sb-toc-link">3. 핵심 특징과 주의점</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4-defaultsceneroot-uscenecomponent" class="sb-toc-link">4. 왜 DefaultSceneRoot를 다른 USceneComponent로 대체할까?</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#components-in-c" class="sb-toc-link">Components in C++</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-cdo" class="sb-toc-link">1. 핵심 개념: CDO와 생성자의 한계</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#cdo-class-default-object" class="sb-toc-link">CDO (Class Default Object, 클래스 기본 객체)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#vs-beginplay" class="sb-toc-link">생성자 vs BeginPlay</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-c" class="sb-toc-link">2. C++에서 컴포넌트 생성하기 (팩토리 함수)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-itemh" class="sb-toc-link">① 헤더 파일 (Item.h) 선언</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2-itemcpp" class="sb-toc-link">② 소스 파일 (Item.cpp) 생성자 구현</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-best-practice" class="sb-toc-link">3. 에디터 검증 및 실무 모범 사례 (Best Practice)</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#class-default-object" class="sb-toc-link">Class Default Object</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-cdo_1" class="sb-toc-link">1. 전체적인 흐름 (컴파일부터 CDO 생성까지)</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-cdo" class="sb-toc-link">2. 왜 이렇게 복잡한 과정을 거칠까? (CDO의 존재 이유)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1" class="sb-toc-link">① 초고속 객체 생성 (복사 메커니즘)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2-details" class="sb-toc-link">② 블루프린트 기본값(Details 창)의 기준점</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3_2" class="sb-toc-link">3. 용어 깔끔하게 한 줄 정리</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#default-suboject" class="sb-toc-link">Default Suboject</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-subobject" class="sb-toc-link">1. 왜 'Subobject(하위 오브젝트)'라고 부를까?</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-default" class="sb-toc-link">2. 왜 앞에 'Default(기본)'가 붙을까?</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3_3" class="sb-toc-link">3. 그냥 '컴포넌트'와는 뭐가 다를까? (차이점 비교)</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4-ascii" class="sb-toc-link">4. 구조적 이해를 돕는 ASCII 다이어그램</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#tobjectptr" class="sb-toc-link">TObjectPtr</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#tobjectptr-vs" class="sb-toc-link">TObjectPtr vs 일반 원시 포인터(*) 차이점</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#1-lazy-loading" class="sb-toc-link">① 에디터에서의 옵션: 가비지 컬렉션 및 지연 로딩(Lazy Loading)</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#2_2" class="sb-toc-link">② 개발 편의성: 잘못된 메모리 접근 방지</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_4" class="sb-toc-link">어떤 것을 사용하는 것을 추천하나요?</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_5" class="sb-toc-link">추천 규칙</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#_6" class="sb-toc-link">예시 코드 구조</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        <!-- Breadcrumb Navigation -->
+                        <h1 id="template-functions">Template Functions<a class="headerlink" href="#template-functions" title="Permanent link">&para;</a></h1>
+<h2 id="template-function">템플릿 함수(Template Function)란?<a class="headerlink" href="#template-function" title="Permanent link">&para;</a></h2>
+<p>기존의 일반 함수는 정해진 타입(예: <code>int</code>, <code>float</code>)의 데이터만 받을 수 있습니다. 하지만 "데이터 타입 자체를 입력 매개변수처럼 전달할 수 없을까?"라는 고민에서 나온 것이 바로 템플릿 함수입니다.</p>
+<h3 id="_1">특징<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>높은 유연성:</strong> 함수 하나만 만들어 두면, 데이터 타입에 구애받지 않고 재사용할 수 있습니다.</li>
+<li><strong>전통적인 표기법:</strong> 주로 템플릿 타입을 선언할 때 관례적으로 <code>T</code>라는 이름을 매개변수로 사용합니다.</li>
+<li><strong>인라인(Inline) 컴파일:</strong> 스크립트에서 언급되듯, 템플릿 함수는 컴파일할 때 함수가 호출된 자리에 실제 코드가 그대로 대체(매크로처럼 작동)되는 방식으로 처리됩니다.</li>
+</ul>
+<h2 id="_2">기본 구현 및 사용 예시 (정수와 실수)<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>강의에서는 두 값의 평균을 구하는 <code>avg</code>라는 템플릿 함수를 예시로 듭니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">avg</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">second</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">first</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">second</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="beginplay">실제 사용 (BeginPlay 단계)<a class="headerlink" href="#beginplay" title="Permanent link">&para;</a></h3>
+<p>함수를 호출할 때는 꺾쇠괄호<code>&lt;&gt;</code> 안에 원하는 타입을 명시합니다.</p>
+<ul>
+<li>
+<p><strong>정수형 (<code>int32</code>):</strong> <code>avg&lt;int32&gt;(1, 3)</code>을 호출하면 컴파일러가 <code>T</code>를 모두 <code>int32</code>로 바꾸어 처리합니다. 결과는 <code>2</code>가 반환됩니다.</p>
+</li>
+<li>
+<p><strong>실수형 (<code>float</code>):</strong> <code>avg&lt;float&gt;(3.45f, 7.86f)</code>를 호출하면 <code>T</code>가 <code>float</code>로 작동하여 정확한 소수점 평균 결과인 <code>5.65</code>가 반환됩니다.</p>
+</li>
+</ul>
+<h2 id="3-unreal-engine-fvector">3. Unreal Engine 구조체(<code>FVector</code>) 활용<a class="headerlink" href="#3-unreal-engine-fvector" title="Permanent link">&para;</a></h2>
+<p>템플릿 함수의 진짜 매력은 Unreal Engine의 복잡한 데이터 타입인 <code>FVector</code>(3D 좌표/벡터)에도 그대로 적용된다는 점입니다.</p>
+<h3 id="tick">틱(Tick) 함수에서의 활용<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h3>
+<p>매 프레임마다 현재 액터의 위치(<code>GetActorLocation()</code>)와 액터의 원점(<code>FVector::ZeroVector</code>)을 <code>avg</code> 함수에 전달합니다.</p>
+<div class="highlight"><pre><span></span><code><span class="n">FVector</span><span class="w"> </span><span class="n">averageVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">avg</span><span class="o">&lt;</span><span class="n">FVector</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetActorLocation</span><span class="p">(),</span><span class="w"> </span><span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>
+<p><strong>원리:</strong> <code>FVector</code> 내부에는 이미 <code>+</code>(더하기) 연산자와 <code>/</code>(나누기) 연산자가 오버로딩(정의)되어 있습니다. 따라서 벡터끼리 더하면 X, Y, Z 축 값이 각각 더해지고, 2로 나누면 각 축이 2로 나뉩니다.</p>
+</li>
+<li>
+<p><strong>결과:</strong> 원점과 액터 사이의 정확한 중간 지점(Midpoint)에 매 프레임 디버그 포인트가 찍히게 됩니다. 액터를 움직이면 중간 지점도 실시간으로 같이 이동합니다.</p>
+</li>
+</ul>
+<h2 id="4">4. 템플릿 함수의 치명적인 제약 (중요!)<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>템플릿 함수는 만능처럼 보이지만, "함수 내부 연산이 해당 데이터 타입에서도 지원되어야 한다"는 절대적인 조건이 있습니다.</p>
+<h3 id="frotator">실패 사례: <code>FRotator</code> (회전값)<a class="headerlink" href="#frotator" title="Permanent link">&para;</a></h3>
+<p>강의에서 회전값을 나타내는 <code>FRotator</code>를 템플릿 함수에 넣었을 때 컴파일 에러(Build Failed)가 발생합니다.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 컴파일 에러 발생!</span>
+<span class="n">FRotator</span><span class="w"> </span><span class="n">averageRotator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">avg</span><span class="o">&lt;</span><span class="n">FRotator</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetActorRotation</span><span class="p">(),</span><span class="w"> </span><span class="n">FRotator</span><span class="o">::</span><span class="n">ZeroRotator</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>
+<p><strong>이유:</strong> <code>avg</code> 함수 내부에는 <code>/ 2</code> 즉, <strong>나눗셈(<code>/</code>) 연산</strong>이 포함되어 있습니다. 하지만 Unreal Engine에서 회전값(<code>FRotator</code>)끼리 나누거나, 회전값을 숫자로 나누는 연산자는 정의되어 있지 않습니다. 회전값을 나누는 수학적 개념이 기본적으로 모호하기 때문입니다.</p>
+</li>
+<li>
+<p><strong>결론:</strong> 템플릿 함수를 사용할 때는 전달하려는 타입이 <strong>함수 내부의 모든 연산자(이 경우 <code>+</code>와 <code>/</code>)를 지원하는지</strong> 반드시 확인해야 합니다.</p>
+</li>
+</ul>
+<h1 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h1>
+<h2 id="1-component">1. 컴포넌트(Component)란 무엇인가?<a class="headerlink" href="#1-component" title="Permanent link">&para;</a></h2>
+<p>액터가 게임 월드에서 특정 '기능'을 가질 수 있도록 조립하는 <strong>부품</strong>과 같습니다. 액터 자체는 빈 껍데기에 가깝고, 컴포넌트를 추가해야 비로소 눈에 보이거나 물리적인 상호작용을 할 수 있습니다.</p>
+<ul>
+<li><strong>예시 (무기 액터):</strong><ul>
+<li>눈에 보이게 하려면 ➡ <strong>스태틱 메시 컴포넌트(Static Mesh Component)</strong> 추가</li>
+<li>칼날이 적에게 닿았는지 감지하려면 ➡ invisible한 <strong>박스 콜리전 컴포넌트(Box Collision Component)</strong> 추가</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-scene-component-transform">2. 씬 컴포넌트(Scene Component)와 트랜스폼(Transform)<a class="headerlink" href="#2-scene-component-transform" title="Permanent link">&para;</a></h2>
+<p>컴포넌트 중에서도 가장 기본이 되는 클래스가 바로 <code>USceneComponent</code>입니다. (이름 앞의 <code>U</code>는 액터가 아닌 일반 UObject 계열임을 뜻합니다.)</p>
+<ul>
+<li>
+<p><strong>핵심 기능 (Transform):</strong> 씬 컴포넌트는 위치(Location), 회전(Rotation), 스케일(Scale) 정보로 이루어진 <strong>트랜스폼(Transform)</strong> 데이터 구조를 가집니다.</p>
+</li>
+<li>
+<p><strong>부착(Attachment) 기능:</strong> 다른 컴포넌트에 부착될 수 있으며, 부모 컴포넌트가 움직이면 <strong>상대적인 거리(Relative Offset)를 유지</strong>한 채 함께 움직입니다.</p>
+</li>
+</ul>
+<h3 id="getactorlocation">짚고 넘어가기: <code>GetActorLocation()</code>의 비밀<a class="headerlink" href="#getactorlocation" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>우리가 코드에서 <code>GetActorLocation()</code>을 호출해 액터의 위치를 가져올 때, 실제로는 액터 자체가 아니라 <strong>액터의 '루트 컴포넌트(Root Component)'가 가진 트랜스폼 위치 값</strong>을 반환하는 것입니다. 그렇기 때문에 모든 액터는 반드시 최소 하나 이상의 씬 컴포넌트(루트)를 가져야만 합니다.</p>
+</blockquote>
+<h2 id="3-">3. 부모-자식 상속과 '루트 컴포넌트 변경'<a class="headerlink" href="#3-" title="Permanent link">&para;</a></h2>
+<p><code>UStaticMeshComponent</code>는 <code>USceneComponent</code>를 상속받은 자식 클래스입니다. 즉, 위치 정보와 부착 기능을 기본으로 가지면서 "3D 메시 데이터를 담는 변수(<code>UStaticMesh</code>)"가 추가된 컴포넌트입니다.</p>
+<h3 id="_3">블루프린트에서 루트 컴포넌트 바꾸기<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>처음 액터를 만들면 기본적으로 <strong>invisible</strong> 상태인 <code>DefaultSceneRoot</code>가 대장(루트) 자리를 차지하고 있습니다.</p>
+<ol>
+<li>
+<p>여기에 스태틱 메시 컴포넌트(예: 구체 모양)를 추가하면 처음엔 루트 아래에 자식으로 붙습니다.</p>
+</li>
+<li>
+<p>이때 자식 컴포넌트를 드래그해서 <strong><code>DefaultSceneRoot</code> 위로 떨어뜨리면(Drop), 이 스태틱 메시 컴포넌트가 새로운 '루트 컴포넌트'가 됩니다.</strong></p>
+</li>
+<li>
+<p><strong>C++의 다형성 원리:</strong> C++에서 <code>RootComponent</code> 변수는 부모 타입인 <code>USceneComponent*</code> 포인터로 선언되어 있기 때문에, 자식 타입인 <code>UStaticMeshComponent</code> 객체를 가리키는 것이 완벽하게 가능합니다.</p>
+</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>주의:</strong> 루트 컴포넌트가 되면 자기 자신을 기준으로 월드 좌표가 설정되므로, 블루프린트 뷰포트 내에서 더 이상 상대적인 위치 이동(Offset)을 할 수 없습니다. (자기 자신을 기준으로 움직일 수는 없으니까요!)</p>
+</blockquote>
+<h2 id="4_1">4. 블루프린트 조작 시 팁 및 제약 조건<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>콘텐츠 브라우저 연동:</strong> 콘텐츠 브라우저에서 특정 메시(예: 도넛 모양의 토러스)를 선택한 상태로 블루프린트에서 <code>+ Add</code> 버튼을 누르면, 엔진이 자동으로 해당 메시가 세팅된 컴포넌트를 생성해 줍니다.</p>
+</li>
+<li>
+<p><strong>피벗 포인트(Pivot Point):</strong> 매시의 기준점(Gizmo가 생기는 곳)은 항상 중심이 아닐 수 있습니다. 모델러가 맥스나 블렌더에서 밑바닥에 피벗을 잡았다면 그곳이 기준점이 되며, 디버그 구체를 그릴 때도 이 피벗 포인트를 기준으로 그려집니다.</p>
+</li>
+<li>
+<p><strong>삭제 규칙:</strong> 루트 컴포넌트를 지우면 액터가 통째로 날아가는 것이 아니라, 언리얼 엔진이 액터의 최소 조건(트랜스폼 변수 존재)을 유지하기 위해 <strong>기본 <code>DefaultSceneRoot</code>를 자동으로 다시 생성</strong>해 줍니다.</p>
+</li>
+</ul>
+<h1 id="defaultsceneroot">DefaultSceneRoot<a class="headerlink" href="#defaultsceneroot" title="Permanent link">&para;</a></h1>
+<h2 id="1-defaultsceneroot">1. DefaultSceneRoot의 정의<a class="headerlink" href="#1-defaultsceneroot" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>클래스 타입:</strong> C++ 기준으로 <strong><code>USceneComponent</code></strong> 클래스의 인스턴스입니다.</li>
+<li><strong>상태:</strong> 외형(Mesh)이나 충돌 영역(Collision)이 전혀 없는, 오직 <strong>트랜스폼(위치, 회전, 크기) 데이터만 가진 invisible(보이지 않는) 컴포넌트</strong>입니다.</li>
+<li><strong>생성 시점:</strong> 블루프린트 클래스를 생성하거나 레벨에 빈 액터를 배치할 때, 개발자가 아무런 컴포넌트도 지정하지 않으면 엔진이 액터의 최소 조건을 만족시키기 위해 <strong>자동으로 생성</strong>해 줍니다.</li>
+</ul>
+<h2 id="2">2. 주요 역할<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="1-transform">① 액터에게 월드 좌표(Transform) 제공<a class="headerlink" href="#1-transform" title="Permanent link">&para;</a></h3>
+<p>언리얼 엔진에서 액터 자체는 위치 정보를 가지지 못합니다. 위치 정보를 가지려면 반드시 <code>USceneComponent</code>가 필요합니다. <code>DefaultSceneRoot</code>는 이 위치 정보를 대신 맡아 처리해 줌으로써, 액터가 게임 월드의 특정 좌표 <code>(X, Y, Z)</code>에 존재할 수 있게 만듭니다. 우리가 코드에서 <code>GetActorLocation()</code>을 호출할 때 실제로 값을 반환하는 주체가 바로 이 녀석입니다.</p>
+<h3 id="2_1">② 자식 컴포넌트들의 기준점 (기준 프레임)<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<p>액터에 스태틱 메시, 사운드, 파티클 등 새로운 컴포넌트를 추가하면, 이 컴포넌트들은 기본적으로 <code>DefaultSceneRoot</code> 아래에 자식(Child)으로 부착됩니다. 이때 자식 컴포넌트들의 위치는 월드 절대 좌표가 아니라, <code>DefaultSceneRoot</code>로부터 얼마나 떨어져 있는지(상대 좌표, Relative Offset)를 기준으로 계산됩니다.</p>
+<h3 id="3">③ 움직임의 중심점<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p><code>DefaultSceneRoot</code>가 월드에서 움직이거나 회전하면, 아래에 붙은 모든 자식 컴포넌트들이 부모를 따라서 똑같은 상대적 거리를 유지한 채 함께 움직입니다. 즉, 액터 전체의 이동과 회전을 관장하는 중심점 역할을 합니다.</p>
+<h2 id="3_1">3. 핵심 특징과 주의점<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>직접 이동 불가능 (블루프린트 내부에서):</strong> 블루프린트 컴포넌트 탭에서 <code>DefaultSceneRoot</code>를 선택하고 마우스로 드래그해도 위치를 옮길 수 없습니다. 왜냐하면 그 위치 자체가 해당 블루프린트의 <code>(0, 0, 0)</code> 기준점이기 때문입니다. (자기 자신을 기준으로 위치를 옮길 수는 없기 때문입니다.)</p>
+</li>
+<li>
+<p><strong>지우려고 하면 다시 살아나는 존재:</strong> <code>DefaultSceneRoot</code>를 선택하고 <code>Delete</code> 키를 누르면 잠시 사라지는 것처럼 보이지만, 곧바로 다시 생성됩니다. 언리얼 엔진은 <strong>트랜스폼이 없는 액터가 월드에 존재하는 것을 허용하지 않기 때문에</strong>, 다른 씬 컴포넌트(예: 스태틱 메시)가 루트 자리를 대체하기 전까지는 절대로 완전히 지워지지 않습니다.</p>
+</li>
+<li>
+<p><strong>다른 컴포넌트로 대체 가능:</strong> 외형 유무와 상관없이 <code>USceneComponent</code>를 상속받아 트랜스폼(Transform)을 가질 수 있는 컴포넌트(예: <code>StaticMeshComponent</code>)를 추가한 뒤, 이를 드래그해서 <code>DefaultSceneRoot</code> 위에 덮어쓰면(Drop), 기존의 <code>DefaultSceneRoot</code>는 깔끔하게 삭제되고 내가 지정한 컴포넌트가 새로운 루트 컴포넌트가 됩니다.</p>
+</li>
+</ul>
+<h2 id="4-defaultsceneroot-uscenecomponent">4. 왜 <code>DefaultSceneRoot</code>를 다른 <code>USceneComponent</code>로 대체할까?<a class="headerlink" href="#4-defaultsceneroot-uscenecomponent" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>외형이나 충돌(Collision)을 루트로 삼고 싶을 때:</strong> 가장 흔한 케이스입니다. 무기 액터라면 칼날 메시(<code>StaticMeshComponent</code>)를 루트로 삼거나, 캐릭터나 장애물이라면 충돌 박스(<code>BoxComponent</code>)를 루트로 삼아 액터의 이동 중심점으로 만듭니다.</p>
+</li>
+<li>
+<p><strong>C++ 코드와의 연결(Binding)을 위해:</strong> C++에서 나만의 커스텀 씬 컴포넌트 클래스를 만든 뒤, 블루프린트의 <code>DefaultSceneRoot</code> 자리를 내가 만든 커스텀 컴포넌트로 대체하여 C++ 로직의 중심점으로 활용할 때 사용합니다.</p>
+</li>
+</ul>
+<h1 id="components-in-c">Components in C++<a class="headerlink" href="#components-in-c" title="Permanent link">&para;</a></h1>
+<h2 id="1-cdo">1. 핵심 개념: CDO와 생성자의 한계<a class="headerlink" href="#1-cdo" title="Permanent link">&para;</a></h2>
+<h3 id="cdo-class-default-object">CDO (Class Default Object, 클래스 기본 객체)<a class="headerlink" href="#cdo-class-default-object" title="Permanent link">&para;</a></h3>
+<p>언리얼 엔진은 엔진이 시작될 때(또는 코드 컴파일 시) 우리가 만든 클래스의 '마스터 복사본'인 CDO를 리플렉션 시스템에 하나 만들어 둡니다.</p>
+<ul>
+<li><strong>역할:</strong> 블루프린트나 월드에 새로운 액터를 배치할 때, 이 CDO에 저장된 기본값들을 복사해 서 초기화합니다.</li>
+<li><strong>동작:</strong> 엔진 초기화 단계에서 각 클래스의 생성자(Constructor)를 실행하여 이 기본값들을 세팅합니다.</li>
+</ul>
+<h3 id="vs-beginplay">생성자 vs BeginPlay<a class="headerlink" href="#vs-beginplay" title="Permanent link">&para;</a></h3>
+<p>생성자는 게임이 시작되기도 전, 엔진 초기화 단계에서 실행되기 때문에 <strong>매우 이른 타이밍</strong>입니다.</p>
+<ul>
+<li><strong>생성자에서 하면 안 되는 일:</strong> "게임이 시작하자마자 주변의 다른 액터들을 탐색해서 데미지를 주는 폭탄" 같은 로직은 생성자에 넣으면 안 됩니다. <em><strong>이 타이밍에는 다른 액터들이 아직 생성되거나 초기화되지 않았기 때문입니다.</strong></em></li>
+<li><strong>해결책:</strong> 게임 시작 시점의 안전한 로직은 반드시 모든 액터가 완전히 초기화된 후 호출되는 <code>BeginPlay()</code>에서 처리해야 합니다.</li>
+</ul>
+<h2 id="2-c">2. C++에서 컴포넌트 생성하기 (팩토리 함수)<a class="headerlink" href="#2-c" title="Permanent link">&para;</a></h2>
+<p>액터에게 컴포넌트는 '기본 서브 오브젝트(Default Subobject)'라고 부릅니다. C++에서는 표준 <code>new</code> 키워드 대신 엔진이 제공하는 팩토리 함수(Factory Function)를 사용해야 엔진이 메모리를 관리(가비지 컬렉션 등)할 수 있습니다.</p>
+<h3 id="1-itemh">① 헤더 파일 (<code>Item.h</code>) 선언<a class="headerlink" href="#1-itemh" title="Permanent link">&para;</a></h3>
+<p>컴포넌트를 담을 빈 포인터 변수를 선언합니다. 가비지 컬렉션 방지와 리플렉션 시스템 등록을 위해 <code>UPROPERTY</code> 매크로가 필수적이며, 컴포넌트 내부 속성을 블루프린트 상세 창에서 수정할 수 있도록 <code>VisibleAnywhere</code>를 사용합니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Components&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AllowPrivateAccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UStaticMeshComponent</span><span class="o">*</span><span class="w"> </span><span class="n">ItemMesh</span><span class="p">;</span>
+</code></pre></div>
+<p><strong>왜 <code>EditAnywhere</code>가 아니라 <code>VisibleAnywhere</code>인가요?</strong> </p>
+<p>컴포넌트 변수 자체는 '포인터(메모리 주소)'입니다. <code>EditAnywhere</code>를 쓰면 에디터에서 포인터 주소 자체를 바꾸려 하기 때문에 논리적으로 맞지 않습니다. <code>VisibleAnywhere</code>를 써야 컴포넌트 포인터 자체는 고정(보여주기만 함)되면서, 그 내부에 있는 스태틱 메시나 트랜스폼 같은 속성들을 상세 창에서 수정할 수 있게 됩니다.</p>
+<h3 id="2-itemcpp">② 소스 파일 (<code>Item.cpp</code>) 생성자 구현<a class="headerlink" href="#2-itemcpp" title="Permanent link">&para;</a></h3>
+<p>배운 템플릿 함수 형태인 <code>CreateDefaultSubobject&lt;T&gt;</code>를 사용하여 컴포넌트를 실제 생성하고 루트로 등록합니다.</p>
+<div class="highlight"><pre><span></span><code><span class="n">AItem</span><span class="o">::</span><span class="n">AItem</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">PrimaryActorTick</span><span class="p">.</span><span class="n">bCanEverTick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 1. 컴포넌트 실제 생성 (템플릿 함수 사용)</span>
+<span class="w">    </span><span class="c1">// 괄호 안에는 에디터에서 식별할 내부 텍스트 이름을 TEXT 매크로로 지정합니다.</span>
+<span class="w">    </span><span class="n">ItemMesh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UStaticMeshComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;ItemMeshComponent&quot;</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// 2. 이 컴포넌트를 액터의 대장(Root)으로 설정</span>
+<span class="w">    </span><span class="c1">// 기존의 invisible했던 DefaultSceneRoot는 참조가 사라져 가비지 컬렉터에 의해 자동으로 지워집니다.</span>
+<span class="w">    </span><span class="n">RootComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ItemMesh</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="3-best-practice">3. 에디터 검증 및 실무 모범 사례 (Best Practice)<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>핫 로드(Hot Reload)의 한계:</strong> C++ 생성자 코드를 수정한 뒤 에디터에서 라이브 코딩이나 핫 로드를 하면 <code>DefaultSceneRoot</code>가 완전히 사라지지 않고 꼬이는 버그가 발생할 수 있습니다. 스크립트의 팁처럼 <strong>에디터를 끄고 Visual Studio에서 <code>Ctrl + F5</code>로 다시 디버깅 없이 실행</strong>하는 것이 가장 확실합니다.</p>
+</li>
+<li>
+<p><strong>가독성 지원:</strong> C++ 변수 이름을 소문자-대문자 조합인 <code>itemMesh</code>로 지으면, 언리얼 에디터가 단어를 인식하여 자동으로 공백을 넣어 <code>Item Mesh</code>로 이쁘게 가공해 줍니다. 뒤의 괄호 안에는 우리가 지정한 내부 이름인 <code>(ItemMeshComponent)</code>가 표시됩니다.</p>
+</li>
+<li>
+<p><strong>데이터 분리의 법칙 (매우 중요):</strong> C++ 코드에서 특정 스태틱 메시(예: 구체 모양 템플릿 등) 파일 경로를 하드코딩으로 강제 지정하는 것은 나쁜 습관입니다. <strong>구조와 컴포넌트 생성은 C++에서</strong> 하고, <strong>실제 어떤 외형(Mesh)을 쓸지는 블루프린트 상세 창에서 지정</strong>하는 것이 여러 개의 아이템을 다양하게 재활용할 수 있는 가장 versatile(다재다능한)한 모범 사례입니다.</p>
+</li>
+</ul>
+<h1 id="class-default-object">Class Default Object<a class="headerlink" href="#class-default-object" title="Permanent link">&para;</a></h1>
+<h2 id="1-cdo_1">1. 전체적인 흐름 (컴파일부터 CDO 생성까지)<a class="headerlink" href="#1-cdo_1" title="Permanent link">&para;</a></h2>
+<p>우리가 C++로 <code>AItem</code> 클래스를 정의하고 컴파일하면 엔진 내부에서는 다음과 같은 순서로 작업이 진행됩니다.</p>
+<ol>
+<li>
+<p><strong>C++ 클래스 정의:</strong> 개발자가 <code>AActor</code>를 상속받은 <code>AItem</code> 클래스를 작성합니다. 이때 <code>UCLASS()</code> 매크로를 붙여서 이 클래스를 리플렉션 시스템에 등록하겠다고 엔진에 알립니다.</p>
+</li>
+<li>
+<p><strong>리플렉션 데이터 생성:</strong> 언리얼 빌드 툴(UBT)과 헤더 툴(UHT)이 코드를 분석하여 <code>AItem</code> 클래스가 어떤 변수(<code>UPROPERTY</code>)와 함수(<code>UFUNCTION</code>)를 가지고 있는지 정보를 수집합니다. 이 정보가 담긴 메타데이터 객체를 <code>UClass</code>라고 합니다.</p>
+</li>
+<li>
+<p><strong>엔진 초기화 및 생성자 실행:</strong> 게임 엔진이 켜질 때, 생성된 <code>UClass</code> 정보를 바탕으로 메모리에 <code>AItem</code> 객체를 딱 하나 먼저 생성합니다. 이때 <code>AItem::AItem()</code> <strong>생성자 함수가 실행</strong>됩니다.</p>
+</li>
+<li>
+<p><strong>CDO 탄생:</strong> <em>생성자 실행이 끝나고 기본값 세팅이 완료</em> 된 이 단 하나의 마스터 객체를 CDO(Class Default Object)라고 부르며, 리플렉션 시스템(<code>UClass</code>)이 이 CDO의 주소값을 항상 쥐고 관리하게 됩니다.</p>
+</li>
+</ol>
+<h2 id="2-cdo">2. 왜 이렇게 복잡한 과정을 거칠까? (CDO의 존재 이유)<a class="headerlink" href="#2-cdo" title="Permanent link">&para;</a></h2>
+<p>"그냥 필요할 때마다 <code>new</code>나 <code>SpawnActor</code>로 새로 만들면 되지, 왜 굳이 미리 CDO라는 마스터 복사본을 만들까?"라는 의문이 드실 수 있습니다. 이유는 <strong>성능과 메모리 효율, 그리고 블루프린트와의 연동</strong> 때문입니다.</p>
+<h3 id="1">① 초고속 객체 생성 (복사 메커니즘)<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>게임 중에 아이템 1,000개를 월드에 배치해야 한다고 가정해 봅시다. 매번 생성자를 처음부터 끝까지 무겁게 실행하는 대신, 이미 메모리에 완벽하게 초기화되어 있는 CDO(마스터 복사본)의 메모리를 그대로 슥 복사(Copy)해서 값만 툭 던져주는 것이 훨씬 빠릅니다.</p>
+<h3 id="2-details">② 블루프린트 기본값(Details 창)의 기준점<a class="headerlink" href="#2-details" title="Permanent link">&para;</a></h3>
+<p>블루프린트 에디터를 열었을 때 우측 상세(Details) 창에 나오는 '기본값'들은 어디서 읽어오는 걸까요? 바로 이 <strong>CDO 메모리를 리플렉션 시스템으로 들여다보고 표시</strong>해 주는 것입니다. 개발자가 블루프린트에서 기본값을 변경하면, 해당 블루프린트 전용 CDO의 값이 업데이트됩니다.</p>
+<h2 id="3_2">3. 용어 깔끔하게 한 줄 정리<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>AItem</code> (C++ 클래스):</strong> 개발자가 타이핑한 코드 (설계도)</li>
+<li><strong><code>UClass</code> (리플렉션 정보):</strong> 엔진이 리플렉션을 통해 파악한 <code>AItem</code> 클래스의 구조 정보 (설계도 분석서)</li>
+<li><strong><code>CDO</code> (Class Default Object):</strong> 엔진이 <code>AItem</code> 생성자를 딱 한 번 실행해서 메모리에 올려둔 <strong>기본값 마스터 복사본</strong> (모델하우스)    </li>
+<li><strong><code>월드의 Item 인스턴스</code>:</strong> 게임 중에 실제로 스폰되어 돌아다니는 진짜 아이템 객체들 (실제 분양된 집들)</li>
+</ul>
+<h1 id="default-suboject">Default Suboject<a class="headerlink" href="#default-suboject" title="Permanent link">&para;</a></h1>
+<p>개념적으로는 동일하지만, '어떻게, 어느 타이밍에 생성되었는가'에 따라 언리얼 엔진이 명확하게 구분하기 위해 붙인 이름. 모든 Default Subobject는 컴포넌트(또는 내부 오브젝트)이지만, 모든 컴포넌트가 Default Subobject인 것은 아닙니다.</p>
+<h2 id="1-subobject">1. 왜 'Subobject(하위 오브젝트)'라고 부를까?<a class="headerlink" href="#1-subobject" title="Permanent link">&para;</a></h2>
+<p>언리얼 엔진에서 월드에 독립적으로 존재할 수 있는 최소 단위는 액터(Actor)입니다. 컴포넌트는 단독으로 월드에 존재할 수 없고, 반드시 어떤 액터에게 소속되어야만 하죠.</p>
+<ul>
+<li><strong>오브젝트(Object):</strong> 독립적인 단위인 액터</li>
+<li><strong>서브오브젝트(Subobject):</strong> 그 액터에 종속되어 생명주기를 함께하는 '하위 오브젝트' (컴포넌트 등)</li>
+</ul>
+<p>즉, 액터라는 큰 오브젝트 안의 <strong>부속품</strong>이라는 의미에서 <code>Subobject</code>라는 명칭을 씁니다.</p>
+<h2 id="2-default">2. 왜 앞에 'Default(기본)'가 붙을까?<a class="headerlink" href="#2-default" title="Permanent link">&para;</a></h2>
+<p>이 부분이 핵심입니다. 앞서 배웠던 CDO(Class Default Object)의 개념과 완벽하게 맞물립니다.</p>
+<p><code>AItem</code>이라는 설계도를 기반으로 엔진이 켜질 때 CDO(마스터 복사본)를 만든다고 말씀드렸죠? 이때 <strong>C++ 생성자 안에서 <code>CreateDefaultSubobject</code> 함수를 통해 생성된 컴포넌트</strong>들은 액터의 CDO와 함께 기본적으로 생성되어 귀속됩니다.</p>
+<p>즉, "이 클래스로 만든 액터라면 기본값(Default)으로 무조건 가지고 태어나는 하위 오브젝트(Subobject)"라는 뜻에서 <strong>Default Subobject</strong>라고 부르는 것입니다.</p>
+<h2 id="3_3">3. 그냥 '컴포넌트'와는 뭐가 다를까? (차이점 비교)<a class="headerlink" href="#3_3" title="Permanent link">&para;</a></h2>
+<p>"그럼 굳이 왜 이름을 나눠 부르나요?"에 대한 답은 <strong>생성되는 타이밍과 방식</strong>의 차이에 있습니다.</p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>Default Subobject (기본 서브오브젝트)</th>
+<th>일반 Component (런타임 컴포넌트)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>생성 타이밍</td>
+<td>C++ 생성자(Constructor) 단계</td>
+<td>게임 플레이 중 (Runtime / BeginPlay 이후)</td>
+</tr>
+<tr>
+<td>생성 함수</td>
+<td>CreateDefaultSubobject<T>()</td>
+<td>NewObject<T>() 후RegisterComponent()</td>
+</tr>
+<tr>
+<td>CDO 포함 여부</td>
+<td>포함됨 (마스터 복사본에 항상 같이 존재)</td>
+<td>포함 안 됨 (게임 중에 필요할 때만 임시 부착)</td>
+</tr>
+<tr>
+<td>블루프린트</td>
+<td>상세(Details) 창에서 변수처럼 상시 노출됨</td>
+<td>게임 중에 동적으로 생기므로 상세 창에 안 보임</td>
+</tr>
+<tr>
+<td>실무 예시</td>
+<td>아이템의 외형 메시, 캐릭터의 충돌 캡슐</td>
+<td>적을 맞췄을 때 런타임에 동적으로 생성되는 오디오/이펙트</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-ascii">4. 구조적 이해를 돕는 ASCII 다이어그램<a class="headerlink" href="#4-ascii" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code>[ AItem 클래스의 CDO (마스터 복사본) ]
+   ├── 기본 변수 (RunningTime 등)
+   └── [ Default Subobject 영역 ]  &lt;── 생성자에서 CreateDefaultSubobject로 만든 것들
+             └── ItemMesh (기본 장착)
+             └── CollisionBox (기본 장착)
+</code></pre></div><br />
+이 상태에서 게임 중에 <code>SpawnActor</code>를 하면 위 구조가 통째로 복사되어 월드에 나옵니다. 만약 게임 중에 보스가 2단계로 변신하면서 등 뒤에 날개 컴포넌트를 동적으로 붙인다면, 그것은 CDO와 상관없이 런타임에 생성된 일반 컴포넌트가 됩니다.</p>
+<h1 id="tobjectptr">TObjectPtr<a class="headerlink" href="#tobjectptr" title="Permanent link">&para;</a></h1>
+<h2 id="tobjectptr-vs"><code>TObjectPtr</code> vs 일반 원시 포인터(<code>*</code>) 차이점<a class="headerlink" href="#tobjectptr-vs" title="Permanent link">&para;</a></h2>
+<p>가장 중요한 사실은 <strong>컴파일이 완료된 최종 빌드(Release/Shipping) 단계에서는 <code>TObjectPtr</code>와 일반 포인터(<code>*</code>)가 완전히 동일한 물리적 포인터로 바뀐다는 점</strong>입니다. 즉, 성능 차이는 전혀 없습니다.</p>
+<p>그렇다면 왜 언리얼 엔진 5에서 <code>TObjectPtr</code>를 도입했을까요? 바로 <strong>에디터 및 개발 환경에서의 최적화와 안정성</strong> 때문입니다.</p>
+<h3 id="1-lazy-loading">① 에디터에서의 옵션: 가비지 컬렉션 및 지연 로딩(Lazy Loading)<a class="headerlink" href="#1-lazy-loading" title="Permanent link">&para;</a></h3>
+<p>일반 포인터(<code>*</code>)는 주소값을 직접 가리키기 때문에, 액터가 메모리에 올라올 때 해당 컴포넌트나 에셋도 무조건 메모리에 통째로 로드되어야 합니다. 반면 <code>TObjectPtr</code>는 에디터 빌드에서 래퍼(Wrapper) 클래스로 작동하며, 리플렉션 시스템과 연동해 "진짜 이 데이터가 필요해져서 접근(Access)하기 전까지 메모리에 올리지 않고 대기"하는 <strong>지연 로딩 및 에셋 패키징 최적화</strong>를 지원합니다.</p>
+<h3 id="2_2">② 개발 편의성: 잘못된 메모리 접근 방지<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h3>
+<p>에디터에서 게임을 테스트하다가 가비지 컬렉션(GC)에 의해 오브젝트가 지워졌을 때, 일반 포인터는 지워진 주소를 그대로 들고 있어 크래시(Crash)가 나기 쉽습니다. 하지만 <code>TObjectPtr</code>는 내부적으로 언리얼 엔진 GC 시스템과 더 긴밀하게 소통하여 안전성을 높여줍니다.</p>
+<h2 id="_4">어떤 것을 사용하는 것을 추천하나요?<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>공식 문서와 에픽게임즈(Epic Games)의 권장 사항은 명확합니다.</p>
+<h2 id="_5"><strong>추천 규칙</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>클래스의 멤버 변수(<code>UPROPERTY</code>)</strong>: 무조건 <strong><code>TObjectPtr&lt;T&gt;</code></strong> 를 사용하세요.</li>
+<li><strong>함수 내부의 지역 변수 및 매개변수(Parameter)</strong>: 기존처럼 일반 원시 포인터(<strong><code>T*</code></strong>)를 사용하세요.</li>
+</ul>
+<h3 id="_6">예시 코드 구조<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">UCLASS</span><span class="p">()</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AItem</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AActor</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 1. 멤버 변수(UPROPERTY)에는 TObjectPtr 사용 권장</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AllowPrivateAccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">UStaticMeshComponent</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ItemMesh</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 2. 함수의 매개변수나 내부 지역 변수에는 여전히 일반 포인터 사용</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ProcessMesh</span><span class="p">(</span><span class="n">UStaticMeshComponent</span><span class="o">*</span><span class="w"> </span><span class="n">MeshPtr</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MeshPtr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 로직 처리 */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../../../search/main.js"></script>
+    
+</body>
+</html>

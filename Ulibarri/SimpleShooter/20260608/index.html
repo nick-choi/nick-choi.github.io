@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+
+    <title>
+        
+        20260608
+        
+    </title>
+
+    
+    <meta name="description" content="Silverbullet-inspired MkDocs Documentation">
+    
+
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            
+                            <h1 class="page-title">20260608</h1>
+                            
+                        </span>
+
+                        <!-- Top Actions -->
+                        <div class="sb-actions">    
+                            <button type="button" title="Go to the index page" onclick="location.href='/' ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    
+                                    <li>
+                                        <a href="#162-connecting-animation-to-gameplay" class="sb-toc-link">162 Connecting Animation To Gameplay</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1" class="sb-toc-link">1. 왜 게임플레이가 애니메이션을 주도해야 하는가?</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-animgraph" class="sb-toc-link">2. 애님 그래프(AnimGraph) 설정하기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-eventgraph" class="sb-toc-link">3. EventGraph에서 실제 속도 가져오기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4" class="sb-toc-link">4. 변수 세팅 및 결과 확인</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#163-inverse-transforming-vectors" class="sb-toc-link">163 Inverse Transforming Vectors</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#global-vs-local" class="sb-toc-link">글로벌(Global) vs 로컬(Local)</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#vs" class="sb-toc-link">위치 벡터 vs 방향 벡터의 변환시 차이점</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_1" class="sb-toc-link">블루프린트 구현 순서</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#164-calculating-animation-speeds" class="sb-toc-link">164 Calculating Animation Speeds</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#foot-sliding" class="sb-toc-link">발 밀림(Foot Sliding) 현상이 발생하는 이유</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_3" class="sb-toc-link">애니메이션 속도 계산 공식</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#_4" class="sb-toc-link">달리기 &amp; 걷기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#blend-space" class="sb-toc-link">블렌드 스페이스(Blend Space)에 적용하기</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        <!-- Breadcrumb Navigation -->
+                        <h2 id="162-connecting-animation-to-gameplay">162 Connecting Animation To Gameplay<a class="headerlink" href="#162-connecting-animation-to-gameplay" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 왜 게임플레이가 애니메이션을 주도해야 하는가?<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>원칙:</strong> 애니메이션이 캐릭터 이동을 결정하는 것이 아니라, <strong>캐릭터의 이동 속도에 맞춰 애니메이션이 따라와야 합니다.</strong></p>
+</li>
+<li>
+<p><strong>이유:</strong> 게임 디자이너가 "캐릭터가 너무 느린 것 같으니 속도를 키우자"라고 할 때, 애니메이션에 묶여 있으면 수정하기 어렵기 때문입니다. 게임의 '조작감(Game Feel)'을 먼저 자유롭게 수정할 수 있도록 둘을 분리해야 합니다.</p>
+</li>
+</ul>
+<h3 id="2-animgraph">2. 애님 그래프(AnimGraph) 설정하기<a class="headerlink" href="#2-animgraph" title="Permanent link">&para;</a></h3>
+<h4 id="1_1">1. 블렌드 스페이스 배치<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>ABP_ShooterCharacter에 BS_Locomotion 배치, 노드 연결</li>
+</ul>
+<h4 id="2-bs_locomotion-angle-speed">2. BS_Locomotion을 제어할 Angle, Speed 변수 생성<a class="headerlink" href="#2-bs_locomotion-angle-speed" title="Permanent link">&para;</a></h4>
+<h4 id="3-speed-angle-detail">3. 컴파일 후 Speed 값과 Angle 값을 detail 에서 수정해보고 반영되는지 확인<a class="headerlink" href="#3-speed-angle-detail" title="Permanent link">&para;</a></h4>
+<h3 id="3-eventgraph">3. EventGraph에서 실제 속도 가져오기<a class="headerlink" href="#3-eventgraph" title="Permanent link">&para;</a></h3>
+<h4 id="1_2">1. 업데이트 이벤트 활용<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>Blueprint Update Animation</code> 노드를 사용</li>
+</ul>
+<h4 id="2-velocity">2. 속도(Velocity) 추출<a class="headerlink" href="#2-velocity" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Get Pawn Owner -&gt; Get Velocity 노드로 현재 이동벡터(방향과 속력 포함)</li>
+</ul>
+<h4 id="3-speed">3. 속력(Speed) 계산<a class="headerlink" href="#3-speed" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Get Velocity-&gt; Vector Length 노드의 반환값, 단위시간당 이동속력(cm/s)을 받아와서 Speed에 연결</li>
+</ul>
+<h3 id="4">4. 변수 세팅 및 결과 확인<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>정상 작동 : 가만히 있을 때 Idle 상태였다가 이동하면 속도에 맞추서 Walk/Jog 애니메이션 출력</li>
+<li>문제점<ul>
+<li>angle이 아직 연결되지 않아 대각선이나 옆으로 이동시 동작이상</li>
+<li>캐릭터 실제 이동 속도와 애니메이션 재생 속도 동기화가 안되어서 Foot Sliding 현상<ul>
+<li>BS_Locomotion의 Speed 경우 0~100 사이로 처리되는데 수정할 필요있음.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="163-inverse-transforming-vectors">163 Inverse Transforming Vectors<a class="headerlink" href="#163-inverse-transforming-vectors" title="Permanent link">&para;</a></h2>
+<h3 id="global-vs-local">글로벌(Global) vs 로컬(Local)<a class="headerlink" href="#global-vs-local" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>왜 로컬 공간이 필요한가?:</strong> 캐릭터가 월드 기준으로 어느 방향으로 가든, 애니메이션은 "캐릭터 정면 기준으로 오른쪽으로 가나? 뒤로 가나?"를 알아야 그에 맞는 꽃게걸음(A, D 키)이나 뒷걸음질(S 키) 애니메이션을 틀어줄 수 있기 때문입니다.</li>
+</ul>
+<h3 id="vs">위치 벡터 vs 방향 벡터의 변환시 차이점<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>글로벌(월드)과 로컬(지역) 좌표계 사이를 왔다 갔다 변환(<code>Transform</code>)할 때</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>데이터 종류</strong></th>
+<th><strong>변환 시 고려하는 요소</strong></th>
+<th><strong>변환 후 좌표 변화</strong></th>
+<th><strong>언리얼 노드 예시</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>위치 벡터</strong><br/>(Location)</td>
+<td>부모의 <strong>회전, 크기 + [현재 위치]</strong> 모두 고려</td>
+<td>기준점이 바뀌면 <strong>좌표 전체가 통째로 이동</strong>함</td>
+<td>`Inverse Transform Location</td>
+</tr>
+<tr>
+<td><strong>방향 벡터</strong><br/>(Direction / Velocity)</td>
+<td>부모의 <strong>회전, 크기</strong>만 고려 (<strong>[현재 위치]는 무시</strong>)</td>
+<td>기준점이 어디든 화살표의 <strong>회전과 크기</strong>만 바뀜</td>
+<td>`Inverse Transform Direction</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">블루프린트 구현 순서<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h4 id="1-inverse-transform">1. 글로벌을 로컬로 역변환 (Inverse Transform)<a class="headerlink" href="#1-inverse-transform" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>로벌 속도를 로컬로 바꾸어야 하므로 역변환(Inverse Transform)</strong> 노드 사용<br />
+<div class="highlight"><pre><span></span><code><span class="n">Try</span><span class="w"> </span><span class="n">Get</span><span class="w"> </span><span class="n">Pawn</span><span class="w"> </span><span class="n">Owner</span><span class="w"> </span><span class="o">+-&gt;</span><span class="w"> </span><span class="n">Get</span><span class="w"> </span><span class="n">Velocity</span><span class="w"> </span><span class="o">-------+</span><span class="w"> </span>
+<span class="w">                   </span><span class="o">|</span><span class="w">                       </span><span class="o">|</span>
+<span class="w">                   </span><span class="o">+-&gt;</span><span class="w"> </span><span class="n">Get</span><span class="w"> </span><span class="n">Actor</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Inverse</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">direction</span>
+</code></pre></div></li>
+</ul>
+<h4 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<h4 id="2-yaw">2. 변환된 벡터에서 회전각(Yaw) 추출하기<a class="headerlink" href="#2-yaw" title="Permanent link">&para;</a></h4>
+<ul>
+<li>로컬로 바뀐 벡터(예: 캐릭터 정면 기준 대각선 방향 벡터 등)에서 순수한 수평 각도(Z축 회전인 Yaw)를 뽑아내야 합니다.<br />
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Rotation</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">Vector</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Return</span><span class="w"> </span><span class="n">Value</span><span class="w"> </span><span class="n">Z</span><span class="p">(</span><span class="n">Yaw</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Set</span><span class="w"> </span><span class="n">Speed</span>
+</code></pre></div></li>
+</ul>
+<h2 id="164-calculating-animation-speeds">164 Calculating Animation Speeds<a class="headerlink" href="#164-calculating-animation-speeds" title="Permanent link">&para;</a></h2>
+<h3 id="foot-sliding">발 밀림(Foot Sliding) 현상이 발생하는 이유<a class="headerlink" href="#foot-sliding" title="Permanent link">&para;</a></h3>
+<ul>
+<li>게임 속 캐릭터의 이동 속도(기획/코드상의 속도)와 재생되는 애니메이션의 속도가 서로 일치하지 않기 때문에 발생</li>
+<li><strong>예시:</strong> 게임 안에서 캐릭터는 초당 100cm($100\text{ cm/s}$)로 천천히 이동하고 있는데, 재생되는 애니메이션은 초당 300cm로 달리는 모션이라면 발이 바닥에서 헛돌며 미끄러지는 것처럼 보이게 됩니다.</li>
+<li><strong>해결책:</strong> 애니메이션 속 발이 실제로 이동하는 속도를 정확히 계산해서 엔진의 블렌드 스페이스  Speed축(Axis) 값에 입력해 주어야 합니다.</li>
+</ul>
+<h3 id="_3">애니메이션 속도 계산 공식<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>발이 바닥에 닿아 있는 동안, 발목 뼈(Ankle Bone)가 이동한 거리와 걸린 시간을 이용해 속도를 구합니다.<br />
+<div class="highlight"><pre><span></span><code>  속도(Speed) = (종료 위치 - 시작 위치) / (종료 시간 - 시작 시간)
+</code></pre></div></li>
+<li>주의할 점<ul>
+<li>Unreal Engine 5에서는 뷰포트에서 뼈를 직접 클릭하기 어려우므로, 왼쪽 <strong>스켈레톤(Skeleton) 탭</strong>에서 검색창을 이용해 <code>Foot_R</code> (오른발 발목 뼈)을 선택해야 합니다. 또한, 로컬 좌표계 시스템에서는 위치 값이 변하지 않으므로 반드시 <strong>월드 좌표계(World Location)</strong> 로 전환한 뒤 값을 확인해야 합니다. 여기서는 전진 방향인 <strong>Y축</strong> 값을 기준으로 계산합니다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="_4">달리기 &amp; 걷기<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="_5">계산할 때 기준을 잡는 팁<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<h5 id="1-bone">1. 뼈(Bone)의 수치 변화로 판단하기 (가장 정확함)<a class="headerlink" href="#1-bone" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>공중에 떠 있을 때</strong>: 캐릭터의 전진 속도나 모션에 따라 Y축 값이 불규칙하게 변하거나 앞으로 나아갑니다.</li>
+<li><strong>바닥에 디뎠을 때</strong>: 발이 바닥에 고정되면서, 캐릭터가 제자리에서 달리는 애니메이션 특성상 <strong>Y축 값이 일정한 방향(뒤쪽)으로 일정하게 줄어들기(또는 늘어나기) 시작</strong>합니다.</li>
+</ul>
+<h5 id="2">2. 일반적인 애니메이션 스타일별 기준<a class="headerlink" href="#2" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>일반적인 걷기 (Heel Strike):</strong> 뒤꿈치가 바닥에 닿는 순간부터 이미 발은 땅에 고정되어 뒤로 밀리기 시작합니다. 따라서 <strong>뒤꿈치가 닿는 첫 프레임</strong>을 선택하는 것이 맞습니다.</li>
+<li><strong>조깅 / 런닝 (Mid-foot / Fore-foot Strike):</strong> 속도가 빠른 달리기 애니메이션은 뒤꿈치가 아니라 발 앞꿈치나 발바닥 전체가 동시에 쿵 하고 닿는 경우가 많습니다. 이때는 <strong>발바닥이 바닥에 완전히 밀착되는 첫 프레임</strong>을 잡으시면 됩니다.</li>
+</ul>
+<h4 id="jog-forward-combat">조깅(달리기) 애니메이션 계산 (<code>Jog Forward Combat</code>)<a class="headerlink" href="#jog-forward-combat" title="Permanent link">&para;</a></h4>
+<ul>
+<li>이동 거리: -28 - 17 = -45cm (뒤로 밀어낸 거리)</li>
+<li>걸린 시간: 0.30 - 0.16 = 0.14초</li>
+<li><strong>속도 결과</strong>: -45 / 0.14 = 약 325cm/s</li>
+</ul>
+<h4 id="walk-forward">걷기 애니메이션 계산 (<code>Walk Forward</code>)<a class="headerlink" href="#walk-forward" title="Permanent link">&para;</a></h4>
+<ul>
+<li>이동 거리: 대략 -42cm</li>
+<li>걸린 시간: 0.67 - 0.34 = 0.33초</li>
+<li><strong>속도 결과:</strong> -42 / 0.33 = 약130cm/s</li>
+</ul>
+<h3 id="blend-space">블렌드 스페이스(Blend Space)에 적용하기<a class="headerlink" href="#blend-space" title="Permanent link">&para;</a></h3>
+<ul>
+<li>계산된 소수점 자릿수의 정확한 값을 그대로 쓰면 그리드(Grid) 나눗셈이 복잡해지므로, 50 단위로 반올림(올림)하여 값을 단순화<ul>
+<li>걷기 속도 (130cm/s) -&gt; 150</li>
+<li>달리기 속도 (325cm/s) -&gt; 350</li>
+</ul>
+</li>
+</ul>
+<h4 id="_6">블렌드 스페이스 축 설정 세팅<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>최대 축 값 (Maximum Axis Value):</strong> <code>350</code></li>
+<li><strong>그리드 분할 수 (Grid Divisions)</strong>: 7 (350을 50 단위로 나누기 위함: 350 / 50 = 7)</li>
+</ul>
+<h4 id="bp_character">BP_Character 설정 세팅<a class="headerlink" href="#bp_character" title="Permanent link">&para;</a></h4>
+<ul>
+<li>CharacterMovement Component의 MaxWalkSpeed도 달리기 최대 속도랑 맞춰준다.</li>
+</ul>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../../../search/main.js"></script>
+    
+</body>
+</html>

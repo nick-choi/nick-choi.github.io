@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e1e1e1" media="(prefers-color-scheme: light)">
+
+    <title>
+        
+        20260615
+        
+    </title>
+
+    
+    <meta name="description" content="Silverbullet-inspired MkDocs Documentation">
+    
+
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+    <link rel="stylesheet" href="../../../css/base.css">
+    
+</head>
+<body>
+    <div id="sb-root">
+        <!-- Top Navigation -->
+        <div id="sb-top">
+            <div class="main">
+                <div class="inner">
+                    <div class="wrapper">
+                        <!-- Page Title / Path -->
+                        <span class="sb-current-page">
+                            
+                            <h1 class="page-title">20260615</h1>
+                            
+                        </span>
+
+                        <!-- Top Actions -->
+                        <div class="sb-actions">    
+                            <button type="button" title="Go to the index page" onclick="location.href='/' ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="sb-container">
+                    <!-- Table of Contents (if enabled) -->
+                    
+                    <div class="sb-toc-wrapper">
+                        <nav class="sb-toc">
+                            <details>
+                                <summary class="sb-toc-summary">
+                                    <span class="p">Table of Contents</span>
+                                </summary>
+                                <ul class="sb-toc-list">
+                                    
+                                    <li>
+                                        <a href="#setactorlocation" class="sb-toc-link">SetActorLocation</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1" class="sb-toc-link">1. 블루프린트에서 액터 위치 설정하기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2-c-setactorlocation" class="sb-toc-link">2. ## C++에서 액터 위치 설정하기 (SetActorLocation)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#input" class="sb-toc-link">매개변수(Input)에 대한 팁</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3" class="sb-toc-link">3. 디버그 도형 위치 수정 및 테스트</a>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#setactorrotation" class="sb-toc-link">SetActorRotation</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-3-pitch-yaw-roll" class="sb-toc-link">1. 회전의 3가지 축 (Pitch, Yaw, Roll)</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2" class="sb-toc-link">2. 블루프린트에서 액터 회전 설정하기</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-c-setactorrotation" class="sb-toc-link">3. C++에서 액터 회전 설정하기 (SetActorRotation)</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#c-teleport" class="sb-toc-link">C++에서의 Teleport 옵션</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#actor-world-offset" class="sb-toc-link">Actor World Offset</a>
+                                        
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="#1-world-offset" class="sb-toc-link">1. 월드 오프셋(World Offset)이란?</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#2_1" class="sb-toc-link">2. 매 프레임 관찰을 위한 '싱글 프레임 디버그 매크로' 작성</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#3-tick" class="sb-toc-link">3. Tick 함수와 프레임 타임의 문제점</a>
+                                                
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#4-delta-time" class="sb-toc-link">4. 델타 타임(Delta Time)을 이용한 프레임 독립성 해결</a>
+                                                
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <a href="#_1" class="sb-toc-link">수학적 단위 계산 원리</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="#c" class="sb-toc-link">C++ 구현 코드</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </li>
+                                    
+                                </ul>
+                            </details>
+                        </nav>
+                    </div>
+                    
+
+                    <!-- Page Content -->
+                    <article class="sb-content">
+                        <!-- Breadcrumb Navigation -->
+                        <h1 id="setactorlocation">SetActorLocation<a class="headerlink" href="#setactorlocation" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 블루프린트에서 액터 위치 설정하기<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>사용 노드:</strong> <code>Begin Play</code> 노드에서 선을 드래그해 <strong><code>Set Actor Location</code></strong> 함수를 검색하여 배치합니다.</p>
+</li>
+<li>
+<p><strong>주요 입력 값</strong></p>
+<ul>
+<li><strong>Target (타겟):</strong> 기본값은 <code>Self</code>로 설정되어 있어, 이 코드가 실행되는 액터 자신을 가리킵니다.</li>
+<li><strong>New Location (새 위치):</strong> <em>X, Y, Z 축</em> 값을 직접 입력하거나 벡터 값을 연결할 수 있습니다. 강의에서는 <em>X = 0, Y = 0, Z = 200</em> 으로 설정했습니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>알 수 있는 사실 (실행 순서)</strong></p>
+<ul>
+<li>게임을 실행하면 액터들이 모두 지정된 위치(0, 0, 200)로 이동합니다.</li>
+<li>이를 통해 <strong>블루프린트의 <code>Begin Play</code>가 C++의 <code>BeginPlay</code>보다 먼저 실행된다</strong>는 중요한 사실을 알 수 있습니다. (블루프린트에서 먼저 위치를 옮긴 후, C++에서 디버그 구체와 선을 그렸기 때문입니다.)</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-c-setactorlocation">2. ## C++에서 액터 위치 설정하기 (<code>SetActorLocation</code>)<a class="headerlink" href="#2-c-setactorlocation" title="Permanent link">&para;</a></h2>
+<p>블루프린트 노드를 지우고, 동일한 기능을 C++ 코드로 구현하는 과정입니다.</p>
+<ul>
+<li><strong>함수 호출:</strong> 디버그 구체를 그리기 직전에 <code>SetActorLocation()</code> 함수를 호출합니다.</li>
+<li><strong>위치 값 전달:</strong> 기존 위치를 그대로 넣으면 변화가 없으므로, 새 위치를 지정해야 합니다.<ul>
+<li>변수를 따로 만들지 않고, <strong><code>FVector</code> 생성자</strong>를 사용해 임시 벡터 객체를 인자로 바로 전달합니다.<br />
+<div class="highlight"><pre><span></span><code><span class="n">SetActorLocation</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0f</span><span class="p">));</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h3 id="input">매개변수(Input)에 대한 팁<a class="headerlink" href="#input" title="Permanent link">&para;</a></h3>
+<p><code>SetActorLocation</code> 함수는 위치 값 외에도 여러 매개변수(<code>bSweep</code>, <code>FHitResult</code>, <code>ETeleportType</code>)를 가지고 있습니다. 하지만 C++에서는 기본값(Default Values)이 설정되어 있으므로, 위치 값(<code>FVector</code>)만 넣어주어도 정상적으로 작동합니다.</p>
+<ul>
+<li><strong>bSweep (스위핑):</strong> 이동 경로에 다른 물체가 있는지 감지하는 기능입니다. 켜져 있으면 장애물 바로 앞에서 이동을 멈춥니다. 강의에서는 기본값(거짓)을 그대로 사용합니다.</li>
+</ul>
+<h2 id="3">3. 디버그 도형 위치 수정 및 테스트<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>C++은 코드의 실행 순서(위에서 아래로)가 엄격하므로 주의해야 합니다.</p>
+<ol>
+<li>
+<p><strong>순서 변경의 필요성:</strong> 기존에는 액터 위치를 옮기기 전에 <code>location</code> 변수(옛날 위치)를 받아와 디버그 구체를 그렸습니다. 만약 순서를 바꾸지 않으면, 액터는 새 위치로 가고 디버그 도형은 옛날 위치에 그려지게 됩니다.</p>
+</li>
+<li>
+<p><strong>해결 방법:</strong> <code>SetActorLocation()</code> 코드를 실행한 뒤, 그 아래에서 새 위치를 기준으로 디버그 구체(<code>DrawSphere</code>)와 선을 그리도록 코드 순서를 정렬합니다.</p>
+</li>
+<li>
+<p><strong>결과 확인:</strong> 게임을 플레이하면 액터가 새 위치(0, 0, 50)로 잘 이동하고 디버그 구체도 그 위치에 정확히 그려지는 것을 확인할 수 있습니다.</p>
+</li>
+</ol>
+<h1 id="setactorrotation">SetActorRotation<a class="headerlink" href="#setactorrotation" title="Permanent link">&para;</a></h1>
+<h2 id="1-3-pitch-yaw-roll">1. 회전의 3가지 축 (Pitch, Yaw, Roll)<a class="headerlink" href="#1-3-pitch-yaw-roll" title="Permanent link">&para;</a></h2>
+<p>언리얼 엔진에서 회전 값은 <code>Rotator</code>(로테이터) 구조체를 사용하며, <em>X, Y, Z</em> 축을 기준으로 각각 <strong>Roll, Pitch, Yaw</strong>라고 부릅니다.</p>
+<ul>
+<li><strong>Roll (<em>X</em> 축 기준 회전)</strong><ul>
+<li>비행기가 좌우로 기우는 듯한 회전 (앞뒤를 축으로 회전)</li>
+</ul>
+</li>
+<li><strong>Pitch (<em>Y</em> 축 기준 회전)</strong><ul>
+<li>비행기 앞코가 위/아래로 들리는 듯한 회전 (좌우를 축으로 회전)</li>
+</ul>
+</li>
+<li><strong>Yaw (<em>Z</em> 축 기준 회전)</strong><ul>
+<li>자동차가 좌/우회전하듯 수평으로 도는 회전 (상하를 축으로 회전)</li>
+</ul>
+</li>
+</ul>
+<p>강의에서는 액터를 수평으로 돌리기 위해 <strong>Yaw(Z축)</strong> 값을 변경합니다. 예를 들어 Yaw를 <code>90</code>으로 설정하면 시계 방향으로 90도 회전하고, <code>-90</code>으로 설정하면 반대 방향으로 회전합니다.</p>
+<h2 id="2">2. 블루프린트에서 액터 회전 설정하기<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>사용 노드:</strong> <code>Begin Play</code> 노드에서 드래그하여 <strong><code>Set Actor Rotation</code></strong> 함수를 배치합니다.</p>
+</li>
+<li>
+<p><strong>Teleport Physics (물리 텔레포트) 옵션:</strong></p>
+<ul>
+<li>기본값은 체크 해제(<code>False</code>) 상태입니다.</li>
+<li><strong>체크 해제 (<code>False</code>):</strong> 액터가 갑자기 회전할 때, 그 움직임(속도)이 액터에 <em>매달린 물리 컴포넌트(예: 캐릭터의 머리카락, 옷, 사슬, 로프, 래그돌 등)에 그대로 전달됩니다.</em> 따라서 회전할 때 이 매달린 부품들이 출렁거리거나 펄럭이게 됩니다.</li>
+<li><strong>체크 설정 (<code>True</code>):</strong> 물리 상태를 무시하고 액터의 회전값만 '순간이동' 시킵니다. 속도가 전달되지 않으므로 매달려 있는 머리카락이나 사슬이 출렁거리지 않고 얌전하게 위치만 이동합니다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-c-setactorrotation">3. C++에서 액터 회전 설정하기 (<code>SetActorRotation</code>)<a class="headerlink" href="#3-c-setactorrotation" title="Permanent link">&para;</a></h2>
+<p>블루프린트 노드를 지우고 C++ 코드로 구현하는 과정입니다.</p>
+<ul>
+<li>
+<p><strong>함수 호출:</strong> <code>SetActorRotation()</code> 함수를 호출합니다. C++에서는 두 가지 버전(오버로딩)이 존재하는데, 하나는 쿼터니언(<code>FQuat</code>)을 사용하는 것이고, 다른 하나는 우리가 사용할 <code>FRotator</code>를 사용하는 것입니다.</p>
+</li>
+<li>
+<p><strong>FRotator의 생성자 주의점:</strong></p>
+<ul>
+<li>
+<p>C++에서 <code>FRotator</code> 생성자에 인자를  때, 입력 순서가 <strong>블루프린트 창에 보이는 순서(X, Y, Z)와 다릅니다!</strong></p>
+</li>
+<li>
+<p>C++ <code>FRotator</code> 생성자는 <strong><code>(Pitch, Yaw, Roll)</code></strong> 순서로 값을 받습니다. (매우 중요)<br />
+<div class="highlight"><pre><span></span><code><span class="c1">// 순서: Pitch(Y), Yaw(Z), Roll(X)</span>
+<span class="c1">// 아래 코드는 Pitch = 0, Yaw = 45, Roll = 0 으로 설정하여 Z축 기준으로 45도 회전시킵니다.</span>
+<span class="n">SetActorRotation</span><span class="p">(</span><span class="n">FRotator</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">45.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">));</span>
+</code></pre></div></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-teleport">C++에서의 Teleport 옵션<a class="headerlink" href="#c-teleport" title="Permanent link">&para;</a></h3>
+<p>블루프린트에서는 <code>Teleport Physics</code>가 단순한 Bool(체크박스)이었지만, C++에서는 <code>ETeleportType</code>이라는 열거형(Enum) 타입을 두 번째 인자로 받습니다. 스크립트에서는 생략했기 때문에 기본값(텔레포트 하지 않음)이 적용됩니다.</p>
+<h1 id="actor-world-offset">Actor World Offset<a class="headerlink" href="#actor-world-offset" title="Permanent link">&para;</a></h1>
+<h2 id="1-world-offset">1. 월드 오프셋(World Offset)이란?<a class="headerlink" href="#1-world-offset" title="Permanent link">&para;</a></h2>
+<p>기존의 <code>SetActorLocation</code>이 특정 절대 좌표로 액터를 '순간이동' 시켰다면, <code>AddActorWorldOffset</code>은 <strong>현재 위치를 기준으로 원하는 만큼 '더해주는(이동시키는)' 함수</strong>입니다.<br />
+* <strong>Delta Location (입력값):</strong> 변경할 위치의 변화량(벡터)을 의미합니다. 예를 들어 <em>Z</em> 축에 <code>200</code>을 넣으면 현재 위치가 어디든 상관없이 위로 <em>200</em> 만큼 더 이동합니다.</p>
+<ul>
+<li><strong>AddActorWorldRotation:</strong> 회전도 마찬가지로 기존 회전값에 원하는 각도(오프셋)만큼을 더해줍니다. (예: Pitch에 <code>45</code>를 더하면 45도만큼 위를 올려다보게 됨)</li>
+</ul>
+<h2 id="2_1">2. 매 프레임 관찰을 위한 '싱글 프레임 디버그 매크로' 작성<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
+<p>기존 디버그 매크로는 선이 남아있는 <code>Persistent Lines</code> 방식이어서, 매 프레임 움직이는 액터에 사용하면 화면이 온통 빨간 구체로 도배됩니다. 따라서 <strong>그 프레임에만 잠깐 켜졌다 사라지는 싱글 프레임용 매크로</strong>를 <code>DebugMacros.h</code>에 새로 정의합니다.</p>
+<ul>
+<li>
+<p><strong>핵심 변경점</strong></p>
+<ul>
+<li>지속성 옵션(<code>bPersistentLines</code>)을 <code>true</code>에서 <code>false</code>로 변경합니다.</li>
+<li>수명(<code>Lifetime</code>) 인자에 <code>-1.0f</code>를 전달하면 정확히 '1프레임' 동안만 유지됩니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>생성한 매크로</strong></p>
+<ul>
+<li><code>DrawSphereSingleFrame</code>, <code>DrawLineSingleFrame</code>, <code>DrawPointSingleFrame</code>, <code>DrawVectorSingleFrame</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="3-tick">3. Tick 함수와 프레임 타임의 문제점<a class="headerlink" href="#3-tick" title="Permanent link">&para;</a></h2>
+<p>C++의 <code>Tick</code> 함수 내부에서 매 프레임 X축으로 <code>1.0f</code>씩 이동하게 코드를 짜고 테스트를 해봅니다.<br />
+<div class="highlight"><pre><span></span><code><span class="c1">// 매 프레임 X축으로 1cm씩 이동 (문제 발생 코드!)</span>
+<span class="n">AddActorWorldOffset</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">));</span>
+</code></pre></div><br />
+* <strong>문제점:</strong> 컴퓨터 사양에 따라 프레임레이트(FPS)는 달라집니다.<br />
+    * 사양이 좋아 <strong>120 FPS</strong>가 나오는 컴퓨터는 1초에 Tick이 120번 실행되므로 <strong>1초에 120cm</strong>를 이동합니다.<br />
+    * 사양이 안 좋아 <strong>30 FPS</strong>로 고정된 컴퓨터는 1초에 Tick이 30번만 실행되므로 <strong>1초에 30cm</strong>만 이동합니다.<br />
+* <strong>결론:</strong> 게임 사양(FPS)에 따라 캐릭터의 이동 속도가 달라지는 심각한 버그가 발생합니다.</p>
+<h2 id="4-delta-time">4. 델타 타임(Delta Time)을 이용한 프레임 독립성 해결<a class="headerlink" href="#4-delta-time" title="Permanent link">&para;</a></h2>
+<p>이 문제를 해결하기 위해 <code>Tick</code> 함수의 인자인 <strong><code>DeltaTime</code></strong>(이전 프레임부터 현재 프레임까지 걸린 시간, 초 단위)을 활용해야 합니다. 이동 속도나 회전 속도에 <code>DeltaTime</code>을 곱해주면 <strong>어떤 프레임 환경에서든 언제나 일정한 속도</strong>로 움직이게 됩니다.</p>
+<h3 id="_1">수학적 단위 계산 원리<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>이동 속도(Movement Rate):</strong> 50cm/s (초당 50cm 이동목표)</p>
+</li>
+<li>
+<p><strong>델타 타임(Delta Time):</strong> s/frame (프레임당 걸린 초)</p>
+</li>
+<li>
+<p><strong>공식:</strong> Movement Rate x Delta Time = cm/s * s/frame = cm/frame</p>
+<ul>
+<li>초당위가 서로 약분되어 사라지고, '이번 프레임에 가야할 정확한 센티미터'만 남게 됨 </li>
+</ul>
+</li>
+</ul>
+<h3 id="c">C++ 구현 코드<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
+<p>속도와 회전에 모두 <code>DeltaTime</code> 을 곱하여 프레임 독립적인 움직임을 완성합니다.<br />
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">AItem::Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 1. 프레임 독립적 이동 (초당 50cm 속도)</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">MovementRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50.0f</span><span class="p">;</span>
+<span class="w">    </span><span class="n">AddActorWorldOffset</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="n">MovementRate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// 2. 프레임 독립적 회전 (초당 45도 Yaw 회전)</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">RotationRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">45.0f</span><span class="p">;</span>
+<span class="w">    </span><span class="n">AddActorWorldRotation</span><span class="p">(</span><span class="n">FRotator</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="n">RotationRate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// 3. 싱글 프레임 디버그 구체 그리기</span>
+<span class="w">    </span><span class="n">DrawSphereSingleFrame</span><span class="p">(</span><span class="n">GetActorLocation</span><span class="p">());</span>
+
+<span class="w">    </span><span class="c1">// 4. 싱글 프레임 디버그 화살표(앞방향 벡터) 그리기 (길이 100 뻥튀기)</span>
+<span class="w">    </span><span class="n">DrawVectorSingleFrame</span><span class="p">(</span><span class="n">GetActorLocation</span><span class="p">(),</span><span class="w"> </span><span class="n">GetActorLocation</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">GetActorForwardVector</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.0f</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../../../search/main.js"></script>
+    
+</body>
+</html>
