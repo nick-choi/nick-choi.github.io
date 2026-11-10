@@ -138,3 +138,4 @@ Backup of *.doc*
 *.~vsd*
 .vscode/settings.json
 frontend/.DS_Store
+.DS_Store
