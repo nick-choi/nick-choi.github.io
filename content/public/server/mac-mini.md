@@ -1,6 +1,12 @@
 # LaunchDeamon
 * linux만 사용하던 나에게는 익숙치 않은 시스템
 
+## 망할 놈이 업그레이드 되면서 enable 처리도 봐야한다.
+```
+sudo launchctl print-disabled system
+sudo launchctl enable system/com.devcrews.xxx
+```
+
 ## 등록/시작
 
 ```
