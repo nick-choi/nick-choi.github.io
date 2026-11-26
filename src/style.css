@@ -223,21 +223,17 @@ main {
   cursor: help;
 }
 .markdown-body ul {
-  list-style: none;
+  list-style: outside;
   padding-left: 1.5em;
 }
-.markdown-body li {
-  margin: 0.3em 0;
-}
-.markdown-body ul > li:before {
-  content: "•";
+
+.markdown-body ul > li::marker {
+  content: "• ";
   color: #969696;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
 }
-.markdown-body ul > li.task-list-item:before {
-  content: none;
+
+.markdown-body ul > li.task-list-item::marker {
+  content: "";
 }
 .task-list-item-checkbox {
   accent-color: var(--link);
